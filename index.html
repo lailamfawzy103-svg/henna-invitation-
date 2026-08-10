@@ -30,7 +30,7 @@
 <body>
 
   <!-- =====================================================
-       LOADING
+       LOADER
   ====================================================== -->
 
   <div class="loader" id="loader">
@@ -54,7 +54,6 @@
 
   <main class="app" id="app">
 
-
     <!-- ===================================================
          ENVELOPE SCREEN
     ==================================================== -->
@@ -66,7 +65,6 @@
 
       <div class="ambient-light"></div>
 
-
       <div
         class="envelope-stage"
         id="envelopeStage"
@@ -76,93 +74,95 @@
 
 
         <!-- =================================================
-             PAPER
-        ================================================== -->
-
-
-
-
-        <!-- =================================================
              ENVELOPE
         ================================================== -->
 
-      <div
-  class="envelope"
-  id="envelope"
->
+        <div
+          class="envelope"
+          id="envelope"
+        >
 
-  <!-- BACK -->
-  <div class="envelope-back"></div>
+          <!-- =================================================
+               BACK
+               Layer 20
+          ================================================== -->
 
-
-  <!-- =================================================
-       PAPER
-       فعليًا داخل الظرف
-       Layer 25
-  ================================================== -->
-
-  <div
-    class="paper-wrapper"
-    id="paperWrapper"
-  >
-
-    <div class="paper">
-
-      <div class="paper-texture"></div>
-
-      <div class="paper-monogram">
-        <span>AS</span>
-      </div>
-
-    </div>
-
-  </div>
+          <div class="envelope-back"></div>
 
 
-  <!-- =================================================
-       BODY
-       Layer 30
-  ================================================== -->
+          <!-- =================================================
+               PAPER
+               Layer 25
 
-  <div class="envelope-panel envelope-left"></div>
+               مهم جدًا:
+               الورقة هنا جوه الظرف فعلًا
+          ================================================== -->
 
-  <div class="envelope-panel envelope-right"></div>
+          <div
+            class="paper-wrapper"
+            id="paperWrapper"
+          >
 
-  <div class="envelope-bottom"></div>
+            <div class="paper">
+
+              <div class="paper-texture"></div>
+
+              <div class="paper-monogram">
+                <span>AS</span>
+              </div>
+
+            </div>
+
+          </div>
 
 
-  <!-- =================================================
-       FLAP
-       Layer 40
-  ================================================== -->
+          <!-- =================================================
+               BODY
+               Layer 30
+          ================================================== -->
 
-  <div
-    class="flap"
-    id="flap"
-  >
+          <div class="envelope-panel envelope-left"></div>
 
-    <div class="flap-surface">
+          <div class="envelope-panel envelope-right"></div>
 
-      <div class="flap-highlight"></div>
+          <div class="envelope-bottom"></div>
 
-      <button
-        class="seal"
-        id="openButton"
-        type="button"
-        aria-label="فتح الدعوة"
-      >
 
-        <span class="seal-inner">
-          AS
-        </span>
+          <!-- =================================================
+               FLAP
+               Layer 40
+          ================================================== -->
 
-      </button>
+          <div
+            class="flap"
+            id="flap"
+          >
 
-    </div>
+            <div class="flap-surface">
 
-  </div>
+              <div class="flap-highlight"></div>
 
-</div>
+              <!-- MONOGRAM -->
+
+              <button
+                class="seal"
+                id="openButton"
+                type="button"
+                aria-label="فتح الدعوة"
+              >
+
+                <span class="seal-inner">
+                  AS
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
 
         <!-- CLICK HINT -->
 
@@ -176,7 +176,6 @@
       </div>
 
     </section>
-
 
 
     <!-- ===================================================
@@ -200,16 +199,13 @@
 
         <div class="invitation-content">
 
-
           <div class="invitation-line reveal-item">
             يسر د. هدى مدحت
           </div>
 
-
           <div class="invitation-subtitle reveal-item">
             دعوتكم لحضور
           </div>
-
 
           <div class="invitation-event reveal-item">
             حفل حنة
@@ -272,7 +268,6 @@
               RSVP
             </div>
 
-
             <div class="rsvp-buttons">
 
               <button
@@ -282,7 +277,6 @@
               >
                 سأحضر
               </button>
-
 
               <button
                 class="rsvp-btn decline"
@@ -332,7 +326,6 @@
           <div class="bottom-monogram reveal-item">
             AS
           </div>
-
 
         </div>
 
