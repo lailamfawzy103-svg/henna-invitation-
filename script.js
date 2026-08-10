@@ -2,20 +2,21 @@
    ELEMENTS
 ========================================================= */
 
-const loader =
-  document.getElementById("loader");
+const loader = document.getElementById("loader");
 
-const app =
-  document.getElementById("app");
-
-const openButton =
-  document.getElementById("openButton");
+const app = document.getElementById("app");
 
 const envelopeStage =
   document.getElementById("envelopeStage");
 
-const envelopeScreen =
-  document.getElementById("envelopeScreen");
+const openButton =
+  document.getElementById("openButton");
+
+const envelope =
+  document.getElementById("envelope");
+
+const paperWrapper =
+  document.getElementById("paperWrapper");
 
 const clickHint =
   document.getElementById("clickHint");
@@ -29,17 +30,21 @@ const declineBtn =
 const guests =
   document.getElementById("guests");
 
-const envelope =
-  document.getElementById("envelope");
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let opened = false;
 
 
 /* =========================================================
-   LOADING PAGE
+   LOADER
 ========================================================= */
 
-window.addEventListener("load", function () {
+window.addEventListener("load", () => {
 
-  setTimeout(function () {
+  setTimeout(() => {
 
     loader.classList.add("hide");
 
@@ -49,119 +54,81 @@ window.addEventListener("load", function () {
 
 
 /* =========================================================
-   OPEN ENVELOPE
+   OPEN INVITATION
 ========================================================= */
 
-let opened = false;
+openButton.addEventListener("click", () => {
 
-
-openButton.addEventListener("click", function () {
-
-  /*
-    منع الضغط أكثر من مرة
-  */
-
-  if (opened) {
-    return;
-  }
+  if (opened) return;
 
   opened = true;
 
-
   /*
-    إخفاء النص الموجود تحت الظرف
+    امنع الضغط مرة ثانية
   */
 
-  if (clickHint) {
-    clickHint.style.opacity = "0";
-  }
-
+  openButton.disabled = true;
 
   /*
-    ---------------------------------------------
-    STEP 1
-    فتح الفلاب بالكامل
-    ---------------------------------------------
+    اخفاء hint
   */
+
+  clickHint.style.opacity = "0";
+
+
+  /* =====================================================
+     STEP 1
+     فتح الـ flap
+  ===================================================== */
 
   envelopeStage.classList.add("opened");
 
 
   /*
-    ---------------------------------------------
-    STEP 2
-    ننتظر الفلاب يخلص حركته
-    ثم تبدأ الورقة في الخروج
-    ---------------------------------------------
+    نستنى فتح الـ flap
+    قبل ما الورقة تبدأ تتحرك.
   */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    envelopeStage.classList.add("paper-out");
-
-  }, 1250);
-
-
-  /*
-    ---------------------------------------------
-    STEP 3
-    بعد ما الورقة تبدأ تخرج
-    نخلي الظرف يستقر
-    ---------------------------------------------
-  */
-
-  setTimeout(function () {
+    /* ===================================================
+       STEP 2
+       الورقة تبدأ الخروج
+    =================================================== */
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2850);
+    envelopeStage.classList.add("paper-out");
+
+  }, 650);
 
 
   /*
-    ---------------------------------------------
-    STEP 4
-    إظهار صفحة الدعوة
-    ---------------------------------------------
+    ندي الورقة وقت كافي عشان تخرج بالكامل.
   */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    app.classList.add("show-invitation");
-
-  }, 3350);
-
-
-  /*
-    ---------------------------------------------
-    STEP 5
-    إخفاء الظرف بعد اكتمال الانتقال
-    ---------------------------------------------
-  */
-
-  setTimeout(function () {
+    /* ===================================================
+       STEP 3
+       الظرف يبدأ يتحرك للخلف
+    =================================================== */
 
     envelopeStage.classList.add("finished");
 
-  }, 4000);
+  }, 2350);
 
 
   /*
-    ---------------------------------------------
-    STEP 6
-    السماح بالـscroll
-    ---------------------------------------------
+    بعد اختفاء الظرف:
+    نظهر صفحة الدعوة.
   */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    document.body.style.overflowY = "auto";
+    app.classList.add("show-invitation");
 
-    window.scrollTo({
-      top: envelopeScreen.offsetHeight,
-      behavior: "smooth"
-    });
-
-  }, 4200);
+  }, 2850);
 
 });
 
@@ -170,141 +137,41 @@ openButton.addEventListener("click", function () {
    RSVP — ATTEND
 ========================================================= */
 
-if (attendBtn) {
+attendBtn.addEventListener("click", () => {
 
-  attendBtn.addEventListener("click", function () {
+  attendBtn.classList.add("selected");
 
-    attendBtn.classList.add("selected");
+  declineBtn.classList.remove("selected");
 
-    if (declineBtn) {
-      declineBtn.classList.remove("selected");
-    }
+  guests.classList.add("show");
 
-    if (guests) {
-      guests.classList.add("show");
-    }
-
-  });
-
-}
+});
 
 
 /* =========================================================
    RSVP — DECLINE
 ========================================================= */
 
-if (declineBtn) {
+declineBtn.addEventListener("click", () => {
 
-  declineBtn.addEventListener("click", function () {
+  declineBtn.classList.add("selected");
 
-    declineBtn.classList.add("selected");
+  attendBtn.classList.remove("selected");
 
-    if (attendBtn) {
-      attendBtn.classList.remove("selected");
-    }
+  guests.classList.remove("show");
 
-    if (guests) {
-      guests.classList.remove("show");
-    }
-
-  });
-
-}
+});
 
 
 /* =========================================================
-   DESKTOP PARALLAX
-========================================================= */
-
-const desktopPointer =
-  window.matchMedia("(pointer:fine)");
-
-
-if (desktopPointer.matches) {
-
-  document.addEventListener(
-    "mousemove",
-    function (event) {
-
-      /*
-        بعد الضغط لا نحرك الظرف بالماوس
-      */
-
-      if (opened) {
-        return;
-      }
-
-
-      const x =
-        (
-          event.clientX /
-          window.innerWidth -
-          0.5
-        ) * 2;
-
-
-      const y =
-        (
-          event.clientY /
-          window.innerHeight -
-          0.5
-        ) * 2;
-
-
-      envelope.style.transform = `
-        translate(-50%, -50%)
-        rotateY(${x * 2}deg)
-        rotateX(${y * -1.2}deg)
-      `;
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   RESET PARALLAX WHEN OPENING
+   PREVENT DOUBLE TAP / ZOOM ON SEAL
 ========================================================= */
 
 openButton.addEventListener(
-  "click",
-  function () {
+  "touchstart",
+  (event) => {
 
-    envelope.style.transform =
-      "translate(-50%, -50%)";
-
-  },
-  {
-    once: true
-  }
-);
-
-
-/* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
-========================================================= */
-
-let lastTouchEnd = 0;
-
-
-document.addEventListener(
-  "touchend",
-  function (event) {
-
-    const now = Date.now();
-
-
-    if (
-      now - lastTouchEnd <= 300
-    ) {
-
-      event.preventDefault();
-
-    }
-
-
-    lastTouchEnd = now;
+    event.preventDefault();
 
   },
   {
