@@ -49,17 +49,13 @@ body {
 
 .loader {
   position: fixed;
-
   inset: 0;
 
   z-index: 99999;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -82,9 +78,7 @@ body {
 }
 
 .loader-monogram {
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
@@ -103,7 +97,6 @@ body {
 
 .loader-line {
   width: 72px;
-
   height: 1px;
 
   margin: 12px 0;
@@ -115,9 +108,7 @@ body {
 }
 
 .loader-names {
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size: 10px;
 
@@ -161,7 +152,6 @@ body {
   position: relative;
 
   width: 100%;
-
   height: 100dvh;
 
   min-height: 600px;
@@ -169,9 +159,7 @@ body {
   overflow: hidden;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -187,7 +175,6 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -246,12 +233,6 @@ body {
 
   transform-style: preserve-3d;
 
-  /*
-    مهم:
-    لا يوجد overflow:hidden
-    لأن الورقة لازم تخرج خارج الظرف.
-  */
-
   overflow: visible;
 }
 
@@ -264,11 +245,9 @@ body {
   position: absolute;
 
   left: 50%;
-
   bottom: 11%;
 
   width: 75%;
-
   height: 15%;
 
   transform:
@@ -306,7 +285,6 @@ body {
     1.48 / 1;
 
   left: 50%;
-
   top: 52%;
 
   transform:
@@ -325,7 +303,7 @@ body {
 
 /* =========================================================
    ENVELOPE BACK
-   Layer 20
+   LAYER 20
 ========================================================= */
 
 .envelope-back {
@@ -394,55 +372,34 @@ body {
 
 
 /* =========================================================
-   PAPER WRAPPER
-   Layer 25
+   PAPER
+   LAYER 25
+
+   الورقة هنا فعلًا داخل الـ envelope
 ========================================================= */
 
 .paper-wrapper {
-
   position: absolute;
 
-  left: 50%;
+  left: 0;
+  top: 0;
 
-  top: 52%;
-
-  width:
-    min(87vw, 610px);
-
-  aspect-ratio:
-    1.48 / 1;
-
-  height: auto;
-
-  /*
-    الورقة في البداية بنفس مكان الظرف
-  */
-
-  transform:
-    translate(-50%, -50%);
-
-  /*
-    IMPORTANT:
-
-    Back  = 20
-    Paper = 25
-    Body  = 30
-    Flap  = 40
-  */
+  width: 100%;
+  height: 100%;
 
   z-index: 25;
 
+  overflow: visible;
+
   pointer-events: none;
 
-  /*
-    ممنوع overflow:hidden
-  */
-
-  overflow: visible;
+  transform:
+    translate(0, 0);
 
   transition:
     width 1.7s cubic-bezier(.16,.78,.2,1),
     height 1.7s cubic-bezier(.16,.78,.2,1),
+    left 1.7s cubic-bezier(.16,.78,.2,1),
     top 1.7s cubic-bezier(.16,.78,.2,1),
     transform 1.7s cubic-bezier(.16,.78,.2,1);
 }
@@ -453,7 +410,6 @@ body {
 ========================================================= */
 
 .paper {
-
   position: absolute;
 
   left: 0;
@@ -486,7 +442,6 @@ body {
 ========================================================= */
 
 .paper-texture {
-
   position: absolute;
 
   inset: 0;
@@ -520,32 +475,25 @@ body {
 ========================================================= */
 
 .paper-monogram {
-
   position: absolute;
 
   inset: 0;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   pointer-events: none;
 }
 
 .paper-monogram span {
-
   width: 92px;
-
   height: 92px;
 
   border-radius: 50%;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border:
@@ -573,17 +521,15 @@ body {
 
 /* =========================================================
    ENVELOPE FRONT LEFT
-   Layer 30
+   LAYER 30
 ========================================================= */
 
 .envelope-panel {
-
   position: absolute;
 
   bottom: 0;
 
   width: 51%;
-
   height: 70%;
 
   z-index: 30;
@@ -603,7 +549,6 @@ body {
 }
 
 .envelope-left {
-
   left: 0;
 
   clip-path:
@@ -615,7 +560,6 @@ body {
 }
 
 .envelope-right {
-
   right: 0;
 
   clip-path:
@@ -628,17 +572,15 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BOTTOM BODY
-   Layer 30
+   ENVELOPE BOTTOM
+   LAYER 30
 ========================================================= */
 
 .envelope-bottom {
-
   position: absolute;
 
   left: 0;
   right: 0;
-
   bottom: 0;
 
   height: 72%;
@@ -665,11 +607,10 @@ body {
 
 /* =========================================================
    FLAP
-   Layer 40
+   LAYER 40
 ========================================================= */
 
 .flap {
-
   position: absolute;
 
   top: 0;
@@ -701,7 +642,6 @@ body {
 ========================================================= */
 
 .flap-surface {
-
   position: absolute;
 
   inset: 0;
@@ -736,7 +676,6 @@ body {
 ========================================================= */
 
 .flap-highlight {
-
   position: absolute;
 
   inset: 0;
@@ -753,15 +692,13 @@ body {
 
 
 /* =========================================================
-   SEAL / MONOGRAM
+   SEAL
 ========================================================= */
 
 .seal {
-
   position: absolute;
 
   left: 50%;
-
   top: 59%;
 
   z-index: 50;
@@ -781,9 +718,7 @@ body {
   cursor: pointer;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -807,7 +742,6 @@ body {
 }
 
 .seal:hover {
-
   transform:
     translate(-50%, -50%)
     scale(1.04);
@@ -817,15 +751,11 @@ body {
 }
 
 .seal-inner {
-
   width: 76%;
-
   height: 76%;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border-radius: 50%;
@@ -859,32 +789,20 @@ body {
 ========================================================= */
 
 .envelope-stage.opened .flap {
-
   transform:
     rotateX(180deg);
 }
 
 
 /* =========================================================
-   PAPER COMES OUT
+   PAPER OUT
 ========================================================= */
 
-/*
-  أهم نقطة:
-
-  Paper = 25
-  Body  = 30
-
-  لذلك الورقة لا تقفز أمام الظرف.
-
-  الجزء الموجود داخل الظرف
-  يظل خلف الـBody.
-
-  والجزء الذي خرج من حافة الظرف
-  يظهر طبيعيًا.
-*/
-
 .envelope-stage.paper-out .paper-wrapper {
+
+  /*
+    الورقة تكبر
+  */
 
   width:
     min(72vw, 430px);
@@ -892,12 +810,19 @@ body {
   height:
     min(125vw, 680px);
 
-  top: 30%;
+  /*
+    الورقة تطلع لأعلى
+    من داخل الظرف
+  */
 
-  z-index: 25;
+  left: 50%;
+
+  top: -42%;
 
   transform:
     translate(-50%, -50%);
+
+  z-index: 25;
 }
 
 
@@ -906,12 +831,10 @@ body {
 ========================================================= */
 
 .envelope-stage.transitioning .paper-wrapper {
-
   z-index: 25;
 }
 
 .envelope-stage.transitioning .envelope {
-
   transform:
     translate(-50%, -50%)
     translateY(35px)
@@ -920,11 +843,10 @@ body {
 
 
 /* =========================================================
-   SHADOW AFTER OPEN
+   SHADOW
 ========================================================= */
 
 .envelope-stage.opened .ground-shadow {
-
   transform:
     translateX(-50%)
     translateY(25px)
@@ -935,11 +857,10 @@ body {
 
 
 /* =========================================================
-   FINISHED ENVELOPE
+   FINISHED
 ========================================================= */
 
 .envelope-stage.finished .envelope {
-
   opacity: 0;
 
   pointer-events: none;
@@ -956,11 +877,9 @@ body {
 ========================================================= */
 
 .click-hint {
-
   position: absolute;
 
   left: 50%;
-
   bottom: 5%;
 
   transform:
@@ -980,7 +899,6 @@ body {
 }
 
 .envelope-stage.opened .click-hint {
-
   opacity: 0;
 }
 
@@ -1003,7 +921,6 @@ body {
 ========================================================= */
 
 .invitation-page {
-
   position: relative;
 
   width: 100%;
@@ -1016,9 +933,7 @@ body {
     clamp(70px, 10vh, 110px);
 
   display: flex;
-
   align-items: flex-start;
-
   justify-content: center;
 
   background:
@@ -1042,7 +957,6 @@ body {
 }
 
 .app.show-invitation .invitation-page {
-
   opacity: 1;
 
   transform:
@@ -1057,7 +971,6 @@ body {
 ========================================================= */
 
 .invitation-background {
-
   position: absolute;
 
   inset: 0;
@@ -1087,7 +1000,6 @@ body {
 ========================================================= */
 
 .invitation-card {
-
   position: relative;
 
   width:
@@ -1117,7 +1029,6 @@ body {
 }
 
 .invitation-card::before {
-
   content: "";
 
   position: absolute;
@@ -1153,7 +1064,6 @@ body {
 ========================================================= */
 
 .invitation-frame {
-
   position: absolute;
 
   inset: 18px;
@@ -1165,7 +1075,6 @@ body {
 }
 
 .invitation-inner-frame {
-
   position: absolute;
 
   inset: 5px;
@@ -1180,7 +1089,6 @@ body {
 ========================================================= */
 
 .invitation-content {
-
   position: relative;
 
   z-index: 2;
@@ -1204,7 +1112,6 @@ body {
 ========================================================= */
 
 .reveal-item {
-
   opacity: 0;
 
   transform:
@@ -1220,7 +1127,6 @@ body {
 }
 
 .app.show-invitation .reveal-item {
-
   opacity: 1;
 
   transform:
@@ -1286,7 +1192,6 @@ body {
 ========================================================= */
 
 .invitation-line {
-
   margin-top: 25px;
 
   font-size:
@@ -1296,7 +1201,6 @@ body {
 }
 
 .invitation-subtitle {
-
   margin-top: 8px;
 
   font-size:
@@ -1306,7 +1210,6 @@ body {
 }
 
 .invitation-event {
-
   margin-top: 1px;
 
   font-size:
@@ -1323,11 +1226,9 @@ body {
 ========================================================= */
 
 .names {
-
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 14px;
@@ -1341,7 +1242,6 @@ body {
 }
 
 .names i {
-
   font-family:
     "Cormorant Garamond",
     serif;
@@ -1359,11 +1259,9 @@ body {
 ========================================================= */
 
 .ornament {
-
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   width: 72%;
@@ -1374,7 +1272,6 @@ body {
 }
 
 .ornament span {
-
   flex: 1;
 
   height: 1px;
@@ -1389,7 +1286,6 @@ body {
 }
 
 .ornament b {
-
   font-family:
     "Cinzel",
     serif;
@@ -1407,12 +1303,10 @@ body {
 ========================================================= */
 
 .date-block {
-
   margin-top: 18px;
 }
 
 .date {
-
   font-family:
     "Cinzel",
     serif;
@@ -1426,7 +1320,6 @@ body {
 }
 
 .time {
-
   margin-top: 5px;
 
   font-size:
@@ -1441,7 +1334,6 @@ body {
 ========================================================= */
 
 .location {
-
   margin-top: 20px;
 
   line-height: 1.7;
@@ -1455,7 +1347,6 @@ body {
 }
 
 .location-name {
-
   font-weight: 600;
 
   color: #5c432f;
@@ -1467,7 +1358,6 @@ body {
 ========================================================= */
 
 .rsvp {
-
   width: 100%;
 
   margin-top: 40px;
@@ -1479,7 +1369,6 @@ body {
 }
 
 .rsvp-title {
-
   font-family:
     "Cinzel",
     serif;
@@ -1494,7 +1383,6 @@ body {
 }
 
 .rsvp-buttons {
-
   display: flex;
 
   justify-content: center;
@@ -1505,7 +1393,6 @@ body {
 }
 
 .rsvp-btn {
-
   border:
     1px solid rgba(135,100,67,.55);
 
@@ -1533,13 +1420,11 @@ body {
 }
 
 .rsvp-btn:active {
-
   transform:
     scale(.97);
 }
 
 .rsvp-btn.selected {
-
   background:
     #d4c0a7;
 }
@@ -1550,11 +1435,9 @@ body {
 ========================================================= */
 
 .guests {
-
   display: none;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
@@ -1569,7 +1452,6 @@ body {
 }
 
 .guests select {
-
   border:
     1px solid #bba384;
 
@@ -1591,7 +1473,6 @@ body {
 ========================================================= */
 
 .bottom-monogram {
-
   margin-top: 40px;
 
   font-family:
@@ -1613,64 +1494,56 @@ body {
 @media (max-width: 600px) {
 
   .envelope-stage {
-
     width: 100vw;
-
     height: 90dvh;
 
     overflow: visible;
   }
 
   .envelope {
-
     width: 88vw;
 
     overflow: visible;
   }
-
-  /* الورقة وهي داخل الظرف */
 
   .paper-wrapper {
+    width: 100%;
+    height: 100%;
 
-    width: 88vw;
-
-    aspect-ratio:
-      1.48 / 1;
-
-    height: auto;
-
-    top: 52%;
+    left: 0;
+    top: 0;
 
     z-index: 25;
-
-    overflow: visible;
   }
-
-  /* الورقة وهي تخرج */
 
   .envelope-stage.paper-out .paper-wrapper {
 
     width: 78vw;
-
     height: 125vw;
 
-    top: 30%;
-
-    z-index: 25;
+    left: 50%;
+    top: -42%;
 
     transform:
       translate(-50%, -50%);
+
+    z-index: 25;
+  }
+
+  .paper-monogram span {
+    width: 82px;
+    height: 82px;
+
+    font-size: 31px;
   }
 
   .invitation-page {
-
     padding:
       40px 12px
       70px;
   }
 
   .invitation-card {
-
     width: 94vw;
 
     min-height:
@@ -1681,22 +1554,18 @@ body {
   }
 
   .invitation-frame {
-
     inset: 14px;
   }
 
   .invitation-line {
-
     margin-top: 21px;
   }
 
   .names {
-
     gap: 9px;
   }
 
   .rsvp {
-
     margin-top: 34px;
   }
 
@@ -1710,43 +1579,34 @@ body {
 @media (max-height: 700px) {
 
   .envelope {
-
     width: 83vw;
-  }
-
-  .paper-wrapper {
-
-    width: 83vw;
-
-    top: 52%;
   }
 
   .envelope-stage.paper-out .paper-wrapper {
 
     width: 74vw;
-
     height: 118vw;
 
-    top: 29%;
+    left: 50%;
+    top: -39%;
+
+    transform:
+      translate(-50%, -50%);
   }
 
   .invitation-line {
-
     margin-top: 17px;
   }
 
   .date-block {
-
     margin-top: 12px;
   }
 
   .location {
-
     margin-top: 13px;
   }
 
   .rsvp {
-
     margin-top: 28px;
   }
 
@@ -1754,26 +1614,23 @@ body {
 
 
 /* =========================================================
-   VERY SMALL WIDTH
+   VERY SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 380px) {
 
   .paper-monogram span {
+    width: 76px;
+    height: 76px;
 
-    width: 78px;
-    height: 78px;
-
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .seal {
-
     width: 78px;
   }
 
   .invitation-card {
-
     padding-left: 18px;
     padding-right: 18px;
   }
