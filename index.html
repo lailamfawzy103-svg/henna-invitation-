@@ -79,89 +79,90 @@
              PAPER
         ================================================== -->
 
-        <div
-          class="paper-wrapper"
-          id="paperWrapper"
-        >
 
-          <div class="paper">
-
-            <div class="paper-texture"></div>
-
-            <div class="paper-monogram">
-              <span>AS</span>
-            </div>
-
-          </div>
-
-        </div>
 
 
         <!-- =================================================
              ENVELOPE
         ================================================== -->
 
-        <div
-          class="envelope"
-          id="envelope"
-        >
+      <div
+  class="envelope"
+  id="envelope"
+>
 
-          <!-- BACK -->
-          <div class="envelope-back"></div>
-
-
-          <!-- =================================================
-               SIDE FLAPS
-          ================================================== -->
-
-          <div class="envelope-panel envelope-left"></div>
-
-          <div class="envelope-panel envelope-right"></div>
+  <!-- BACK -->
+  <div class="envelope-back"></div>
 
 
-          <!-- =================================================
-               BOTTOM BODY
-          ================================================== -->
+  <!-- =================================================
+       PAPER
+       فعليًا داخل الظرف
+       Layer 25
+  ================================================== -->
 
-          <div class="envelope-bottom"></div>
+  <div
+    class="paper-wrapper"
+    id="paperWrapper"
+  >
+
+    <div class="paper">
+
+      <div class="paper-texture"></div>
+
+      <div class="paper-monogram">
+        <span>AS</span>
+      </div>
+
+    </div>
+
+  </div>
 
 
-          <!-- =================================================
-               TOP FLAP
-               لا يتم تغيير تصميمه
-          ================================================== -->
+  <!-- =================================================
+       BODY
+       Layer 30
+  ================================================== -->
 
-          <div
-            class="flap"
-            id="flap"
-          >
+  <div class="envelope-panel envelope-left"></div>
 
-            <div class="flap-surface">
+  <div class="envelope-panel envelope-right"></div>
 
-              <div class="flap-highlight"></div>
+  <div class="envelope-bottom"></div>
 
 
-              <!-- MONOGRAM -->
+  <!-- =================================================
+       FLAP
+       Layer 40
+  ================================================== -->
 
-              <button
-                class="seal"
-                id="openButton"
-                type="button"
-                aria-label="فتح الدعوة"
-              >
+  <div
+    class="flap"
+    id="flap"
+  >
 
-                <span class="seal-inner">
-                  AS
-                </span>
+    <div class="flap-surface">
 
-              </button>
+      <div class="flap-highlight"></div>
 
-            </div>
+      <button
+        class="seal"
+        id="openButton"
+        type="button"
+        aria-label="فتح الدعوة"
+      >
 
-          </div>
+        <span class="seal-inner">
+          AS
+        </span>
 
-        </div>
+      </button>
 
+    </div>
+
+  </div>
+
+</div>
 
         <!-- CLICK HINT -->
 
