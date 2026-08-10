@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#d9c8b3"
+  >
+
+  <title>Ahmed & Shahd</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       LOADING SCREEN
+  ====================================================== -->
+
+  <div class="loader" id="loader">
+
+    <div class="loader-monogram">
+      AS
+    </div>
+
+    <div class="loader-line"></div>
+
+    <div class="loader-names">
+      AHMED &amp; SHAHd
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MAIN APP
+  ====================================================== -->
+
+  <main class="app" id="app">
+
+
+    <!-- ===================================================
+         ENVELOPE SCREEN
+    ==================================================== -->
+
+    <section
+      class="envelope-screen"
+      id="envelopeScreen"
+    >
+
+      <div class="ambient-light"></div>
+
+
+      <div
+        class="envelope-stage"
+        id="envelopeStage"
+      >
+
+        <!-- Ground shadow -->
+
+        <div class="ground-shadow"></div>
+
+
+        <!-- ===============================================
+             PAPER
+        ================================================ -->
+
+        <div
+          class="paper-wrapper"
+          id="paperWrapper"
+        >
+
+          <div class="paper-shadow"></div>
+
+          <div class="paper">
+
+            <div class="paper-texture"></div>
+
+            <div class="paper-monogram">
+              <span>AS</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             ENVELOPE
+        ================================================ -->
+
+        <div
+          class="envelope"
+          id="envelope"
+        >
+
+          <!-- Back -->
+
+          <div class="envelope-back"></div>
+
+
+          <!-- Left panel -->
+
+          <div class="envelope-panel envelope-left"></div>
+
+
+          <!-- Right panel -->
+
+          <div class="envelope-panel envelope-right"></div>
+
+
+          <!-- Bottom panel -->
+
+          <div class="envelope-bottom"></div>
+
+
+          <!-- =============================================
+               FLAP
+          ============================================== -->
+
+          <div
+            class="flap"
+            id="flap"
+          >
+
+            <div class="flap-surface">
+
+              <div class="flap-highlight"></div>
+
+
+              <!-- Seal -->
+
+              <button
+                class="seal"
+                id="openButton"
+                type="button"
+                aria-label="فتح الدعوة"
+              >
+
+                <span class="seal-inner">
+                  AS
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Click hint -->
+
+        <div
+          class="click-hint"
+          id="clickHint"
+        >
+          اضغطي لفتح الدعوة
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         INVITATION
+    ==================================================== -->
+
+    <section
+      class="invitation-page"
+      id="invitationPage"
+    >
+
+      <div class="invitation-background"></div>
+
+
+      <article class="invitation-card">
+
+
+        <!-- Decorative frame -->
+
+        <div class="invitation-frame">
+
+          <div class="invitation-inner-frame"></div>
+
+        </div>
+        <!-- Host -->
+
+          <div class="invitation-line reveal-item">
+            يسر د. هدى مدحت
+          </div>
+
+
+          <!-- Intro -->
+
+          <div class="invitation-subtitle reveal-item">
+            دعوتكم لحضور
+          </div>
+
+
+          <!-- Event -->
+
+          <div class="invitation-event reveal-item">
+            حفل حنة
+          </div>
+
+
+          <!-- Names -->
+
+          <div class="names reveal-item">
+
+            <span>
+              أحمد
+            </span>
+
+            <i>
+              &amp;
+            </i>
+
+            <span>
+              شهد
+            </span>
+
+          </div>
+
+
+          <!-- Ornament -->
+
+          <div class="ornament reveal-item">
+
+            <span></span>
+
+            <b>
+              AS
+            </b>
+
+            <span></span>
+
+          </div>
+
+
+          <!-- Date -->
+
+          <div class="date-block reveal-item">
+
+            <div class="date">
+              20 . 8 . 2026
+            </div>
+
+            <div class="time">
+              الساعة 9 عقب صلاة العشاء
+            </div>
+
+          </div>
+
+
+          <!-- Location -->
+
+          <div class="location reveal-item">
+
+            <div class="location-small">
+              وذلك في منزل
+            </div>
+
+            <div class="location-name">
+              د. محمد فوزي رياض
+            </div>
+
+          </div>
+
+
+          <!-- RSVP -->
+
+          <div class="rsvp reveal-item">
+
+            <div class="rsvp-title">
+              RSVP
+            </div>
+
+
+            <div class="rsvp-buttons">
+
+              <button
+                class="rsvp-btn attend"
+                id="attendBtn"
+                type="button"
+              >
+                سأحضر
+              </button>
+
+
+              <button
+                class="rsvp-btn decline"
+                id="declineBtn"
+                type="button"
+              >
+                أعتذر عن الحضور
+              </button>
+
+            </div>
+
+
+            <div
+              class="guests"
+              id="guests"
+            >
+
+              <label for="guestCount">
+                عدد المرافقين
+              </label>
+
+              <select id="guestCount">
+
+                <option value="0">
+                  بدون مرافق
+                </option>
+
+                <option value="1">
+                  مرافق واحد
+                </option>
+
+                <option value="2">
+                  مرافقان
+                </option>
+
+                <option value="3">
+                  3 مرافقين
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <!-- Bottom monogram -->
+
+          <div class="bottom-monogram reveal-item">
+            AS
+          </div>
+
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <!-- Main JavaScript -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
+
+        <!-- Invitation content -->
+
+        <div class="invitation-content">
