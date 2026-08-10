@@ -49,10 +49,11 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN ENVELOPE
+   OPEN
 ========================================================= */
 
 let opened = false;
+
 
 openButton.addEventListener("click", () => {
 
@@ -63,49 +64,47 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* -------------------------
-     Hide click hint
-  ------------------------- */
+  /* Hide hint */
 
   clickHint.style.opacity = "0";
 
 
-  /* -------------------------
+  /* ==========================================
      STEP 1
      Open flap
-  ------------------------- */
+  ========================================== */
 
   envelopeStage.classList.add("opened");
 
 
-  /* -------------------------
+  /* ==========================================
      STEP 2
-     Paper comes out
-  ------------------------- */
+     Paper starts coming out
+  ========================================== */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1350);
+  }, 900);
 
 
-  /* -------------------------
+  /* ==========================================
      STEP 3
-     Move envelope slightly
-  ------------------------- */
+     Slight envelope movement
+  ========================================== */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2850);
+  }, 2750);
 
 
-  /* -------------------------
+  /* ==========================================
      STEP 4
      Show invitation
-  ------------------------- */
+  ========================================== */
 
   setTimeout(() => {
 
@@ -113,26 +112,22 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("finished");
 
-    document.body.style.overflowY = "hidden";
-
-  }, 3350);
+  }, 3250);
 
 
-  /* -------------------------
+  /* ==========================================
      STEP 5
-     Enable page scrolling
-  ------------------------- */
+     Scroll to invitation
+  ========================================== */
 
   setTimeout(() => {
 
-    document.body.style.overflowY = "auto";
-
     window.scrollTo({
       top: envelopeScreen.offsetHeight,
-      behavior: "instant"
+      behavior: "smooth"
     });
 
-  }, 4050);
+  }, 3900);
 
 });
 
@@ -183,16 +178,23 @@ if (desktopPointer.matches) {
 
 
       const x =
-        (event.clientX /
-          window.innerWidth - 0.5) * 2;
+        (
+          event.clientX /
+          window.innerWidth
+          - .5
+        ) * 2;
 
 
       const y =
-        (event.clientY /
-          window.innerHeight - 0.5) * 2;
+        (
+          event.clientY /
+          window.innerHeight
+          - .5
+        ) * 2;
 
 
       envelope.style.transform =
+
         `
         translate(-50%, -50%)
         rotateY(${x * 2}deg)
@@ -206,7 +208,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX AFTER CLICK
+   RESET PARALLAX
 ========================================================= */
 
 openButton.addEventListener(
@@ -229,11 +231,13 @@ openButton.addEventListener(
 
 let lastTouchEnd = 0;
 
+
 document.addEventListener(
   "touchend",
   (event) => {
 
     const now = Date.now();
+
 
     if (
       now - lastTouchEnd <= 300
@@ -242,6 +246,7 @@ document.addEventListener(
       event.preventDefault();
 
     }
+
 
     lastTouchEnd = now;
 
