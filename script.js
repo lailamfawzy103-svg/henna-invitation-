@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN
+   OPEN ENVELOPE
 ========================================================= */
 
 let opened = false;
@@ -64,47 +64,50 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* Hide hint */
+  /* -----------------------------------------
+     Hide click hint
+  ----------------------------------------- */
 
   clickHint.style.opacity = "0";
 
 
-  /* ==========================================
+  /* -----------------------------------------
      STEP 1
-     Open flap
-  ========================================== */
+     Flap opens completely
+  ----------------------------------------- */
 
   envelopeStage.classList.add("opened");
 
 
-  /* ==========================================
+  /* -----------------------------------------
      STEP 2
-     Paper starts coming out
-  ========================================== */
+     Wait until flap is open,
+     then paper starts coming out
+  ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 900);
+  }, 1350);
 
 
-  /* ==========================================
+  /* -----------------------------------------
      STEP 3
-     Slight envelope movement
-  ========================================== */
+     Small envelope movement
+  ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2750);
+  }, 2850);
 
 
-  /* ==========================================
+  /* -----------------------------------------
      STEP 4
      Show invitation
-  ========================================== */
+  ----------------------------------------- */
 
   setTimeout(() => {
 
@@ -112,50 +115,66 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("finished");
 
-  }, 3250);
+    document.body.style.overflowY =
+      "hidden";
+
+  }, 3350);
 
 
-  /* ==========================================
+  /* -----------------------------------------
      STEP 5
-     Scroll to invitation
-  ========================================== */
+     Enable scrolling
+  ----------------------------------------- */
 
   setTimeout(() => {
 
+    document.body.style.overflowY =
+      "auto";
+
     window.scrollTo({
       top: envelopeScreen.offsetHeight,
-      behavior: "smooth"
+      behavior: "instant"
     });
 
-  }, 3900);
+  }, 4050);
 
 });
 
 
 /* =========================================================
-   RSVP
+   RSVP - ATTEND
 ========================================================= */
 
-attendBtn.addEventListener("click", () => {
+attendBtn.addEventListener(
+  "click",
+  () => {
 
-  attendBtn.classList.add("selected");
+    attendBtn.classList.add("selected");
 
-  declineBtn.classList.remove("selected");
+    declineBtn.classList.remove("selected");
 
-  guests.classList.add("show");
+    guests.classList.add("show");
 
-});
+  }
+);
 
 
-declineBtn.addEventListener("click", () => {
+/* =========================================================
+   RSVP - DECLINE
+========================================================= */
 
-  declineBtn.classList.add("selected");
+declineBtn.addEventListener(
+  "click",
+  () => {
 
-  attendBtn.classList.remove("selected");
+    declineBtn.classList.add("selected");
 
-  guests.classList.remove("show");
+    attendBtn.classList.remove("selected");
 
-});
+    guests.classList.remove("show");
+
+  }
+);
 
 
 /* =========================================================
@@ -163,7 +182,9 @@ declineBtn.addEventListener("click", () => {
 ========================================================= */
 
 const desktopPointer =
-  window.matchMedia("(pointer:fine)");
+  window.matchMedia(
+    "(pointer:fine)"
+  );
 
 
 if (desktopPointer.matches) {
@@ -180,21 +201,20 @@ if (desktopPointer.matches) {
       const x =
         (
           event.clientX /
-          window.innerWidth
-          - .5
+          window.innerWidth -
+          .5
         ) * 2;
 
 
       const y =
         (
           event.clientY /
-          window.innerHeight
-          - .5
+          window.innerHeight -
+          .5
         ) * 2;
 
 
       envelope.style.transform =
-
         `
         translate(-50%, -50%)
         rotateY(${x * 2}deg)
@@ -208,7 +228,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX
+   RESET PARALLAX AFTER CLICK
 ========================================================= */
 
 openButton.addEventListener(
@@ -236,7 +256,8 @@ document.addEventListener(
   "touchend",
   (event) => {
 
-    const now = Date.now();
+    const now =
+      Date.now();
 
 
     if (
