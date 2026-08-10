@@ -2,17 +2,20 @@
    ELEMENTS
 ========================================================= */
 
-const openButton =
-  document.getElementById("openButton");
-
-const invitationStage =
-  document.getElementById("envelopeStage");
+const loader =
+  document.getElementById("loader");
 
 const app =
   document.getElementById("app");
 
-const loader =
-  document.getElementById("loader");
+const envelopeStage =
+  document.getElementById("envelopeStage");
+
+const openButton =
+  document.getElementById("openButton");
+
+const clickHint =
+  document.getElementById("clickHint");
 
 const attendBtn =
   document.getElementById("attendBtn");
@@ -35,9 +38,9 @@ let opened = false;
    LOADER
 ========================================================= */
 
-window.addEventListener("load", function () {
+window.addEventListener("load", () => {
 
-  setTimeout(function () {
+  setTimeout(() => {
 
     loader.classList.add("hide");
 
@@ -50,65 +53,59 @@ window.addEventListener("load", function () {
    OPEN ENVELOPE
 ========================================================= */
 
-openButton.addEventListener("click", function () {
+openButton.addEventListener("click", () => {
 
   if (opened) return;
 
   opened = true;
 
+  openButton.disabled = true;
 
-  /*
-    المرحلة الأولى:
-    فتح الـ flap
-  */
-
-  invitationStage.classList.add("opened");
+  clickHint.style.opacity = "0";
 
 
-  /*
-    المرحلة الثانية:
-    تحريك الظرف قليلًا
-  */
+  /* =====================================================
+     STEP 1
+     فتح الـ flap
+  ===================================================== */
 
-  setTimeout(function () {
-
-    invitationStage.classList.add("transitioning");
-
-  }, 350);
+  envelopeStage.classList.add("opened");
 
 
-  /*
-    المرحلة الثالثة:
-    الورقة تبدأ في الخروج
-  */
+  /* =====================================================
+     STEP 2
+     الورقة تبدأ تطلع من جوه الظرف
+  ===================================================== */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    invitationStage.classList.add("paper-out");
+    envelopeStage.classList.add("transitioning");
 
-  }, 850);
+    envelopeStage.classList.add("paper-out");
+
+  }, 700);
 
 
-  /*
-    المرحلة الرابعة:
-    إظهار صفحة الدعوة
-  */
+  /* =====================================================
+     STEP 3
+     الظرف يختفي بعد خروج الورقة
+  ===================================================== */
 
-  setTimeout(function () {
+  setTimeout(() => {
+
+    envelopeStage.classList.add("finished");
+
+  }, 2450);
+
+
+  /* =====================================================
+     STEP 4
+     إظهار صفحة الدعوة
+  ===================================================== */
+
+  setTimeout(() => {
 
     app.classList.add("show-invitation");
-
-  }, 2100);
-
-
-  /*
-    المرحلة الأخيرة:
-    اختفاء الظرف بعد خروج الورقة
-  */
-
-  setTimeout(function () {
-
-    invitationStage.classList.add("finished");
 
   }, 3000);
 
@@ -116,10 +113,10 @@ openButton.addEventListener("click", function () {
 
 
 /* =========================================================
-   RSVP - ATTEND
+   RSVP — ATTEND
 ========================================================= */
 
-attendBtn.addEventListener("click", function () {
+attendBtn.addEventListener("click", () => {
 
   attendBtn.classList.add("selected");
 
@@ -131,10 +128,10 @@ attendBtn.addEventListener("click", function () {
 
 
 /* =========================================================
-   RSVP - DECLINE
+   RSVP — DECLINE
 ========================================================= */
 
-declineBtn.addEventListener("click", function () {
+declineBtn.addEventListener("click", () => {
 
   declineBtn.classList.add("selected");
 
