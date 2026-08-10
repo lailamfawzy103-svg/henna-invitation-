@@ -718,23 +718,26 @@ body {
 /* =========================================================
    PAPER
 ========================================================= */
+/* =========================================================
+   PAPER — STARTS INSIDE THE ENVELOPE
+========================================================= */
 
 .paper-wrapper {
   position: absolute;
 
   left: 50%;
 
-  top: 68%;
+  /*
+    بداية الورقة داخل الظرف فعلًا
+  */
+  top: 39%;
 
-  width:
-    min(65vw, 390px);
+  width: min(65vw, 390px);
 
-  height:
-    min(76vh, 560px);
+  height: min(76vh, 560px);
 
   /*
-    قبل الخروج:
-    الورقة تحت جسم الظرف
+    الورقة في البداية خلف جسم الظرف
   */
   z-index: 20;
 
@@ -748,7 +751,7 @@ body {
   pointer-events: none;
 
   transition:
-    transform 1.65s cubic-bezier(.16,.78,.2,1);
+    transform 1.8s cubic-bezier(.16,.78,.2,1);
 }
 
 
@@ -774,15 +777,9 @@ body {
     );
 
   box-shadow:
-
-    0 20px 38px
-    rgba(47,31,20,.3),
-
-    0 5px 10px
-    rgba(47,31,20,.15),
-
-    inset 0 0 0 1px
-    rgba(135,102,70,.15);
+    0 20px 38px rgba(47,31,20,.30),
+    0 5px 10px rgba(47,31,20,.15),
+    inset 0 0 0 1px rgba(135,102,70,.15);
 }
 
 
@@ -800,14 +797,12 @@ body {
   pointer-events: none;
 
   background-image:
-
     repeating-linear-gradient(
       0deg,
       rgba(108,80,52,.07) 0,
       transparent 1px,
       transparent 3px
     ),
-
     repeating-linear-gradient(
       90deg,
       rgba(255,255,255,.15) 0,
@@ -837,7 +832,6 @@ body {
   pointer-events: none;
 }
 
-
 .paper-monogram span {
 
   width: 92px;
@@ -866,23 +860,33 @@ body {
   letter-spacing: .08em;
 
   text-shadow:
-
-    1px 1px 0
-    rgba(255,255,255,.8),
-
-    -1px -1px 0
-    rgba(102,73,47,.18);
+    1px 1px 0 rgba(255,255,255,.8),
+    -1px -1px 0 rgba(102,73,47,.18);
 
   box-shadow:
-
-    inset 1px 1px 2px
-    rgba(255,255,255,.65),
-
-    inset -1px -1px 2px
-    rgba(103,74,47,.12);
+    inset 1px 1px 2px rgba(255,255,255,.65),
+    inset -1px -1px 2px rgba(103,74,47,.12);
 }
 
 
+/* =========================================================
+   PAPER EXIT ANIMATION
+========================================================= */
+
+.envelope-stage.paper-out .paper-wrapper {
+
+  /*
+    الورقة تبدأ من داخل الظرف
+    وتطلع لأعلى تدريجيًا
+  */
+
+  z-index: 40;
+
+  transform:
+    translate(-50%, 0)
+    translateY(-350px)
+    scale(1);
+}
 /* =========================================================
    FLAP OPEN
 ========================================================= */
