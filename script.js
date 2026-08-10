@@ -2,21 +2,17 @@
    ELEMENTS
 ========================================================= */
 
-const loader = document.getElementById("loader");
+const loader =
+  document.getElementById("loader");
 
-const app = document.getElementById("app");
+const app =
+  document.getElementById("app");
 
 const envelopeStage =
   document.getElementById("envelopeStage");
 
 const openButton =
   document.getElementById("openButton");
-
-const envelope =
-  document.getElementById("envelope");
-
-const paperWrapper =
-  document.getElementById("paperWrapper");
 
 const clickHint =
   document.getElementById("clickHint");
@@ -54,7 +50,7 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN INVITATION
+   OPEN ENVELOPE
 ========================================================= */
 
 openButton.addEventListener("click", () => {
@@ -63,15 +59,7 @@ openButton.addEventListener("click", () => {
 
   opened = true;
 
-  /*
-    امنع الضغط مرة ثانية
-  */
-
   openButton.disabled = true;
-
-  /*
-    اخفاء hint
-  */
 
   clickHint.style.opacity = "0";
 
@@ -84,51 +72,42 @@ openButton.addEventListener("click", () => {
   envelopeStage.classList.add("opened");
 
 
-  /*
-    نستنى فتح الـ flap
-    قبل ما الورقة تبدأ تتحرك.
-  */
+  /* =====================================================
+     STEP 2
+     الورقة تبدأ تطلع من جوه الظرف
+  ===================================================== */
 
   setTimeout(() => {
-
-    /* ===================================================
-       STEP 2
-       الورقة تبدأ الخروج
-    =================================================== */
 
     envelopeStage.classList.add("transitioning");
 
     envelopeStage.classList.add("paper-out");
 
-  }, 650);
+  }, 700);
 
 
-  /*
-    ندي الورقة وقت كافي عشان تخرج بالكامل.
-  */
+  /* =====================================================
+     STEP 3
+     الظرف يختفي بعد خروج الورقة
+  ===================================================== */
 
   setTimeout(() => {
 
-    /* ===================================================
-       STEP 3
-       الظرف يبدأ يتحرك للخلف
-    =================================================== */
-
     envelopeStage.classList.add("finished");
 
-  }, 2350);
+  }, 2450);
 
 
-  /*
-    بعد اختفاء الظرف:
-    نظهر صفحة الدعوة.
-  */
+  /* =====================================================
+     STEP 4
+     إظهار صفحة الدعوة
+  ===================================================== */
 
   setTimeout(() => {
 
     app.classList.add("show-invitation");
 
-  }, 2850);
+  }, 3000);
 
 });
 
@@ -161,20 +140,3 @@ declineBtn.addEventListener("click", () => {
   guests.classList.remove("show");
 
 });
-
-
-/* =========================================================
-   PREVENT DOUBLE TAP / ZOOM ON SEAL
-========================================================= */
-
-openButton.addEventListener(
-  "touchstart",
-  (event) => {
-
-    event.preventDefault();
-
-  },
-  {
-    passive: false
-  }
-);
