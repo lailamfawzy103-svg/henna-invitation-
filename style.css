@@ -11,7 +11,6 @@
 html {
   width: 100%;
   min-height: 100%;
-
   scroll-behavior: smooth;
 }
 
@@ -33,7 +32,6 @@ body {
     serif;
 
   -webkit-font-smoothing: antialiased;
-
   text-rendering: optimizeLegibility;
 }
 
@@ -49,7 +47,7 @@ body {
 
 
 /* =========================================================
-   LOADER
+   LOADING SCREEN
 ========================================================= */
 
 .loader {
@@ -81,9 +79,7 @@ body {
 
 .loader.hide {
   opacity: 0;
-
   visibility: hidden;
-
   pointer-events: none;
 }
 
@@ -136,16 +132,12 @@ body {
 
   from {
     opacity: 0;
-
-    transform:
-      scale(.9);
+    transform: scale(.9);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      scale(1);
+    transform: scale(1);
   }
 
 }
@@ -154,13 +146,11 @@ body {
 @keyframes lineAppear {
 
   from {
-    transform:
-      scaleX(0);
+    transform: scaleX(0);
   }
 
   to {
-    transform:
-      scaleX(1);
+    transform: scaleX(1);
   }
 
 }
@@ -171,7 +161,6 @@ body {
 ========================================================= */
 
 .envelope-screen {
-
   position: relative;
 
   width: 100%;
@@ -198,7 +187,6 @@ body {
 }
 
 .envelope-screen::before {
-
   content: "";
 
   position: absolute;
@@ -221,7 +209,6 @@ body {
 ========================================================= */
 
 .ambient-light {
-
   position: absolute;
 
   width: 75vw;
@@ -250,7 +237,6 @@ body {
 ========================================================= */
 
 .envelope-stage {
-
   position: relative;
 
   width:
@@ -266,11 +252,10 @@ body {
 
 
 /* =========================================================
-   GROUND SHADOW
+   SHADOW
 ========================================================= */
 
 .ground-shadow {
-
   position: absolute;
 
   left: 50%;
@@ -298,12 +283,13 @@ body {
     transform 1.2s ease,
     opacity 1.2s ease;
 }
+
+
 /* =========================================================
    ENVELOPE
 ========================================================= */
 
 .envelope {
-
   position: absolute;
 
   width:
@@ -331,7 +317,6 @@ body {
 ========================================================= */
 
 .envelope-back {
-
   position: absolute;
 
   inset: 0;
@@ -399,7 +384,6 @@ body {
 ========================================================= */
 
 .envelope-panel {
-
   position: absolute;
 
   bottom: 0;
@@ -407,7 +391,7 @@ body {
   width: 51%;
   height: 70%;
 
-  z-index: 5;
+  z-index: 20;
 
   overflow: hidden;
 
@@ -423,9 +407,7 @@ body {
     inset 0 -1px 0 rgba(92,63,40,.14);
 }
 
-
 .envelope-left {
-
   left: 0;
 
   clip-path:
@@ -436,9 +418,7 @@ body {
     );
 }
 
-
 .envelope-right {
-
   right: 0;
 
   clip-path:
@@ -451,14 +431,13 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BOTTOM
+   BOTTOM PANEL
 ========================================================= */
 
 .envelope-bottom {
-
   position: absolute;
 
-  z-index: 8;
+  z-index: 22;
 
   left: 0;
   right: 0;
@@ -489,7 +468,6 @@ body {
 ========================================================= */
 
 .flap {
-
   position: absolute;
 
   top: 0;
@@ -498,7 +476,7 @@ body {
   width: 100%;
   height: 72%;
 
-  z-index: 30;
+  z-index: 40;
 
   transform-origin:
     50% 0%;
@@ -509,14 +487,13 @@ body {
   transform-style: preserve-3d;
 
   transition:
-    transform 1.45s cubic-bezier(.18,.82,.22,1);
+    transform 1.25s cubic-bezier(.18,.82,.22,1);
 
   pointer-events: none;
 }
 
 
 .flap-surface {
-
   position: absolute;
 
   inset: 0;
@@ -541,12 +518,11 @@ body {
   box-shadow:
     0 14px 20px rgba(53,35,22,.24);
 
-  backface-visibility: hidden;
+  backface-visibility: visible;
 }
 
 
 .flap-highlight {
-
   position: absolute;
 
   inset: 0;
@@ -567,7 +543,6 @@ body {
 ========================================================= */
 
 .seal {
-
   position: absolute;
 
   left: 50%;
@@ -591,6 +566,7 @@ body {
 
   align-items: center;
   justify-content: center;
+
   background:
     radial-gradient(
       circle at 35% 30%,
@@ -611,9 +587,7 @@ body {
     filter .3s ease;
 }
 
-
 .seal:hover {
-
   transform:
     translate(-50%, -50%)
     scale(1.04);
@@ -622,9 +596,7 @@ body {
     brightness(1.06);
 }
 
-
 .seal-inner {
-
   width: 76%;
   height: 76%;
 
@@ -664,13 +636,14 @@ body {
 ========================================================= */
 
 .paper-wrapper {
-
   position: absolute;
 
-  z-index: 15;
+  /*
+    الورقة تبدأ من داخل الظرف
+  */
 
   left: 50%;
-  top: 51%;
+  top: 63%;
 
   width:
     min(65vw, 390px);
@@ -678,18 +651,24 @@ body {
   height:
     min(76vh, 560px);
 
-  transform:
-    translate(-50%, -50%)
-    translateY(145px)
-    scale(.82);
+  /*
+    أهم نقطة:
+    الورقة تحت جسم الظرف في البداية
+  */
 
-  opacity: 0;
+  z-index: 10;
+
+  transform:
+    translate(-50%, 0)
+    translateY(0)
+    scale(.94);
+
+  opacity: 1;
 
   pointer-events: none;
 
   transition:
-    transform 1.5s cubic-bezier(.18,.82,.22,1),
-    opacity .35s ease;
+    transform 1.65s cubic-bezier(.16,.78,.2,1);
 }
 
 
@@ -698,7 +677,6 @@ body {
 ========================================================= */
 
 .paper {
-
   position: absolute;
 
   inset: 0;
@@ -727,7 +705,6 @@ body {
 ========================================================= */
 
 .paper-texture {
-
   position: absolute;
 
   inset: 0;
@@ -761,7 +738,6 @@ body {
 ========================================================= */
 
 .paper-monogram {
-
   position: absolute;
 
   inset: 0;
@@ -774,9 +750,7 @@ body {
   pointer-events: none;
 }
 
-
 .paper-monogram span {
-
   width: 92px;
   height: 92px;
 
@@ -811,17 +785,14 @@ body {
 
 
 /* =========================================================
-   PAPER OUT
+   PAPER COMES OUT OF ENVELOPE
 ========================================================= */
 
-.envelope-stage.paper-out
-.paper-wrapper {
-
-  opacity: 1;
+.envelope-stage.paper-out .paper-wrapper {
 
   transform:
-    translate(-50%, -50%)
-    translateY(-115px)
+    translate(-50%, -100%)
+    translateY(-150px)
     scale(1);
 }
 
@@ -830,16 +801,22 @@ body {
    OPENED FLAP
 ========================================================= */
 
-.envelope-stage.opened
-.flap {
+.envelope-stage.opened .flap {
+
+  /*
+    الفلاب يفتح لفوق ويظل ثابت
+  */
 
   transform:
-    rotateX(180deg);
+    rotateX(72deg);
 }
 
 
-.envelope-stage.opened
-.ground-shadow {
+/* =========================================================
+   SHADOW AFTER OPENING
+========================================================= */
+
+.envelope-stage.opened .ground-shadow {
 
   transform:
     translateX(-50%)
@@ -854,8 +831,8 @@ body {
    ENVELOPE TRANSITION
 ========================================================= */
 
-.envelope-stage.transitioning
-.envelope {
+.envelope-stage.transitioning .envelope {
+
   transform:
     translate(-50%, -50%)
     translateY(35px)
@@ -863,8 +840,11 @@ body {
 }
 
 
-.envelope-stage.finished
-.envelope {
+/* =========================================================
+   FINISHED
+========================================================= */
+
+.envelope-stage.finished .envelope {
 
   opacity: 0;
 
@@ -882,7 +862,6 @@ body {
 ========================================================= */
 
 .click-hint {
-
   position: absolute;
 
   left: 50%;
@@ -904,10 +883,7 @@ body {
     opacity .4s ease;
 }
 
-
-.envelope-stage.opened
-.click-hint {
-
+.envelope-stage.opened .click-hint {
   opacity: 0;
 }
 
@@ -931,7 +907,6 @@ body {
 ========================================================= */
 
 .invitation-page {
-
   position: relative;
 
   width: 100%;
@@ -974,8 +949,7 @@ body {
    SHOW INVITATION
 ========================================================= */
 
-.app.show-invitation
-.invitation-page {
+.app.show-invitation .invitation-page {
 
   opacity: 1;
 
@@ -991,7 +965,6 @@ body {
 ========================================================= */
 
 .invitation-background {
-
   position: absolute;
 
   inset: 0;
@@ -1017,11 +990,10 @@ body {
 
 
 /* =========================================================
-   INVITATION CARD
+   CARD
 ========================================================= */
 
 .invitation-card {
-
   position: relative;
 
   width:
@@ -1050,13 +1022,7 @@ body {
   border-radius: 3px;
 }
 
-
-/* =========================================================
-   INVITATION TEXTURE
-========================================================= */
-
 .invitation-card::before {
-
   content: "";
 
   position: absolute;
@@ -1092,7 +1058,6 @@ body {
 ========================================================= */
 
 .invitation-frame {
-
   position: absolute;
 
   inset: 18px;
@@ -1103,9 +1068,7 @@ body {
   pointer-events: none;
 }
 
-
 .invitation-inner-frame {
-
   position: absolute;
 
   inset: 5px;
@@ -1120,7 +1083,6 @@ body {
 ========================================================= */
 
 .invitation-content {
-
   position: relative;
 
   z-index: 2;
@@ -1137,12 +1099,13 @@ body {
 
   color: #4c3828;
 }
+
+
 /* =========================================================
    REVEAL
 ========================================================= */
 
 .reveal-item {
-
   opacity: 0;
 
   transform:
@@ -1157,10 +1120,7 @@ body {
     filter .85s ease;
 }
 
-
-.app.show-invitation
-.reveal-item {
-
+.app.show-invitation .reveal-item {
   opacity: 1;
 
   transform:
@@ -1172,51 +1132,42 @@ body {
 
 
 /* =========================================================
-   REVEAL DELAYS
+   DELAYS
 ========================================================= */
 
-.app.show-invitation
-.reveal-item:nth-child(1) {
+.app.show-invitation .reveal-item:nth-child(1) {
   transition-delay: .25s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(2) {
+.app.show-invitation .reveal-item:nth-child(2) {
   transition-delay: .4s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(3) {
+.app.show-invitation .reveal-item:nth-child(3) {
   transition-delay: .55s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(4) {
+.app.show-invitation .reveal-item:nth-child(4) {
   transition-delay: .72s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(5) {
+.app.show-invitation .reveal-item:nth-child(5) {
   transition-delay: .9s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(6) {
+.app.show-invitation .reveal-item:nth-child(6) {
   transition-delay: 1.05s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(7) {
+.app.show-invitation .reveal-item:nth-child(7) {
   transition-delay: 1.2s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(8) {
+.app.show-invitation .reveal-item:nth-child(8) {
   transition-delay: 1.35s;
 }
 
-.app.show-invitation
-.reveal-item:nth-child(9) {
+.app.show-invitation .reveal-item:nth-child(9) {
   transition-delay: 1.5s;
 }
 
@@ -1226,7 +1177,6 @@ body {
 ========================================================= */
 
 .invitation-line {
-
   margin-top: 25px;
 
   font-size:
@@ -1235,9 +1185,7 @@ body {
   color: #73563e;
 }
 
-
 .invitation-subtitle {
-
   margin-top: 8px;
 
   font-size:
@@ -1246,9 +1194,7 @@ body {
   color: #72563e;
 }
 
-
 .invitation-event {
-
   margin-top: 1px;
 
   font-size:
@@ -1265,7 +1211,6 @@ body {
 ========================================================= */
 
 .names {
-
   display: flex;
 
   align-items: center;
@@ -1281,9 +1226,7 @@ body {
   color: #5a402c;
 }
 
-
 .names i {
-
   font-family:
     "Cormorant Garamond",
     serif;
@@ -1301,7 +1244,6 @@ body {
 ========================================================= */
 
 .ornament {
-
   display: flex;
 
   align-items: center;
@@ -1315,9 +1257,7 @@ body {
   margin-top: 7px;
 }
 
-
 .ornament span {
-
   flex: 1;
 
   height: 1px;
@@ -1331,9 +1271,7 @@ body {
     );
 }
 
-
 .ornament b {
-
   font-family:
     "Cinzel",
     serif;
@@ -1351,13 +1289,10 @@ body {
 ========================================================= */
 
 .date-block {
-
   margin-top: 18px;
 }
 
-
 .date {
-
   font-family:
     "Cinzel",
     serif;
@@ -1370,9 +1305,7 @@ body {
   color: #614732;
 }
 
-
 .time {
-
   margin-top: 5px;
 
   font-size:
@@ -1387,7 +1320,6 @@ body {
 ========================================================= */
 
 .location {
-
   margin-top: 20px;
 
   line-height: 1.7;
@@ -1396,15 +1328,11 @@ body {
     clamp(13px, 3vw, 17px);
 }
 
-
 .location-small {
-
   color: #8a6c4d;
 }
 
-
 .location-name {
-
   font-weight: 600;
 
   color: #5c432f;
@@ -1416,7 +1344,6 @@ body {
 ========================================================= */
 
 .rsvp {
-
   width: 100%;
 
   margin-top: 40px;
@@ -1427,9 +1354,7 @@ body {
     1px solid rgba(155,119,77,.25);
 }
 
-
 .rsvp-title {
-
   font-family:
     "Cinzel",
     serif;
@@ -1443,9 +1368,7 @@ body {
   margin-bottom: 9px;
 }
 
-
 .rsvp-buttons {
-
   display: flex;
 
   justify-content: center;
@@ -1455,11 +1378,10 @@ body {
   gap: 8px;
 }
 
-
 .rsvp-btn {
-
   border:
     1px solid rgba(135,100,67,.55);
+
   background:
     rgba(255,250,241,.55);
 
@@ -1483,16 +1405,12 @@ body {
     transform .25s ease;
 }
 
-
 .rsvp-btn:active {
-
   transform:
     scale(.97);
 }
 
-
 .rsvp-btn.selected {
-
   background:
     #d4c0a7;
 }
@@ -1503,7 +1421,6 @@ body {
 ========================================================= */
 
 .guests {
-
   display: none;
 
   align-items: center;
@@ -1517,15 +1434,11 @@ body {
   font-size: 12px;
 }
 
-
 .guests.show {
-
   display: flex;
 }
 
-
 .guests select {
-
   border:
     1px solid #bba384;
 
@@ -1547,7 +1460,6 @@ body {
 ========================================================= */
 
 .bottom-monogram {
-
   margin-top: 40px;
 
   font-family:
@@ -1569,37 +1481,26 @@ body {
 @media (max-width: 600px) {
 
   .envelope-stage {
-
     width: 100vw;
-
     height: 90dvh;
   }
 
-
   .envelope {
-
     width: 88vw;
   }
 
-
   .paper-wrapper {
-
     width: 71vw;
-
     height: 76vh;
   }
 
-
   .invitation-page {
-
     padding:
       40px 12px
       70px;
   }
 
-
   .invitation-card {
-
     width: 94vw;
 
     min-height:
@@ -1609,27 +1510,19 @@ body {
       35px 23px;
   }
 
-
   .invitation-frame {
-
     inset: 14px;
   }
 
-
   .invitation-line {
-
     margin-top: 21px;
   }
 
-
   .names {
-
     gap: 9px;
   }
 
-
   .rsvp {
-
     margin-top: 34px;
   }
 
@@ -1637,43 +1530,32 @@ body {
 
 
 /* =========================================================
-   SMALL HEIGHT DEVICES
+   SMALL HEIGHT
 ========================================================= */
 
 @media (max-height: 700px) {
 
   .envelope {
-
     width: 83vw;
   }
 
-
   .paper-wrapper {
-
     height: 74vh;
   }
 
-
   .invitation-line {
-
     margin-top: 17px;
   }
 
-
   .date-block {
-
     margin-top: 12px;
   }
 
-
   .location {
-
     margin-top: 13px;
   }
 
-
   .rsvp {
-
     margin-top: 28px;
   }
 
