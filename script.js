@@ -34,7 +34,7 @@ const envelope =
 
 
 /* =========================================================
-   LOADING
+   LOADING PAGE
 ========================================================= */
 
 window.addEventListener("load", function () {
@@ -49,13 +49,17 @@ window.addEventListener("load", function () {
 
 
 /* =========================================================
-   ENVELOPE OPENING
+   OPEN ENVELOPE
 ========================================================= */
 
 let opened = false;
 
 
 openButton.addEventListener("click", function () {
+
+  /*
+    منع الضغط أكثر من مرة
+  */
 
   if (opened) {
     return;
@@ -64,74 +68,89 @@ openButton.addEventListener("click", function () {
   opened = true;
 
 
-  /* -----------------------------------------
-     Hide hint
-  ----------------------------------------- */
+  /*
+    إخفاء النص الموجود تحت الظرف
+  */
 
-  clickHint.style.opacity = "0";
+  if (clickHint) {
+    clickHint.style.opacity = "0";
+  }
 
 
-  /* -----------------------------------------
-     STEP 1
-     Open flap completely
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 1
+    فتح الفلاب بالكامل
+    ---------------------------------------------
+  */
 
   envelopeStage.classList.add("opened");
 
 
-  /* -----------------------------------------
-     STEP 2
-     Let flap finish opening first
-     Then start paper movement
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 2
+    ننتظر الفلاب يخلص حركته
+    ثم تبدأ الورقة في الخروج
+    ---------------------------------------------
+  */
 
   setTimeout(function () {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1450);
+  }, 1250);
 
 
-  /* -----------------------------------------
-     STEP 3
-     Let the envelope settle
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 3
+    بعد ما الورقة تبدأ تخرج
+    نخلي الظرف يستقر
+    ---------------------------------------------
+  */
 
   setTimeout(function () {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 3100);
+  }, 2850);
 
 
-  /* -----------------------------------------
-     STEP 4
-     Show invitation
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 4
+    إظهار صفحة الدعوة
+    ---------------------------------------------
+  */
 
   setTimeout(function () {
 
     app.classList.add("show-invitation");
 
-  }, 3500);
+  }, 3350);
 
 
-  /* -----------------------------------------
-     STEP 5
-     Finish envelope transition
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 5
+    إخفاء الظرف بعد اكتمال الانتقال
+    ---------------------------------------------
+  */
 
   setTimeout(function () {
 
     envelopeStage.classList.add("finished");
 
-  }, 3900);
+  }, 4000);
 
 
-  /* -----------------------------------------
-     STEP 6
-     Enable scrolling
-  ----------------------------------------- */
+  /*
+    ---------------------------------------------
+    STEP 6
+    السماح بالـscroll
+    ---------------------------------------------
+  */
 
   setTimeout(function () {
 
@@ -153,18 +172,19 @@ openButton.addEventListener("click", function () {
 
 if (attendBtn) {
 
-  attendBtn.addEventListener(
-    "click",
-    function () {
+  attendBtn.addEventListener("click", function () {
 
-      attendBtn.classList.add("selected");
+    attendBtn.classList.add("selected");
 
+    if (declineBtn) {
       declineBtn.classList.remove("selected");
-
-      guests.classList.add("show");
-
     }
-  );
+
+    if (guests) {
+      guests.classList.add("show");
+    }
+
+  });
 
 }
 
@@ -175,18 +195,19 @@ if (attendBtn) {
 
 if (declineBtn) {
 
-  declineBtn.addEventListener(
-    "click",
-    function () {
+  declineBtn.addEventListener("click", function () {
 
-      declineBtn.classList.add("selected");
+    declineBtn.classList.add("selected");
 
+    if (attendBtn) {
       attendBtn.classList.remove("selected");
-
-      guests.classList.remove("show");
-
     }
-  );
+
+    if (guests) {
+      guests.classList.remove("show");
+    }
+
+  });
 
 }
 
@@ -204,6 +225,10 @@ if (desktopPointer.matches) {
   document.addEventListener(
     "mousemove",
     function (event) {
+
+      /*
+        بعد الضغط لا نحرك الظرف بالماوس
+      */
 
       if (opened) {
         return;
@@ -239,7 +264,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX
+   RESET PARALLAX WHEN OPENING
 ========================================================= */
 
 openButton.addEventListener(
@@ -257,7 +282,7 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE TAP PROTECTION
+   MOBILE DOUBLE-TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
