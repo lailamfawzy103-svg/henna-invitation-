@@ -31,6 +31,7 @@ body {
     serif;
 
   -webkit-font-smoothing: antialiased;
+
   text-rendering: optimizeLegibility;
 }
 
@@ -46,7 +47,7 @@ body {
 
 
 /* =========================================================
-   LOADING
+   LOADER
 ========================================================= */
 
 .loader {
@@ -57,9 +58,11 @@ body {
   z-index: 99999;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
   background:
@@ -84,7 +87,9 @@ body {
 }
 
 .loader-monogram {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
@@ -115,7 +120,9 @@ body {
 }
 
 .loader-names {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 10px;
 
@@ -323,7 +330,7 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BACK
+   BACK
 ========================================================= */
 
 .envelope-back {
@@ -331,9 +338,6 @@ body {
 
   inset: 0;
 
-  /*
-    أقل من الفلاب
-  */
   z-index: 5;
 
   border-radius: 4px;
@@ -395,7 +399,7 @@ body {
 
 
 /* =========================================================
-   FRONT LEFT / RIGHT
+   FRONT PANELS
 ========================================================= */
 
 .envelope-panel {
@@ -407,10 +411,6 @@ body {
 
   height: 70%;
 
-  /*
-    جسم الظرف تحت الفلاب
-    وفوق الورقة وهي داخل الظرف
-  */
   z-index: 30;
 
   overflow: hidden;
@@ -454,6 +454,7 @@ body {
 
 /* =========================================================
    BOTTOM BODY
+   مهم: الشكل ده ثابت كما هو
 ========================================================= */
 
 .envelope-bottom {
@@ -467,9 +468,6 @@ body {
 
   height: 72%;
 
-  /*
-    الجسم تحت الفلاب
-  */
   z-index: 30;
 
   overflow: hidden;
@@ -481,11 +479,6 @@ body {
       #c9b295
     );
 
-  /*
-    مهم:
-    الشكل الأصلي الجميل للظرف
-    لم يتم تغييره
-  */
   clip-path:
     polygon(
       0 100%,
@@ -497,6 +490,7 @@ body {
 
 /* =========================================================
    FLAP
+   لا نغير شكله
 ========================================================= */
 
 .flap {
@@ -510,16 +504,6 @@ body {
 
   height: 72%;
 
-  /*
-    =====================================================
-    أهم تعديل
-    =====================================================
-
-    الفلاب نفسه فوق جسم الظرف.
-
-    لذلك دائرة AS الموجودة بداخله
-    لن تختفي خلف الـbody.
-  */
   z-index: 35;
 
   transform-origin:
@@ -557,10 +541,6 @@ body {
       #c7ae91 100%
     );
 
-  /*
-    شكل المثلث الأصلي
-    لا يتم تغييره
-  */
   clip-path:
     polygon(
       0 0,
@@ -597,7 +577,7 @@ body {
 
 
 /* =========================================================
-   SEAL / MONOGRAM
+   SEAL
 ========================================================= */
 
 .seal {
@@ -607,10 +587,6 @@ body {
 
   top: 59%;
 
-  /*
-    داخل الفلاب
-    لذلك سيظل فوق جسم الظرف
-  */
   z-index: 50;
 
   width:
@@ -643,12 +619,8 @@ body {
 
   box-shadow:
     0 7px 14px rgba(52,34,20,.3),
-
-    inset 2px 2px 3px
-    rgba(255,255,255,.38),
-
-    inset -3px -4px 6px
-    rgba(46,29,18,.35);
+    inset 2px 2px 3px rgba(255,255,255,.38),
+    inset -3px -4px 6px rgba(46,29,18,.35);
 
   pointer-events: auto;
 
@@ -687,12 +659,8 @@ body {
     1px solid rgba(238,218,189,.5);
 
   box-shadow:
-
-    inset 1px 1px 2px
-    rgba(255,255,255,.35),
-
-    inset -2px -2px 3px
-    rgba(42,27,17,.25);
+    inset 1px 1px 2px rgba(255,255,255,.35),
+    inset -2px -2px 3px rgba(42,27,17,.25);
 
   color: #e6d0b0;
 
@@ -706,45 +674,46 @@ body {
   letter-spacing: .08em;
 
   text-shadow:
-
-    1px 1px 1px
-    rgba(53,33,20,.65),
-
-    -1px -1px 1px
-    rgba(255,255,255,.25);
+    1px 1px 1px rgba(53,33,20,.65),
+    -1px -1px 1px rgba(255,255,255,.25);
 }
 
 
 /* =========================================================
    PAPER
-========================================================= */
-/* =========================================================
-   PAPER — STARTS INSIDE THE ENVELOPE
+   الورقة تبدأ بحجم قريب من الظرف
 ========================================================= */
 
 .paper-wrapper {
+
   position: absolute;
 
   left: 50%;
 
+  top: 50%;
+
   /*
-    بداية الورقة داخل الظرف فعلًا
+    مساحة الورقة النهائية
   */
-  top: 39%;
+  width:
+    min(72vw, 430px);
 
-  width: min(65vw, 390px);
-
-  height: min(76vh, 560px);
+  height:
+    min(125vw, 680px);
 
   /*
-    الورقة في البداية خلف جسم الظرف
+    أهم جزء:
+    الورقة تبدأ فوق منتصف الظرف،
+    لكن بحجم صغير.
   */
   z-index: 20;
 
   transform:
-    translate(-50%, 0)
-    translateY(0)
-    scale(.94);
+    translate(-50%, -50%)
+    scale(.72);
+
+  transform-origin:
+    50% 100%;
 
   opacity: 1;
 
@@ -756,10 +725,11 @@ body {
 
 
 /* =========================================================
-   PAPER ITSELF
+   PAPER
 ========================================================= */
 
 .paper {
+
   position: absolute;
 
   inset: 0;
@@ -788,6 +758,7 @@ body {
 ========================================================= */
 
 .paper-texture {
+
   position: absolute;
 
   inset: 0;
@@ -797,12 +768,14 @@ body {
   pointer-events: none;
 
   background-image:
+
     repeating-linear-gradient(
       0deg,
       rgba(108,80,52,.07) 0,
       transparent 1px,
       transparent 3px
     ),
+
     repeating-linear-gradient(
       90deg,
       rgba(255,255,255,.15) 0,
@@ -819,6 +792,7 @@ body {
 ========================================================= */
 
 .paper-monogram {
+
   position: absolute;
 
   inset: 0;
@@ -831,6 +805,7 @@ body {
 
   pointer-events: none;
 }
+
 
 .paper-monogram span {
 
@@ -870,35 +845,10 @@ body {
 
 
 /* =========================================================
-   PAPER EXIT ANIMATION
-========================================================= */
-
-.envelope-stage.paper-out .paper-wrapper {
-
-  /*
-    الورقة تبدأ من داخل الظرف
-    وتطلع لأعلى تدريجيًا
-  */
-
-  z-index: 40;
-
-  transform:
-    translate(-50%, 0)
-    translateY(-350px)
-    scale(1);
-}
-/* =========================================================
    FLAP OPEN
 ========================================================= */
 
 .envelope-stage.opened .flap {
-
-  /*
-    فتح كامل 180 درجة
-
-    لا نغير الفلاب نفسه
-    ولا نخفيه
-  */
 
   transform:
     rotateX(180deg);
@@ -912,16 +862,28 @@ body {
 .envelope-stage.paper-out .paper-wrapper {
 
   /*
-    بمجرد خروج الورقة:
-    الورقة تصبح أمام الفلاب.
+    الورقة تكبر من حجم الظرف
+    وتتحرك لأعلى في نفس الوقت.
   */
 
   z-index: 40;
 
   transform:
     translate(-50%, -100%)
-    translateY(-155px)
     scale(1);
+}
+
+
+/* =========================================================
+   ENVELOPE SETTLE
+========================================================= */
+
+.envelope-stage.transitioning .envelope {
+
+  transform:
+    translate(-50%, -50%)
+    translateY(35px)
+    scale(.97);
 }
 
 
@@ -941,20 +903,7 @@ body {
 
 
 /* =========================================================
-   SMALL ENVELOPE MOVEMENT
-========================================================= */
-
-.envelope-stage.transitioning .envelope {
-
-  transform:
-    translate(-50%, -50%)
-    translateY(35px)
-    scale(.97);
-}
-
-
-/* =========================================================
-   ENVELOPE DISAPPEAR
+   ENVELOPE FINISHED
 ========================================================= */
 
 .envelope-stage.finished .envelope {
@@ -1062,10 +1011,6 @@ body {
 }
 
 
-/* =========================================================
-   SHOW INVITATION
-========================================================= */
-
 .app.show-invitation .invitation-page {
 
   opacity: 1;
@@ -1133,12 +1078,8 @@ body {
     );
 
   box-shadow:
-
-    0 25px 55px
-    rgba(55,38,24,.22),
-
-    0 5px 14px
-    rgba(55,38,24,.13);
+    0 25px 55px rgba(55,38,24,.22),
+    0 5px 14px rgba(55,38,24,.13);
 
   overflow: hidden;
 
@@ -1179,7 +1120,7 @@ body {
 
 
 /* =========================================================
-   INVITATION FRAME
+   FRAME
 ========================================================= */
 
 .invitation-frame {
@@ -1245,12 +1186,8 @@ body {
     blur(5px);
 
   transition:
-
     opacity .75s ease,
-
-    transform .85s
-    cubic-bezier(.18,.82,.22,1),
-
+    transform .85s cubic-bezier(.18,.82,.22,1),
     filter .85s ease;
 }
 
@@ -1268,7 +1205,7 @@ body {
 
 
 /* =========================================================
-   REVEAL DELAYS
+   DELAYS
 ========================================================= */
 
 .app.show-invitation
@@ -1318,7 +1255,7 @@ body {
 
 
 /* =========================================================
-   INVITATION TEXT
+   TEXT
 ========================================================= */
 
 .invitation-line {
@@ -1678,11 +1615,17 @@ body {
   }
 
 
+  /*
+    الورقة في البداية قريبة من مقاس الظرف
+  */
+
   .paper-wrapper {
 
-    width: 71vw;
+    width: 78vw;
 
-    height: 76vh;
+    height: 125vw;
+
+    max-height: 650px;
   }
 
 
@@ -1746,7 +1689,9 @@ body {
 
   .paper-wrapper {
 
-    height: 74vh;
+    height: 118vw;
+
+    max-height: 590px;
   }
 
 
