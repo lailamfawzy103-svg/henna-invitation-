@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -9,28 +10,46 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#d9c8b3">
+  <meta
+    name="theme-color"
+    content="#d9c8b3"
+  >
 
   <title>Ahmed & Shahd</title>
 
+
+  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-  <!-- =========================
-       LOADING
-  ========================== -->
 
-  <div class="loader" id="loader">
+  <!-- =====================================================
+       LOADING SCREEN
+  ====================================================== -->
+
+  <div
+    class="loader"
+    id="loader"
+  >
 
     <div class="loader-monogram">
       AS
@@ -39,26 +58,32 @@
     <div class="loader-line"></div>
 
     <div class="loader-names">
-      AHMED &amp; SHAHd
+      AHMED &amp; SHAHD
     </div>
 
   </div>
 
 
-  <!-- =========================
-       APP
-  ========================== -->
 
-  <main class="app" id="app">
+  <!-- =====================================================
+       MAIN APP
+  ====================================================== -->
 
-    <!-- =======================
+  <main
+    class="app"
+    id="app"
+  >
+
+
+    <!-- ===================================================
          ENVELOPE SCREEN
-    ======================== -->
+    ==================================================== -->
 
     <section
       class="envelope-screen"
       id="envelopeScreen"
     >
+
 
       <div class="ambient-light"></div>
 
@@ -68,12 +93,16 @@
         id="envelopeStage"
       >
 
+
+        <!-- Shadow -->
+
         <div class="ground-shadow"></div>
 
 
-        <!-- =====================
+
+        <!-- =================================================
              PAPER
-        ====================== -->
+        ================================================== -->
 
         <div
           class="paper-wrapper"
@@ -84,8 +113,13 @@
 
             <div class="paper-texture"></div>
 
+
             <div class="paper-monogram">
-              <span>AS</span>
+
+              <span>
+                AS
+              </span>
+
             </div>
 
           </div>
@@ -93,25 +127,49 @@
         </div>
 
 
-        <!-- =====================
+
+        <!-- =================================================
              ENVELOPE
-        ====================== -->
+        ================================================== -->
 
         <div
           class="envelope"
           id="envelope"
         >
 
+
+          <!-- Back -->
+
           <div class="envelope-back"></div>
 
-          <div class="envelope-panel envelope-left"></div>
 
-          <div class="envelope-panel envelope-right"></div>
+
+          <!-- Left front -->
+
+          <div
+            class="envelope-panel envelope-left"
+          ></div>
+
+
+
+          <!-- Right front -->
+
+          <div
+            class="envelope-panel envelope-right"
+          ></div>
+
+
+
+          <!-- Bottom front -->
 
           <div class="envelope-bottom"></div>
 
 
-          <!-- FLAP -->
+
+          <!-- =================================================
+               FLAP
+               الـ AS موجود جواه
+          ================================================== -->
 
           <div
             class="flap"
@@ -122,31 +180,36 @@
 
               <div class="flap-highlight"></div>
 
+
+
+              <!-- =============================================
+                   MONOGRAM SEAL
+              ============================================== -->
+
+              <button
+                class="seal"
+                id="openButton"
+                type="button"
+                aria-label="فتح الدعوة"
+              >
+
+                <span class="seal-inner">
+                  AS
+                </span>
+
+              </button>
+
+
             </div>
 
           </div>
 
+
         </div>
 
 
-        <!-- =====================
-             SEAL
-             مستقل عن الـFlap
-        ====================== -->
 
-        <button
-          class="seal"
-          id="openButton"
-          type="button"
-          aria-label="فتح الدعوة"
-        >
-
-          <span class="seal-inner">
-            AS
-          </span>
-
-        </button>
-
+        <!-- Click hint -->
 
         <div
           class="click-hint"
@@ -155,35 +218,49 @@
           اضغطي لفتح الدعوة
         </div>
 
+
       </div>
 
     </section>
 
 
-    <!-- =======================
-         INVITATION
-    ======================== -->
+
+    <!-- ===================================================
+         INVITATION PAGE
+    ==================================================== -->
 
     <section
       class="invitation-page"
       id="invitationPage"
     >
 
+
       <div class="invitation-background"></div>
+
 
 
       <article class="invitation-card">
 
+
+        <!-- Frame -->
+
         <div class="invitation-frame">
+
           <div class="invitation-inner-frame"></div>
+
         </div>
 
 
+
+        <!-- Content -->
+
         <div class="invitation-content">
+
 
           <div class="invitation-line reveal-item">
             يسر د. هدى مدحت
           </div>
+
 
 
           <div class="invitation-subtitle reveal-item">
@@ -191,32 +268,48 @@
           </div>
 
 
+
           <div class="invitation-event reveal-item">
             حفل حنة
           </div>
 
 
+
           <div class="names reveal-item">
 
-            <span>أحمد</span>
+            <span>
+              أحمد
+            </span>
 
-            <i>&amp;</i>
+            <i>
+              &amp;
+            </i>
 
-            <span>شهد</span>
+            <span>
+              شهد
+            </span>
 
           </div>
 
+
+
+          <!-- Ornament -->
 
           <div class="ornament reveal-item">
 
             <span></span>
 
-            <b>AS</b>
+            <b>
+              AS
+            </b>
 
             <span></span>
 
           </div>
 
+
+
+          <!-- Date -->
 
           <div class="date-block reveal-item">
 
@@ -231,6 +324,9 @@
           </div>
 
 
+
+          <!-- Location -->
+
           <div class="location reveal-item">
 
             <div class="location-small">
@@ -244,14 +340,20 @@
           </div>
 
 
+
+          <!-- RSVP -->
+
           <div class="rsvp reveal-item">
+
 
             <div class="rsvp-title">
               RSVP
             </div>
 
 
+
             <div class="rsvp-buttons">
+
 
               <button
                 class="rsvp-btn attend"
@@ -262,6 +364,7 @@
               </button>
 
 
+
               <button
                 class="rsvp-btn decline"
                 id="declineBtn"
@@ -270,8 +373,12 @@
                 أعتذر عن الحضور
               </button>
 
+
             </div>
 
+
+
+            <!-- Guests -->
 
             <div
               class="guests"
@@ -281,6 +388,7 @@
               <label for="guestCount">
                 عدد المرافقين
               </label>
+
 
               <select id="guestCount">
 
@@ -304,12 +412,17 @@
 
             </div>
 
+
           </div>
 
+
+
+          <!-- Bottom monogram -->
 
           <div class="bottom-monogram reveal-item">
             AS
           </div>
+
 
         </div>
 
@@ -317,7 +430,9 @@
 
     </section>
 
+
   </main>
+
 
 
   <script src="script.js"></script>
