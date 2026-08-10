@@ -2,11 +2,14 @@
    ELEMENTS
 ========================================================= */
 
-const loader = document.getElementById("loader");
+const loader =
+  document.getElementById("loader");
 
-const app = document.getElementById("app");
+const app =
+  document.getElementById("app");
 
-const openButton = document.getElementById("openButton");
+const openButton =
+  document.getElementById("openButton");
 
 const envelopeStage =
   document.getElementById("envelopeStage");
@@ -31,12 +34,12 @@ const envelope =
 
 
 /* =========================================================
-   LOADING PAGE
+   LOADING
 ========================================================= */
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     loader.classList.add("hide");
 
@@ -46,14 +49,14 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN ENVELOPE
+   ENVELOPE OPENING
 ========================================================= */
 
 let opened = false;
 
-openButton.addEventListener("click", () => {
 
-  /* منع فتح الظرف أكثر من مرة */
+openButton.addEventListener("click", function () {
+
   if (opened) {
     return;
   }
@@ -61,84 +64,82 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* =======================================================
-     STEP 1
-     إخفاء جملة اضغطي لفتح الدعوة
-  ======================================================= */
+  /* -----------------------------------------
+     Hide hint
+  ----------------------------------------- */
 
   clickHint.style.opacity = "0";
 
 
-  /* =======================================================
-     STEP 2
-     فتح الفلاب بالكامل
-  ======================================================= */
+  /* -----------------------------------------
+     STEP 1
+     Open flap completely
+  ----------------------------------------- */
 
   envelopeStage.classList.add("opened");
 
 
-  /* =======================================================
-     STEP 3
-     بعد فتح الفلاب تبدأ الورقة في الخروج
-     
-     الورقة تبدأ من داخل الظرف،
-     مش من بره.
-  ======================================================= */
+  /* -----------------------------------------
+     STEP 2
+     Let flap finish opening first
+     Then start paper movement
+  ----------------------------------------- */
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     envelopeStage.classList.add("paper-out");
 
   }, 1450);
 
 
-  /* =======================================================
-     STEP 4
-     بعد خروج الورقة يحصل انتقال بسيط للظرف
-  ======================================================= */
+  /* -----------------------------------------
+     STEP 3
+     Let the envelope settle
+  ----------------------------------------- */
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     envelopeStage.classList.add("transitioning");
 
   }, 3100);
 
 
-  /* =======================================================
-     STEP 5
-     إظهار صفحة الانفتيشن
-  ======================================================= */
+  /* -----------------------------------------
+     STEP 4
+     Show invitation
+  ----------------------------------------- */
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     app.classList.add("show-invitation");
-
-    envelopeStage.classList.add("finished");
-
-    /*
-      نمنع السكرول أثناء الانتقال
-    */
-    document.body.style.overflowY = "hidden";
 
   }, 3500);
 
 
-  /* =======================================================
-     STEP 6
-     السماح بالسكرول والانتقال للانفتيشن
-  ======================================================= */
+  /* -----------------------------------------
+     STEP 5
+     Finish envelope transition
+  ----------------------------------------- */
 
-  setTimeout(() => {
+  setTimeout(function () {
+
+    envelopeStage.classList.add("finished");
+
+  }, 3900);
+
+
+  /* -----------------------------------------
+     STEP 6
+     Enable scrolling
+  ----------------------------------------- */
+
+  setTimeout(function () {
 
     document.body.style.overflowY = "auto";
 
-
     window.scrollTo({
-
       top: envelopeScreen.offsetHeight,
-
-      behavior: "instant"
-
+      behavior: "smooth"
     });
 
   }, 4200);
@@ -152,15 +153,18 @@ openButton.addEventListener("click", () => {
 
 if (attendBtn) {
 
-  attendBtn.addEventListener("click", () => {
+  attendBtn.addEventListener(
+    "click",
+    function () {
 
-    attendBtn.classList.add("selected");
+      attendBtn.classList.add("selected");
 
-    declineBtn.classList.remove("selected");
+      declineBtn.classList.remove("selected");
 
-    guests.classList.add("show");
+      guests.classList.add("show");
 
-  });
+    }
+  );
 
 }
 
@@ -171,15 +175,18 @@ if (attendBtn) {
 
 if (declineBtn) {
 
-  declineBtn.addEventListener("click", () => {
+  declineBtn.addEventListener(
+    "click",
+    function () {
 
-    declineBtn.classList.add("selected");
+      declineBtn.classList.add("selected");
 
-    attendBtn.classList.remove("selected");
+      attendBtn.classList.remove("selected");
 
-    guests.classList.remove("show");
+      guests.classList.remove("show");
 
-  });
+    }
+  );
 
 }
 
@@ -196,11 +203,7 @@ if (desktopPointer.matches) {
 
   document.addEventListener(
     "mousemove",
-    (event) => {
-
-      /*
-        بعد فتح الظرف نوقف حركة الماوس
-      */
+    function (event) {
 
       if (opened) {
         return;
@@ -236,12 +239,12 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET ENVELOPE POSITION
+   RESET PARALLAX
 ========================================================= */
 
 openButton.addEventListener(
   "click",
-  () => {
+  function () {
 
     envelope.style.transform =
       "translate(-50%, -50%)";
@@ -254,16 +257,18 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
+   MOBILE DOUBLE TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
 
+
 document.addEventListener(
   "touchend",
-  (event) => {
+  function (event) {
 
     const now = Date.now();
+
 
     if (
       now - lastTouchEnd <= 300
@@ -272,6 +277,7 @@ document.addEventListener(
       event.preventDefault();
 
     }
+
 
     lastTouchEnd = now;
 
