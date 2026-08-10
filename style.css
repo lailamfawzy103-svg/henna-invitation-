@@ -45,6 +45,7 @@ body {
 
 /* =========================================================
    LOADER
+   ثابت
 ========================================================= */
 
 .loader {
@@ -78,7 +79,9 @@ body {
 }
 
 .loader-monogram {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
@@ -108,7 +111,9 @@ body {
 }
 
 .loader-names {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 10px;
 
@@ -116,6 +121,7 @@ body {
 
   color: #795d43;
 }
+
 
 @keyframes loaderAppear {
 
@@ -130,6 +136,7 @@ body {
   }
 
 }
+
 
 @keyframes lineAppear {
 
@@ -232,8 +239,6 @@ body {
   perspective: 1800px;
 
   transform-style: preserve-3d;
-
-  overflow: visible;
 }
 
 
@@ -293,8 +298,6 @@ body {
   transform-style:
     preserve-3d;
 
-  overflow: visible;
-
   transition:
     transform 1.4s cubic-bezier(.2,.85,.2,1),
     opacity 1s ease;
@@ -303,7 +306,7 @@ body {
 
 /* =========================================================
    ENVELOPE BACK
-   LAYER 20
+   Layer 20
 ========================================================= */
 
 .envelope-back {
@@ -372,36 +375,40 @@ body {
 
 
 /* =========================================================
-   PAPER
-   LAYER 25
+   PAPER WRAPPER
+   Layer 25
 
-   الورقة هنا فعلًا داخل الـ envelope
+   الورقة جوه الظرف وهي مقفولة
 ========================================================= */
 
 .paper-wrapper {
+
   position: absolute;
 
-  left: 0;
-  top: 0;
+  left: 50%;
+  top: 52%;
 
-  width: 100%;
-  height: 100%;
+  width:
+    min(87vw, 610px);
+
+  aspect-ratio:
+    1.48 / 1;
+
+  height: auto;
+
+  transform:
+    translate(-50%, -50%);
 
   z-index: 25;
 
-  overflow: visible;
-
   pointer-events: none;
 
-  transform:
-    translate(0, 0);
+  overflow: visible;
 
   transition:
     width 1.7s cubic-bezier(.16,.78,.2,1),
     height 1.7s cubic-bezier(.16,.78,.2,1),
-    left 1.7s cubic-bezier(.16,.78,.2,1),
-    top 1.7s cubic-bezier(.16,.78,.2,1),
-    transform 1.7s cubic-bezier(.16,.78,.2,1);
+    top 1.7s cubic-bezier(.16,.78,.2,1);
 }
 
 
@@ -487,6 +494,7 @@ body {
 }
 
 .paper-monogram span {
+
   width: 92px;
   height: 92px;
 
@@ -520,17 +528,30 @@ body {
 
 
 /* =========================================================
-   ENVELOPE FRONT LEFT
-   LAYER 30
+   SIDE FLAPS
+   Layer 30
+
+   مهم:
+   كل جانب الآن يأخذ مساحة المستطيل كاملة.
+   الشمال:
+   الركن العلوي الشمال → الركن السفلي اليمين
+
+   اليمين:
+   الركن العلوي اليمين → الركن السفلي الشمال
+
+   لا علاقة لهذا الجزء بالـ FLAP العلوي.
 ========================================================= */
 
 .envelope-panel {
+
   position: absolute;
 
+  left: 0;
+  right: 0;
   bottom: 0;
 
-  width: 51%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
 
   z-index: 30;
 
@@ -539,17 +560,23 @@ body {
   background:
     linear-gradient(
       145deg,
-      #e4d4c0,
-      #cdb79b
+      #e4d4c0 0%,
+      #cdb79b 100%
     );
 
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.42),
     inset 0 -1px 0 rgba(92,63,40,.14);
+
+  pointer-events: none;
 }
 
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
 .envelope-left {
-  left: 0;
 
   clip-path:
     polygon(
@@ -559,8 +586,12 @@ body {
     );
 }
 
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
 .envelope-right {
-  right: 0;
 
   clip-path:
     polygon(
@@ -572,28 +603,34 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BOTTOM
-   LAYER 30
+   ENVELOPE BOTTOM BODY
+   Layer 31
+
+   يغطي الجزء السفلي من الجانبين
+   بدون التأثير على الـ FLAP
 ========================================================= */
 
 .envelope-bottom {
+
   position: absolute;
 
   left: 0;
   right: 0;
+
   bottom: 0;
 
+  width: 100%;
   height: 72%;
 
-  z-index: 30;
+  z-index: 31;
 
   overflow: hidden;
 
   background:
     linear-gradient(
       160deg,
-      #dfcfba,
-      #c9b295
+      #dfcfba 0%,
+      #c9b295 100%
     );
 
   clip-path:
@@ -602,15 +639,20 @@ body {
       50% 25%,
       100% 100%
     );
+
+  pointer-events: none;
 }
 
 
 /* =========================================================
    FLAP
-   LAYER 40
+   Layer 40
+
+   ثابت زي ما هو
 ========================================================= */
 
 .flap {
+
   position: absolute;
 
   top: 0;
@@ -642,6 +684,7 @@ body {
 ========================================================= */
 
 .flap-surface {
+
   position: absolute;
 
   inset: 0;
@@ -676,6 +719,7 @@ body {
 ========================================================= */
 
 .flap-highlight {
+
   position: absolute;
 
   inset: 0;
@@ -692,10 +736,12 @@ body {
 
 
 /* =========================================================
-   SEAL
+   SEAL / MONOGRAM
+   ثابت
 ========================================================= */
 
 .seal {
+
   position: absolute;
 
   left: 50%;
@@ -741,7 +787,9 @@ body {
     filter .3s ease;
 }
 
+
 .seal:hover {
+
   transform:
     translate(-50%, -50%)
     scale(1.04);
@@ -750,7 +798,9 @@ body {
     brightness(1.06);
 }
 
+
 .seal-inner {
+
   width: 76%;
   height: 76%;
 
@@ -786,23 +836,21 @@ body {
 
 /* =========================================================
    OPEN FLAP
+   ثابت
 ========================================================= */
 
 .envelope-stage.opened .flap {
+
   transform:
     rotateX(180deg);
 }
 
 
 /* =========================================================
-   PAPER OUT
+   PAPER AFTER OPEN
 ========================================================= */
 
 .envelope-stage.paper-out .paper-wrapper {
-
-  /*
-    الورقة تكبر
-  */
 
   width:
     min(72vw, 430px);
@@ -810,31 +858,21 @@ body {
   height:
     min(125vw, 680px);
 
-  /*
-    الورقة تطلع لأعلى
-    من داخل الظرف
-  */
+  top: 30%;
 
-  left: 50%;
-
-  top: -42%;
+  z-index: 25;
 
   transform:
     translate(-50%, -50%);
-
-  z-index: 25;
 }
 
 
 /* =========================================================
-   TRANSITIONING
+   ENVELOPE SETTLE
 ========================================================= */
 
-.envelope-stage.transitioning .paper-wrapper {
-  z-index: 25;
-}
-
 .envelope-stage.transitioning .envelope {
+
   transform:
     translate(-50%, -50%)
     translateY(35px)
@@ -843,10 +881,11 @@ body {
 
 
 /* =========================================================
-   SHADOW
+   SHADOW AFTER OPEN
 ========================================================= */
 
 .envelope-stage.opened .ground-shadow {
+
   transform:
     translateX(-50%)
     translateY(25px)
@@ -857,10 +896,11 @@ body {
 
 
 /* =========================================================
-   FINISHED
+   FINISHED ENVELOPE
 ========================================================= */
 
 .envelope-stage.finished .envelope {
+
   opacity: 0;
 
   pointer-events: none;
@@ -877,6 +917,7 @@ body {
 ========================================================= */
 
 .click-hint {
+
   position: absolute;
 
   left: 50%;
@@ -898,9 +939,11 @@ body {
     opacity .4s ease;
 }
 
+
 .envelope-stage.opened .click-hint {
   opacity: 0;
 }
+
 
 @keyframes hintPulse {
 
@@ -921,6 +964,7 @@ body {
 ========================================================= */
 
 .invitation-page {
+
   position: relative;
 
   width: 100%;
@@ -933,7 +977,9 @@ body {
     clamp(70px, 10vh, 110px);
 
   display: flex;
+
   align-items: flex-start;
+
   justify-content: center;
 
   background:
@@ -956,7 +1002,9 @@ body {
     transform 1.1s cubic-bezier(.18,.82,.22,1);
 }
 
+
 .app.show-invitation .invitation-page {
+
   opacity: 1;
 
   transform:
@@ -971,6 +1019,7 @@ body {
 ========================================================= */
 
 .invitation-background {
+
   position: absolute;
 
   inset: 0;
@@ -1000,6 +1049,7 @@ body {
 ========================================================= */
 
 .invitation-card {
+
   position: relative;
 
   width:
@@ -1028,7 +1078,9 @@ body {
   border-radius: 3px;
 }
 
+
 .invitation-card::before {
+
   content: "";
 
   position: absolute;
@@ -1064,6 +1116,7 @@ body {
 ========================================================= */
 
 .invitation-frame {
+
   position: absolute;
 
   inset: 18px;
@@ -1074,7 +1127,9 @@ body {
   pointer-events: none;
 }
 
+
 .invitation-inner-frame {
+
   position: absolute;
 
   inset: 5px;
@@ -1089,6 +1144,7 @@ body {
 ========================================================= */
 
 .invitation-content {
+
   position: relative;
 
   z-index: 2;
@@ -1112,6 +1168,7 @@ body {
 ========================================================= */
 
 .reveal-item {
+
   opacity: 0;
 
   transform:
@@ -1126,7 +1183,9 @@ body {
     filter .85s ease;
 }
 
+
 .app.show-invitation .reveal-item {
+
   opacity: 1;
 
   transform:
@@ -1192,6 +1251,7 @@ body {
 ========================================================= */
 
 .invitation-line {
+
   margin-top: 25px;
 
   font-size:
@@ -1200,7 +1260,9 @@ body {
   color: #73563e;
 }
 
+
 .invitation-subtitle {
+
   margin-top: 8px;
 
   font-size:
@@ -1209,7 +1271,9 @@ body {
   color: #72563e;
 }
 
+
 .invitation-event {
+
   margin-top: 1px;
 
   font-size:
@@ -1226,9 +1290,11 @@ body {
 ========================================================= */
 
 .names {
+
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 14px;
@@ -1241,7 +1307,9 @@ body {
   color: #5a402c;
 }
 
+
 .names i {
+
   font-family:
     "Cormorant Garamond",
     serif;
@@ -1259,9 +1327,11 @@ body {
 ========================================================= */
 
 .ornament {
+
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   width: 72%;
@@ -1271,7 +1341,9 @@ body {
   margin-top: 7px;
 }
 
+
 .ornament span {
+
   flex: 1;
 
   height: 1px;
@@ -1285,7 +1357,9 @@ body {
     );
 }
 
+
 .ornament b {
+
   font-family:
     "Cinzel",
     serif;
@@ -1303,10 +1377,13 @@ body {
 ========================================================= */
 
 .date-block {
+
   margin-top: 18px;
 }
 
+
 .date {
+
   font-family:
     "Cinzel",
     serif;
@@ -1319,7 +1396,9 @@ body {
   color: #614732;
 }
 
+
 .time {
+
   margin-top: 5px;
 
   font-size:
@@ -1334,6 +1413,7 @@ body {
 ========================================================= */
 
 .location {
+
   margin-top: 20px;
 
   line-height: 1.7;
@@ -1342,11 +1422,14 @@ body {
     clamp(13px, 3vw, 17px);
 }
 
+
 .location-small {
   color: #8a6c4d;
 }
 
+
 .location-name {
+
   font-weight: 600;
 
   color: #5c432f;
@@ -1358,6 +1441,7 @@ body {
 ========================================================= */
 
 .rsvp {
+
   width: 100%;
 
   margin-top: 40px;
@@ -1368,7 +1452,9 @@ body {
     1px solid rgba(155,119,77,.25);
 }
 
+
 .rsvp-title {
+
   font-family:
     "Cinzel",
     serif;
@@ -1382,7 +1468,9 @@ body {
   margin-bottom: 9px;
 }
 
+
 .rsvp-buttons {
+
   display: flex;
 
   justify-content: center;
@@ -1392,7 +1480,9 @@ body {
   gap: 8px;
 }
 
+
 .rsvp-btn {
+
   border:
     1px solid rgba(135,100,67,.55);
 
@@ -1419,12 +1509,16 @@ body {
     transform .25s ease;
 }
 
+
 .rsvp-btn:active {
+
   transform:
     scale(.97);
 }
 
+
 .rsvp-btn.selected {
+
   background:
     #d4c0a7;
 }
@@ -1435,9 +1529,11 @@ body {
 ========================================================= */
 
 .guests {
+
   display: none;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 8px;
@@ -1447,11 +1543,14 @@ body {
   font-size: 12px;
 }
 
+
 .guests.show {
   display: flex;
 }
 
+
 .guests select {
+
   border:
     1px solid #bba384;
 
@@ -1473,6 +1572,7 @@ body {
 ========================================================= */
 
 .bottom-monogram {
+
   margin-top: 40px;
 
   font-family:
@@ -1494,56 +1594,60 @@ body {
 @media (max-width: 600px) {
 
   .envelope-stage {
-    width: 100vw;
-    height: 90dvh;
 
-    overflow: visible;
+    width: 100vw;
+
+    height: 90dvh;
   }
+
 
   .envelope {
-    width: 88vw;
 
-    overflow: visible;
+    width: 88vw;
   }
 
-  .paper-wrapper {
-    width: 100%;
-    height: 100%;
 
-    left: 0;
-    top: 0;
+  /* الورقة وهي داخل الظرف */
+
+  .paper-wrapper {
+
+    width: 88vw;
+
+    aspect-ratio:
+      1.48 / 1;
+
+    height: auto;
+
+    top: 52%;
 
     z-index: 25;
   }
+
+
+  /* الورقة بعد الخروج */
 
   .envelope-stage.paper-out .paper-wrapper {
 
     width: 78vw;
+
     height: 125vw;
 
-    left: 50%;
-    top: -42%;
-
-    transform:
-      translate(-50%, -50%);
+    top: 30%;
 
     z-index: 25;
   }
 
-  .paper-monogram span {
-    width: 82px;
-    height: 82px;
-
-    font-size: 31px;
-  }
 
   .invitation-page {
+
     padding:
       40px 12px
       70px;
   }
 
+
   .invitation-card {
+
     width: 94vw;
 
     min-height:
@@ -1553,19 +1657,27 @@ body {
       35px 23px;
   }
 
+
   .invitation-frame {
+
     inset: 14px;
   }
 
+
   .invitation-line {
+
     margin-top: 21px;
   }
 
+
   .names {
+
     gap: 9px;
   }
 
+
   .rsvp {
+
     margin-top: 34px;
   }
 
@@ -1579,60 +1691,50 @@ body {
 @media (max-height: 700px) {
 
   .envelope {
+
     width: 83vw;
   }
+
+
+  .paper-wrapper {
+
+    width: 83vw;
+
+    top: 52%;
+  }
+
 
   .envelope-stage.paper-out .paper-wrapper {
 
     width: 74vw;
+
     height: 118vw;
 
-    left: 50%;
-    top: -39%;
-
-    transform:
-      translate(-50%, -50%);
+    top: 29%;
   }
 
+
   .invitation-line {
+
     margin-top: 17px;
   }
 
+
   .date-block {
+
     margin-top: 12px;
   }
 
+
   .location {
+
     margin-top: 13px;
   }
 
+
   .rsvp {
+
     margin-top: 28px;
-  }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 380px) {
-
-  .paper-monogram span {
-    width: 76px;
-    height: 76px;
-
-    font-size: 28px;
-  }
-
-  .seal {
-    width: 78px;
-  }
-
-  .invitation-card {
-    padding-left: 18px;
-    padding-right: 18px;
   }
 
 }
