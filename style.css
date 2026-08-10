@@ -43,22 +43,17 @@ body {
 
 /* =========================================================
    LOADER
-   لا نغير تصميمه
 ========================================================= */
 
 .loader {
   position: fixed;
-
   inset: 0;
 
   z-index: 99999;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -70,8 +65,8 @@ body {
     );
 
   transition:
-    opacity 0.8s ease,
-    visibility 0.8s ease;
+    opacity .8s ease,
+    visibility .8s ease;
 }
 
 .loader.hide {
@@ -85,7 +80,7 @@ body {
 
   font-size: clamp(45px, 11vw, 80px);
 
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
 
   color: #74553a;
 
@@ -99,7 +94,6 @@ body {
 
 .loader-line {
   width: 72px;
-
   height: 1px;
 
   margin: 12px 0;
@@ -115,12 +109,13 @@ body {
 
   font-size: 10px;
 
-  letter-spacing: 0.25em;
+  letter-spacing: .25em;
 
   color: #795d43;
 }
 
 @keyframes loaderAppear {
+
   from {
     opacity: 0;
     transform: scale(.9);
@@ -130,9 +125,11 @@ body {
     opacity: 1;
     transform: scale(1);
   }
+
 }
 
 @keyframes lineAppear {
+
   from {
     transform: scaleX(0);
   }
@@ -140,6 +137,7 @@ body {
   to {
     transform: scaleX(1);
   }
+
 }
 
 
@@ -151,7 +149,6 @@ body {
   position: relative;
 
   width: 100%;
-
   height: 100dvh;
 
   min-height: 600px;
@@ -161,7 +158,6 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -174,6 +170,7 @@ body {
 }
 
 .envelope-screen::before {
+
   content: "";
 
   position: absolute;
@@ -196,14 +193,13 @@ body {
 ========================================================= */
 
 .ambient-light {
+
   position: absolute;
 
   width: 75vw;
-
   height: 75vw;
 
   max-width: 800px;
-
   max-height: 800px;
 
   border-radius: 50%;
@@ -226,6 +222,7 @@ body {
 ========================================================= */
 
 .envelope-stage {
+
   position: relative;
 
   width: min(92vw, 700px);
@@ -243,17 +240,17 @@ body {
 ========================================================= */
 
 .ground-shadow {
+
   position: absolute;
 
   left: 50%;
-
   bottom: 11%;
 
   width: 75%;
-
   height: 15%;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   border-radius: 50%;
 
@@ -278,6 +275,7 @@ body {
 ========================================================= */
 
 .envelope {
+
   position: absolute;
 
   width: min(87vw, 610px);
@@ -285,7 +283,6 @@ body {
   aspect-ratio: 1.48 / 1;
 
   left: 50%;
-
   top: 52%;
 
   transform:
@@ -300,16 +297,22 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BACK
-   Layer 20
+   1 — BACK
+   مستطيل كامل
+   ثابت في الخلف
+   Z = 20
 ========================================================= */
 
 .envelope-back {
+
   position: absolute;
 
   inset: 0;
 
   z-index: 20;
+
+  width: 100%;
+  height: 100%;
 
   border-radius: 4px;
 
@@ -370,18 +373,24 @@ body {
 
 
 /* =========================================================
-   PAPER
-   Layer 25
+   2 — PAPER / INVITATION
+   فوق الـBack
+   وتحت الجوانب
+   Z = 25
 
-   الورقة موجودة داخل الظرف
-   ولا يتم إخفاؤها بـ opacity
+   وهي مقفولة:
+   الورقة بالكامل موجودة داخل الـBack
+   والجوانب تغطي الجزء الأمامي منها.
+
+   بعد الفتح:
+   تتحرك لفوق وتكبر.
 ========================================================= */
 
 .paper-wrapper {
+
   position: absolute;
 
   left: 50%;
-
   top: 52%;
 
   width: min(87vw, 610px);
@@ -393,22 +402,9 @@ body {
   transform:
     translate(-50%, -50%);
 
-  /*
-    IMPORTANT:
-    Back = 20
-    Paper = 25
-    Body = 30
-    Flap = 40
-  */
-
   z-index: 25;
 
   pointer-events: none;
-
-  /*
-    لازم يكون visible
-    عشان الورقة تقدر تطلع بره الظرف
-  */
 
   overflow: visible;
 
@@ -425,14 +421,13 @@ body {
 ========================================================= */
 
 .paper {
+
   position: absolute;
 
   left: 0;
-
   top: 0;
 
   width: 100%;
-
   height: 100%;
 
   overflow: hidden;
@@ -459,6 +454,7 @@ body {
 ========================================================= */
 
 .paper-texture {
+
   position: absolute;
 
   inset: 0;
@@ -492,6 +488,7 @@ body {
 ========================================================= */
 
 .paper-monogram {
+
   position: absolute;
 
   inset: 0;
@@ -499,15 +496,14 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   pointer-events: none;
 }
 
 .paper-monogram span {
-  width: 92px;
 
+  width: 92px;
   height: 92px;
 
   border-radius: 50%;
@@ -515,7 +511,6 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border:
@@ -523,7 +518,9 @@ body {
 
   color: #927453;
 
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 34px;
 
@@ -540,14 +537,15 @@ body {
 
 
 /* =========================================================
-   ENVELOPE FRONT LEFT / RIGHT
-   Layer 30
+   3 — LEFT / RIGHT SIDES
+   فوق الـPaper
+   Z = 30
 
-   أهم جزء:
-   الـ Body أعلى من الورقة
+   دول اللي بيخفوا الورقة وهي مقفولة.
 ========================================================= */
 
 .envelope-panel {
+
   position: absolute;
 
   bottom: 0;
@@ -574,10 +572,11 @@ body {
 
 
 /* =========================================================
-   LEFT PANEL
+   LEFT
 ========================================================= */
 
 .envelope-left {
+
   left: 0;
 
   clip-path:
@@ -590,10 +589,11 @@ body {
 
 
 /* =========================================================
-   RIGHT PANEL
+   RIGHT
 ========================================================= */
 
 .envelope-right {
+
   right: 0;
 
   clip-path:
@@ -606,17 +606,17 @@ body {
 
 
 /* =========================================================
-   ENVELOPE BOTTOM BODY
-   Layer 30
+   BOTTOM
+   جزء من الـBody
+   Z = 30
 ========================================================= */
 
 .envelope-bottom {
+
   position: absolute;
 
   left: 0;
-
   right: 0;
-
   bottom: 0;
 
   height: 72%;
@@ -642,19 +642,19 @@ body {
 
 
 /* =========================================================
-   FLAP
-   Layer 40
+   4 — FLAP
+   آخر طبقة من الظرف
+   Z = 40
 ========================================================= */
 
 .flap {
+
   position: absolute;
 
   top: 0;
-
   left: 0;
 
   width: 100%;
-
   height: 72%;
 
   z-index: 40;
@@ -680,6 +680,7 @@ body {
 ========================================================= */
 
 .flap-surface {
+
   position: absolute;
 
   inset: 0;
@@ -714,6 +715,7 @@ body {
 ========================================================= */
 
 .flap-highlight {
+
   position: absolute;
 
   inset: 0;
@@ -730,14 +732,16 @@ body {
 
 
 /* =========================================================
-   SEAL / MONOGRAM
+   5 — SEAL / AS
+   فوق الـFlap
+   Z = 50
 ========================================================= */
 
 .seal {
+
   position: absolute;
 
   left: 50%;
-
   top: 59%;
 
   z-index: 50;
@@ -759,7 +763,6 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -783,6 +786,7 @@ body {
 }
 
 .seal:hover {
+
   transform:
     translate(-50%, -50%)
     scale(1.04);
@@ -792,14 +796,13 @@ body {
 }
 
 .seal-inner {
-  width: 76%;
 
+  width: 76%;
   height: 76%;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 50%;
@@ -813,7 +816,9 @@ body {
 
   color: #e6d0b0;
 
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(24px, 5vw, 37px);
@@ -831,6 +836,7 @@ body {
 ========================================================= */
 
 .envelope-stage.opened .flap {
+
   transform:
     rotateX(180deg);
 }
@@ -838,11 +844,11 @@ body {
 
 /* =========================================================
    PAPER OUT
-   الورقة تتحول من مقاس الظرف
-   إلى مقاس الانفتيشن وتطلع لفوق
+   الورقة تطلع من جوه الظرف
 ========================================================= */
 
 .envelope-stage.paper-out .paper-wrapper {
+
   width:
     min(72vw, 430px);
 
@@ -863,6 +869,7 @@ body {
 ========================================================= */
 
 .envelope-stage.transitioning .envelope {
+
   transform:
     translate(-50%, -50%)
     translateY(35px)
@@ -875,6 +882,7 @@ body {
 ========================================================= */
 
 .envelope-stage.opened .ground-shadow {
+
   transform:
     translateX(-50%)
     translateY(25px)
@@ -889,6 +897,7 @@ body {
 ========================================================= */
 
 .envelope-stage.finished .envelope {
+
   opacity: 0;
 
   pointer-events: none;
@@ -905,10 +914,10 @@ body {
 ========================================================= */
 
 .click-hint {
+
   position: absolute;
 
   left: 50%;
-
   bottom: 5%;
 
   transform:
@@ -932,6 +941,7 @@ body {
 }
 
 @keyframes hintPulse {
+
   0%,
   100% {
     opacity: .4;
@@ -940,6 +950,7 @@ body {
   50% {
     opacity: .9;
   }
+
 }
 
 
@@ -948,6 +959,7 @@ body {
 ========================================================= */
 
 .invitation-page {
+
   position: relative;
 
   width: 100%;
@@ -962,7 +974,6 @@ body {
   display: flex;
 
   align-items: flex-start;
-
   justify-content: center;
 
   background:
@@ -986,6 +997,7 @@ body {
 }
 
 .app.show-invitation .invitation-page {
+
   opacity: 1;
 
   transform:
@@ -1000,6 +1012,7 @@ body {
 ========================================================= */
 
 .invitation-background {
+
   position: absolute;
 
   inset: 0;
@@ -1029,6 +1042,7 @@ body {
 ========================================================= */
 
 .invitation-card {
+
   position: relative;
 
   width:
@@ -1057,12 +1071,8 @@ body {
   border-radius: 3px;
 }
 
-
-/* =========================================================
-   INVITATION CARD TEXTURE
-========================================================= */
-
 .invitation-card::before {
+
   content: "";
 
   position: absolute;
@@ -1098,6 +1108,7 @@ body {
 ========================================================= */
 
 .invitation-frame {
+
   position: absolute;
 
   inset: 18px;
@@ -1109,6 +1120,7 @@ body {
 }
 
 .invitation-inner-frame {
+
   position: absolute;
 
   inset: 5px;
@@ -1123,6 +1135,7 @@ body {
 ========================================================= */
 
 .invitation-content {
+
   position: relative;
 
   z-index: 2;
@@ -1146,6 +1159,7 @@ body {
 ========================================================= */
 
 .reveal-item {
+
   opacity: 0;
 
   transform:
@@ -1161,6 +1175,7 @@ body {
 }
 
 .app.show-invitation .reveal-item {
+
   opacity: 1;
 
   transform:
@@ -1226,6 +1241,7 @@ body {
 ========================================================= */
 
 .invitation-line {
+
   margin-top: 25px;
 
   font-size:
@@ -1235,6 +1251,7 @@ body {
 }
 
 .invitation-subtitle {
+
   margin-top: 8px;
 
   font-size:
@@ -1244,6 +1261,7 @@ body {
 }
 
 .invitation-event {
+
   margin-top: 1px;
 
   font-size:
@@ -1260,10 +1278,10 @@ body {
 ========================================================= */
 
 .names {
+
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 14px;
@@ -1277,6 +1295,7 @@ body {
 }
 
 .names i {
+
   font-family:
     "Cormorant Garamond",
     serif;
@@ -1294,10 +1313,10 @@ body {
 ========================================================= */
 
 .ornament {
+
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   width: 72%;
@@ -1308,6 +1327,7 @@ body {
 }
 
 .ornament span {
+
   flex: 1;
 
   height: 1px;
@@ -1322,6 +1342,7 @@ body {
 }
 
 .ornament b {
+
   font-family:
     "Cinzel",
     serif;
@@ -1343,6 +1364,7 @@ body {
 }
 
 .date {
+
   font-family:
     "Cinzel",
     serif;
@@ -1356,6 +1378,7 @@ body {
 }
 
 .time {
+
   margin-top: 5px;
 
   font-size:
@@ -1370,6 +1393,7 @@ body {
 ========================================================= */
 
 .location {
+
   margin-top: 20px;
 
   line-height: 1.7;
@@ -1383,6 +1407,7 @@ body {
 }
 
 .location-name {
+
   font-weight: 600;
 
   color: #5c432f;
@@ -1394,6 +1419,7 @@ body {
 ========================================================= */
 
 .rsvp {
+
   width: 100%;
 
   margin-top: 40px;
@@ -1405,6 +1431,7 @@ body {
 }
 
 .rsvp-title {
+
   font-family:
     "Cinzel",
     serif;
@@ -1419,6 +1446,7 @@ body {
 }
 
 .rsvp-buttons {
+
   display: flex;
 
   justify-content: center;
@@ -1429,6 +1457,7 @@ body {
 }
 
 .rsvp-btn {
+
   border:
     1px solid rgba(135,100,67,.55);
 
@@ -1471,10 +1500,10 @@ body {
 ========================================================= */
 
 .guests {
+
   display: none;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
@@ -1489,6 +1518,7 @@ body {
 }
 
 .guests select {
+
   border:
     1px solid #bba384;
 
@@ -1509,6 +1539,7 @@ body {
 ========================================================= */
 
 .bottom-monogram {
+
   margin-top: 40px;
 
   font-family:
@@ -1530,20 +1561,24 @@ body {
 @media (max-width: 600px) {
 
   .envelope-stage {
+
     width: 100vw;
 
     height: 90dvh;
   }
 
+
+  /* الظرف */
+
   .envelope {
     width: 88vw;
   }
 
-  /* -----------------------------------------
-     PAPER INSIDE ENVELOPE
-  ----------------------------------------- */
+
+  /* الورقة وهي داخل الظرف */
 
   .paper-wrapper {
+
     width: 88vw;
 
     aspect-ratio:
@@ -1557,11 +1592,10 @@ body {
   }
 
 
-  /* -----------------------------------------
-     PAPER AFTER EXIT
-  ----------------------------------------- */
+  /* الورقة بعد الخروج */
 
   .envelope-stage.paper-out .paper-wrapper {
+
     width: 78vw;
 
     height: 125vw;
@@ -1572,22 +1606,18 @@ body {
   }
 
 
-  /* -----------------------------------------
-     INVITATION PAGE
-  ----------------------------------------- */
+  /* الدعوة */
 
   .invitation-page {
+
     padding:
       40px 12px
       70px;
   }
 
 
-  /* -----------------------------------------
-     INVITATION CARD
-  ----------------------------------------- */
-
   .invitation-card {
+
     width: 94vw;
 
     min-height:
@@ -1598,40 +1628,25 @@ body {
   }
 
 
-  /* -----------------------------------------
-     FRAME
-  ----------------------------------------- */
-
   .invitation-frame {
     inset: 14px;
   }
 
-
-  /* -----------------------------------------
-     TOP TEXT
-  ----------------------------------------- */
 
   .invitation-line {
     margin-top: 21px;
   }
 
 
-  /* -----------------------------------------
-     NAMES
-  ----------------------------------------- */
-
   .names {
     gap: 9px;
   }
 
 
-  /* -----------------------------------------
-     RSVP
-  ----------------------------------------- */
-
   .rsvp {
     margin-top: 34px;
   }
+
 }
 
 
@@ -1646,12 +1661,14 @@ body {
   }
 
   .paper-wrapper {
+
     width: 83vw;
 
     top: 52%;
   }
 
   .envelope-stage.paper-out .paper-wrapper {
+
     width: 74vw;
 
     height: 118vw;
@@ -1674,6 +1691,7 @@ body {
   .rsvp {
     margin-top: 28px;
   }
+
 }
 
 
@@ -1696,4 +1714,5 @@ body {
     transition-duration:
       .01ms !important;
   }
+
 }
