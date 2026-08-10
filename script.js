@@ -35,6 +35,7 @@ const envelope =
 
 /* =========================================================
    LOADING SCREEN
+   لا تغيير هنا
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -65,51 +66,49 @@ openButton.addEventListener("click", () => {
 
 
   /* -----------------------------------------
-     STEP 1
-     Hide click hint
+     Hide hint
   ----------------------------------------- */
 
   clickHint.style.opacity = "0";
 
 
   /* -----------------------------------------
-     STEP 2
-     Open flap
+     1 — Open flap
   ----------------------------------------- */
 
   envelopeStage.classList.add("opened");
 
 
+  /*
+    نستنى الفلاب يفتح بالكامل
+    قبل ما الورقة تبدأ تتحرك.
+  */
+
+
   /* -----------------------------------------
-     STEP 3
-     Paper comes out
-     
-     IMPORTANT:
-     The paper does NOT appear immediately.
+     2 — Paper starts coming out
   ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1250);
+  }, 1150);
 
 
   /* -----------------------------------------
-     STEP 4
-     Move envelope away
+     3 — Move envelope slightly
   ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2650);
+  }, 2800);
 
 
   /* -----------------------------------------
-     STEP 5
-     Show invitation
+     4 — Show invitation
   ----------------------------------------- */
 
   setTimeout(() => {
@@ -118,21 +117,14 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("finished");
 
-
-    /*
-      Prevent scrolling during
-      the transition.
-    */
-
     document.body.style.overflowY =
       "hidden";
 
-  }, 3050);
+  }, 3300);
 
 
   /* -----------------------------------------
-     STEP 6
-     Restore normal scrolling
+     5 — Enable scrolling
   ----------------------------------------- */
 
   setTimeout(() => {
@@ -141,16 +133,12 @@ openButton.addEventListener("click", () => {
       "auto";
 
 
-    /*
-      Move viewport to invitation.
-    */
-
     window.scrollTo({
       top: envelopeScreen.offsetHeight,
       behavior: "instant"
     });
 
-  }, 3800);
+  }, 4050);
 
 });
 
@@ -188,7 +176,7 @@ declineBtn.addEventListener(
 
 
 /* =========================================================
-   DESKTOP ENVELOPE PARALLAX
+   DESKTOP PARALLAX
 ========================================================= */
 
 const desktopPointer =
@@ -232,7 +220,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX WHEN OPENING
+   RESET PARALLAX
 ========================================================= */
 
 openButton.addEventListener(
@@ -250,7 +238,7 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
+   MOBILE DOUBLE TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
