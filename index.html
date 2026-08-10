@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -18,36 +17,23 @@
   <title>Ahmed & Shahd</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
   <!-- =====================================================
-       LOADING
+       LOADER
   ====================================================== -->
 
-  <div
-    class="loader"
-    id="loader"
-  >
+  <div class="loader" id="loader">
 
     <div class="loader-monogram">
       AS
@@ -66,11 +52,7 @@
        APP
   ====================================================== -->
 
-  <main
-    class="app"
-    id="app"
-  >
-
+  <main class="app" id="app">
 
     <!-- ===================================================
          ENVELOPE SCREEN
@@ -83,39 +65,12 @@
 
       <div class="ambient-light"></div>
 
-
       <div
         class="envelope-stage"
         id="envelopeStage"
       >
 
         <div class="ground-shadow"></div>
-
-
-        <!-- =================================================
-             PAPER
-        ================================================== -->
-
-        <div
-          class="paper-wrapper"
-          id="paperWrapper"
-        >
-
-          <div class="paper">
-
-            <div class="paper-texture"></div>
-
-            <div class="paper-monogram">
-
-              <span>
-                AS
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
 
 
         <!-- =================================================
@@ -127,12 +82,44 @@
           id="envelope"
         >
 
-          <!-- BACK -->
+          <!-- =================================================
+               BACK
+               Layer 20
+          ================================================== -->
 
           <div class="envelope-back"></div>
 
 
-          <!-- FRONT BODY -->
+          <!-- =================================================
+               PAPER
+               Layer 25
+
+               مهم جدًا:
+               الورقة هنا جوه الظرف فعلًا
+          ================================================== -->
+
+          <div
+            class="paper-wrapper"
+            id="paperWrapper"
+          >
+
+            <div class="paper">
+
+              <div class="paper-texture"></div>
+
+              <div class="paper-monogram">
+                <span>AS</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               BODY
+               Layer 30
+          ================================================== -->
 
           <div class="envelope-panel envelope-left"></div>
 
@@ -143,6 +130,7 @@
 
           <!-- =================================================
                FLAP
+               Layer 40
           ================================================== -->
 
           <div
@@ -154,8 +142,7 @@
 
               <div class="flap-highlight"></div>
 
-
-              <!-- SEAL -->
+              <!-- MONOGRAM -->
 
               <button
                 class="seal"
@@ -206,24 +193,19 @@
       <article class="invitation-card">
 
         <div class="invitation-frame">
-
           <div class="invitation-inner-frame"></div>
-
         </div>
 
 
         <div class="invitation-content">
 
-
           <div class="invitation-line reveal-item">
             يسر د. هدى مدحت
           </div>
 
-
           <div class="invitation-subtitle reveal-item">
             دعوتكم لحضور
           </div>
-
 
           <div class="invitation-event reveal-item">
             حفل حنة
@@ -232,17 +214,11 @@
 
           <div class="names reveal-item">
 
-            <span>
-              أحمد
-            </span>
+            <span>أحمد</span>
 
-            <i>
-              &amp;
-            </i>
+            <i>&amp;</i>
 
-            <span>
-              شهد
-            </span>
+            <span>شهد</span>
 
           </div>
 
@@ -251,9 +227,7 @@
 
             <span></span>
 
-            <b>
-              AS
-            </b>
+            <b>AS</b>
 
             <span></span>
 
@@ -294,7 +268,6 @@
               RSVP
             </div>
 
-
             <div class="rsvp-buttons">
 
               <button
@@ -304,7 +277,6 @@
               >
                 سأحضر
               </button>
-
 
               <button
                 class="rsvp-btn decline"
@@ -325,7 +297,6 @@
               <label for="guestCount">
                 عدد المرافقين
               </label>
-
 
               <select id="guestCount">
 
@@ -356,7 +327,6 @@
             AS
           </div>
 
-
         </div>
 
       </article>
@@ -369,5 +339,4 @@
   <script src="script.js"></script>
 
 </body>
-
 </html>
