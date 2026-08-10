@@ -442,10 +442,6 @@ body {
 
   height: 72%;
 
-  /*
-    أهم layer:
-    يغطي الورقة وهي داخل الظرف
-  */
   z-index: 30;
 
   overflow: hidden;
@@ -460,7 +456,7 @@ body {
   clip-path:
     polygon(
       0 100%,
-      50% 25%,
+      50% 38%,
       100% 100%
     );
 }
