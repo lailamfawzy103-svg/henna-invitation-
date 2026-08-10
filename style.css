@@ -467,6 +467,10 @@ body {
    FLAP
 ========================================================= */
 
+/* =========================================================
+   FLAP — OPENS UP AND STAYS OPEN
+========================================================= */
+
 .flap {
   position: absolute;
 
@@ -478,8 +482,7 @@ body {
 
   z-index: 40;
 
-  transform-origin:
-    50% 0%;
+  transform-origin: 50% 0%;
 
   transform:
     rotateX(0deg);
@@ -490,6 +493,54 @@ body {
     transform 1.25s cubic-bezier(.18,.82,.22,1);
 
   pointer-events: none;
+}
+
+.flap-surface {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eadcca 0%,
+      #d7c3aa 55%,
+      #c7ae91 100%
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  box-shadow:
+    0 14px 20px rgba(53,35,22,.24);
+
+  backface-visibility: visible;
+}
+
+.flap-highlight {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,.35),
+      transparent 32%,
+      transparent 72%,
+      rgba(89,61,40,.09)
+    );
+}
+
+.envelope-stage.opened .flap {
+  transform:
+    rotateX(78deg);
 }
 
 
@@ -789,13 +840,11 @@ body {
 ========================================================= */
 
 .envelope-stage.paper-out .paper-wrapper {
-
   transform:
     translate(-50%, -100%)
-    translateY(-150px)
+    translateY(-125px)
     scale(1);
 }
-
 
 /* =========================================================
    OPENED FLAP
@@ -845,17 +894,15 @@ body {
 ========================================================= */
 
 .envelope-stage.finished .envelope {
-
-  opacity: 0;
+  opacity: 1;
 
   pointer-events: none;
 
   transform:
     translate(-50%, -50%)
-    translateY(90px)
-    scale(.9);
+    translateY(35px)
+    scale(.97);
 }
-
 
 /* =========================================================
    CLICK HINT
@@ -1489,11 +1536,32 @@ body {
     width: 88vw;
   }
 
-  .paper-wrapper {
-    width: 71vw;
-    height: 76vh;
-  }
+ .paper-wrapper {
+  position: absolute;
 
+  left: 50%;
+  top: 63%;
+
+  width:
+    min(65vw, 390px);
+
+  height:
+    min(76vh, 560px);
+
+  z-index: 10;
+
+  transform:
+    translate(-50%, 0)
+    translateY(0)
+    scale(.94);
+
+  opacity: 1;
+
+  pointer-events: none;
+
+  transition:
+    transform 1.8s cubic-bezier(.16,.78,.2,1);
+}
   .invitation-page {
     padding:
       40px 12px
