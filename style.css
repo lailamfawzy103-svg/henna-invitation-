@@ -8,14 +8,12 @@
   padding: 0;
 }
 
-
 html {
   width: 100%;
   min-height: 100%;
 
   scroll-behavior: smooth;
 }
-
 
 body {
   width: 100%;
@@ -52,7 +50,6 @@ body {
 ========================================================= */
 
 .loader {
-
   position: fixed;
 
   inset: 0;
@@ -60,7 +57,6 @@ body {
   z-index: 99999;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
@@ -79,9 +75,7 @@ body {
     visibility .8s ease;
 }
 
-
 .loader.hide {
-
   opacity: 0;
 
   visibility: hidden;
@@ -89,12 +83,8 @@ body {
   pointer-events: none;
 }
 
-
 .loader-monogram {
-
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
@@ -111,9 +101,7 @@ body {
     loaderAppear 1.2s ease both;
 }
 
-
 .loader-line {
-
   width: 72px;
 
   height: 1px;
@@ -126,12 +114,8 @@ body {
     lineAppear 1.2s ease both;
 }
 
-
 .loader-names {
-
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size: 10px;
 
@@ -144,21 +128,17 @@ body {
 @keyframes loaderAppear {
 
   from {
-
     opacity: 0;
 
     transform:
       scale(.9);
-
   }
 
   to {
-
     opacity: 1;
 
     transform:
       scale(1);
-
   }
 
 }
@@ -167,17 +147,13 @@ body {
 @keyframes lineAppear {
 
   from {
-
     transform:
       scaleX(0);
-
   }
 
   to {
-
     transform:
       scaleX(1);
-
   }
 
 }
@@ -188,7 +164,6 @@ body {
 ========================================================= */
 
 .envelope-screen {
-
   position: relative;
 
   width: 100%;
@@ -202,6 +177,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   background:
@@ -213,9 +189,7 @@ body {
     );
 }
 
-
 .envelope-screen::before {
-
   content: "";
 
   position: absolute;
@@ -238,13 +212,14 @@ body {
 ========================================================= */
 
 .ambient-light {
-
   position: absolute;
 
   width: 75vw;
+
   height: 75vw;
 
   max-width: 800px;
+
   max-height: 800px;
 
   border-radius: 50%;
@@ -267,7 +242,6 @@ body {
 ========================================================= */
 
 .envelope-stage {
-
   position: relative;
 
   width:
@@ -278,7 +252,8 @@ body {
 
   perspective: 1800px;
 
-  transform-style: preserve-3d;
+  transform-style:
+    preserve-3d;
 }
 
 
@@ -287,13 +262,14 @@ body {
 ========================================================= */
 
 .ground-shadow {
-
   position: absolute;
 
   left: 50%;
+
   bottom: 11%;
 
   width: 75%;
+
   height: 15%;
 
   transform:
@@ -322,7 +298,6 @@ body {
 ========================================================= */
 
 .envelope {
-
   position: absolute;
 
   width:
@@ -332,12 +307,14 @@ body {
     1.48 / 1;
 
   left: 50%;
+
   top: 52%;
 
   transform:
     translate(-50%, -50%);
 
-  transform-style: preserve-3d;
+  transform-style:
+    preserve-3d;
 
   transition:
     transform 1.4s cubic-bezier(.2,.85,.2,1),
@@ -350,11 +327,13 @@ body {
 ========================================================= */
 
 .envelope-back {
-
   position: absolute;
 
   inset: 0;
 
+  /*
+    أقل من الفلاب
+  */
   z-index: 5;
 
   border-radius: 4px;
@@ -416,19 +395,23 @@ body {
 
 
 /* =========================================================
-   FRONT PANELS
+   FRONT LEFT / RIGHT
 ========================================================= */
 
 .envelope-panel {
-
   position: absolute;
 
   bottom: 0;
 
   width: 51%;
+
   height: 70%;
 
-  z-index: 20;
+  /*
+    جسم الظرف تحت الفلاب
+    وفوق الورقة وهي داخل الظرف
+  */
+  z-index: 30;
 
   overflow: hidden;
 
@@ -446,7 +429,6 @@ body {
 
 
 .envelope-left {
-
   left: 0;
 
   clip-path:
@@ -459,7 +441,6 @@ body {
 
 
 .envelope-right {
-
   right: 0;
 
   clip-path:
@@ -472,20 +453,24 @@ body {
 
 
 /* =========================================================
-   BOTTOM
+   BOTTOM BODY
 ========================================================= */
 
 .envelope-bottom {
-
   position: absolute;
 
   left: 0;
+
   right: 0;
+
   bottom: 0;
 
   height: 72%;
 
-  z-index: 20;
+  /*
+    الجسم تحت الفلاب
+  */
+  z-index: 30;
 
   overflow: hidden;
 
@@ -496,6 +481,11 @@ body {
       #c9b295
     );
 
+  /*
+    مهم:
+    الشكل الأصلي الجميل للظرف
+    لم يتم تغييره
+  */
   clip-path:
     polygon(
       0 100%,
@@ -510,16 +500,27 @@ body {
 ========================================================= */
 
 .flap {
-
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   width: 100%;
+
   height: 72%;
 
-  z-index: 40;
+  /*
+    =====================================================
+    أهم تعديل
+    =====================================================
+
+    الفلاب نفسه فوق جسم الظرف.
+
+    لذلك دائرة AS الموجودة بداخله
+    لن تختفي خلف الـbody.
+  */
+  z-index: 35;
 
   transform-origin:
     50% 0%;
@@ -537,13 +538,16 @@ body {
 }
 
 
-.flap-surface {
+/* =========================================================
+   FLAP SURFACE
+========================================================= */
 
+.flap-surface {
   position: absolute;
 
   inset: 0;
 
-  overflow: visible;
+  overflow: hidden;
 
   background:
     linear-gradient(
@@ -553,6 +557,10 @@ body {
       #c7ae91 100%
     );
 
+  /*
+    شكل المثلث الأصلي
+    لا يتم تغييره
+  */
   clip-path:
     polygon(
       0 0,
@@ -568,8 +576,11 @@ body {
 }
 
 
-.flap-highlight {
+/* =========================================================
+   FLAP HIGHLIGHT
+========================================================= */
 
+.flap-highlight {
   position: absolute;
 
   inset: 0;
@@ -586,19 +597,20 @@ body {
 
 
 /* =========================================================
-   SEAL
-   IMPORTANT:
-   موجود جوه الفلاب
+   SEAL / MONOGRAM
 ========================================================= */
 
 .seal {
-
   position: absolute;
 
   left: 50%;
 
-  top: 76%;
+  top: 59%;
 
+  /*
+    داخل الفلاب
+    لذلك سيظل فوق جسم الظرف
+  */
   z-index: 50;
 
   width:
@@ -618,6 +630,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   background:
@@ -630,17 +643,26 @@ body {
 
   box-shadow:
     0 7px 14px rgba(52,34,20,.3),
-    inset 2px 2px 3px rgba(255,255,255,.38),
-    inset -3px -4px 6px rgba(46,29,18,.35);
+
+    inset 2px 2px 3px
+    rgba(255,255,255,.38),
+
+    inset -3px -4px 6px
+    rgba(46,29,18,.35);
 
   pointer-events: auto;
 
   transition:
+    transform .3s ease,
     filter .3s ease;
 }
 
 
 .seal:hover {
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.04);
 
   filter:
     brightness(1.06);
@@ -650,17 +672,27 @@ body {
 .seal-inner {
 
   width: 76%;
+
   height: 76%;
 
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   border-radius: 50%;
 
   border:
     1px solid rgba(238,218,189,.5);
+
+  box-shadow:
+
+    inset 1px 1px 2px
+    rgba(255,255,255,.35),
+
+    inset -2px -2px 3px
+    rgba(42,27,17,.25);
 
   color: #e6d0b0;
 
@@ -674,12 +706,12 @@ body {
   letter-spacing: .08em;
 
   text-shadow:
-    1px 1px 1px rgba(53,33,20,.65),
-    -1px -1px 1px rgba(255,255,255,.25);
 
-  box-shadow:
-    inset 1px 1px 2px rgba(255,255,255,.35),
-    inset -2px -2px 3px rgba(42,27,17,.25);
+    1px 1px 1px
+    rgba(53,33,20,.65),
+
+    -1px -1px 1px
+    rgba(255,255,255,.25);
 }
 
 
@@ -688,12 +720,11 @@ body {
 ========================================================= */
 
 .paper-wrapper {
-
   position: absolute;
 
   left: 50%;
 
-  top: 64%;
+  top: 68%;
 
   width:
     min(65vw, 390px);
@@ -701,7 +732,11 @@ body {
   height:
     min(76vh, 560px);
 
-  z-index: 25;
+  /*
+    قبل الخروج:
+    الورقة تحت جسم الظرف
+  */
+  z-index: 20;
 
   transform:
     translate(-50%, 0)
@@ -717,8 +752,11 @@ body {
 }
 
 
-.paper {
+/* =========================================================
+   PAPER ITSELF
+========================================================= */
 
+.paper {
   position: absolute;
 
   inset: 0;
@@ -736,14 +774,23 @@ body {
     );
 
   box-shadow:
-    0 20px 38px rgba(47,31,20,.3),
-    0 5px 10px rgba(47,31,20,.15),
-    inset 0 0 0 1px rgba(135,102,70,.15);
+
+    0 20px 38px
+    rgba(47,31,20,.3),
+
+    0 5px 10px
+    rgba(47,31,20,.15),
+
+    inset 0 0 0 1px
+    rgba(135,102,70,.15);
 }
 
 
-.paper-texture {
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
 
+.paper-texture {
   position: absolute;
 
   inset: 0;
@@ -772,8 +819,11 @@ body {
 }
 
 
-.paper-monogram {
+/* =========================================================
+   PAPER MONOGRAM
+========================================================= */
 
+.paper-monogram {
   position: absolute;
 
   inset: 0;
@@ -781,6 +831,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   pointer-events: none;
@@ -790,6 +841,7 @@ body {
 .paper-monogram span {
 
   width: 92px;
+
   height: 92px;
 
   border-radius: 50%;
@@ -797,6 +849,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   border:
@@ -813,20 +866,35 @@ body {
   letter-spacing: .08em;
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.8),
-    -1px -1px 0 rgba(102,73,47,.18);
+
+    1px 1px 0
+    rgba(255,255,255,.8),
+
+    -1px -1px 0
+    rgba(102,73,47,.18);
 
   box-shadow:
-    inset 1px 1px 2px rgba(255,255,255,.65),
-    inset -1px -1px 2px rgba(103,74,47,.12);
+
+    inset 1px 1px 2px
+    rgba(255,255,255,.65),
+
+    inset -1px -1px 2px
+    rgba(103,74,47,.12);
 }
 
 
 /* =========================================================
-   OPEN FLAP
+   FLAP OPEN
 ========================================================= */
 
 .envelope-stage.opened .flap {
+
+  /*
+    فتح كامل 180 درجة
+
+    لا نغير الفلاب نفسه
+    ولا نخفيه
+  */
 
   transform:
     rotateX(180deg);
@@ -839,6 +907,13 @@ body {
 
 .envelope-stage.paper-out .paper-wrapper {
 
+  /*
+    بمجرد خروج الورقة:
+    الورقة تصبح أمام الفلاب.
+  */
+
+  z-index: 40;
+
   transform:
     translate(-50%, -100%)
     translateY(-155px)
@@ -847,7 +922,7 @@ body {
 
 
 /* =========================================================
-   SHADOW WHEN OPEN
+   SHADOW AFTER OPENING
 ========================================================= */
 
 .envelope-stage.opened .ground-shadow {
@@ -862,7 +937,7 @@ body {
 
 
 /* =========================================================
-   ENVELOPE TRANSITION
+   SMALL ENVELOPE MOVEMENT
 ========================================================= */
 
 .envelope-stage.transitioning .envelope {
@@ -875,7 +950,7 @@ body {
 
 
 /* =========================================================
-   FINISHED
+   ENVELOPE DISAPPEAR
 ========================================================= */
 
 .envelope-stage.finished .envelope {
@@ -892,7 +967,7 @@ body {
 
 
 /* =========================================================
-   HINT
+   CLICK HINT
 ========================================================= */
 
 .click-hint {
@@ -921,7 +996,6 @@ body {
 
 
 .envelope-stage.opened .click-hint {
-
   opacity: 0;
 }
 
@@ -941,7 +1015,7 @@ body {
 
 
 /* =========================================================
-   INVITATION
+   INVITATION PAGE
 ========================================================= */
 
 .invitation-page {
@@ -960,6 +1034,7 @@ body {
   display: flex;
 
   align-items: flex-start;
+
   justify-content: center;
 
   background:
@@ -983,6 +1058,10 @@ body {
 }
 
 
+/* =========================================================
+   SHOW INVITATION
+========================================================= */
+
 .app.show-invitation .invitation-page {
 
   opacity: 1;
@@ -993,6 +1072,10 @@ body {
   pointer-events: auto;
 }
 
+
+/* =========================================================
+   INVITATION BACKGROUND
+========================================================= */
 
 .invitation-background {
 
@@ -1046,8 +1129,12 @@ body {
     );
 
   box-shadow:
-    0 25px 55px rgba(55,38,24,.22),
-    0 5px 14px rgba(55,38,24,.13);
+
+    0 25px 55px
+    rgba(55,38,24,.22),
+
+    0 5px 14px
+    rgba(55,38,24,.13);
 
   overflow: hidden;
 
@@ -1088,7 +1175,7 @@ body {
 
 
 /* =========================================================
-   FRAME
+   INVITATION FRAME
 ========================================================= */
 
 .invitation-frame {
@@ -1154,8 +1241,12 @@ body {
     blur(5px);
 
   transition:
+
     opacity .75s ease,
-    transform .85s cubic-bezier(.18,.82,.22,1),
+
+    transform .85s
+    cubic-bezier(.18,.82,.22,1),
+
     filter .85s ease;
 }
 
@@ -1173,74 +1264,57 @@ body {
 
 
 /* =========================================================
-   DELAYS
+   REVEAL DELAYS
 ========================================================= */
 
 .app.show-invitation
 .reveal-item:nth-child(1) {
-
   transition-delay: .25s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(2) {
-
   transition-delay: .4s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(3) {
-
   transition-delay: .55s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(4) {
-
   transition-delay: .72s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(5) {
-
   transition-delay: .9s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(6) {
-
   transition-delay: 1.05s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(7) {
-
   transition-delay: 1.2s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(8) {
-
   transition-delay: 1.35s;
 }
 
-
 .app.show-invitation
 .reveal-item:nth-child(9) {
-
   transition-delay: 1.5s;
 }
 
 
 /* =========================================================
-   TEXT
+   INVITATION TEXT
 ========================================================= */
 
 .invitation-line {
@@ -1287,6 +1361,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 14px;
@@ -1323,6 +1398,7 @@ body {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   width: 72%;
@@ -1415,7 +1491,6 @@ body {
 
 
 .location-small {
-
   color: #8a6c4d;
 }
 
@@ -1525,6 +1600,7 @@ body {
   display: none;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 8px;
@@ -1536,7 +1612,6 @@ body {
 
 
 .guests.show {
-
   display: flex;
 }
 
@@ -1610,7 +1685,8 @@ body {
   .invitation-page {
 
     padding:
-      40px 12px 70px;
+      40px 12px
+      70px;
   }
 
 
@@ -1618,7 +1694,8 @@ body {
 
     width: 94vw;
 
-    min-height: 150vw;
+    min-height:
+      150vw;
 
     padding:
       35px 23px;
