@@ -49,11 +49,10 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPENING
+   OPEN ENVELOPE
 ========================================================= */
 
 let opened = false;
-
 
 openButton.addEventListener("click", () => {
 
@@ -64,25 +63,25 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* -----------------------------------------
-     Hide hint
-  ----------------------------------------- */
+  /* -------------------------
+     Hide click hint
+  ------------------------- */
 
   clickHint.style.opacity = "0";
 
 
-  /* -----------------------------------------
+  /* -------------------------
      STEP 1
-     Open flap completely
-  ----------------------------------------- */
+     Open flap
+  ------------------------- */
 
   envelopeStage.classList.add("opened");
 
 
-  /* -----------------------------------------
+  /* -------------------------
      STEP 2
-     Start paper after flap opens
-  ----------------------------------------- */
+     Paper comes out
+  ------------------------- */
 
   setTimeout(() => {
 
@@ -91,10 +90,10 @@ openButton.addEventListener("click", () => {
   }, 1350);
 
 
-  /* -----------------------------------------
+  /* -------------------------
      STEP 3
-     Slight movement
-  ----------------------------------------- */
+     Move envelope slightly
+  ------------------------- */
 
   setTimeout(() => {
 
@@ -103,10 +102,10 @@ openButton.addEventListener("click", () => {
   }, 2850);
 
 
-  /* -----------------------------------------
+  /* -------------------------
      STEP 4
      Show invitation
-  ----------------------------------------- */
+  ------------------------- */
 
   setTimeout(() => {
 
@@ -114,21 +113,19 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("finished");
 
-    document.body.style.overflowY =
-      "hidden";
+    document.body.style.overflowY = "hidden";
 
   }, 3350);
 
 
-  /* -----------------------------------------
+  /* -------------------------
      STEP 5
-     Enable scrolling
-  ----------------------------------------- */
+     Enable page scrolling
+  ------------------------- */
 
   setTimeout(() => {
 
-    document.body.style.overflowY =
-      "auto";
+    document.body.style.overflowY = "auto";
 
     window.scrollTo({
       top: envelopeScreen.offsetHeight,
@@ -144,32 +141,26 @@ openButton.addEventListener("click", () => {
    RSVP
 ========================================================= */
 
-attendBtn.addEventListener(
-  "click",
-  () => {
+attendBtn.addEventListener("click", () => {
 
-    attendBtn.classList.add("selected");
+  attendBtn.classList.add("selected");
 
-    declineBtn.classList.remove("selected");
+  declineBtn.classList.remove("selected");
 
-    guests.classList.add("show");
+  guests.classList.add("show");
 
-  }
-);
+});
 
 
-declineBtn.addEventListener(
-  "click",
-  () => {
+declineBtn.addEventListener("click", () => {
 
-    declineBtn.classList.add("selected");
+  declineBtn.classList.add("selected");
 
-    attendBtn.classList.remove("selected");
+  attendBtn.classList.remove("selected");
 
-    guests.classList.remove("show");
+  guests.classList.remove("show");
 
-  }
-);
+});
 
 
 /* =========================================================
@@ -177,9 +168,7 @@ declineBtn.addEventListener(
 ========================================================= */
 
 const desktopPointer =
-  window.matchMedia(
-    "(pointer:fine)"
-  );
+  window.matchMedia("(pointer:fine)");
 
 
 if (desktopPointer.matches) {
@@ -195,12 +184,12 @@ if (desktopPointer.matches) {
 
       const x =
         (event.clientX /
-          window.innerWidth - .5) * 2;
+          window.innerWidth - 0.5) * 2;
 
 
       const y =
         (event.clientY /
-          window.innerHeight - .5) * 2;
+          window.innerHeight - 0.5) * 2;
 
 
       envelope.style.transform =
@@ -217,7 +206,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX
+   RESET PARALLAX AFTER CLICK
 ========================================================= */
 
 openButton.addEventListener(
@@ -235,19 +224,16 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
+   MOBILE DOUBLE TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
-
 
 document.addEventListener(
   "touchend",
   (event) => {
 
-    const now =
-      Date.now();
-
+    const now = Date.now();
 
     if (
       now - lastTouchEnd <= 300
@@ -256,7 +242,6 @@ document.addEventListener(
       event.preventDefault();
 
     }
-
 
     lastTouchEnd = now;
 
