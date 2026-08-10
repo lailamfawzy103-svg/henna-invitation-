@@ -34,8 +34,7 @@ const envelope =
 
 
 /* =========================================================
-   LOADING SCREEN
-   لا تغيير هنا
+   LOADING
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -50,7 +49,7 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN ENVELOPE
+   OPENING
 ========================================================= */
 
 let opened = false;
@@ -73,42 +72,40 @@ openButton.addEventListener("click", () => {
 
 
   /* -----------------------------------------
-     1 — Open flap
+     STEP 1
+     Open flap completely
   ----------------------------------------- */
 
   envelopeStage.classList.add("opened");
 
 
-  /*
-    نستنى الفلاب يفتح بالكامل
-    قبل ما الورقة تبدأ تتحرك.
-  */
-
-
   /* -----------------------------------------
-     2 — Paper starts coming out
+     STEP 2
+     Start paper after flap opens
   ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1150);
+  }, 1350);
 
 
   /* -----------------------------------------
-     3 — Move envelope slightly
+     STEP 3
+     Slight movement
   ----------------------------------------- */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2800);
+  }, 2850);
 
 
   /* -----------------------------------------
-     4 — Show invitation
+     STEP 4
+     Show invitation
   ----------------------------------------- */
 
   setTimeout(() => {
@@ -120,18 +117,18 @@ openButton.addEventListener("click", () => {
     document.body.style.overflowY =
       "hidden";
 
-  }, 3300);
+  }, 3350);
 
 
   /* -----------------------------------------
-     5 — Enable scrolling
+     STEP 5
+     Enable scrolling
   ----------------------------------------- */
 
   setTimeout(() => {
 
     document.body.style.overflowY =
       "auto";
-
 
     window.scrollTo({
       top: envelopeScreen.offsetHeight,
@@ -238,7 +235,7 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE TAP PROTECTION
+   MOBILE DOUBLE-TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
