@@ -2,14 +2,11 @@
    ELEMENTS
 ========================================================= */
 
-const loader =
-  document.getElementById("loader");
+const loader = document.getElementById("loader");
 
-const app =
-  document.getElementById("app");
+const app = document.getElementById("app");
 
-const openButton =
-  document.getElementById("openButton");
+const openButton = document.getElementById("openButton");
 
 const envelopeStage =
   document.getElementById("envelopeStage");
@@ -34,7 +31,7 @@ const envelope =
 
 
 /* =========================================================
-   LOADING
+   LOADING PAGE
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -54,9 +51,9 @@ window.addEventListener("load", () => {
 
 let opened = false;
 
-
 openButton.addEventListener("click", () => {
 
+  /* منع فتح الظرف أكثر من مرة */
   if (opened) {
     return;
   }
@@ -64,50 +61,53 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* -----------------------------------------
-     Hide click hint
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 1
+     إخفاء جملة اضغطي لفتح الدعوة
+  ======================================================= */
 
   clickHint.style.opacity = "0";
 
 
-  /* -----------------------------------------
-     STEP 1
-     Flap opens completely
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 2
+     فتح الفلاب بالكامل
+  ======================================================= */
 
   envelopeStage.classList.add("opened");
 
 
-  /* -----------------------------------------
-     STEP 2
-     Wait until flap is open,
-     then paper starts coming out
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 3
+     بعد فتح الفلاب تبدأ الورقة في الخروج
+     
+     الورقة تبدأ من داخل الظرف،
+     مش من بره.
+  ======================================================= */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1350);
+  }, 1450);
 
 
-  /* -----------------------------------------
-     STEP 3
-     Small envelope movement
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 4
+     بعد خروج الورقة يحصل انتقال بسيط للظرف
+  ======================================================= */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-  }, 2850);
+  }, 3100);
 
 
-  /* -----------------------------------------
-     STEP 4
-     Show invitation
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 5
+     إظهار صفحة الانفتيشن
+  ======================================================= */
 
   setTimeout(() => {
 
@@ -115,39 +115,44 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("finished");
 
-    document.body.style.overflowY =
-      "hidden";
+    /*
+      نمنع السكرول أثناء الانتقال
+    */
+    document.body.style.overflowY = "hidden";
 
-  }, 3350);
+  }, 3500);
 
 
-  /* -----------------------------------------
-     STEP 5
-     Enable scrolling
-  ----------------------------------------- */
+  /* =======================================================
+     STEP 6
+     السماح بالسكرول والانتقال للانفتيشن
+  ======================================================= */
 
   setTimeout(() => {
 
-    document.body.style.overflowY =
-      "auto";
+    document.body.style.overflowY = "auto";
+
 
     window.scrollTo({
+
       top: envelopeScreen.offsetHeight,
+
       behavior: "instant"
+
     });
 
-  }, 4050);
+  }, 4200);
 
 });
 
 
 /* =========================================================
-   RSVP - ATTEND
+   RSVP — ATTEND
 ========================================================= */
 
-attendBtn.addEventListener(
-  "click",
-  () => {
+if (attendBtn) {
+
+  attendBtn.addEventListener("click", () => {
 
     attendBtn.classList.add("selected");
 
@@ -155,17 +160,18 @@ attendBtn.addEventListener(
 
     guests.classList.add("show");
 
-  }
-);
+  });
+
+}
 
 
 /* =========================================================
-   RSVP - DECLINE
+   RSVP — DECLINE
 ========================================================= */
 
-declineBtn.addEventListener(
-  "click",
-  () => {
+if (declineBtn) {
+
+  declineBtn.addEventListener("click", () => {
 
     declineBtn.classList.add("selected");
 
@@ -173,8 +179,9 @@ declineBtn.addEventListener(
 
     guests.classList.remove("show");
 
-  }
-);
+  });
+
+}
 
 
 /* =========================================================
@@ -182,9 +189,7 @@ declineBtn.addEventListener(
 ========================================================= */
 
 const desktopPointer =
-  window.matchMedia(
-    "(pointer:fine)"
-  );
+  window.matchMedia("(pointer:fine)");
 
 
 if (desktopPointer.matches) {
@@ -192,6 +197,10 @@ if (desktopPointer.matches) {
   document.addEventListener(
     "mousemove",
     (event) => {
+
+      /*
+        بعد فتح الظرف نوقف حركة الماوس
+      */
 
       if (opened) {
         return;
@@ -202,7 +211,7 @@ if (desktopPointer.matches) {
         (
           event.clientX /
           window.innerWidth -
-          .5
+          0.5
         ) * 2;
 
 
@@ -210,16 +219,15 @@ if (desktopPointer.matches) {
         (
           event.clientY /
           window.innerHeight -
-          .5
+          0.5
         ) * 2;
 
 
-      envelope.style.transform =
-        `
+      envelope.style.transform = `
         translate(-50%, -50%)
         rotateY(${x * 2}deg)
         rotateX(${y * -1.2}deg)
-        `;
+      `;
 
     }
   );
@@ -228,7 +236,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX AFTER CLICK
+   RESET ENVELOPE POSITION
 ========================================================= */
 
 openButton.addEventListener(
@@ -246,19 +254,16 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE TAP PROTECTION
+   MOBILE DOUBLE-TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
-
 
 document.addEventListener(
   "touchend",
   (event) => {
 
-    const now =
-      Date.now();
-
+    const now = Date.now();
 
     if (
       now - lastTouchEnd <= 300
@@ -267,7 +272,6 @@ document.addEventListener(
       event.preventDefault();
 
     }
-
 
     lastTouchEnd = now;
 
