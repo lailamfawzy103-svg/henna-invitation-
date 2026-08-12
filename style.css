@@ -352,14 +352,18 @@ body {
    PAPER
    Layer 25
 ========================================================= */
+/* =========================================================
+   PAPER
+   مخفي خلف الظرف وهو مقفول
+========================================================= */
+
 .paper-wrapper {
   position: absolute;
 
   left: 50%;
-  top: 52%;
+  top: 50%;
 
   width: min(87vw, 610px);
-
   aspect-ratio: 1.48 / 1;
 
   height: auto;
@@ -367,7 +371,8 @@ body {
   transform:
     translate(-50%, -50%);
 
-  z-index: 25;
+  /* أهم تعديل */
+  z-index: 19;
 
   pointer-events: none;
 
@@ -801,6 +806,11 @@ body {
    PAPER OUT
 ========================================================= */
 
+/* =========================================================
+   PAPER OUT
+   بمجرد ما تبدأ الورقة في الخروج ترجع فوق الظرف
+========================================================= */
+
 .envelope-stage.paper-out .paper-wrapper {
   width:
     min(72vw, 430px);
@@ -810,12 +820,12 @@ body {
 
   top: 30%;
 
-  z-index: 25;
+  /* ترجع فوق الظرف فقط وقت الخروج */
+  z-index: 45;
 
   transform:
     translate(-50%, -50%);
 }
-
 
 /* =========================================================
    ENVELOPE SETTLE
@@ -1466,15 +1476,6 @@ body {
 
 @media (max-width: 600px) {
 
-  .envelope-stage {
-    width: 100vw;
-    height: 90dvh;
-  }
-
-  .envelope {
-    width: 88vw;
-  }
-
   .paper-wrapper {
     width: 88vw;
 
@@ -1482,9 +1483,10 @@ body {
 
     height: auto;
 
-    top: 52%;
+    top: 50%;
 
-    z-index: 25;
+    /* مخفية خلف الظرف */
+    z-index: 19;
   }
 
   .envelope-stage.paper-out .paper-wrapper {
@@ -1494,9 +1496,10 @@ body {
 
     top: 30%;
 
-    z-index: 25;
+    /* تظهر فوق الظرف وقت الخروج */
+    z-index: 45;
   }
-
+}
   /* الجوانب فقط */
   .envelope-panel {
     left: 0;
