@@ -356,7 +356,7 @@ body {
   position: absolute;
 
   left: 50%;
-  top: 45%;
+  top: 52%;
 
   width: min(87vw, 610px);
 
@@ -568,17 +568,21 @@ body {
    فوق الـSIDES مباشرة
 ========================================================= */
 
+/* =========================================================
+   ENVELOPE BOTTOM
+   فوق الـ SIDES ويغطي الحافة السفلية بالكامل
+========================================================= */
+
 .envelope-bottom {
   position: absolute;
 
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: -1px;
+  right: -1px;
+  bottom: -3px;
 
-  width: 100%;
+  width: calc(100% + 2px);
   height: 72%;
 
-  /* أهم حاجة: فوق الـsides */
   z-index: 35;
 
   overflow: hidden;
@@ -586,8 +590,9 @@ body {
   background:
     linear-gradient(
       160deg,
-      #dfcfba,
-      #c9b295
+      #dfcfba 0%,
+      #d3bea3 55%,
+      #c9b295 100%
     );
 
   clip-path:
@@ -597,10 +602,11 @@ body {
       100% 100%
     );
 
-  /* شادو خفيف جدًا عشان يبان كطبقة فوق السايدز */
-  filter: drop-shadow(
-    0 -2px 3px rgba(70, 48, 31, 0.16)
-  );
+  /* شادو خفيف جدًا عشان الجزء يبقى واضح */
+  filter:
+    drop-shadow(
+      0 -1px 2px rgba(70, 48, 31, 0.12)
+    );
 }
 /* =========================================================
    FLAP
