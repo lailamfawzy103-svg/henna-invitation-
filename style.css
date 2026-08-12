@@ -555,17 +555,20 @@ body {
 
 /* =========================================================
    BOTTOM
-   فوق الـSIDES
+   فوق الـ SIDES
+   ويغطي الحافة السفلية
 ========================================================= */
 
 .envelope-bottom {
   position: absolute;
 
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: -1px;
+  right: -1px;
 
-  width: 100%;
+  bottom: -3px;
+
+  width: calc(100% + 2px);
+
   height: 72%;
 
   z-index: 35;
@@ -575,8 +578,9 @@ body {
   background:
     linear-gradient(
       160deg,
-      #dfcfba,
-      #c9b295
+      #dfcfba 0%,
+      #d3bea3 55%,
+      #c9b295 100%
     );
 
   clip-path:
@@ -588,7 +592,7 @@ body {
 
   filter:
     drop-shadow(
-      0 -2px 3px rgba(70, 48, 31, 0.16)
+      0 -1px 2px rgba(70, 48, 31, 0.12)
     );
 }
 
@@ -596,6 +600,7 @@ body {
 /* =========================================================
    FLAP
    Layer 40
+   لا تغيير
 ========================================================= */
 
 .flap {
@@ -781,7 +786,6 @@ body {
 
 /* =========================================================
    PAPER OUT
-   الأنيميشن زي ما هو
 ========================================================= */
 
 .envelope-stage.paper-out .paper-wrapper {
@@ -1507,9 +1511,16 @@ body {
   .envelope-bottom {
     z-index: 35;
 
+    left: -1px;
+    right: -1px;
+
+    bottom: -3px;
+
+    width: calc(100% + 2px);
+
     filter:
       drop-shadow(
-        0 -2px 3px rgba(70, 48, 31, 0.16)
+        0 -1px 2px rgba(70, 48, 31, 0.12)
       );
   }
 
