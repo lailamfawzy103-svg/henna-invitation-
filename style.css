@@ -367,9 +367,6 @@ body {
   transform:
     translate(-50%, -50%);
 
-  /*
-     الورقة خلف أجزاء الظرف في البداية
-  */
   z-index: 19;
 
   pointer-events: none;
@@ -762,30 +759,33 @@ body {
 .envelope-stage.opened .flap {
   transform:
     rotateX(180deg);
+
+  z-index: 40;
 }
 
 
 /* =========================================================
-   NEW — PAPER VISIBLE
-   جزء بسيط من الدعوة يظهر تحت الـ flap
+   PAPER VISIBLE
+   جزء من الـINVITATION يظهر تحت الـFLAP
 ========================================================= */
 
 .envelope-stage.paper-visible .paper-wrapper {
 
-  /*
-     نفس مقاس الظرف تمامًا
-  */
   width: min(87vw, 610px);
 
   height: auto;
 
   /*
-     نرفع الورقة قليلًا فقط
-     عشان يظهر جزء منها تحت الـ flap
+     نفس مكان الورقة تقريبًا.
+     لا نطلعها للخارج في المرحلة دي.
   */
   top: 45%;
 
-  z-index: 36;
+  /*
+     الورقة فوق جسم الظرف
+     ولكن تحت الـFLAP.
+  */
+  z-index: 39;
 
   transform:
     translate(-50%, -50%);
@@ -799,17 +799,10 @@ body {
 
 .envelope-stage.paper-out .paper-wrapper {
 
-  /*
-     لا نغير المقاس هنا
-     عشان تفضل بنفس مقاس الظرف
-  */
   width: min(87vw, 610px);
 
   height: auto;
 
-  /*
-     خروج تدريجي لأعلى
-  */
   top: 27%;
 
   z-index: 45;
@@ -930,10 +923,6 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  /*
-     كانت 5000
-     خليتها أقل من الورقة أثناء الخروج
-  */
   z-index: 100;
 
   background:
@@ -948,10 +937,6 @@ body {
 
   visibility: hidden;
 
-  /*
-     تبدأ من نفس مكان الورقة تقريبًا
-     بدل ما تدخل من تحت الشاشة
-  */
   transform:
     translateY(35%)
     scale(.35);
@@ -970,7 +955,6 @@ body {
 
 /* =========================================================
    SHOW INVITATION
-   تكبر من مكان الورقة إلى الشاشة
 ========================================================= */
 
 .app.show-invitation .invitation-page {
@@ -1541,7 +1525,12 @@ body {
 
     top: 45%;
 
-    z-index: 36;
+    /*
+       نفس ترتيب الطبقات:
+       الورقة فوق جسم الظرف
+       وتحت الـflap
+    */
+    z-index: 39;
 
     transform:
       translate(-50%, -50%);
@@ -1690,7 +1679,7 @@ body {
 
     top: 44%;
 
-    z-index: 36;
+    z-index: 39;
 
     transform:
       translate(-50%, -50%);
