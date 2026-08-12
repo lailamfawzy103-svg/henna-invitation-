@@ -48,6 +48,7 @@ body {
 .loader {
   position: fixed;
   inset: 0;
+
   z-index: 99999;
 
   display: flex;
@@ -366,7 +367,7 @@ body {
   transform:
     translate(-50%, -50%);
 
-  /* مخفية خلف الظرف وهي مقفولة */
+  /* الورقة تفضل مخفية خلف الظرف وهو مقفول */
   z-index: 19;
 
   pointer-events: none;
@@ -528,11 +529,12 @@ body {
 .envelope-left {
   left: 0;
 
-  clip-path: polygon(
-    0 0,
-    108% 100%,
-    0 100%
-  );
+  clip-path:
+    polygon(
+      0 0,
+      108% 100%,
+      0 100%
+    );
 }
 
 
@@ -543,17 +545,17 @@ body {
 .envelope-right {
   right: 0;
 
-  clip-path: polygon(
-    100% 0,
-    100% 100%,
-    -8% 100%
-  );
+  clip-path:
+    polygon(
+      100% 0,
+      100% 100%,
+      -8% 100%
+    );
 }
 
 
 /* =========================================================
    BOTTOM
-   فوق الـ SIDES
 ========================================================= */
 
 .envelope-bottom {
@@ -963,7 +965,8 @@ body {
 
 /* =========================================================
    INVITATION CARD
-   تم تصغير الارتفاع هنا
+   ارتفاع قريب من الحجم السابق
+   مع تصغير بسيط فقط
 ========================================================= */
 
 .invitation-card {
@@ -972,12 +975,11 @@ body {
   width:
     min(92vw, 520px);
 
-  /* كان 760px */
   min-height:
-    min(135vw, 680px);
+    min(145vw, 730px);
 
   padding:
-    28px 30px;
+    32px 30px;
 
   background:
     linear-gradient(
@@ -1490,19 +1492,21 @@ body {
   }
 
   .envelope-left {
-    clip-path: polygon(
-      0 0,
-      108% 100%,
-      0 100%
-    );
+    clip-path:
+      polygon(
+        0 0,
+        108% 100%,
+        0 100%
+      );
   }
 
   .envelope-right {
-    clip-path: polygon(
-      100% 0,
-      100% 100%,
-      -8% 100%
-    );
+    clip-path:
+      polygon(
+        100% 0,
+        100% 100%,
+        -8% 100%
+      );
   }
 
   .envelope-bottom {
@@ -1523,7 +1527,8 @@ body {
 
 
   /* =======================================================
-     SMALLER INVITATION ON MOBILE
+     INVITATION
+     حجم كبير وقريب من السابق
   ======================================================= */
 
   .invitation-page {
@@ -1535,12 +1540,11 @@ body {
   .invitation-card {
     width: 94vw;
 
-    /* كان 150vw */
-    min-height: 135vw;
+    /* تصغير بسيط فقط */
+    min-height: 145vw;
 
-    /* ارتفاع أقل */
     padding:
-      25px 23px;
+      28px 23px;
   }
 
   .invitation-frame {
@@ -1584,7 +1588,7 @@ body {
 
 
 /* =========================================================
-   SMALL HEIGHT MOBILE
+   SHORT SCREENS
 ========================================================= */
 
 @media (max-height: 700px) {
@@ -1607,18 +1611,18 @@ body {
     top: 29%;
   }
 
-  /* تصغير الدعوة أكثر في الشاشات القصيرة */
 
+  /* الدعوة */
   .invitation-page {
     padding-top: 25px;
     padding-bottom: 45px;
   }
 
   .invitation-card {
-    min-height: 128vw;
+    min-height: 140vw;
 
     padding:
-      22px 20px;
+      26px 20px;
   }
 
   .invitation-line {
@@ -1650,10 +1654,10 @@ body {
 @media (max-width: 380px) {
 
   .invitation-card {
-    min-height: 125vw;
+    min-height: 138vw;
 
     padding:
-      22px 18px;
+      25px 18px;
   }
 
   .invitation-frame {
