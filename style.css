@@ -284,7 +284,6 @@ body {
 
 /* =========================================================
    ENVELOPE BACK
-   Layer 20
 ========================================================= */
 
 .envelope-back {
@@ -350,7 +349,6 @@ body {
 
 /* =========================================================
    PAPER
-   Layer 25
 ========================================================= */
 
 .paper-wrapper {
@@ -368,7 +366,8 @@ body {
   transform:
     translate(-50%, -50%);
 
-  z-index: 25;
+  /* مخفية خلف الظرف وهي مقفولة */
+  z-index: 19;
 
   pointer-events: none;
 
@@ -495,7 +494,6 @@ body {
 
 /* =========================================================
    ENVELOPE SIDE PANELS
-   Layer 31
 ========================================================= */
 
 .envelope-panel {
@@ -556,7 +554,6 @@ body {
 /* =========================================================
    BOTTOM
    فوق الـ SIDES
-   ويغطي الحافة السفلية
 ========================================================= */
 
 .envelope-bottom {
@@ -592,15 +589,14 @@ body {
 
   filter:
     drop-shadow(
-      0 -1px 2px rgba(70, 48, 31, 0.12)
+      0 -1px 2px rgba(70,48,31,.12)
     );
 }
 
 
 /* =========================================================
    FLAP
-   Layer 40
-   لا تغيير
+   بدون تغيير
 ========================================================= */
 
 .flap {
@@ -797,7 +793,7 @@ body {
 
   top: 30%;
 
-  z-index: 25;
+  z-index: 45;
 
   transform:
     translate(-50%, -50%);
@@ -900,9 +896,8 @@ body {
   min-height: 100svh;
 
   padding:
-    clamp(50px, 8vh, 90px)
-    18px
-    clamp(70px, 10vh, 110px);
+    35px 18px
+    60px;
 
   display: flex;
 
@@ -968,6 +963,7 @@ body {
 
 /* =========================================================
    INVITATION CARD
+   تم تصغير الارتفاع هنا
 ========================================================= */
 
 .invitation-card {
@@ -976,11 +972,12 @@ body {
   width:
     min(92vw, 520px);
 
+  /* كان 760px */
   min-height:
-    min(150vw, 760px);
+    min(135vw, 680px);
 
   padding:
-    40px 30px;
+    28px 30px;
 
   background:
     linear-gradient(
@@ -1035,7 +1032,7 @@ body {
 .invitation-frame {
   position: absolute;
 
-  inset: 18px;
+  inset: 15px;
 
   border:
     1px solid rgba(155,119,77,.72);
@@ -1161,7 +1158,7 @@ body {
 ========================================================= */
 
 .invitation-line {
-  margin-top: 25px;
+  margin-top: 18px;
 
   font-size:
     clamp(16px, 3.5vw, 20px);
@@ -1170,7 +1167,7 @@ body {
 }
 
 .invitation-subtitle {
-  margin-top: 8px;
+  margin-top: 5px;
 
   font-size:
     clamp(13px, 2.8vw, 17px);
@@ -1179,7 +1176,7 @@ body {
 }
 
 .invitation-event {
-  margin-top: 1px;
+  margin-top: 0;
 
   font-size:
     clamp(26px, 6vw, 36px);
@@ -1202,7 +1199,7 @@ body {
 
   gap: 14px;
 
-  margin-top: 11px;
+  margin-top: 7px;
 
   font-size:
     clamp(36px, 8vw, 50px);
@@ -1237,7 +1234,7 @@ body {
 
   gap: 10px;
 
-  margin-top: 7px;
+  margin-top: 4px;
 }
 
 .ornament span {
@@ -1270,7 +1267,7 @@ body {
 ========================================================= */
 
 .date-block {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .date {
@@ -1285,7 +1282,7 @@ body {
 }
 
 .time {
-  margin-top: 5px;
+  margin-top: 3px;
 
   font-size:
     clamp(13px, 2.8vw, 17px);
@@ -1299,9 +1296,9 @@ body {
 ========================================================= */
 
 .location {
-  margin-top: 20px;
+  margin-top: 13px;
 
-  line-height: 1.7;
+  line-height: 1.6;
 
   font-size:
     clamp(13px, 3vw, 17px);
@@ -1325,9 +1322,9 @@ body {
 .rsvp {
   width: 100%;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
-  padding-top: 15px;
+  padding-top: 11px;
 
   border-top:
     1px solid rgba(155,119,77,.25);
@@ -1342,7 +1339,7 @@ body {
 
   color: #876746;
 
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 .rsvp-buttons {
@@ -1405,7 +1402,7 @@ body {
 
   gap: 8px;
 
-  margin-top: 9px;
+  margin-top: 8px;
 
   font-size: 12px;
 }
@@ -1435,7 +1432,7 @@ body {
 ========================================================= */
 
 .bottom-monogram {
-  margin-top: 40px;
+  margin-top: 24px;
 
   font-family: "Cinzel", serif;
 
@@ -1471,7 +1468,7 @@ body {
 
     top: 50%;
 
-    z-index: 25;
+    z-index: 19;
   }
 
   .envelope-stage.paper-out .paper-wrapper {
@@ -1481,7 +1478,7 @@ body {
 
     top: 30%;
 
-    z-index: 25;
+    z-index: 45;
   }
 
   .envelope-panel {
@@ -1520,39 +1517,68 @@ body {
 
     filter:
       drop-shadow(
-        0 -1px 2px rgba(70, 48, 31, 0.12)
+        0 -1px 2px rgba(70,48,31,.12)
       );
   }
 
+
+  /* =======================================================
+     SMALLER INVITATION ON MOBILE
+  ======================================================= */
+
   .invitation-page {
     padding:
-      40px 12px
-      70px;
+      30px 12px
+      55px;
   }
 
   .invitation-card {
     width: 94vw;
 
-    min-height: 150vw;
+    /* كان 150vw */
+    min-height: 135vw;
 
+    /* ارتفاع أقل */
     padding:
-      35px 23px;
+      25px 23px;
   }
 
   .invitation-frame {
-    inset: 14px;
+    inset: 13px;
   }
 
   .invitation-line {
-    margin-top: 21px;
+    margin-top: 16px;
+  }
+
+  .invitation-subtitle {
+    margin-top: 4px;
   }
 
   .names {
     gap: 9px;
+
+    margin-top: 6px;
+  }
+
+  .ornament {
+    margin-top: 3px;
+  }
+
+  .date-block {
+    margin-top: 10px;
+  }
+
+  .location {
+    margin-top: 11px;
   }
 
   .rsvp {
-    margin-top: 34px;
+    margin-top: 22px;
+  }
+
+  .bottom-monogram {
+    margin-top: 20px;
   }
 }
 
@@ -1581,20 +1607,82 @@ body {
     top: 29%;
   }
 
+  /* تصغير الدعوة أكثر في الشاشات القصيرة */
+
+  .invitation-page {
+    padding-top: 25px;
+    padding-bottom: 45px;
+  }
+
+  .invitation-card {
+    min-height: 128vw;
+
+    padding:
+      22px 20px;
+  }
+
   .invitation-line {
-    margin-top: 17px;
-  }
-
-  .date-block {
-    margin-top: 12px;
-  }
-
-  .location {
     margin-top: 13px;
   }
 
+  .date-block {
+    margin-top: 9px;
+  }
+
+  .location {
+    margin-top: 10px;
+  }
+
   .rsvp {
-    margin-top: 28px;
+    margin-top: 20px;
+  }
+
+  .bottom-monogram {
+    margin-top: 17px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .invitation-card {
+    min-height: 125vw;
+
+    padding:
+      22px 18px;
+  }
+
+  .invitation-frame {
+    inset: 11px;
+  }
+
+  .invitation-line {
+    font-size: 15px;
+  }
+
+  .invitation-event {
+    font-size: 27px;
+  }
+
+  .names {
+    font-size: 35px;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .time,
+  .location {
+    font-size: 13px;
+  }
+
+  .rsvp {
+    margin-top: 18px;
   }
 }
 
