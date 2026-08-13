@@ -284,6 +284,7 @@ body {
 
 /* =========================================================
    ENVELOPE BACK
+   Layer 20
 ========================================================= */
 
 .envelope-back {
@@ -349,7 +350,9 @@ body {
 
 /* =========================================================
    PAPER
-   البداية بنفس حجم الظرف
+   Layer 25
+
+   الورقة تفضل جوا الظرف
 ========================================================= */
 
 .paper-wrapper {
@@ -374,10 +377,9 @@ body {
   overflow: visible;
 
   transition:
-    width 1.25s cubic-bezier(.16,.78,.2,1),
-    height 1.25s cubic-bezier(.16,.78,.2,1),
-    top 1.25s cubic-bezier(.16,.78,.2,1),
-    transform 1.25s cubic-bezier(.16,.78,.2,1);
+    width 1.7s cubic-bezier(.16,.78,.2,1),
+    height 1.7s cubic-bezier(.16,.78,.2,1),
+    top 1.7s cubic-bezier(.16,.78,.2,1);
 }
 
 
@@ -495,6 +497,7 @@ body {
 
 /* =========================================================
    ENVELOPE SIDE PANELS
+   Layer 31
 ========================================================= */
 
 .envelope-panel {
@@ -554,6 +557,7 @@ body {
 
 /* =========================================================
    ENVELOPE BOTTOM BODY
+   Layer 30
 ========================================================= */
 
 .envelope-bottom {
@@ -587,7 +591,42 @@ body {
 
 
 /* =========================================================
+   HIDE PAPER EDGE BEFORE OPENING
+   مهم:
+   الورقة تظل جوا الظرف.
+   ده مجرد غطاء للحافة السفلية الظاهرة.
+========================================================= */
+
+.envelope-stage:not(.paper-out) .envelope::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 12px;
+
+  z-index: 35;
+
+  background:
+    linear-gradient(
+      180deg,
+      #dfcfba 0%,
+      #d2bea2 100%
+    );
+
+  pointer-events: none;
+
+  border-radius:
+    0 0 3px 3px;
+}
+
+
+/* =========================================================
    FLAP
+   Layer 40
 ========================================================= */
 
 .flap {
@@ -772,51 +811,19 @@ body {
 
 
 /* =========================================================
-   STEP 1
    PAPER OUT
-   نفس حجم الظرف
 ========================================================= */
 
 .envelope-stage.paper-out .paper-wrapper {
-  width:
-    min(87vw, 610px);
-
-  height: auto;
-
-  aspect-ratio: 1.48 / 1;
-
-  top: 52%;
-
-  /*
-     الورقة قدام الفلاب
-  */
-  z-index: 45;
-
-  /*
-     تطلع لفوق وهي لسه بنفس الحجم
-  */
-  transform:
-    translate(-50%, -50%)
-    translateY(-34%);
-}
-
-
-/* =========================================================
-   STEP 2
-   PAPER EXPAND
-   بعد خروج الورقة تبدأ تكبر
-========================================================= */
-
-.envelope-stage.paper-expand .paper-wrapper {
   width:
     min(72vw, 430px);
 
   height:
     min(125vw, 680px);
 
-  top: 50%;
+  top: 30%;
 
-  z-index: 100;
+  z-index: 25;
 
   transform:
     translate(-50%, -50%);
@@ -1493,47 +1500,15 @@ body {
     z-index: 25;
   }
 
-
-  /* =======================================================
-     MOBILE
-     الورقة تخرج بنفس حجم الظرف
-  ======================================================= */
-
   .envelope-stage.paper-out .paper-wrapper {
-    width: 88vw;
-
-    height: auto;
-
-    aspect-ratio: 1.48 / 1;
-
-    top: 52%;
-
-    z-index: 45;
-
-    transform:
-      translate(-50%, -50%)
-      translateY(-34%);
-  }
-
-
-  /* =======================================================
-     MOBILE
-     الورقة تكبر بعد الخروج
-  ======================================================= */
-
-  .envelope-stage.paper-expand .paper-wrapper {
     width: 78vw;
 
     height: 125vw;
 
-    top: 50%;
+    top: 30%;
 
-    z-index: 100;
-
-    transform:
-      translate(-50%, -50%);
+    z-index: 25;
   }
-
 
   /* الجوانب فقط */
 
@@ -1560,7 +1535,6 @@ body {
       -8% 100%
     );
   }
-
 
   .invitation-page {
     padding:
@@ -1611,37 +1585,13 @@ body {
     top: 52%;
   }
 
-
   .envelope-stage.paper-out .paper-wrapper {
-    width: 83vw;
-
-    height: auto;
-
-    aspect-ratio: 1.48 / 1;
-
-    top: 52%;
-
-    z-index: 45;
-
-    transform:
-      translate(-50%, -50%)
-      translateY(-32%);
-  }
-
-
-  .envelope-stage.paper-expand .paper-wrapper {
     width: 74vw;
 
     height: 118vw;
 
-    top: 50%;
-
-    z-index: 100;
-
-    transform:
-      translate(-50%, -50%);
+    top: 29%;
   }
-
 
   .invitation-line {
     margin-top: 17px;
