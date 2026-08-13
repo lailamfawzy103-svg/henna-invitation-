@@ -1,141 +1,142 @@
-/\* =========================================================
-ELEMENTS
-\========================================================= \*/
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const loader =
-document.getElementById("loader");
+  document.getElementById("loader");
 
 const app =
-document.getElementById("app");
+  document.getElementById("app");
 
 const envelopeStage =
-document.getElementById("envelopeStage");
+  document.getElementById("envelopeStage");
 
 const openButton =
-document.getElementById("openButton");
+  document.getElementById("openButton");
 
 const clickHint =
-document.getElementById("clickHint");
+  document.getElementById("clickHint");
 
 const attendBtn =
-document.getElementById("attendBtn");
+  document.getElementById("attendBtn");
 
 const declineBtn =
-document.getElementById("declineBtn");
+  document.getElementById("declineBtn");
 
 const guests =
-document.getElementById("guests");
+  document.getElementById("guests");
 
-/\* =========================================================
-STATE
-\========================================================= \*/
+
+/* =========================================================
+   STATE
+========================================================= */
 
 let opened = false;
 
-/\* =========================================================
-LOADER
-\========================================================= \*/
 
-window\.addEventListener("load", () => {
+/* =========================================================
+   LOADER
+========================================================= */
 
-setTimeout(() => {
+window.addEventListener("load", () => {
 
-```
-loader.classList.add("hide");
-```
+  setTimeout(() => {
 
-}, 1500);
+    loader.classList.add("hide");
+
+  }, 1500);
 
 });
 
-/\* =========================================================
-OPEN ENVELOPE
-\========================================================= \*/
+
+/* =========================================================
+   OPEN ENVELOPE
+========================================================= */
 
 openButton.addEventListener("click", () => {
 
-if (opened) return;
+  if (opened) return;
 
-opened = true;
+  opened = true;
 
-openButton.disabled = true;
+  openButton.disabled = true;
 
-clickHint.style.opacity = "0";
+  clickHint.style.opacity = "0";
 
-/\* =====================================================
-STEP 1
-فتح الـ flap
-\===================================================== \*/
 
-envelopeStage.classList.add("opened");
+  /* =====================================================
+     STEP 1
+     فتح الـ flap
+  ===================================================== */
 
-/\* =====================================================
-STEP 2
-الورقة تبدأ تطلع من جوه الظرف
-\===================================================== \*/
+  envelopeStage.classList.add("opened");
 
-setTimeout(() => {
 
-```
-envelopeStage.classList.add("transitioning");
+  /* =====================================================
+     STEP 2
+     الورقة تبدأ تطلع من جوه الظرف
+  ===================================================== */
 
-envelopeStage.classList.add("paper-out");
-```
+  setTimeout(() => {
 
-}, 700);
+    envelopeStage.classList.add("transitioning");
 
-/\* =====================================================
-STEP 3
-الظرف يختفي بعد خروج الورقة
-\===================================================== \*/
+    envelopeStage.classList.add("paper-out");
 
-setTimeout(() => {
+  }, 700);
 
-```
-envelopeStage.classList.add("finished");
-```
 
-}, 2450);
+  /* =====================================================
+     STEP 3
+     الظرف يختفي بعد خروج الورقة
+  ===================================================== */
 
-/\* =====================================================
-STEP 4
-إظهار صفحة الدعوة
-\===================================================== \*/
+  setTimeout(() => {
 
-setTimeout(() => {
+    envelopeStage.classList.add("finished");
 
-```
-app.classList.add("show-invitation");
-```
+  }, 2450);
 
-}, 3000);
+
+  /* =====================================================
+     STEP 4
+     إظهار صفحة الدعوة
+  ===================================================== */
+
+  setTimeout(() => {
+
+    app.classList.add("show-invitation");
+
+  }, 3000);
 
 });
 
-/\* =========================================================
-RSVP — ATTEND
-\========================================================= \*/
+
+/* =========================================================
+   RSVP — ATTEND
+========================================================= */
 
 attendBtn.addEventListener("click", () => {
 
-attendBtn.classList.add("selected");
+  attendBtn.classList.add("selected");
 
-declineBtn.classList.remove("selected");
+  declineBtn.classList.remove("selected");
 
-guests.classList.add("show");
+  guests.classList.add("show");
 
 });
 
-/\* =========================================================
-RSVP — DECLINE
-\========================================================= \*/
+
+/* =========================================================
+   RSVP — DECLINE
+========================================================= */
 
 declineBtn.addEventListener("click", () => {
 
-declineBtn.classList.add("selected");
+  declineBtn.classList.add("selected");
 
-attendBtn.classList.remove("selected");
+  attendBtn.classList.remove("selected");
 
-guests.classList.remove("show");
+  guests.classList.remove("show");
 
 });
