@@ -140,3 +140,6 @@ declineBtn.addEventListener("click", () => {
   guests.classList.remove("show");
 
 });
+setTimeout(function () {
+  document.getElementById("loader").classList.add("hide");
+}, 1500);
