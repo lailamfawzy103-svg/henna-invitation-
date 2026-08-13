@@ -1604,3 +1604,19 @@ body {
       .01ms !important;
   }
 }
+/* =========================================================
+   PAPER — HIDE INSIDE ENVELOPE BEFORE OPENING
+========================================================= */
+
+.envelope-stage:not(.paper-out) .paper-wrapper {
+  clip-path: inset(0 0 18% 0);
+}
+
+
+/* =========================================================
+   PAPER — RELEASE WHEN IT STARTS COMING OUT
+========================================================= */
+
+.envelope-stage.paper-out .paper-wrapper {
+  clip-path: none;
+}
