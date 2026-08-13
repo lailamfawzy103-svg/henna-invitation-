@@ -17,6 +17,9 @@ const openButton =
 const clickHint =
   document.getElementById("clickHint");
 
+const paperWrapper =
+  document.getElementById("paperWrapper");
+
 const attendBtn =
   document.getElementById("attendBtn");
 
@@ -66,7 +69,9 @@ openButton.addEventListener("click", () => {
 
   /* =====================================================
      STEP 1
-     فتح الـ FLAP
+     FLAP OPENS
+     
+     الفلاب يبدأ يرفع.
   ===================================================== */
 
   envelopeStage.classList.add("opened");
@@ -74,24 +79,50 @@ openButton.addEventListener("click", () => {
 
   /* =====================================================
      STEP 2
-     بعد ما الـ FLAP يرفع:
-     يظهر جزء من الـ INVITATION من جوه الظرف
+     PAPER APPEARS FROM INSIDE
      
-     هنا الورقة لا تخرج.
-     فقط جزء منها يصبح ظاهرًا.
+     بعد ما الفلاب يرفع جزء منه،
+     الورقة تظهر من جوه الظرف.
+     
+     مهم:
+     هنا لا نطلع الورقة بالكامل.
+     فقط نرفعها قليلًا بحيث يظهر الجزء
+     العلوي منها من داخل الظرف.
   ===================================================== */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("paper-visible");
 
-  }, 650);
+    /*
+      الورقة تفضل داخل أبعاد الظرف،
+      لكن نرفعها قليلًا لأعلى.
+
+      z-index = 36
+      أعلى من جسم الظرف السفلي 35
+      وأقل من الفلاب 40.
+    */
+
+    paperWrapper.style.zIndex = "36";
+
+    paperWrapper.style.top = "43%";
+
+    paperWrapper.style.width = "min(87vw, 610px)";
+
+    paperWrapper.style.height = "auto";
+
+    paperWrapper.style.transform =
+      "translate(-50%, -50%)";
+
+  }, 700);
 
 
   /* =====================================================
      STEP 3
-     بعد ظهور جزء من الـ INVITATION
-     تبدأ الورقة في الخروج من الظرف
+     PAPER STARTS COMING OUT
+     
+     بعد ما يظهر جزء من الورقة،
+     تبدأ فعلًا في الخروج من الظرف.
   ===================================================== */
 
   setTimeout(() => {
@@ -100,31 +131,41 @@ openButton.addEventListener("click", () => {
 
     envelopeStage.classList.add("paper-out");
 
-  }, 1400);
+    /*
+      الورقة أصبحت فوق الظرف بالكامل
+      أثناء الخروج.
+    */
+
+    paperWrapper.style.zIndex = "45";
+
+  }, 1450);
 
 
   /* =====================================================
      STEP 4
-     الظرف يختفي بعد خروج الورقة
+     ENVELOPE DISAPPEARS
+     
+     الورقة تكون خرجت وكبرت،
+     وبعدها الظرف يختفي.
   ===================================================== */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("finished");
 
-  }, 2450);
+  }, 2700);
 
 
   /* =====================================================
      STEP 5
-     إظهار صفحة الدعوة
+     INVITATION PAGE APPEARS
   ===================================================== */
 
   setTimeout(() => {
 
     app.classList.add("show-invitation");
 
-  }, 3000);
+  }, 3250);
 
 });
 
