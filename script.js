@@ -8,11 +8,17 @@ const loader =
 const app =
   document.getElementById("app");
 
+const openButton =
+  document.getElementById("openButton");
+
 const envelopeStage =
   document.getElementById("envelopeStage");
 
-const openButton =
-  document.getElementById("openButton");
+const paperWrapper =
+  document.getElementById("paperWrapper");
+
+const envelopeScreen =
+  document.getElementById("envelopeScreen");
 
 const clickHint =
   document.getElementById("clickHint");
@@ -28,14 +34,7 @@ const guests =
 
 
 /* =========================================================
-   STATE
-========================================================= */
-
-let opened = false;
-
-
-/* =========================================================
-   LOADER
+   LOADING
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -50,8 +49,10 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   OPEN ENVELOPE
+   OPEN SEQUENCE
 ========================================================= */
+
+let opened = false;
 
 openButton.addEventListener("click", () => {
 
@@ -59,75 +60,90 @@ openButton.addEventListener("click", () => {
 
   opened = true;
 
-  openButton.disabled = true;
+  /*
+    STEP 1
+    Start opening flap.
+  */
+
+  envelopeStage.classList.add("opened");
 
   clickHint.style.opacity = "0";
 
 
-  /* =====================================================
-     STEP 1
-     الفلاب يفتح فقط
-  ===================================================== */
+  /*
+    STEP 2
+    Wait until flap has almost completely opened.
+    Only then start moving the paper.
+  */
 
-  envelopeStage.classList.add("opened");
+  setTimeout(() => {
+
+    envelopeStage.classList.add("paper-out");
+
+  }, 1250);
 
 
-  /* =====================================================
-     STEP 2
-     الورقة تطلع وهي بنفس شكل ومقاس الظرف
-  ===================================================== */
+  /*
+    STEP 3
+    Let paper finish coming out.
+    Then transition toward the invitation.
+  */
 
   setTimeout(() => {
 
     envelopeStage.classList.add("transitioning");
 
-    envelopeStage.classList.add("paper-out");
-
-  }, 700);
+  }, 2650);
 
 
-  /* =====================================================
-     STEP 3
-     الورقة تبدأ تكبر بعد ما خرجت
-  ===================================================== */
-
-  setTimeout(() => {
-
-    envelopeStage.classList.add("paper-expand");
-
-  }, 2100);
-
-
-  /* =====================================================
-     STEP 4
-     إخفاء الظرف فقط
-     
-     الورقة خارج envelope لذلك لن تختفي معه.
-  ===================================================== */
-
-  setTimeout(() => {
-
-    envelopeStage.classList.add("finished");
-
-  }, 3500);
-
-
-  /* =====================================================
-     STEP 5
-     إظهار صفحة الدعوة
-  ===================================================== */
+  /*
+    STEP 4
+    Hide envelope screen.
+    Show the real invitation page.
+  */
 
   setTimeout(() => {
 
     app.classList.add("show-invitation");
 
-  }, 3900);
+    envelopeStage.classList.add("finished");
+
+    /*
+      Lock scroll briefly during transition.
+    */
+
+    document.body.style.overflowY = "hidden";
+
+  }, 3050);
+
+
+  /*
+    STEP 5
+    Restore normal page scrolling.
+  */
+
+  setTimeout(() => {
+
+    document.body.style.overflowY = "auto";
+
+    envelopeScreen.style.pointerEvents = "none";
+
+    /*
+      Start at the top of invitation.
+    */
+
+    window.scrollTo({
+      top: envelopeScreen.offsetHeight,
+      behavior: "instant"
+    });
+
+  }, 3800);
 
 });
 
 
 /* =========================================================
-   RSVP — ATTEND
+   RSVP
 ========================================================= */
 
 attendBtn.addEventListener("click", () => {
@@ -141,10 +157,6 @@ attendBtn.addEventListener("click", () => {
 });
 
 
-/* =========================================================
-   RSVP — DECLINE
-========================================================= */
-
 declineBtn.addEventListener("click", () => {
 
   declineBtn.classList.add("selected");
@@ -154,3 +166,68 @@ declineBtn.addEventListener("click", () => {
   guests.classList.remove("show");
 
 });
+
+
+/* =========================================================
+   DESKTOP PARALLAX
+========================================================= */
+
+const envelope =
+  document.getElementById("envelope");
+
+if (
+  window.matchMedia("(pointer:fine)").matches
+) {
+
+  document.addEventListener(
+    "mousemove",
+    (event) => {
+
+      if (opened) return;
+
+      const x =
+        (event.clientX / window.innerWidth - .5) * 2;
+
+      const y =
+        (event.clientY / window.innerHeight - .5) * 2;
+
+      envelope.style.transform =
+        `
+        translate(-50%, -50%)
+        rotateY(${x * 2}deg)
+        rotateX(${y * -1.2}deg)
+        `;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PREVENT DOUBLE TAP ZOOM
+========================================================= */
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+  "touchend",
+  (event) => {
+
+    const now = Date.now();
+
+    if (
+      now - lastTouchEnd <= 300
+    ) {
+
+      event.preventDefault();
+
+    }
+
+    lastTouchEnd = now;
+
+  },
+  {
+    passive: false
+  }
+);
