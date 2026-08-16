@@ -2,47 +2,29 @@
    ELEMENTS
 ========================================================= */
 
-const loader =
-  document.getElementById("loader");
-
-const app =
-  document.getElementById("app");
-
-const openButton =
-  document.getElementById("openButton");
-
-const envelopeStage =
-  document.getElementById("envelopeStage");
+const loader = document.getElementById("loader");
 
 const envelopeScreen =
   document.getElementById("envelopeScreen");
 
-const clickHint =
-  document.getElementById("clickHint");
-
-const attendBtn =
-  document.getElementById("attendBtn");
-
-const declineBtn =
-  document.getElementById("declineBtn");
-
-const guests =
-  document.getElementById("guests");
-
 const envelope =
   document.getElementById("envelope");
 
+const openButton =
+  document.getElementById("openButton");
+
+const invitationPage =
+  document.getElementById("invitationPage");
+
 
 /* =========================================================
-   LOADING SCREEN
+   LOADING
 ========================================================= */
 
 window.addEventListener("load", () => {
 
   setTimeout(() => {
-
     loader.classList.add("hide");
-
   }, 1500);
 
 });
@@ -54,263 +36,122 @@ window.addEventListener("load", () => {
 
 let opened = false;
 
+openButton.addEventListener("click", (event) => {
 
-openButton.addEventListener("click", () => {
+  event.stopPropagation();
 
-  if (opened) {
-    return;
-  }
+  if (opened) return;
 
   opened = true;
 
+  /*
+     إخفاء التعليمات
+  */
 
-  /* =======================================================
-     STEP 1
-     HIDE CLICK HINT
-  ======================================================= */
-
-  clickHint.style.opacity = "0";
+  envelopeScreen.classList.add("opened-screen");
 
 
-  /* =======================================================
-     STEP 2
-     OPEN ENVELOPE
-  ======================================================= */
+  /*
+     فتح الظرف
+  */
 
-  envelopeStage.classList.add(
-    "opened"
-  );
+  envelope.classList.add("opened");
 
 
-  /* =======================================================
-     STEP 3
-     SPARKLE
-  ======================================================= */
+  /*
+     لمعة بسيطة
+  */
 
   setTimeout(() => {
-
-    envelopeStage.classList.add(
-      "sparkle"
-    );
-
+    createSparkles();
   }, 1900);
 
 
-  /* =======================================================
-     STEP 4
-     AS PAPER STARTS APPROACHING
-  ======================================================= */
+  /*
+     تكبير الدعوة
+  */
 
   setTimeout(() => {
-
-    envelopeStage.classList.add(
-      "invitation-expand"
-    );
-
+    invitationPage.classList.add("show");
   }, 2150);
 
 
-  /* =======================================================
-     STEP 5
-     REAL INVITATION APPEARS
-  ======================================================= */
+  /*
+     إخفاء الظرف بعد ظهور الدعوة
+  */
 
   setTimeout(() => {
-
-    app.classList.add(
-      "show-invitation"
-    );
-
-  }, 2350);
-
-
-  /* =======================================================
-     STEP 6
-     ENVELOPE STARTS FADING
-  ======================================================= */
-
-  setTimeout(() => {
-
-    envelopeStage.classList.add(
-      "envelope-hide"
-    );
-
+    envelopeScreen.classList.add("envelope-hide");
   }, 3550);
 
 
-  /* =======================================================
-     STEP 7
-     REMOVE ENVELOPE SCREEN
-  ======================================================= */
+  /*
+     السماح بالـ scroll بعد الانتقال
+  */
 
   setTimeout(() => {
-
-    envelopeScreen.classList.add(
-      "completely-hidden"
-    );
-
-    envelopeStage.classList.add(
-      "finished"
-    );
-
-  }, 4100);
-
-
-  /* =======================================================
-     STEP 8
-     RESTORE SCROLL
-  ======================================================= */
-
-  setTimeout(() => {
-
-    document.body.style.overflowY =
-      "auto";
-
+    document.body.style.overflowY = "auto";
   }, 4200);
 
 });
 
 
 /* =========================================================
-   RSVP
+   SPARKLES
 ========================================================= */
 
-attendBtn.addEventListener(
-  "click",
-  () => {
+function createSparkles() {
 
-    attendBtn.classList.add(
-      "selected"
-    );
+  const positions = [
+    [45, 42],
+    [52, 37],
+    [58, 45],
+    [48, 51],
+    [55, 55],
+    [40, 48]
+  ];
 
-    declineBtn.classList.remove(
-      "selected"
-    );
+  positions.forEach((position, index) => {
 
-    guests.classList.add(
-      "show"
-    );
+    setTimeout(() => {
 
-  }
-);
+      const sparkle =
+        document.createElement("div");
 
+      sparkle.className = "sparkle";
 
-declineBtn.addEventListener(
-  "click",
-  () => {
+      sparkle.style.left =
+        position[0] + "%";
 
-    declineBtn.classList.add(
-      "selected"
-    );
+      sparkle.style.top =
+        position[1] + "%";
 
-    attendBtn.classList.remove(
-      "selected"
-    );
+      document.body.appendChild(sparkle);
 
-    guests.classList.remove(
-      "show"
-    );
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
 
-  }
-);
+    }, index * 100);
 
-
-/* =========================================================
-   DESKTOP ENVELOPE PARALLAX
-========================================================= */
-
-const desktopPointer =
-  window.matchMedia(
-    "(pointer:fine)"
-  );
-
-
-if (desktopPointer.matches) {
-
-  document.addEventListener(
-    "mousemove",
-    (event) => {
-
-      if (opened) {
-        return;
-      }
-
-
-      const x =
-        (
-          event.clientX /
-          window.innerWidth -
-          0.5
-        ) * 2;
-
-
-      const y =
-        (
-          event.clientY /
-          window.innerHeight -
-          0.5
-        ) * 2;
-
-
-      envelope.style.transform =
-        `
-        translate(-50%, -50%)
-        rotateY(${x * 2}deg)
-        rotateX(${y * -1.2}deg)
-        `;
-
-    }
-  );
+  });
 
 }
 
 
 /* =========================================================
-   RESET PARALLAX WHEN OPENING
+   IMPORTANT
 ========================================================= */
 
-openButton.addEventListener(
-  "click",
-  () => {
+/*
+   مفيش mousemove هنا نهائيًا.
 
-    envelope.style.transform =
-      "translate(-50%, -50%)";
+   وبالتالي:
+   - الظرف لا يلف مع الماوس
+   - الورقة البيضاء لا تتحرك مع الماوس
+   - لا يوجد rotateX
+   - لا يوجد rotateY
+   - لا يوجد parallax
 
-  },
-  {
-    once: true
-  }
-);
-
-
-/* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
-========================================================= */
-
-let lastTouchEnd = 0;
-
-
-document.addEventListener(
-  "touchend",
-  (event) => {
-
-    const now =
-      Date.now();
-
-
-    if (
-      now - lastTouchEnd <= 300
-    ) {
-
-      event.preventDefault();
-
-    }
-
-
-    lastTouchEnd = now;
-
-  },
-  {
-    passive: false
-  }
-);
+   الحركة الوحيدة بتحصل عند الضغط على الختم.
+*/
