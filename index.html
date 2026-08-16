@@ -1,352 +1,353 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+/* =========================================================
+   WEDDING INVITATION
+   أحمد & شهد
+========================================================= */
 
-<head>
-  <meta charset="UTF-8">
+(function () {
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+  "use strict";
 
-  <title>Ahmed & Shahd</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  /* =========================================================
+     CONFIG
+  ========================================================= */
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-</head>
+  var EVENT_DATE =
+    new Date(2026, 7, 20, 21, 0, 0);
 
-<body>
 
-  <!-- =====================================================
-       LOADING
-  ====================================================== -->
+  /* =========================================================
+     ELEMENTS
+  ========================================================= */
 
-  <div class="loader" id="loader">
+  var loader =
+    document.getElementById("loader");
 
-    <div class="loader-monogram">
-      AS
-    </div>
+  var app =
+    document.getElementById("app");
 
-    <div class="loader-line"></div>
+  var envelopeStage =
+    document.getElementById("envelopeStage");
 
-    <div class="loader-names">
-      AHMED & SHAHd
-    </div>
+  var envelope =
+    document.getElementById("envelope");
 
-  </div>
+  var paperWrapper =
+    document.getElementById("paperWrapper");
 
+  var openButton =
+    document.getElementById("openButton");
 
-  <!-- =====================================================
-       APP
-  ====================================================== -->
+  var clickHint =
+    document.getElementById("clickHint");
 
-  <main class="app" id="app">
+  var locationButton =
+    document.getElementById("locationButton");
 
+  var attendButton =
+    document.getElementById("attendBtn");
 
-    <!-- ===================================================
-         ENVELOPE SCREEN
-    ==================================================== -->
+  var declineButton =
+    document.getElementById("declineBtn");
 
-    <section class="envelope-screen" id="envelopeScreen">
+  var guests =
+    document.getElementById("guests");
 
-      <div class="ambient-light"></div>
 
-      <div class="envelope-stage" id="envelopeStage">
+  /* =========================================================
+     LOADER
+  ========================================================= */
 
-        <div class="ground-shadow"></div>
+  window.addEventListener(
+    "load",
+    function () {
 
+      setTimeout(
+        function () {
 
-        <!-- ===============================================
-             PAPER COMING OUT OF ENVELOPE
-        ================================================ -->
+          loader.classList.add("hide");
 
-        <div class="paper-wrapper" id="paperWrapper">
+        },
+        1500
+      );
 
-          <div class="paper-shadow"></div>
+    }
+  );
 
-          <div class="paper">
 
-            <div class="paper-texture"></div>
+  /* =========================================================
+     ENVELOPE OPENING
+  ========================================================= */
 
-            <div class="paper-monogram">
+  var opened = false;
 
-              <span>AS</span>
 
-            </div>
+  openButton.addEventListener(
+    "click",
+    openEnvelope
+  );
 
-          </div>
 
-        </div>
+  function openEnvelope() {
 
+    if (opened) {
+      return;
+    }
 
-        <!-- ===============================================
-             ENVELOPE
-        ================================================ -->
+    opened = true;
 
-        <div class="envelope" id="envelope">
+    openButton.disabled = true;
 
+    openButton.style.pointerEvents =
+      "none";
 
-          <!-- BACK -->
+    clickHint.style.opacity = "0";
 
-          <div class="envelope-back"></div>
 
+    /* STEP 1 — FLAP */
+    envelopeStage.classList.add(
+      "opened"
+    );
 
-          <!-- LEFT -->
 
-          <div class="envelope-panel envelope-left"></div>
+    /* STEP 2 — PAPER VISIBLE */
+    setTimeout(
+      function () {
 
+        envelopeStage.classList.add(
+          "paper-visible"
+        );
 
-          <!-- RIGHT -->
+      },
+      650
+    );
 
-          <div class="envelope-panel envelope-right"></div>
 
+    /* STEP 3 — PAPER OUT */
+    setTimeout(
+      function () {
 
-          <!-- BOTTOM -->
+        envelopeStage.classList.add(
+          "paper-out"
+        );
 
-          <div class="envelope-bottom"></div>
+      },
+      1450
+    );
 
 
-          <!-- =============================================
-               FLAP
-          ============================================== -->
+    /* STEP 4 — TRANSITION */
+    setTimeout(
+      function () {
 
-          <div class="flap" id="flap">
+        envelopeStage.classList.add(
+          "transitioning"
+        );
 
-            <div class="flap-surface">
+      },
+      2050
+    );
 
-              <div class="flap-highlight"></div>
 
+    /* STEP 5 — SHOW INVITATION */
+    setTimeout(
+      function () {
 
-              <!-- SEAL -->
+        app.classList.add(
+          "show-invitation"
+        );
 
-              <button
-                class="seal"
-                id="openButton"
-                aria-label="Open invitation"
-              >
+      },
+      2600
+    );
 
-                <span class="seal-inner">
-                  AS
-                </span>
 
-              </button>
+    /* STEP 6 — FADE ENVELOPE */
+    setTimeout(
+      function () {
 
-            </div>
+        envelopeStage.classList.add(
+          "finished"
+        );
 
-          </div>
+        startCountdown();
 
-        </div>
+      },
+      3650
+    );
 
+  }
 
-        <!-- CLICK HINT -->
 
-        <div class="click-hint" id="clickHint">
-          اضغطي لفتح الدعوة
-        </div>
+  /* =========================================================
+     LOCATION
+  ========================================================= */
 
-      </div>
+  locationButton.addEventListener(
+    "click",
+    function (event) {
 
-    </section>
+      event.preventDefault();
 
+      /*
+        ضعِي رابط Google Maps هنا لاحقًا
+      */
 
+      var mapUrl =
+        "https://maps.google.com/";
 
-    <!-- ===================================================
-         INVITATION PAGE
-    ==================================================== -->
+      window.open(
+        mapUrl,
+        "_blank",
+        "noopener"
+      );
 
-    <section
-      class="invitation-page"
-      id="invitationPage"
-    >
+    }
+  );
 
 
-      <div class="invitation-background"></div>
+  /* =========================================================
+     RSVP
+  ========================================================= */
 
+  attendButton.addEventListener(
+    "click",
+    function () {
 
-      <article class="invitation-card">
+      attendButton.classList.add(
+        "selected"
+      );
 
+      declineButton.classList.remove(
+        "selected"
+      );
 
-        <!-- ===============================================
-             DECORATIVE FRAME
-        ================================================ -->
+      guests.classList.add(
+        "show"
+      );
 
-        <div class="invitation-frame">
+    }
+  );
 
-          <div class="invitation-inner-frame"></div>
 
-        </div>
+  declineButton.addEventListener(
+    "click",
+    function () {
 
+      declineButton.classList.add(
+        "selected"
+      );
 
-        <!-- ===============================================
-             CONTENT
-        ================================================ -->
+      attendButton.classList.remove(
+        "selected"
+      );
 
-        <div class="invitation-content">
+      guests.classList.remove(
+        "show"
+      );
 
+    }
+  );
 
-          <div class="invitation-line reveal-item">
-            يسر د. هدى مدحت
-          </div>
 
+  /* =========================================================
+     COUNTDOWN
+  ========================================================= */
 
-          <div class="invitation-subtitle reveal-item">
-            دعوتكم لحضور
-          </div>
+  var days =
+    document.getElementById("days");
 
+  var hours =
+    document.getElementById("hours");
 
-          <div class="invitation-event reveal-item">
-            حفل حنة
-          </div>
+  var minutes =
+    document.getElementById("minutes");
 
 
-          <div class="names reveal-item">
+  function pad(value) {
 
-            <span>
-              أحمد
-            </span>
+    return String(value)
+      .padStart(2, "0");
 
-            <i>
-              &
-            </i>
+  }
 
-            <span>
-              شهد
-            </span>
 
-          </div>
+  function updateCountdown() {
 
+    var now =
+      new Date();
 
-          <!-- ORNAMENT -->
+    var difference =
+      EVENT_DATE.getTime() -
+      now.getTime();
 
-          <div class="ornament reveal-item">
 
-            <span></span>
+    if (difference <= 0) {
 
-            <b>
-              AS
-            </b>
+      days.textContent = "00";
+      hours.textContent = "00";
+      minutes.textContent = "00";
 
-            <span></span>
+      return;
 
-          </div>
+    }
 
 
-          <!-- DATE -->
+    var totalSeconds =
+      Math.floor(
+        difference / 1000
+      );
 
-          <div class="date-block reveal-item">
 
-            <div class="date">
-              20 . 8 . 2026
-            </div>
+    var d =
+      Math.floor(
+        totalSeconds / 86400
+      );
 
-            <div class="time">
-              الساعة 9 عقب صلاة العشاء
-            </div>
 
-          </div>
+    var h =
+      Math.floor(
+        (totalSeconds % 86400) / 3600
+      );
 
 
-          <!-- LOCATION -->
+    var m =
+      Math.floor(
+        (totalSeconds % 3600) / 60
+      );
 
-          <div class="location reveal-item">
 
-            <div class="location-small">
-              وذلك في منزل
-            </div>
+    days.textContent =
+      pad(d);
 
-            <div class="location-name">
-              د. محمد فوزي رياض
-            </div>
+    hours.textContent =
+      pad(h);
 
-          </div>
+    minutes.textContent =
+      pad(m);
 
+  }
 
-          <!-- RSVP -->
 
-          <div class="rsvp reveal-item">
+  var countdownStarted = false;
 
-            <div class="rsvp-title">
-              RSVP
-            </div>
 
+  function startCountdown() {
 
-            <div class="rsvp-buttons">
+    if (countdownStarted) {
+      return;
+    }
 
-              <button
-                class="rsvp-btn attend"
-                id="attendBtn"
-              >
-                سأحضر
-              </button>
+    countdownStarted = true;
 
+    updateCountdown();
 
-              <button
-                class="rsvp-btn decline"
-                id="declineBtn"
-              >
-                أعتذر عن الحضور
-              </button>
+    setInterval(
+      updateCountdown,
+      1000
+    );
 
-            </div>
+  }
 
 
-            <div
-              class="guests"
-              id="guests"
-            >
-
-              <label for="guestCount">
-                عدد المرافقين
-              </label>
-
-              <select id="guestCount">
-
-                <option value="0">
-                  بدون مرافق
-                </option>
-
-                <option value="1">
-                  مرافق واحد
-                </option>
-
-                <option value="2">
-                  مرافقان
-                </option>
-
-                <option value="3">
-                  3 مرافقين
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <!-- BOTTOM MONOGRAM -->
-
-          <div class="bottom-monogram reveal-item">
-            AS
-          </div>
-
-
-        </div>
-
-      </article>
-
-    </section>
-
-  </main>
-
-
-  <script src="script.js"></script>
-
-</body>
-
-</html>
+})();
