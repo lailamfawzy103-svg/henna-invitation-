@@ -1,75 +1,45 @@
 /* =========================================================
-   WEDDING INVITATION
-   Ahmed & Shahd
-========================================================= */
-
-
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const EVENT_DATE = new Date(
-  2026,
-  7,
-  20,
-  21,
-  0,
-  0
-);
-
-
-/* =========================================================
    ELEMENTS
 ========================================================= */
 
-const loader = document.getElementById("loader");
+const loader =
+  document.getElementById("loader");
 
-const app = document.getElementById("app");
-
-const envelopeStage =
-  document.getElementById("envelopeStage");
-
-const envelope =
-  document.getElementById("envelope");
-
-const paperWrapper =
-  document.getElementById("paperWrapper");
+const app =
+  document.getElementById("app");
 
 const openButton =
   document.getElementById("openButton");
 
-const locationButton =
-  document.getElementById("locationBtn");
+const envelopeStage =
+  document.getElementById("envelopeStage");
 
-const attendButton =
+const envelopeScreen =
+  document.getElementById("envelopeScreen");
+
+const clickHint =
+  document.getElementById("clickHint");
+
+const attendBtn =
   document.getElementById("attendBtn");
 
-const declineButton =
+const declineBtn =
   document.getElementById("declineBtn");
 
 const guests =
   document.getElementById("guests");
 
-const guestCount =
-  document.getElementById("guestCount");
+const envelope =
+  document.getElementById("envelope");
 
 
 /* =========================================================
-   STATE
+   LOADING SCREEN
 ========================================================= */
 
-let opened = false;
+window.addEventListener("load", () => {
 
-let countdownStarted = false;
-
-
-/* =========================================================
-   LOADER
-========================================================= */
-
-window.addEventListener("load", function () {
-
-  setTimeout(function () {
+  setTimeout(() => {
 
     loader.classList.add("hide");
 
@@ -82,7 +52,10 @@ window.addEventListener("load", function () {
    OPEN ENVELOPE
 ========================================================= */
 
-function openEnvelope() {
+let opened = false;
+
+
+openButton.addEventListener("click", () => {
 
   if (opened) {
     return;
@@ -90,295 +63,254 @@ function openEnvelope() {
 
   opened = true;
 
-  openButton.disabled = true;
 
-  envelope.classList.add("opened");
+  /* =======================================================
+     STEP 1
+     HIDE CLICK HINT
+  ======================================================= */
 
-
-  /*
-    STEP 1
-    Flap opens.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("paper-out");
-
-  }, 850);
+  clickHint.style.opacity = "0";
 
 
-  /*
-    STEP 2
-    Paper starts coming out.
-  */
+  /* =======================================================
+     STEP 2
+     OPEN ENVELOPE
+  ======================================================= */
 
-  setTimeout(function () {
-
-    envelope.classList.add("transitioning");
-
-  }, 1450);
+  envelopeStage.classList.add(
+    "opened"
+  );
 
 
-  /*
-    STEP 3
-    Paper grows.
-  */
+  /* =======================================================
+     STEP 3
+     SPARKLE
+  ======================================================= */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    envelope.classList.add("show-invitation");
+    envelopeStage.classList.add(
+      "sparkle"
+    );
 
-  }, 2050);
-
-
-  /*
-    STEP 4
-    Envelope fades away.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("finished");
-
-  }, 2700);
+  }, 1900);
 
 
-  /*
-    STEP 5
-    Start countdown.
-  */
+  /* =======================================================
+     STEP 4
+     AS PAPER STARTS APPROACHING
+  ======================================================= */
 
-  setTimeout(function () {
+  setTimeout(() => {
 
-    startCountdown();
+    envelopeStage.classList.add(
+      "invitation-expand"
+    );
 
-  }, 3000);
+  }, 2150);
+
+
+  /* =======================================================
+     STEP 5
+     REAL INVITATION APPEARS
+  ======================================================= */
+
+  setTimeout(() => {
+
+    app.classList.add(
+      "show-invitation"
+    );
+
+  }, 2350);
+
+
+  /* =======================================================
+     STEP 6
+     ENVELOPE STARTS FADING
+  ======================================================= */
+
+  setTimeout(() => {
+
+    envelopeStage.classList.add(
+      "envelope-hide"
+    );
+
+  }, 3550);
+
+
+  /* =======================================================
+     STEP 7
+     REMOVE ENVELOPE SCREEN
+  ======================================================= */
+
+  setTimeout(() => {
+
+    envelopeScreen.classList.add(
+      "completely-hidden"
+    );
+
+    envelopeStage.classList.add(
+      "finished"
+    );
+
+  }, 4100);
+
+
+  /* =======================================================
+     STEP 8
+     RESTORE SCROLL
+  ======================================================= */
+
+  setTimeout(() => {
+
+    document.body.style.overflowY =
+      "auto";
+
+  }, 4200);
+
+});
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+attendBtn.addEventListener(
+  "click",
+  () => {
+
+    attendBtn.classList.add(
+      "selected"
+    );
+
+    declineBtn.classList.remove(
+      "selected"
+    );
+
+    guests.classList.add(
+      "show"
+    );
+
+  }
+);
+
+
+declineBtn.addEventListener(
+  "click",
+  () => {
+
+    declineBtn.classList.add(
+      "selected"
+    );
+
+    attendBtn.classList.remove(
+      "selected"
+    );
+
+    guests.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   DESKTOP ENVELOPE PARALLAX
+========================================================= */
+
+const desktopPointer =
+  window.matchMedia(
+    "(pointer:fine)"
+  );
+
+
+if (desktopPointer.matches) {
+
+  document.addEventListener(
+    "mousemove",
+    (event) => {
+
+      if (opened) {
+        return;
+      }
+
+
+      const x =
+        (
+          event.clientX /
+          window.innerWidth -
+          0.5
+        ) * 2;
+
+
+      const y =
+        (
+          event.clientY /
+          window.innerHeight -
+          0.5
+        ) * 2;
+
+
+      envelope.style.transform =
+        `
+        translate(-50%, -50%)
+        rotateY(${x * 2}deg)
+        rotateX(${y * -1.2}deg)
+        `;
+
+    }
+  );
 
 }
 
 
 /* =========================================================
-   OPEN BUTTON
+   RESET PARALLAX WHEN OPENING
 ========================================================= */
 
 openButton.addEventListener(
   "click",
-  openEnvelope
-);
+  () => {
 
+    envelope.style.transform =
+      "translate(-50%, -50%)";
 
-/* =========================================================
-   LOCATION
-========================================================= */
-
-locationButton.addEventListener(
-  "click",
-  function () {
-
-    const mapUrl =
-      "https://www.google.com/maps";
-
-    window.open(
-      mapUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
+  },
+  {
+    once: true
   }
 );
 
 
 /* =========================================================
-   RSVP - ATTEND
+   MOBILE DOUBLE-TAP PROTECTION
 ========================================================= */
 
-attendButton.addEventListener(
-  "click",
-  function () {
+let lastTouchEnd = 0;
 
-    attendButton.classList.add("selected");
 
-    declineButton.classList.remove("selected");
+document.addEventListener(
+  "touchend",
+  (event) => {
 
-    guests.classList.add("show");
+    const now =
+      Date.now();
 
+
+    if (
+      now - lastTouchEnd <= 300
+    ) {
+
+      event.preventDefault();
+
+    }
+
+
+    lastTouchEnd = now;
+
+  },
+  {
+    passive: false
   }
 );
-
-
-/* =========================================================
-   RSVP - DECLINE
-========================================================= */
-
-declineButton.addEventListener(
-  "click",
-  function () {
-
-    declineButton.classList.add("selected");
-
-    attendButton.classList.remove("selected");
-
-    guests.classList.remove("show");
-
-  }
-);
-
-
-/* =========================================================
-   GUEST COUNT
-========================================================= */
-
-guestCount.addEventListener(
-  "change",
-  function () {
-
-    console.log(
-      "Guest count:",
-      guestCount.value
-    );
-
-  }
-);
-
-
-/* =========================================================
-   COUNTDOWN
-========================================================= */
-
-function pad(value) {
-
-  return String(value).padStart(2, "0");
-
-}
-
-
-function startCountdown() {
-
-  if (countdownStarted) {
-    return;
-  }
-
-  countdownStarted = true;
-
-  updateCountdown();
-
-  setInterval(
-    updateCountdown,
-    1000
-  );
-
-}
-
-
-function updateCountdown() {
-
-  const now = new Date();
-
-  const difference =
-    EVENT_DATE.getTime() -
-    now.getTime();
-
-
-  if (difference <= 0) {
-
-    updateCountdownValues(
-      0,
-      0,
-      0,
-      0
-    );
-
-    return;
-  }
-
-
-  const totalSeconds =
-    Math.floor(
-      difference / 1000
-    );
-
-
-  const days =
-    Math.floor(
-      totalSeconds / 86400
-    );
-
-
-  const hours =
-    Math.floor(
-      (totalSeconds % 86400) / 3600
-    );
-
-
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) / 60
-    );
-
-
-  const seconds =
-    totalSeconds % 60;
-
-
-  updateCountdownValues(
-    days,
-    hours,
-    minutes,
-    seconds
-  );
-
-}
-
-
-function updateCountdownValues(
-  days,
-  hours,
-  minutes,
-  seconds
-) {
-
-  const daysElement =
-    document.getElementById("days");
-
-  const hoursElement =
-    document.getElementById("hours");
-
-  const minutesElement =
-    document.getElementById("minutes");
-
-  const secondsElement =
-    document.getElementById("seconds");
-
-
-  if (daysElement) {
-
-    daysElement.textContent =
-      pad(days);
-
-  }
-
-
-  if (hoursElement) {
-
-    hoursElement.textContent =
-      pad(hours);
-
-  }
-
-
-  if (minutesElement) {
-
-    minutesElement.textContent =
-      pad(minutes);
-
-  }
-
-
-  if (secondsElement) {
-
-    secondsElement.textContent =
-      pad(seconds);
-
-  }
-
-}
