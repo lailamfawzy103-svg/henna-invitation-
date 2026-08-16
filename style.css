@@ -1121,3 +1121,16 @@ body {
     margin-top: 7px;
   }
 }
+/* =========================================================
+   SEAL CLICK FIX
+   لا يغير شكل التصميم
+========================================================= */
+
+.envelope .seal {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.envelope.opened .seal {
+  pointer-events: none;
+}
