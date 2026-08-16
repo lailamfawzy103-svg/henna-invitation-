@@ -1,3 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
+
+
+/* =========================================================
+   COLOR PALETTE
+========================================================= */
+
+:root {
+
+  --ivory: #f7f1e7;
+  --ivory-light: #fbf7ef;
+  --cream: #eee3d3;
+  --beige: #dfcfb8;
+  --beige-dark: #cbb494;
+
+  --taupe: #a98c6b;
+
+  --brown-light: #9a7958;
+  --brown: #76563d;
+  --brown-medium: #60432e;
+  --brown-dark: #493225;
+
+  --divider: #b18c64;
+  --divider-light: #c9ab85;
+
+  --white-soft: #fffdf8;
+}
+
+
 /* =========================================================
    RESET
 ========================================================= */
@@ -18,14 +47,11 @@ body {
   width: 100%;
   min-height: 100%;
 
-  margin: 0;
-
   overflow-x: hidden;
   overflow-y: auto;
 
-  background: #e8dccb;
-
-  color: #493526;
+  background: var(--cream);
+  color: var(--brown-dark);
 
   font-family:
     "Noto Naskh Arabic",
@@ -33,6 +59,13 @@ body {
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 
@@ -51,25 +84,23 @@ body {
 ========================================================= */
 
 .loader {
-  position: fixed;
 
+  position: fixed;
   inset: 0;
 
   z-index: 99999;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
   background:
     radial-gradient(
       circle at center,
-      #f1e8dc 0%,
-      #d9c8b3 60%,
-      #c1ac91 100%
+      #faf5ec 0%,
+      #e9dccb 58%,
+      #d5c1a5 100%
     );
 
   transition:
@@ -78,50 +109,65 @@ body {
 }
 
 .loader.hide {
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
 .loader-monogram {
-  font-family: "Cinzel", serif;
+
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
 
   letter-spacing: .08em;
 
-  color: #74553a;
+  color: var(--brown);
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.75),
-    -1px -1px 0 rgba(72,46,29,.18);
+    1px 1px 0 rgba(255,255,255,.8),
+    -1px -1px 0 rgba(73,50,37,.18);
 
   animation:
     loaderAppear 1.2s ease both;
 }
 
 .loader-line {
+
   width: 72px;
   height: 1px;
 
   margin: 12px 0;
 
-  background: #a88864;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--divider),
+      transparent
+    );
 
   animation:
     lineAppear 1.2s ease both;
 }
 
 .loader-names {
-  font-family: "Cinzel", serif;
+
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 10px;
 
   letter-spacing: .25em;
 
-  color: #795d43;
+  color: var(--brown-light);
 }
+
 
 @keyframes loaderAppear {
 
@@ -136,6 +182,7 @@ body {
   }
 
 }
+
 
 @keyframes lineAppear {
 
@@ -159,7 +206,6 @@ body {
   position: relative;
 
   width: 100%;
-
   height: 100dvh;
 
   min-height: 600px;
@@ -167,16 +213,15 @@ body {
   overflow: hidden;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   background:
     radial-gradient(
       ellipse at center,
-      #f1e7da 0%,
-      #ded0bc 50%,
-      #c7b49b 100%
+      #faf5ed 0%,
+      #e9ddcc 52%,
+      #d3bea1 100%
     );
 }
 
@@ -185,7 +230,6 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -193,8 +237,8 @@ body {
   background:
     radial-gradient(
       circle at center,
-      rgba(255,255,255,.42),
-      transparent 60%
+      rgba(255,255,255,.5),
+      transparent 62%
     );
 }
 
@@ -218,7 +262,7 @@ body {
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,.28),
+      rgba(255,255,255,.3),
       transparent 70%
     );
 
@@ -229,7 +273,7 @@ body {
 
 
 /* =========================================================
-   STAGE
+   ENVELOPE STAGE
 ========================================================= */
 
 .envelope-stage {
@@ -237,7 +281,6 @@ body {
   position: relative;
 
   width: min(92vw, 700px);
-
   height: min(90vh, 750px);
 
   perspective: 1800px;
@@ -268,8 +311,8 @@ body {
   background:
     radial-gradient(
       ellipse,
-      rgba(55,37,24,.38),
-      rgba(55,37,24,.14) 48%,
+      rgba(73,50,37,.34),
+      rgba(73,50,37,.12) 48%,
       transparent 73%
     );
 
@@ -314,30 +357,31 @@ body {
 .envelope-back {
 
   position: absolute;
-
   inset: 0;
+
+  z-index: 20;
 
   border-radius: 4px;
 
   background:
     linear-gradient(
       145deg,
-      #e8dac7 0%,
-      #d7c4aa 48%,
-      #c4ac8d 100%
+      #eee3d3 0%,
+      #dccbb2 48%,
+      #c8af90 100%
     );
 
   box-shadow:
-    0 25px 45px rgba(58,39,24,.28),
-    0 8px 15px rgba(58,39,24,.15),
-    inset 0 1px 0 rgba(255,255,255,.65);
+    0 25px 45px rgba(73,50,37,.25),
+    0 8px 15px rgba(73,50,37,.13),
+    inset 0 1px 0 rgba(255,255,255,.7);
 
   overflow: hidden;
 }
 
 
 /* =========================================================
-   PAPER TEXTURE FOR ENVELOPE
+   TEXTURE
 ========================================================= */
 
 .envelope-back::before,
@@ -348,10 +392,9 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
-  opacity: .22;
+  opacity: .2;
 
   background-image:
 
@@ -364,7 +407,7 @@ body {
 
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,.09) 0,
+      rgba(255,255,255,.1) 0,
       transparent 1px,
       transparent 4px
     );
@@ -376,32 +419,178 @@ body {
 
 
 /* =========================================================
-   ENVELOPE PANELS
+   PAPER
+========================================================= */
+
+.paper-wrapper {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: min(87vw, 610px);
+
+  aspect-ratio: 1.48 / 1;
+
+  height: auto;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 19;
+
+  pointer-events: none;
+
+  overflow: visible;
+
+  transition:
+    width 1.7s cubic-bezier(.16,.78,.2,1),
+    height 1.7s cubic-bezier(.16,.78,.2,1),
+    top 1.7s cubic-bezier(.16,.78,.2,1),
+    transform 1.7s cubic-bezier(.16,.78,.2,1);
+}
+
+.paper {
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #fcf8ef,
+      #f5ecdf 52%,
+      #eee0cd
+    );
+
+  box-shadow:
+    0 20px 38px rgba(73,50,37,.28),
+    0 5px 10px rgba(73,50,37,.14),
+    inset 0 0 0 1px rgba(135,102,70,.14);
+}
+
+
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
+
+.paper-texture {
+
+  position: absolute;
+  inset: 0;
+
+  opacity: .2;
+
+  pointer-events: none;
+
+  background-image:
+
+    repeating-linear-gradient(
+      0deg,
+      rgba(108,80,52,.06) 0,
+      transparent 1px,
+      transparent 3px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.16) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: multiply;
+}
+
+
+/* =========================================================
+   PAPER MONOGRAM
+========================================================= */
+
+.paper-monogram {
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.paper-monogram span {
+
+  width: 92px;
+  height: 92px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(151,116,77,.45);
+
+  color: var(--brown-light);
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size: 34px;
+
+  letter-spacing: .08em;
+
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,.85),
+    -1px -1px 0 rgba(102,73,47,.16);
+
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,.65),
+    inset -1px -1px 2px rgba(103,74,47,.12);
+}
+
+
+/* =========================================================
+   SIDE PANELS
 ========================================================= */
 
 .envelope-panel {
 
   position: absolute;
+  inset: 0;
 
-  bottom: 0;
+  width: 100%;
+  height: 100%;
 
-  width: 51%;
-  height: 70%;
-
-  z-index: 5;
+  z-index: 31;
 
   overflow: hidden;
 
   background:
     linear-gradient(
       145deg,
-      #e4d4c0,
-      #cdb79b
+      #e8dac8 0%,
+      #cfb99c 100%
     );
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.42),
-    inset 0 -1px 0 rgba(92,63,40,.14);
+    inset 0 1px 0 rgba(255,255,255,.45),
+    inset 0 -1px 0 rgba(92,63,40,.13);
 }
 
 .envelope-left {
@@ -411,7 +600,7 @@ body {
   clip-path:
     polygon(
       0 0,
-      100% 100%,
+      108% 100%,
       0 100%
     );
 }
@@ -424,34 +613,37 @@ body {
     polygon(
       100% 0,
       100% 100%,
-      0 100%
+      -8% 100%
     );
 }
 
 
 /* =========================================================
-   BOTTOM TRIANGLE
+   BOTTOM
 ========================================================= */
 
 .envelope-bottom {
 
   position: absolute;
 
-  z-index: 8;
+  left: -1px;
+  right: -1px;
+  bottom: -3px;
 
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: calc(100% + 2px);
 
   height: 72%;
+
+  z-index: 35;
 
   overflow: hidden;
 
   background:
     linear-gradient(
       160deg,
-      #dfcfba,
-      #c9b295
+      #e5d7c3 0%,
+      #d6c1a6 55%,
+      #c8af90 100%
     );
 
   clip-path:
@@ -459,6 +651,11 @@ body {
       0 100%,
       50% 25%,
       100% 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 -1px 2px rgba(70,48,31,.12)
     );
 }
 
@@ -477,10 +674,9 @@ body {
   width: 100%;
   height: 72%;
 
-  z-index: 30;
+  z-index: 40;
 
-  transform-origin:
-    50% 0%;
+  transform-origin: 50% 0%;
 
   transform:
     rotateX(0deg);
@@ -488,15 +684,19 @@ body {
   transform-style: preserve-3d;
 
   transition:
-    transform 1.45s cubic-bezier(.18,.82,.22,1);
+    transform 1.25s cubic-bezier(.18,.82,.22,1);
 
   pointer-events: none;
 }
 
+
+/* =========================================================
+   FLAP SURFACE
+========================================================= */
+
 .flap-surface {
 
   position: absolute;
-
   inset: 0;
 
   overflow: hidden;
@@ -504,9 +704,9 @@ body {
   background:
     linear-gradient(
       180deg,
-      #eadcca 0%,
-      #d7c3aa 55%,
-      #c7ae91 100%
+      #f0e4d3 0%,
+      #dcc7ad 55%,
+      #c9b093 100%
     );
 
   clip-path:
@@ -517,24 +717,23 @@ body {
     );
 
   box-shadow:
-    0 14px 20px rgba(53,35,22,.24);
+    0 14px 20px rgba(53,35,22,.22);
 
-  backface-visibility: hidden;
+  backface-visibility: visible;
 }
 
 .flap-highlight {
 
   position: absolute;
-
   inset: 0;
 
   background:
     linear-gradient(
       115deg,
-      rgba(255,255,255,.35),
+      rgba(255,255,255,.38),
       transparent 32%,
       transparent 72%,
-      rgba(89,61,40,.09)
+      rgba(89,61,40,.08)
     );
 }
 
@@ -549,6 +748,8 @@ body {
 
   left: 50%;
   top: 59%;
+
+  z-index: 50;
 
   width:
     clamp(78px, 16vw, 112px);
@@ -572,21 +773,22 @@ body {
   background:
     radial-gradient(
       circle at 35% 30%,
-      #b9976d,
-      #856548 56%,
-      #674a33 100%
+      #b89a76,
+      #886a4d 56%,
+      #674a34 100%
     );
 
   box-shadow:
-    0 7px 14px rgba(52,34,20,.3),
+    0 7px 14px rgba(52,34,20,.28),
     inset 2px 2px 3px rgba(255,255,255,.38),
-    inset -3px -4px 6px rgba(46,29,18,.35);
+    inset -3px -4px 6px rgba(46,29,18,.33);
 
   pointer-events: auto;
 
   transition:
     transform .3s ease,
-    filter .3s ease;
+    filter .3s ease,
+    opacity .5s ease;
 }
 
 .seal:hover {
@@ -595,7 +797,8 @@ body {
     translate(-50%, -50%)
     scale(1.04);
 
-  filter: brightness(1.06);
+  filter:
+    brightness(1.06);
 }
 
 .seal-inner {
@@ -610,15 +813,18 @@ body {
 
   border-radius: 50%;
 
-  border: 1px solid rgba(238,218,189,.5);
+  border:
+    1px solid rgba(238,218,189,.5);
 
   box-shadow:
     inset 1px 1px 2px rgba(255,255,255,.35),
     inset -2px -2px 3px rgba(42,27,17,.25);
 
-  color: #e6d0b0;
+  color: #ead7bd;
 
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(24px, 5vw, 37px);
@@ -632,170 +838,7 @@ body {
 
 
 /* =========================================================
-   PAPER COMING OUT
-========================================================= */
-
-.paper-wrapper {
-
-  position: absolute;
-
-  z-index: 15;
-
-  left: 50%;
-  top: 51%;
-
-  width:
-    min(65vw, 390px);
-
-  height:
-    min(76vh, 560px);
-
-  transform:
-    translate(-50%, -50%)
-    translateY(145px)
-    scale(.82);
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition:
-    transform 1.5s cubic-bezier(.18,.82,.22,1),
-    opacity .35s ease;
-}
-
-
-/* =========================================================
-   PAPER
-========================================================= */
-
-.paper {
-
-  position: absolute;
-
-  inset: 0;
-
-  overflow: hidden;
-
-  border-radius: 3px;
-
-  background:
-    linear-gradient(
-      110deg,
-      #faf5eb,
-      #f2e9db 52%,
-      #eee1d0
-    );
-
-  box-shadow:
-    0 20px 38px rgba(47,31,20,.3),
-    0 5px 10px rgba(47,31,20,.15),
-    inset 0 0 0 1px rgba(135,102,70,.15);
-}
-
-
-/* =========================================================
-   PAPER TEXTURE
-========================================================= */
-
-.paper-texture {
-
-  position: absolute;
-
-  inset: 0;
-
-  opacity: .23;
-
-  pointer-events: none;
-
-  background-image:
-
-    repeating-linear-gradient(
-      0deg,
-      rgba(108,80,52,.07) 0,
-      transparent 1px,
-      transparent 3px
-    ),
-
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,.15) 0,
-      transparent 1px,
-      transparent 4px
-    );
-
-  mix-blend-mode: multiply;
-}
-
-
-/* =========================================================
-   PAPER MONOGRAM
-========================================================= */
-
-.paper-monogram {
-
-  position: absolute;
-
-  inset: 0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  pointer-events: none;
-}
-
-.paper-monogram span {
-
-  width: 92px;
-  height: 92px;
-
-  border-radius: 50%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(151,116,77,.48);
-
-  color: #927453;
-
-  font-family: "Cinzel", serif;
-
-  font-size: 34px;
-
-  letter-spacing: .08em;
-
-  text-shadow:
-    1px 1px 0 rgba(255,255,255,.8),
-    -1px -1px 0 rgba(102,73,47,.18);
-
-  box-shadow:
-    inset 1px 1px 2px rgba(255,255,255,.65),
-    inset -1px -1px 2px rgba(103,74,47,.12);
-}
-
-
-/* =========================================================
-   PAPER EXIT
-========================================================= */
-
-.envelope-stage.paper-out .paper-wrapper {
-
-  opacity: 1;
-
-  transform:
-    translate(-50%, -50%)
-    translateY(-115px)
-    scale(1);
-
-}
-
-
-/* =========================================================
-   ENVELOPE AFTER OPEN
+   OPEN FLAP
 ========================================================= */
 
 .envelope-stage.opened .flap {
@@ -803,6 +846,64 @@ body {
   transform:
     rotateX(180deg);
 }
+
+
+/* =========================================================
+   PAPER VISIBLE
+========================================================= */
+
+.envelope-stage.paper-visible .paper-wrapper {
+
+  width:
+    min(87vw, 610px);
+
+  height: auto;
+
+  top: 45%;
+
+  z-index: 36;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   PAPER OUT
+========================================================= */
+
+.envelope-stage.paper-out .paper-wrapper {
+
+  width:
+    min(87vw, 610px);
+
+  height: auto;
+
+  top: 27%;
+
+  z-index: 45;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   ENVELOPE TRANSITION
+========================================================= */
+
+.envelope-stage.transitioning .envelope {
+
+  transform:
+    translate(-50%, -50%)
+    translateY(35px)
+    scale(.97);
+}
+
+
+/* =========================================================
+   SHADOW
+========================================================= */
 
 .envelope-stage.opened .ground-shadow {
 
@@ -816,16 +917,8 @@ body {
 
 
 /* =========================================================
-   ENVELOPE FADES ONLY AFTER PAPER IS OUT
+   FINISHED
 ========================================================= */
-
-.envelope-stage.transitioning .envelope {
-
-  transform:
-    translate(-50%, -50%)
-    translateY(35px)
-    scale(.97);
-}
 
 .envelope-stage.finished .envelope {
 
@@ -854,7 +947,7 @@ body {
   transform:
     translateX(-50%);
 
-  color: #765a41;
+  color: var(--brown);
 
   font-size: 12px;
 
@@ -868,9 +961,9 @@ body {
 }
 
 .envelope-stage.opened .click-hint {
-
   opacity: 0;
 }
+
 
 @keyframes hintPulse {
 
@@ -882,6 +975,7 @@ body {
   50% {
     opacity: .9;
   }
+
 }
 
 
@@ -891,78 +985,98 @@ body {
 
 .invitation-page {
 
-  position: relative;
+  position: fixed;
+
+  inset: 0;
 
   width: 100%;
+  height: 100dvh;
 
   min-height: 100svh;
 
   padding:
-    clamp(50px, 8vh, 90px)
-    18px
-    clamp(70px, 10vh, 110px);
+    35px 18px
+    60px;
 
   display: flex;
 
   align-items: flex-start;
-
   justify-content: center;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 100;
 
   background:
     radial-gradient(
       circle at 50% 15%,
-      #f3eadf,
-      #e5d7c5 55%,
-      #d3c0a6 100%
+      #f8f1e6,
+      #e9dccb 55%,
+      #d5c0a2 100%
     );
 
   opacity: 0;
 
+  visibility: hidden;
+
   transform:
-    translateY(35px);
+    translateY(35%)
+    scale(.35);
+
+  transform-origin:
+    center center;
 
   pointer-events: none;
 
   transition:
     opacity 1.1s ease,
-    transform 1.1s cubic-bezier(.18,.82,.22,1);
+    transform 1.25s cubic-bezier(.16,.78,.2,1),
+    visibility 0s linear 1.25s;
 }
 
 
 /* =========================================================
-   SHOW INVITATION PAGE
+   SHOW INVITATION
 ========================================================= */
 
 .app.show-invitation .invitation-page {
 
   opacity: 1;
 
+  visibility: visible;
+
   transform:
-    translateY(0);
+    translateY(0)
+    scale(1);
 
   pointer-events: auto;
+
+  transition:
+    opacity 1.1s ease,
+    transform 1.25s cubic-bezier(.16,.78,.2,1),
+    visibility 0s linear 0s;
 }
 
 
 /* =========================================================
-   BACKGROUND
+   INVITATION BACKGROUND
 ========================================================= */
 
 .invitation-background {
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
 
-  opacity: .28;
+  opacity: .3;
 
   background-image:
 
     radial-gradient(
       circle at 20% 15%,
-      rgba(255,255,255,.6),
+      rgba(255,255,255,.65),
       transparent 28%
     ),
 
@@ -975,7 +1089,7 @@ body {
 
 
 /* =========================================================
-   INVITATION CARD
+   CARD
 ========================================================= */
 
 .invitation-card {
@@ -986,26 +1100,28 @@ body {
     min(92vw, 520px);
 
   min-height:
-    min(150vw, 760px);
+    min(145vw, 730px);
 
   padding:
-    40px 30px;
+    32px 30px;
+
+  flex-shrink: 0;
 
   background:
     linear-gradient(
       110deg,
-      #faf5eb,
-      #f3e9da 50%,
-      #eee0ce
+      #fcf7ed,
+      #f4e9da 50%,
+      #eee0cd
     );
 
   box-shadow:
-    0 25px 55px rgba(55,38,24,.22),
-    0 5px 14px rgba(55,38,24,.13);
+    0 25px 55px rgba(55,38,24,.2),
+    0 5px 14px rgba(55,38,24,.12);
 
   overflow: hidden;
 
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 
@@ -1018,12 +1134,11 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
 
-  opacity: .22;
+  opacity: .2;
 
   background-image:
 
@@ -1036,7 +1151,7 @@ body {
 
     repeating-linear-gradient(
       90deg,
-      rgba(255,255,255,.12) 0,
+      rgba(255,255,255,.14) 0,
       transparent 1px,
       transparent 4px
     );
@@ -1046,17 +1161,17 @@ body {
 
 
 /* =========================================================
-   FRAME
+   INVITATION FRAME
 ========================================================= */
 
 .invitation-frame {
 
   position: absolute;
 
-  inset: 18px;
+  inset: 15px;
 
   border:
-    1px solid rgba(155,119,77,.72);
+    1px solid rgba(151,116,77,.68);
 
   pointer-events: none;
 }
@@ -1068,7 +1183,7 @@ body {
   inset: 5px;
 
   border:
-    1px solid rgba(171,139,98,.42);
+    1px solid rgba(177,139,98,.38);
 }
 
 
@@ -1092,12 +1207,12 @@ body {
 
   text-align: center;
 
-  color: #4c3828;
+  color: var(--brown-dark);
 }
 
 
 /* =========================================================
-   REVEAL ANIMATION
+   REVEAL
 ========================================================= */
 
 .reveal-item {
@@ -1128,7 +1243,9 @@ body {
 }
 
 
-/* stagger */
+/* =========================================================
+   REVEAL DELAYS
+========================================================= */
 
 .app.show-invitation
 .reveal-item:nth-child(1) {
@@ -1177,39 +1294,41 @@ body {
 
 
 /* =========================================================
-   INVITATION TYPOGRAPHY
+   TEXT
 ========================================================= */
 
 .invitation-line {
 
-  margin-top: 25px;
+  margin-top: 18px;
 
   font-size:
     clamp(16px, 3.5vw, 20px);
 
-  color: #73563e;
+  line-height: 1.8;
+
+  color: var(--brown);
 }
 
 .invitation-subtitle {
 
-  margin-top: 8px;
+  margin-top: 5px;
 
   font-size:
     clamp(13px, 2.8vw, 17px);
 
-  color: #72563e;
+  color: var(--brown);
 }
 
 .invitation-event {
 
-  margin-top: 1px;
+  margin-top: 0;
 
   font-size:
     clamp(26px, 6vw, 36px);
 
   font-weight: 600;
 
-  color: #59402d;
+  color: var(--brown-medium);
 }
 
 
@@ -1226,12 +1345,17 @@ body {
 
   gap: 14px;
 
-  margin-top: 11px;
+  margin-top: 7px;
+
+  font-family:
+    "Aref Ruqaa Ink",
+    "Noto Naskh Arabic",
+    serif;
 
   font-size:
     clamp(36px, 8vw, 50px);
 
-  color: #5a402c;
+  color: var(--brown-medium);
 }
 
 .names i {
@@ -1244,12 +1368,12 @@ body {
 
   font-style: normal;
 
-  color: #9a7957;
+  color: var(--taupe);
 }
 
 
 /* =========================================================
-   ORNAMENT
+   NEW DIVIDER — MATCHING REFERENCE
 ========================================================= */
 
 .ornament {
@@ -1257,17 +1381,21 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
-  width: 72%;
+  width: 82%;
 
-  gap: 10px;
+  height: 18px;
 
-  margin-top: 7px;
+  margin-top: 5px;
+
+  position: relative;
 }
 
-.ornament span {
+
+/* side lines */
+
+.ornament-line {
 
   flex: 1;
 
@@ -1276,21 +1404,150 @@ body {
   background:
     linear-gradient(
       90deg,
-      transparent,
-      #a88963,
-      transparent
+      transparent 0%,
+      var(--divider-light) 20%,
+      var(--divider) 100%
     );
 }
 
-.ornament b {
+.ornament-line:last-child {
 
-  font-family: "Cinzel", serif;
+  background:
+    linear-gradient(
+      90deg,
+      var(--divider) 0%,
+      var(--divider-light) 80%,
+      transparent 100%
+    );
+}
 
-  font-size: 13px;
 
-  font-weight: 500;
+/* small decorative wings */
 
-  color: #8a6848;
+.ornament-wing {
+
+  width: 15px;
+  height: 15px;
+
+  position: relative;
+
+  margin: 0 1px;
+}
+
+.ornament-wing::before,
+.ornament-wing::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border:
+    1px solid var(--divider);
+
+  transform:
+    rotate(45deg);
+
+  top: 5px;
+}
+
+.ornament-wing.left::before {
+  right: 0;
+}
+
+.ornament-wing.left::after {
+
+  width: 3px;
+  height: 3px;
+
+  right: 7px;
+  top: 6px;
+
+  background:
+    var(--divider);
+}
+
+.ornament-wing.right::before {
+  left: 0;
+}
+
+.ornament-wing.right::after {
+
+  width: 3px;
+  height: 3px;
+
+  left: 7px;
+  top: 6px;
+
+  background:
+    var(--divider);
+}
+
+
+/* central ornament */
+
+.ornament-center {
+
+  width: 22px;
+  height: 22px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 2px;
+}
+
+.ornament-center::before,
+.ornament-center::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  border:
+    1px solid var(--divider);
+
+  transform:
+    rotate(45deg);
+}
+
+.ornament-center::before {
+  left: 1px;
+}
+
+.ornament-center::after {
+  right: 1px;
+}
+
+.ornament-center i {
+
+  width: 5px;
+  height: 5px;
+
+  display: block;
+
+  background:
+    var(--divider);
+
+  transform:
+    rotate(45deg);
+
+  box-shadow:
+    0 0 0 2px rgba(177,140,100,.08);
+}
+
+.ornament-secondary {
+
+  margin-top: 18px;
 }
 
 
@@ -1300,7 +1557,7 @@ body {
 
 .date-block {
 
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .date {
@@ -1314,17 +1571,17 @@ body {
 
   letter-spacing: .15em;
 
-  color: #614732;
+  color: var(--brown-medium);
 }
 
 .time {
 
-  margin-top: 5px;
+  margin-top: 3px;
 
   font-size:
     clamp(13px, 2.8vw, 17px);
 
-  color: #71563e;
+  color: var(--brown);
 }
 
 
@@ -1334,24 +1591,57 @@ body {
 
 .location {
 
-  margin-top: 20px;
+  margin-top: 13px;
 
-  line-height: 1.7;
+  line-height: 1.6;
 
   font-size:
     clamp(13px, 3vw, 17px);
 }
 
 .location-small {
-
-  color: #8a6c4d;
+  color: var(--brown-light);
 }
 
 .location-name {
 
   font-weight: 600;
 
-  color: #5c432f;
+  color: var(--brown-medium);
+}
+
+.location-button {
+
+  display: inline-block;
+
+  margin-top: 7px;
+
+  padding: 4px 14px;
+
+  border:
+    1px solid rgba(151,116,77,.55);
+
+  background:
+    rgba(250,244,234,.55);
+
+  color: var(--brown);
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.location-button:hover {
+
+  background:
+    rgba(220,201,175,.45);
+
+  transform:
+    translateY(-1px);
 }
 
 
@@ -1363,25 +1653,27 @@ body {
 
   width: 100%;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
-  padding-top: 15px;
+  padding-top: 11px;
 
   border-top:
-    1px solid rgba(155,119,77,.25);
+    1px solid rgba(155,119,77,.2);
 }
 
 .rsvp-title {
 
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 11px;
 
   letter-spacing: .18em;
 
-  color: #876746;
+  color: var(--brown-light);
 
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 .rsvp-buttons {
@@ -1398,12 +1690,12 @@ body {
 .rsvp-btn {
 
   border:
-    1px solid rgba(135,100,67,.55);
+    1px solid rgba(135,100,67,.5);
 
   background:
     rgba(255,250,241,.55);
 
-  color: #644a34;
+  color: var(--brown);
 
   padding:
     6px 13px;
@@ -1423,6 +1715,12 @@ body {
     transform .25s ease;
 }
 
+.rsvp-btn:hover {
+
+  background:
+    rgba(221,203,180,.5);
+}
+
 .rsvp-btn:active {
 
   transform:
@@ -1432,7 +1730,77 @@ body {
 .rsvp-btn.selected {
 
   background:
-    #d4c0a7;
+    #d8c3a6;
+
+  color:
+    var(--brown-dark);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-field {
+
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: stretch;
+
+  gap: 5px;
+
+  text-align: right;
+}
+
+.form-field label {
+
+  color: var(--brown);
+
+  font-size: 12px;
+}
+
+.form-field label span {
+
+  color: var(--brown-light);
+}
+
+.form-field input,
+.form-field textarea {
+
+  width: 100%;
+
+  border:
+    1px solid rgba(151,116,77,.4);
+
+  background:
+    rgba(255,252,246,.58);
+
+  color:
+    var(--brown-dark);
+
+  padding:
+    7px 9px;
+
+  outline: none;
+
+  border-radius: 2px;
+
+  font-size: 13px;
+
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+
+  border-color:
+    var(--divider);
 }
 
 
@@ -1445,18 +1813,16 @@ body {
   display: none;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
-  margin-top: 9px;
+  margin-top: 8px;
 
   font-size: 12px;
 }
 
 .guests.show {
-
   display: flex;
 }
 
@@ -1468,10 +1834,10 @@ body {
   background:
     #f7efe4;
 
-  color: #604732;
+  color:
+    #604732;
 
-  font-family:
-    inherit;
+  font-family: inherit;
 
   padding:
     3px 6px;
@@ -1484,15 +1850,17 @@ body {
 
 .bottom-monogram {
 
-  margin-top: 40px;
+  margin-top: 24px;
 
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 15px;
 
   letter-spacing: .12em;
 
-  color: #947453;
+  color: var(--brown-light);
 }
 
 
@@ -1505,97 +1873,263 @@ body {
   .envelope-stage {
 
     width: 100vw;
-
     height: 90dvh;
   }
 
   .envelope {
-
     width: 88vw;
   }
 
   .paper-wrapper {
 
-    width: 71vw;
+    width: 88vw;
 
-    height: 76vh;
+    aspect-ratio: 1.48 / 1;
+
+    height: auto;
+
+    top: 50%;
+
+    z-index: 19;
   }
+
+
+  .envelope-stage.paper-visible
+  .paper-wrapper {
+
+    width: 88vw;
+
+    height: auto;
+
+    top: 45%;
+
+    z-index: 36;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+
+  .envelope-stage.paper-out
+  .paper-wrapper {
+
+    width: 88vw;
+
+    height: auto;
+
+    top: 27%;
+
+    z-index: 45;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
 
   .invitation-page {
 
     padding:
-      40px 12px
-      70px;
+      30px 12px
+      55px;
   }
+
 
   .invitation-card {
 
     width: 94vw;
 
-    min-height:
-      150vw;
+    min-height: 145vw;
 
     padding:
-      35px 23px;
+      28px 23px;
   }
+
 
   .invitation-frame {
-
-    inset: 14px;
+    inset: 13px;
   }
+
 
   .invitation-line {
-
-    margin-top: 21px;
+    margin-top: 16px;
   }
+
 
   .names {
 
     gap: 9px;
+
+    margin-top: 6px;
   }
+
+
+  .ornament {
+
+    width: 88%;
+
+    margin-top: 3px;
+  }
+
+
+  .date-block {
+    margin-top: 10px;
+  }
+
+
+  .location {
+    margin-top: 11px;
+  }
+
 
   .rsvp {
-
-    margin-top: 34px;
+    margin-top: 22px;
   }
+
+
+  .bottom-monogram {
+    margin-top: 20px;
+  }
+
 }
 
 
 /* =========================================================
-   SMALL HEIGHT PHONES
+   SHORT SCREENS
 ========================================================= */
 
 @media (max-height: 700px) {
 
   .envelope {
-
     width: 83vw;
   }
 
   .paper-wrapper {
 
-    height: 74vh;
+    width: 83vw;
+
+    top: 50%;
   }
+
+
+  .envelope-stage.paper-visible
+  .paper-wrapper {
+
+    width: 83vw;
+
+    height: auto;
+
+    top: 44%;
+
+    z-index: 36;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+
+  .envelope-stage.paper-out
+  .paper-wrapper {
+
+    width: 83vw;
+
+    height: auto;
+
+    top: 27%;
+
+    z-index: 45;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+
+  .invitation-page {
+
+    padding-top: 25px;
+
+    padding-bottom: 45px;
+  }
+
+
+  .invitation-card {
+
+    min-height: 140vw;
+
+    padding:
+      26px 20px;
+  }
+
 
   .invitation-line {
-
-    margin-top: 17px;
-  }
-
-  .date-block {
-
-    margin-top: 12px;
-  }
-
-  .location {
-
     margin-top: 13px;
   }
 
-  .rsvp {
 
-    margin-top: 28px;
+  .date-block {
+    margin-top: 9px;
   }
+
+
+  .location {
+    margin-top: 10px;
+  }
+
+
+  .rsvp {
+    margin-top: 20px;
+  }
+
+
+  .bottom-monogram {
+    margin-top: 17px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .invitation-card {
+
+    min-height: 138vw;
+
+    padding:
+      25px 18px;
+  }
+
+  .invitation-frame {
+    inset: 11px;
+  }
+
+  .invitation-line {
+    font-size: 15px;
+  }
+
+  .invitation-event {
+    font-size: 27px;
+  }
+
+  .names {
+    font-size: 35px;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .time,
+  .location {
+    font-size: 13px;
+  }
+
+  .rsvp {
+    margin-top: 18px;
+  }
+
 }
 
 
@@ -1609,10 +2143,14 @@ body {
   *::before,
   *::after {
 
-    animation-duration: .01ms !important;
+    animation-duration:
+      .01ms !important;
 
-    animation-iteration-count: 1 !important;
+    animation-iteration-count:
+      1 !important;
 
-    transition-duration: .01ms !important;
+    transition-duration:
+      .01ms !important;
   }
+
 }
