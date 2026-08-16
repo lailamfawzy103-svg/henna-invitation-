@@ -9,188 +9,138 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
+  <meta
+    name="theme-color"
+    content="#d9c8b3"
+  >
+
   <title>Ahmed & Shahd</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-  <!-- =========================================================
-       LOADING SCREEN
-  ========================================================== -->
+  <!-- =====================================================
+       LOADING
+  ====================================================== -->
 
-  <div id="loader" class="loader">
-    <div class="loader-names">
-      <span>أحمد</span>
-      <span class="loader-and">&</span>
-      <span>شهد</span>
+  <div class="loader" id="loader">
+
+    <div class="loader-monogram">
+      AS
     </div>
 
     <div class="loader-line"></div>
+
+    <div class="loader-names">
+      AHMED &amp; SHAHd
+    </div>
+
   </div>
 
 
-  <!-- =========================================================
-       MAIN PAGE
-  ========================================================== -->
+  <!-- =====================================================
+       APP
+  ====================================================== -->
 
-  <main id="app" class="app">
-
-
-    <!-- =======================================================
-         ENVELOPE STAGE
-    ======================================================== -->
-
-    <section id="envelopeStage" class="envelope-stage">
-
-      <!-- Invitation paper -->
-      <div id="paperWrapper" class="paper-wrapper">
-
-        <div id="paper" class="paper">
-
-          <div class="paper-frame">
-
-            <div class="paper-content">
-
-              <div class="mini-monogram">AS</div>
-
-              <div class="quran">
-                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ
-                أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم
-                مَّوَدَّةً وَرَحْمَةً ﴾
-              </div>
-
-              <div class="divider floral-divider">
-                <span></span>
-                <b>❦</b>
-                <span></span>
-              </div>
-
-              <p class="invitation-text">
-                يسر
-              </p>
-
-              <p class="doctor-name">
-                د. هدى مدحت
-              </p>
-
-              <p class="invitation-text">
-                دعوتكم لحضور حفل حنة
-              </p>
-
-              <div class="couple-names">
-                <span>أحمد</span>
-                <small>&amp;</small>
-                <span>شهد</span>
-              </div>
-
-              <div class="divider floral-divider">
-                <span></span>
-                <b>❦</b>
-                <span></span>
-              </div>
+  <main class="app" id="app">
 
 
-              <!-- Event details -->
+    <!-- ===================================================
+         ENVELOPE
+    ==================================================== -->
 
-              <div class="details-title">
-                تفاصيل الحفل
-              </div>
+    <section
+      class="envelope-screen"
+      id="envelopeScreen"
+    >
 
-              <div class="details">
-
-                <div class="detail-item">
-                  <div class="detail-label">التاريخ</div>
-                  <div class="detail-value">
-                    20 . 8 . 2026
-                  </div>
-                </div>
-
-                <div class="detail-item">
-                  <div class="detail-label">الوقت</div>
-                  <div class="detail-value">
-                    الساعة 9 عقب صلاة العشاء
-                  </div>
-                </div>
-
-                <div class="detail-item">
-                  <div class="detail-label">المكان</div>
-                  <div class="detail-value">
-                    منزل د. محمد فوزي رياض
-                  </div>
-                </div>
-
-              </div>
+      <div class="ambient-light"></div>
 
 
-              <div class="divider floral-divider bottom-divider">
-                <span></span>
-                <b>❦</b>
-                <span></span>
-              </div>
+      <div
+        class="envelope-stage"
+        id="envelopeStage"
+      >
+
+        <div class="ground-shadow"></div>
 
 
-              <!-- RSVP -->
+        <!-- =================================================
+             FIRST PAPER — AS
+        ================================================== -->
 
-              <div class="rsvp-section">
+        <div
+          class="paper-wrapper"
+          id="paperWrapper"
+        >
 
-                <div class="rsvp-title">
-                  تأكيد الحضور
-                </div>
+          <div class="paper-shadow"></div>
 
-                <div class="rsvp-buttons">
+          <div class="paper">
 
-                  <button
-                    type="button"
-                    id="attendBtn"
-                    class="rsvp-btn"
-                  >
-                    سأحضر
-                  </button>
+            <div class="paper-texture"></div>
 
-                  <button
-                    type="button"
-                    id="declineBtn"
-                    class="rsvp-btn"
-                  >
-                    أعتذر عن الحضور
-                  </button>
+            <div class="paper-monogram">
+              <span>AS</span>
+            </div>
 
-                </div>
+          </div>
+
+        </div>
 
 
-                <div
-                  id="guests"
-                  class="guests"
-                >
+        <!-- =================================================
+             ENVELOPE
+        ================================================== -->
 
-                  <label for="guestCount">
-                    عدد المرافقين
-                  </label>
+        <div
+          class="envelope"
+          id="envelope"
+        >
 
-                  <select id="guestCount">
-                    <option value="0">بدون مرافق</option>
-                    <option value="1">مرافق واحد</option>
-                    <option value="2">مرافقان</option>
-                    <option value="3">3 مرافقين</option>
-                    <option value="4">4 مرافقين</option>
-                  </select>
+          <div class="envelope-back"></div>
 
-                </div>
+          <div class="envelope-panel envelope-left"></div>
 
-              </div>
+          <div class="envelope-panel envelope-right"></div>
+
+          <div class="envelope-bottom"></div>
+
+
+          <!-- FLAP -->
+
+          <div
+            class="flap"
+            id="flap"
+          >
+
+            <div class="flap-surface">
+
+              <div class="flap-highlight"></div>
 
 
               <button
+                class="seal"
+                id="openButton"
                 type="button"
-                id="locationBtn"
-                class="location-btn"
+                aria-label="فتح الدعوة"
               >
-                الموقع
+
+                <span class="seal-inner">
+                  AS
+                </span>
+
               </button>
 
             </div>
@@ -199,39 +149,384 @@
 
         </div>
 
-      </div>
 
-
-      <!-- =====================================================
-           ENVELOPE
-      ====================================================== -->
-
-      <div id="envelope" class="envelope">
-
-        <!-- Back -->
-        <div class="envelope-back"></div>
-
-        <!-- Paper opening area -->
-        <div class="envelope-pocket"></div>
-
-        <!-- Front -->
-        <div class="envelope-front"></div>
-
-        <!-- Flap -->
-        <div id="flap" class="envelope-flap"></div>
-
-
-        <!-- Seal -->
-        <button
-          type="button"
-          id="openButton"
-          class="seal"
-          aria-label="فتح الدعوة"
+        <div
+          class="click-hint"
+          id="clickHint"
         >
-          <span>AS</span>
-        </button>
+          اضغطي لفتح الدعوة
+        </div>
 
       </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SECOND INVITATION
+    ==================================================== -->
+
+    <section
+      class="invitation-page"
+      id="invitationPage"
+    >
+
+      <div class="invitation-background"></div>
+
+
+      <article class="invitation-card">
+
+        <div class="invitation-frame">
+          <div class="invitation-inner-frame"></div>
+        </div>
+
+
+        <div class="invitation-content">
+
+
+          <!-- =================================================
+               QURAN
+          ================================================== -->
+
+          <div class="quran-section reveal-item">
+
+            <div class="section-kicker">
+              آيةٌ مباركة
+            </div>
+
+            <div class="quran-ayah">
+              وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ
+              أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+              وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               INTRO
+          ================================================== -->
+
+          <div class="intro-section reveal-item">
+
+            <div class="section-kicker">
+              بكل سرور
+            </div>
+
+            <div class="invitation-line">
+              يسر د. هدى مدحت دعوتكم لحضور حفل حنة
+            </div>
+
+            <div class="names">
+
+              <span class="couple-name">
+                أحمد
+              </span>
+
+              <i>
+                &amp;
+              </i>
+
+              <span class="couple-name">
+                شهد
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               DIVIDER
+          ================================================== -->
+
+          <div class="modern-divider reveal-item">
+
+            <span></span>
+
+            <b>◇</b>
+
+            <span></span>
+
+          </div>
+
+
+          <!-- =================================================
+               DETAILS
+          ================================================== -->
+
+          <div class="details-section reveal-item">
+
+            <div class="section-kicker">
+              تفاصيل الحفل
+            </div>
+
+            <div class="date">
+              20.8.2026
+            </div>
+
+            <div class="time">
+              الساعة 9 مساء عقب صلاة العشاء
+            </div>
+
+            <div class="location">
+
+              <div class="location-name">
+                بمنزل د. محمد فوزي رياض
+              </div>
+
+              <button
+                class="location-button"
+                type="button"
+              >
+                الموقع
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               COUNTDOWN
+          ================================================== -->
+
+          <div class="countdown-section reveal-item">
+
+            <div class="section-kicker">
+              نلتقي قريبًا
+            </div>
+
+            <div class="countdown">
+
+
+              <!-- DAYS -->
+
+              <div class="count-item">
+
+                <span id="days">
+                  00
+                </span>
+
+                <small>
+                  أيام
+                </small>
+
+              </div>
+
+
+              <div class="count-divider"></div>
+
+
+              <!-- HOURS -->
+
+              <div class="count-item">
+
+                <span id="hours">
+                  00
+                </span>
+
+                <small>
+                  ساعات
+                </small>
+
+              </div>
+
+
+              <div class="count-divider"></div>
+
+
+              <!-- MINUTES -->
+
+              <div class="count-item">
+
+                <span id="minutes">
+                  00
+                </span>
+
+                <small>
+                  دقائق
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               DIVIDER
+          ================================================== -->
+
+          <div class="modern-divider soft reveal-item">
+
+            <span></span>
+
+            <b>◇</b>
+
+            <span></span>
+
+          </div>
+
+
+          <!-- =================================================
+               RSVP
+          ================================================== -->
+
+          <div class="rsvp-section reveal-item">
+
+            <div class="section-kicker">
+              حضوركم يسعدنا
+            </div>
+
+            <div class="rsvp-title">
+              تأكيد الحضور
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="guestName">
+                الاسم <em>(إجباري)</em>
+              </label>
+
+              <input
+                id="guestName"
+                type="text"
+                placeholder="اكتبي الاسم"
+              >
+
+            </div>
+
+
+            <div class="rsvp-buttons">
+
+              <button
+                class="rsvp-btn attend"
+                id="attendBtn"
+                type="button"
+              >
+                سأحضر
+              </button>
+
+              <button
+                class="rsvp-btn decline"
+                id="declineBtn"
+                type="button"
+              >
+                أعتذر عن الحضور
+              </button>
+
+            </div>
+
+
+            <div
+              class="guests"
+              id="guests"
+            >
+
+              <label for="guestCount">
+                عدد المرافقين
+                <em>(اختياري)</em>
+              </label>
+
+              <input
+                id="guestCount"
+                type="number"
+                min="0"
+                max="10"
+                placeholder="عدد المرافقين"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               GUEST WISHES
+          ================================================== -->
+
+          <div class="wishes-section reveal-item">
+
+            <div class="section-kicker">
+              كلمة من القلب
+            </div>
+
+            <div class="wishes-title">
+              تبقى ذكرى
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="wishName">
+                الاسم <em>(إجباري)</em>
+              </label>
+
+              <input
+                id="wishName"
+                type="text"
+                placeholder="اكتبي الاسم"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="wishText">
+                الأمنية <em>(إجباري)</em>
+              </label>
+
+              <textarea
+                id="wishText"
+                rows="3"
+                placeholder="اكتبي أمنيتك للعروسين"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               FINAL
+          ================================================== -->
+
+          <div class="final-section reveal-item">
+
+            <div class="final-ornament">
+
+              <span></span>
+
+              <b>✦</b>
+
+              <span></span>
+
+            </div>
+
+            <div class="final-text">
+              بارك الله لهما وبارك عليهما
+            </div>
+
+            <div class="final-text">
+              وجمع بينهما في خير
+            </div>
+
+          </div>
+
+
+          <div class="bottom-monogram reveal-item">
+            AS
+          </div>
+
+
+        </div>
+
+      </article>
 
     </section>
 
@@ -241,4 +536,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
