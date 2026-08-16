@@ -1,418 +1,353 @@
 /* =========================================================
    WEDDING INVITATION
-   Ahmed & Shahd
+   أحمد & شهد
 ========================================================= */
 
+(function () {
 
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const EVENT_DATE = new Date(
-  2026,
-  7,
-  20,
-  21,
-  0,
-  0
-);
+  "use strict";
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+  /* =========================================================
+     CONFIG
+  ========================================================= */
 
-const loader =
-  document.getElementById("loader");
-
-const app =
-  document.getElementById("app");
-
-const envelopeStage =
-  document.getElementById("envelopeStage");
-
-const envelope =
-  document.getElementById("envelope");
-
-const paperWrapper =
-  document.getElementById("paperWrapper");
-
-const openButton =
-  document.getElementById("openButton");
-
-const locationButton =
-  document.getElementById("locationBtn");
-
-const attendButton =
-  document.getElementById("attendBtn");
-
-const declineButton =
-  document.getElementById("declineBtn");
-
-const guests =
-  document.getElementById("guests");
-
-const guestCount =
-  document.getElementById("guestCount");
+  var EVENT_DATE =
+    new Date(2026, 7, 20, 21, 0, 0);
 
 
-/* =========================================================
-   STATE
-========================================================= */
+  /* =========================================================
+     ELEMENTS
+  ========================================================= */
 
-let opened = false;
+  var loader =
+    document.getElementById("loader");
 
-let countdownStarted = false;
+  var app =
+    document.getElementById("app");
+
+  var envelopeStage =
+    document.getElementById("envelopeStage");
+
+  var envelope =
+    document.getElementById("envelope");
+
+  var paperWrapper =
+    document.getElementById("paperWrapper");
+
+  var openButton =
+    document.getElementById("openButton");
+
+  var clickHint =
+    document.getElementById("clickHint");
+
+  var locationButton =
+    document.getElementById("locationButton");
+
+  var attendButton =
+    document.getElementById("attendBtn");
+
+  var declineButton =
+    document.getElementById("declineBtn");
+
+  var guests =
+    document.getElementById("guests");
 
 
-/* =========================================================
-   LOADER
-========================================================= */
+  /* =========================================================
+     LOADER
+  ========================================================= */
 
-window.addEventListener("load", function () {
+  window.addEventListener(
+    "load",
+    function () {
 
-  setTimeout(function () {
+      setTimeout(
+        function () {
 
-    if (loader) {
-      loader.classList.add("hide");
+          loader.classList.add("hide");
+
+        },
+        1500
+      );
+
     }
-
-  }, 1500);
-
-});
+  );
 
 
-/* =========================================================
-   OPEN ENVELOPE
-========================================================= */
+  /* =========================================================
+     ENVELOPE OPENING
+  ========================================================= */
 
-function openEnvelope() {
+  var opened = false;
 
-  if (opened) {
-    return;
-  }
-
-  opened = true;
-
-
-  if (openButton) {
-    openButton.disabled = true;
-  }
-
-
-  /*
-    STEP 1
-    Open the envelope flap.
-  */
-
-  envelope.classList.add("opened");
-
-
-  /*
-    STEP 2
-    Paper starts coming out.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("paper-out");
-
-  }, 850);
-
-
-  /*
-    STEP 3
-    Paper rises.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("transitioning");
-
-  }, 1450);
-
-
-  /*
-    STEP 4
-    Invitation becomes the full page.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("show-invitation");
-
-  }, 2050);
-
-
-  /*
-    STEP 5
-    Envelope fades away.
-  */
-
-  setTimeout(function () {
-
-    envelope.classList.add("finished");
-
-  }, 2700);
-
-
-  /*
-    STEP 6
-    Start countdown.
-  */
-
-  setTimeout(function () {
-
-    startCountdown();
-
-  }, 3000);
-
-}
-
-
-/* =========================================================
-   OPEN BUTTON
-========================================================= */
-
-if (openButton) {
 
   openButton.addEventListener(
     "click",
     openEnvelope
   );
 
-}
+
+  function openEnvelope() {
+
+    if (opened) {
+      return;
+    }
+
+    opened = true;
+
+    openButton.disabled = true;
+
+    openButton.style.pointerEvents =
+      "none";
+
+    clickHint.style.opacity = "0";
 
 
-/* =========================================================
-   LOCATION
-========================================================= */
+    /* STEP 1 — FLAP */
+    envelopeStage.classList.add(
+      "opened"
+    );
 
-if (locationButton) {
+
+    /* STEP 2 — PAPER VISIBLE */
+    setTimeout(
+      function () {
+
+        envelopeStage.classList.add(
+          "paper-visible"
+        );
+
+      },
+      650
+    );
+
+
+    /* STEP 3 — PAPER OUT */
+    setTimeout(
+      function () {
+
+        envelopeStage.classList.add(
+          "paper-out"
+        );
+
+      },
+      1450
+    );
+
+
+    /* STEP 4 — TRANSITION */
+    setTimeout(
+      function () {
+
+        envelopeStage.classList.add(
+          "transitioning"
+        );
+
+      },
+      2050
+    );
+
+
+    /* STEP 5 — SHOW INVITATION */
+    setTimeout(
+      function () {
+
+        app.classList.add(
+          "show-invitation"
+        );
+
+      },
+      2600
+    );
+
+
+    /* STEP 6 — FADE ENVELOPE */
+    setTimeout(
+      function () {
+
+        envelopeStage.classList.add(
+          "finished"
+        );
+
+        startCountdown();
+
+      },
+      3650
+    );
+
+  }
+
+
+  /* =========================================================
+     LOCATION
+  ========================================================= */
 
   locationButton.addEventListener(
     "click",
-    function () {
+    function (event) {
 
-      const mapUrl =
-        "https://www.google.com/maps";
+      event.preventDefault();
+
+      /*
+        ضعِي رابط Google Maps هنا لاحقًا
+      */
+
+      var mapUrl =
+        "https://maps.google.com/";
 
       window.open(
         mapUrl,
         "_blank",
-        "noopener,noreferrer"
+        "noopener"
       );
 
     }
   );
 
-}
 
-
-/* =========================================================
-   RSVP - ATTEND
-========================================================= */
-
-if (attendButton) {
+  /* =========================================================
+     RSVP
+  ========================================================= */
 
   attendButton.addEventListener(
     "click",
     function () {
 
-      attendButton.classList.add("selected");
+      attendButton.classList.add(
+        "selected"
+      );
 
-      declineButton.classList.remove("selected");
+      declineButton.classList.remove(
+        "selected"
+      );
 
-      guests.classList.add("show");
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   RSVP - DECLINE
-========================================================= */
-
-if (declineButton) {
-
-  declineButton.addEventListener(
-    "click",
-    function () {
-
-      declineButton.classList.add("selected");
-
-      attendButton.classList.remove("selected");
-
-      guests.classList.remove("show");
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   GUEST COUNT
-========================================================= */
-
-if (guestCount) {
-
-  guestCount.addEventListener(
-    "change",
-    function () {
-
-      console.log(
-        "Guest count:",
-        guestCount.value
+      guests.classList.add(
+        "show"
       );
 
     }
   );
 
-}
 
+  declineButton.addEventListener(
+    "click",
+    function () {
 
-/* =========================================================
-   COUNTDOWN
-========================================================= */
+      declineButton.classList.add(
+        "selected"
+      );
 
-function pad(value) {
+      attendButton.classList.remove(
+        "selected"
+      );
 
-  return String(value).padStart(2, "0");
+      guests.classList.remove(
+        "show"
+      );
 
-}
-
-
-function startCountdown() {
-
-  if (countdownStarted) {
-    return;
-  }
-
-  countdownStarted = true;
-
-  updateCountdown();
-
-  setInterval(
-    updateCountdown,
-    1000
+    }
   );
 
-}
 
+  /* =========================================================
+     COUNTDOWN
+  ========================================================= */
 
-function updateCountdown() {
-
-  const now =
-    new Date();
-
-  const difference =
-    EVENT_DATE.getTime() -
-    now.getTime();
-
-
-  if (difference <= 0) {
-
-    updateCountdownValues(
-      0,
-      0,
-      0,
-      0
-    );
-
-    return;
-  }
-
-
-  const totalSeconds =
-    Math.floor(
-      difference / 1000
-    );
-
-
-  const days =
-    Math.floor(
-      totalSeconds / 86400
-    );
-
-
-  const hours =
-    Math.floor(
-      (totalSeconds % 86400) / 3600
-    );
-
-
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) / 60
-    );
-
-
-  const seconds =
-    totalSeconds % 60;
-
-
-  updateCountdownValues(
-    days,
-    hours,
-    minutes,
-    seconds
-  );
-
-}
-
-
-function updateCountdownValues(
-  days,
-  hours,
-  minutes,
-  seconds
-) {
-
-  const daysElement =
+  var days =
     document.getElementById("days");
 
-  const hoursElement =
+  var hours =
     document.getElementById("hours");
 
-  const minutesElement =
+  var minutes =
     document.getElementById("minutes");
 
-  const secondsElement =
-    document.getElementById("seconds");
 
+  function pad(value) {
 
-  if (daysElement) {
-
-    daysElement.textContent =
-      pad(days);
+    return String(value)
+      .padStart(2, "0");
 
   }
 
 
-  if (hoursElement) {
+  function updateCountdown() {
 
-    hoursElement.textContent =
-      pad(hours);
+    var now =
+      new Date();
+
+    var difference =
+      EVENT_DATE.getTime() -
+      now.getTime();
+
+
+    if (difference <= 0) {
+
+      days.textContent = "00";
+      hours.textContent = "00";
+      minutes.textContent = "00";
+
+      return;
+
+    }
+
+
+    var totalSeconds =
+      Math.floor(
+        difference / 1000
+      );
+
+
+    var d =
+      Math.floor(
+        totalSeconds / 86400
+      );
+
+
+    var h =
+      Math.floor(
+        (totalSeconds % 86400) / 3600
+      );
+
+
+    var m =
+      Math.floor(
+        (totalSeconds % 3600) / 60
+      );
+
+
+    days.textContent =
+      pad(d);
+
+    hours.textContent =
+      pad(h);
+
+    minutes.textContent =
+      pad(m);
 
   }
 
 
-  if (minutesElement) {
+  var countdownStarted = false;
 
-    minutesElement.textContent =
-      pad(minutes);
+
+  function startCountdown() {
+
+    if (countdownStarted) {
+      return;
+    }
+
+    countdownStarted = true;
+
+    updateCountdown();
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
 
   }
 
 
-  if (secondsElement) {
-
-    secondsElement.textContent =
-      pad(seconds);
-
-  }
-
-}
+})();
