@@ -22,9 +22,11 @@ const EVENT_DATE = new Date(
    ELEMENTS
 ========================================================= */
 
-const loader = document.getElementById("loader");
+const loader =
+  document.getElementById("loader");
 
-const app = document.getElementById("app");
+const app =
+  document.getElementById("app");
 
 const envelopeStage =
   document.getElementById("envelopeStage");
@@ -71,7 +73,9 @@ window.addEventListener("load", function () {
 
   setTimeout(function () {
 
-    loader.classList.add("hide");
+    if (loader) {
+      loader.classList.add("hide");
+    }
 
   }, 1500);
 
@@ -90,14 +94,23 @@ function openEnvelope() {
 
   opened = true;
 
-  openButton.disabled = true;
+
+  if (openButton) {
+    openButton.disabled = true;
+  }
+
+
+  /*
+    STEP 1
+    Open the envelope flap.
+  */
 
   envelope.classList.add("opened");
 
 
   /*
-    STEP 1
-    Flap opens.
+    STEP 2
+    Paper starts coming out.
   */
 
   setTimeout(function () {
@@ -108,8 +121,8 @@ function openEnvelope() {
 
 
   /*
-    STEP 2
-    Paper starts coming out.
+    STEP 3
+    Paper rises.
   */
 
   setTimeout(function () {
@@ -120,8 +133,8 @@ function openEnvelope() {
 
 
   /*
-    STEP 3
-    Paper grows.
+    STEP 4
+    Invitation becomes the full page.
   */
 
   setTimeout(function () {
@@ -132,7 +145,7 @@ function openEnvelope() {
 
 
   /*
-    STEP 4
+    STEP 5
     Envelope fades away.
   */
 
@@ -144,7 +157,7 @@ function openEnvelope() {
 
 
   /*
-    STEP 5
+    STEP 6
     Start countdown.
   */
 
@@ -161,84 +174,104 @@ function openEnvelope() {
    OPEN BUTTON
 ========================================================= */
 
-openButton.addEventListener(
-  "click",
-  openEnvelope
-);
+if (openButton) {
+
+  openButton.addEventListener(
+    "click",
+    openEnvelope
+  );
+
+}
 
 
 /* =========================================================
    LOCATION
 ========================================================= */
 
-locationButton.addEventListener(
-  "click",
-  function () {
+if (locationButton) {
 
-    const mapUrl =
-      "https://www.google.com/maps";
+  locationButton.addEventListener(
+    "click",
+    function () {
 
-    window.open(
-      mapUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
+      const mapUrl =
+        "https://www.google.com/maps";
 
-  }
-);
+      window.open(
+        mapUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+  );
+
+}
 
 
 /* =========================================================
    RSVP - ATTEND
 ========================================================= */
 
-attendButton.addEventListener(
-  "click",
-  function () {
+if (attendButton) {
 
-    attendButton.classList.add("selected");
+  attendButton.addEventListener(
+    "click",
+    function () {
 
-    declineButton.classList.remove("selected");
+      attendButton.classList.add("selected");
 
-    guests.classList.add("show");
+      declineButton.classList.remove("selected");
 
-  }
-);
+      guests.classList.add("show");
+
+    }
+  );
+
+}
 
 
 /* =========================================================
    RSVP - DECLINE
 ========================================================= */
 
-declineButton.addEventListener(
-  "click",
-  function () {
+if (declineButton) {
 
-    declineButton.classList.add("selected");
+  declineButton.addEventListener(
+    "click",
+    function () {
 
-    attendButton.classList.remove("selected");
+      declineButton.classList.add("selected");
 
-    guests.classList.remove("show");
+      attendButton.classList.remove("selected");
 
-  }
-);
+      guests.classList.remove("show");
+
+    }
+  );
+
+}
 
 
 /* =========================================================
    GUEST COUNT
 ========================================================= */
 
-guestCount.addEventListener(
-  "change",
-  function () {
+if (guestCount) {
 
-    console.log(
-      "Guest count:",
-      guestCount.value
-    );
+  guestCount.addEventListener(
+    "change",
+    function () {
 
-  }
-);
+      console.log(
+        "Guest count:",
+        guestCount.value
+      );
+
+    }
+  );
+
+}
 
 
 /* =========================================================
@@ -272,7 +305,8 @@ function startCountdown() {
 
 function updateCountdown() {
 
-  const now = new Date();
+  const now =
+    new Date();
 
   const difference =
     EVENT_DATE.getTime() -
