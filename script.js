@@ -1,30 +1,78 @@
 /* =========================================================
+   WEDDING INVITATION
+   Ahmed & Shahd
+========================================================= */
+
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const EVENT_DATE = new Date(
+  2026,
+  7,
+  20,
+  21,
+  0,
+  0
+);
+
+
+/* =========================================================
    ELEMENTS
 ========================================================= */
 
 const loader = document.getElementById("loader");
 
-const envelopeScreen =
-  document.getElementById("envelopeScreen");
+const app = document.getElementById("app");
+
+const envelopeStage =
+  document.getElementById("envelopeStage");
 
 const envelope =
   document.getElementById("envelope");
 
+const paperWrapper =
+  document.getElementById("paperWrapper");
+
 const openButton =
   document.getElementById("openButton");
 
-const invitationPage =
-  document.getElementById("invitationPage");
+const locationButton =
+  document.getElementById("locationBtn");
+
+const attendButton =
+  document.getElementById("attendBtn");
+
+const declineButton =
+  document.getElementById("declineBtn");
+
+const guests =
+  document.getElementById("guests");
+
+const guestCount =
+  document.getElementById("guestCount");
 
 
 /* =========================================================
-   LOADING
+   STATE
 ========================================================= */
 
-window.addEventListener("load", () => {
+let opened = false;
 
-  setTimeout(() => {
+let countdownStarted = false;
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load", function () {
+
+  setTimeout(function () {
+
     loader.classList.add("hide");
+
   }, 1500);
 
 });
@@ -34,124 +82,303 @@ window.addEventListener("load", () => {
    OPEN ENVELOPE
 ========================================================= */
 
-let opened = false;
+function openEnvelope() {
 
-openButton.addEventListener("click", (event) => {
-
-  event.stopPropagation();
-
-  if (opened) return;
+  if (opened) {
+    return;
+  }
 
   opened = true;
 
-  /*
-     إخفاء التعليمات
-  */
-
-  envelopeScreen.classList.add("opened-screen");
-
-
-  /*
-     فتح الظرف
-  */
+  openButton.disabled = true;
 
   envelope.classList.add("opened");
 
 
   /*
-     لمعة بسيطة
+    STEP 1
+    Flap opens.
   */
 
-  setTimeout(() => {
-    createSparkles();
-  }, 1900);
+  setTimeout(function () {
+
+    envelope.classList.add("paper-out");
+
+  }, 850);
 
 
   /*
-     تكبير الدعوة
+    STEP 2
+    Paper starts coming out.
   */
 
-  setTimeout(() => {
-    invitationPage.classList.add("show");
-  }, 2150);
+  setTimeout(function () {
+
+    envelope.classList.add("transitioning");
+
+  }, 1450);
 
 
   /*
-     إخفاء الظرف بعد ظهور الدعوة
+    STEP 3
+    Paper grows.
   */
 
-  setTimeout(() => {
-    envelopeScreen.classList.add("envelope-hide");
-  }, 3550);
+  setTimeout(function () {
+
+    envelope.classList.add("show-invitation");
+
+  }, 2050);
 
 
   /*
-     السماح بالـ scroll بعد الانتقال
+    STEP 4
+    Envelope fades away.
   */
 
-  setTimeout(() => {
-    document.body.style.overflowY = "auto";
-  }, 4200);
+  setTimeout(function () {
 
-});
+    envelope.classList.add("finished");
+
+  }, 2700);
 
 
-/* =========================================================
-   SPARKLES
-========================================================= */
+  /*
+    STEP 5
+    Start countdown.
+  */
 
-function createSparkles() {
+  setTimeout(function () {
 
-  const positions = [
-    [45, 42],
-    [52, 37],
-    [58, 45],
-    [48, 51],
-    [55, 55],
-    [40, 48]
-  ];
+    startCountdown();
 
-  positions.forEach((position, index) => {
-
-    setTimeout(() => {
-
-      const sparkle =
-        document.createElement("div");
-
-      sparkle.className = "sparkle";
-
-      sparkle.style.left =
-        position[0] + "%";
-
-      sparkle.style.top =
-        position[1] + "%";
-
-      document.body.appendChild(sparkle);
-
-      setTimeout(() => {
-        sparkle.remove();
-      }, 1000);
-
-    }, index * 100);
-
-  });
+  }, 3000);
 
 }
 
 
 /* =========================================================
-   IMPORTANT
+   OPEN BUTTON
 ========================================================= */
 
-/*
-   مفيش mousemove هنا نهائيًا.
+openButton.addEventListener(
+  "click",
+  openEnvelope
+);
 
-   وبالتالي:
-   - الظرف لا يلف مع الماوس
-   - الورقة البيضاء لا تتحرك مع الماوس
-   - لا يوجد rotateX
-   - لا يوجد rotateY
-   - لا يوجد parallax
 
-   الحركة الوحيدة بتحصل عند الضغط على الختم.
-*/
+/* =========================================================
+   LOCATION
+========================================================= */
+
+locationButton.addEventListener(
+  "click",
+  function () {
+
+    const mapUrl =
+      "https://www.google.com/maps";
+
+    window.open(
+      mapUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   RSVP - ATTEND
+========================================================= */
+
+attendButton.addEventListener(
+  "click",
+  function () {
+
+    attendButton.classList.add("selected");
+
+    declineButton.classList.remove("selected");
+
+    guests.classList.add("show");
+
+  }
+);
+
+
+/* =========================================================
+   RSVP - DECLINE
+========================================================= */
+
+declineButton.addEventListener(
+  "click",
+  function () {
+
+    declineButton.classList.add("selected");
+
+    attendButton.classList.remove("selected");
+
+    guests.classList.remove("show");
+
+  }
+);
+
+
+/* =========================================================
+   GUEST COUNT
+========================================================= */
+
+guestCount.addEventListener(
+  "change",
+  function () {
+
+    console.log(
+      "Guest count:",
+      guestCount.value
+    );
+
+  }
+);
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+function pad(value) {
+
+  return String(value).padStart(2, "0");
+
+}
+
+
+function startCountdown() {
+
+  if (countdownStarted) {
+    return;
+  }
+
+  countdownStarted = true;
+
+  updateCountdown();
+
+  setInterval(
+    updateCountdown,
+    1000
+  );
+
+}
+
+
+function updateCountdown() {
+
+  const now = new Date();
+
+  const difference =
+    EVENT_DATE.getTime() -
+    now.getTime();
+
+
+  if (difference <= 0) {
+
+    updateCountdownValues(
+      0,
+      0,
+      0,
+      0
+    );
+
+    return;
+  }
+
+
+  const totalSeconds =
+    Math.floor(
+      difference / 1000
+    );
+
+
+  const days =
+    Math.floor(
+      totalSeconds / 86400
+    );
+
+
+  const hours =
+    Math.floor(
+      (totalSeconds % 86400) / 3600
+    );
+
+
+  const minutes =
+    Math.floor(
+      (totalSeconds % 3600) / 60
+    );
+
+
+  const seconds =
+    totalSeconds % 60;
+
+
+  updateCountdownValues(
+    days,
+    hours,
+    minutes,
+    seconds
+  );
+
+}
+
+
+function updateCountdownValues(
+  days,
+  hours,
+  minutes,
+  seconds
+) {
+
+  const daysElement =
+    document.getElementById("days");
+
+  const hoursElement =
+    document.getElementById("hours");
+
+  const minutesElement =
+    document.getElementById("minutes");
+
+  const secondsElement =
+    document.getElementById("seconds");
+
+
+  if (daysElement) {
+
+    daysElement.textContent =
+      pad(days);
+
+  }
+
+
+  if (hoursElement) {
+
+    hoursElement.textContent =
+      pad(hours);
+
+  }
+
+
+  if (minutesElement) {
+
+    minutesElement.textContent =
+      pad(minutes);
+
+  }
+
+
+  if (secondsElement) {
+
+    secondsElement.textContent =
+      pad(seconds);
+
+  }
+
+}
