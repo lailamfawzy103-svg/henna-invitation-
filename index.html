@@ -15,6 +15,8 @@
     href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -24,6 +26,7 @@
   ========================================================== -->
 
   <div id="loader" class="loader">
+
     <div class="loader-names">
       <span>أحمد</span>
       <span class="loader-and">&</span>
@@ -31,6 +34,7 @@
     </div>
 
     <div class="loader-line"></div>
+
   </div>
 
 
@@ -40,14 +44,16 @@
 
   <main id="app" class="app">
 
-
     <!-- =======================================================
          ENVELOPE STAGE
     ======================================================== -->
 
     <section id="envelopeStage" class="envelope-stage">
 
-      <!-- Invitation paper -->
+      <!-- =====================================================
+           INVITATION PAPER
+      ====================================================== -->
+
       <div id="paperWrapper" class="paper-wrapper">
 
         <div id="paper" class="paper">
@@ -56,7 +62,10 @@
 
             <div class="paper-content">
 
-              <div class="mini-monogram">AS</div>
+              <div class="mini-monogram">
+                AS
+              </div>
+
 
               <div class="quran">
                 ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ
@@ -64,83 +73,128 @@
                 مَّوَدَّةً وَرَحْمَةً ﴾
               </div>
 
+
               <div class="divider floral-divider">
+
                 <span></span>
+
                 <b>❦</b>
+
                 <span></span>
+
               </div>
+
 
               <p class="invitation-text">
                 يسر
               </p>
 
+
               <p class="doctor-name">
                 د. هدى مدحت
               </p>
+
 
               <p class="invitation-text">
                 دعوتكم لحضور حفل حنة
               </p>
 
+
               <div class="couple-names">
+
                 <span>أحمد</span>
+
                 <small>&amp;</small>
+
                 <span>شهد</span>
+
               </div>
+
 
               <div class="divider floral-divider">
+
                 <span></span>
+
                 <b>❦</b>
+
                 <span></span>
+
               </div>
 
 
-              <!-- Event details -->
+              <!-- =================================================
+                   EVENT DETAILS
+              ================================================== -->
 
               <div class="details-title">
                 تفاصيل الحفل
               </div>
 
+
               <div class="details">
 
                 <div class="detail-item">
-                  <div class="detail-label">التاريخ</div>
+
+                  <div class="detail-label">
+                    التاريخ
+                  </div>
+
                   <div class="detail-value">
                     20 . 8 . 2026
                   </div>
+
                 </div>
 
+
                 <div class="detail-item">
-                  <div class="detail-label">الوقت</div>
+
+                  <div class="detail-label">
+                    الوقت
+                  </div>
+
                   <div class="detail-value">
                     الساعة 9 عقب صلاة العشاء
                   </div>
+
                 </div>
 
+
                 <div class="detail-item">
-                  <div class="detail-label">المكان</div>
+
+                  <div class="detail-label">
+                    المكان
+                  </div>
+
                   <div class="detail-value">
                     منزل د. محمد فوزي رياض
                   </div>
+
                 </div>
 
               </div>
 
 
               <div class="divider floral-divider bottom-divider">
+
                 <span></span>
+
                 <b>❦</b>
+
                 <span></span>
+
               </div>
 
 
-              <!-- RSVP -->
+              <!-- =================================================
+                   RSVP
+              ================================================== -->
 
               <div class="rsvp-section">
 
                 <div class="rsvp-title">
                   تأكيد الحضور
                 </div>
+
 
                 <div class="rsvp-buttons">
 
@@ -151,6 +205,7 @@
                   >
                     سأحضر
                   </button>
+
 
                   <button
                     type="button"
@@ -172,12 +227,29 @@
                     عدد المرافقين
                   </label>
 
+
                   <select id="guestCount">
-                    <option value="0">بدون مرافق</option>
-                    <option value="1">مرافق واحد</option>
-                    <option value="2">مرافقان</option>
-                    <option value="3">3 مرافقين</option>
-                    <option value="4">4 مرافقين</option>
+
+                    <option value="0">
+                      بدون مرافق
+                    </option>
+
+                    <option value="1">
+                      مرافق واحد
+                    </option>
+
+                    <option value="2">
+                      مرافقان
+                    </option>
+
+                    <option value="3">
+                      3 مرافقين
+                    </option>
+
+                    <option value="4">
+                      4 مرافقين
+                    </option>
+
                   </select>
 
                 </div>
@@ -218,7 +290,10 @@
         <div class="envelope-front"></div>
 
         <!-- Flap -->
-        <div id="flap" class="envelope-flap"></div>
+        <div
+          id="flap"
+          class="envelope-flap"
+        ></div>
 
 
         <!-- Seal -->
@@ -238,7 +313,11 @@
   </main>
 
 
-  <script src="script.js"></script>
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+  <script src="script.js" defer></script>
 
 </body>
 </html>
