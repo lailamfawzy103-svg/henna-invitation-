@@ -1,353 +1,244 @@
-/* =========================================================
-   WEDDING INVITATION
-   أحمد & شهد
-========================================================= */
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-(function () {
+<head>
+  <meta charset="UTF-8">
 
-  "use strict";
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
+  <title>Ahmed & Shahd</title>
 
-  /* =========================================================
-     CONFIG
-  ========================================================= */
+  <link
+    href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+</head>
 
-  var EVENT_DATE =
-    new Date(2026, 7, 20, 21, 0, 0);
+<body>
 
+  <!-- =========================================================
+       LOADING SCREEN
+  ========================================================== -->
 
-  /* =========================================================
-     ELEMENTS
-  ========================================================= */
+  <div id="loader" class="loader">
+    <div class="loader-names">
+      <span>أحمد</span>
+      <span class="loader-and">&</span>
+      <span>شهد</span>
+    </div>
 
-  var loader =
-    document.getElementById("loader");
+    <div class="loader-line"></div>
+  </div>
 
-  var app =
-    document.getElementById("app");
 
-  var envelopeStage =
-    document.getElementById("envelopeStage");
+  <!-- =========================================================
+       MAIN PAGE
+  ========================================================== -->
 
-  var envelope =
-    document.getElementById("envelope");
+  <main id="app" class="app">
 
-  var paperWrapper =
-    document.getElementById("paperWrapper");
 
-  var openButton =
-    document.getElementById("openButton");
+    <!-- =======================================================
+         ENVELOPE STAGE
+    ======================================================== -->
 
-  var clickHint =
-    document.getElementById("clickHint");
+    <section id="envelopeStage" class="envelope-stage">
 
-  var locationButton =
-    document.getElementById("locationButton");
+      <!-- Invitation paper -->
+      <div id="paperWrapper" class="paper-wrapper">
 
-  var attendButton =
-    document.getElementById("attendBtn");
+        <div id="paper" class="paper">
 
-  var declineButton =
-    document.getElementById("declineBtn");
+          <div class="paper-frame">
 
-  var guests =
-    document.getElementById("guests");
+            <div class="paper-content">
 
+              <div class="mini-monogram">AS</div>
 
-  /* =========================================================
-     LOADER
-  ========================================================= */
+              <div class="quran">
+                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ
+                أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم
+                مَّوَدَّةً وَرَحْمَةً ﴾
+              </div>
 
-  window.addEventListener(
-    "load",
-    function () {
+              <div class="divider floral-divider">
+                <span></span>
+                <b>❦</b>
+                <span></span>
+              </div>
 
-      setTimeout(
-        function () {
+              <p class="invitation-text">
+                يسر
+              </p>
 
-          loader.classList.add("hide");
+              <p class="doctor-name">
+                د. هدى مدحت
+              </p>
 
-        },
-        1500
-      );
+              <p class="invitation-text">
+                دعوتكم لحضور حفل حنة
+              </p>
 
-    }
-  );
+              <div class="couple-names">
+                <span>أحمد</span>
+                <small>&amp;</small>
+                <span>شهد</span>
+              </div>
 
+              <div class="divider floral-divider">
+                <span></span>
+                <b>❦</b>
+                <span></span>
+              </div>
 
-  /* =========================================================
-     ENVELOPE OPENING
-  ========================================================= */
 
-  var opened = false;
+              <!-- Event details -->
 
+              <div class="details-title">
+                تفاصيل الحفل
+              </div>
 
-  openButton.addEventListener(
-    "click",
-    openEnvelope
-  );
+              <div class="details">
 
+                <div class="detail-item">
+                  <div class="detail-label">التاريخ</div>
+                  <div class="detail-value">
+                    20 . 8 . 2026
+                  </div>
+                </div>
 
-  function openEnvelope() {
+                <div class="detail-item">
+                  <div class="detail-label">الوقت</div>
+                  <div class="detail-value">
+                    الساعة 9 عقب صلاة العشاء
+                  </div>
+                </div>
 
-    if (opened) {
-      return;
-    }
+                <div class="detail-item">
+                  <div class="detail-label">المكان</div>
+                  <div class="detail-value">
+                    منزل د. محمد فوزي رياض
+                  </div>
+                </div>
 
-    opened = true;
+              </div>
 
-    openButton.disabled = true;
 
-    openButton.style.pointerEvents =
-      "none";
+              <div class="divider floral-divider bottom-divider">
+                <span></span>
+                <b>❦</b>
+                <span></span>
+              </div>
 
-    clickHint.style.opacity = "0";
 
+              <!-- RSVP -->
 
-    /* STEP 1 — FLAP */
-    envelopeStage.classList.add(
-      "opened"
-    );
+              <div class="rsvp-section">
 
+                <div class="rsvp-title">
+                  تأكيد الحضور
+                </div>
 
-    /* STEP 2 — PAPER VISIBLE */
-    setTimeout(
-      function () {
+                <div class="rsvp-buttons">
 
-        envelopeStage.classList.add(
-          "paper-visible"
-        );
+                  <button
+                    type="button"
+                    id="attendBtn"
+                    class="rsvp-btn"
+                  >
+                    سأحضر
+                  </button>
 
-      },
-      650
-    );
+                  <button
+                    type="button"
+                    id="declineBtn"
+                    class="rsvp-btn"
+                  >
+                    أعتذر عن الحضور
+                  </button>
 
+                </div>
 
-    /* STEP 3 — PAPER OUT */
-    setTimeout(
-      function () {
 
-        envelopeStage.classList.add(
-          "paper-out"
-        );
+                <div
+                  id="guests"
+                  class="guests"
+                >
 
-      },
-      1450
-    );
+                  <label for="guestCount">
+                    عدد المرافقين
+                  </label>
 
+                  <select id="guestCount">
+                    <option value="0">بدون مرافق</option>
+                    <option value="1">مرافق واحد</option>
+                    <option value="2">مرافقان</option>
+                    <option value="3">3 مرافقين</option>
+                    <option value="4">4 مرافقين</option>
+                  </select>
 
-    /* STEP 4 — TRANSITION */
-    setTimeout(
-      function () {
+                </div>
 
-        envelopeStage.classList.add(
-          "transitioning"
-        );
+              </div>
 
-      },
-      2050
-    );
 
+              <button
+                type="button"
+                id="locationBtn"
+                class="location-btn"
+              >
+                الموقع
+              </button>
 
-    /* STEP 5 — SHOW INVITATION */
-    setTimeout(
-      function () {
+            </div>
 
-        app.classList.add(
-          "show-invitation"
-        );
+          </div>
 
-      },
-      2600
-    );
+        </div>
 
+      </div>
 
-    /* STEP 6 — FADE ENVELOPE */
-    setTimeout(
-      function () {
 
-        envelopeStage.classList.add(
-          "finished"
-        );
+      <!-- =====================================================
+           ENVELOPE
+      ====================================================== -->
 
-        startCountdown();
+      <div id="envelope" class="envelope">
 
-      },
-      3650
-    );
+        <!-- Back -->
+        <div class="envelope-back"></div>
 
-  }
+        <!-- Paper opening area -->
+        <div class="envelope-pocket"></div>
 
+        <!-- Front -->
+        <div class="envelope-front"></div>
 
-  /* =========================================================
-     LOCATION
-  ========================================================= */
+        <!-- Flap -->
+        <div id="flap" class="envelope-flap"></div>
 
-  locationButton.addEventListener(
-    "click",
-    function (event) {
 
-      event.preventDefault();
+        <!-- Seal -->
+        <button
+          type="button"
+          id="openButton"
+          class="seal"
+          aria-label="فتح الدعوة"
+        >
+          <span>AS</span>
+        </button>
 
-      /*
-        ضعِي رابط Google Maps هنا لاحقًا
-      */
+      </div>
 
-      var mapUrl =
-        "https://maps.google.com/";
+    </section>
 
-      window.open(
-        mapUrl,
-        "_blank",
-        "noopener"
-      );
+  </main>
 
-    }
-  );
 
+  <script src="script.js"></script>
 
-  /* =========================================================
-     RSVP
-  ========================================================= */
-
-  attendButton.addEventListener(
-    "click",
-    function () {
-
-      attendButton.classList.add(
-        "selected"
-      );
-
-      declineButton.classList.remove(
-        "selected"
-      );
-
-      guests.classList.add(
-        "show"
-      );
-
-    }
-  );
-
-
-  declineButton.addEventListener(
-    "click",
-    function () {
-
-      declineButton.classList.add(
-        "selected"
-      );
-
-      attendButton.classList.remove(
-        "selected"
-      );
-
-      guests.classList.remove(
-        "show"
-      );
-
-    }
-  );
-
-
-  /* =========================================================
-     COUNTDOWN
-  ========================================================= */
-
-  var days =
-    document.getElementById("days");
-
-  var hours =
-    document.getElementById("hours");
-
-  var minutes =
-    document.getElementById("minutes");
-
-
-  function pad(value) {
-
-    return String(value)
-      .padStart(2, "0");
-
-  }
-
-
-  function updateCountdown() {
-
-    var now =
-      new Date();
-
-    var difference =
-      EVENT_DATE.getTime() -
-      now.getTime();
-
-
-    if (difference <= 0) {
-
-      days.textContent = "00";
-      hours.textContent = "00";
-      minutes.textContent = "00";
-
-      return;
-
-    }
-
-
-    var totalSeconds =
-      Math.floor(
-        difference / 1000
-      );
-
-
-    var d =
-      Math.floor(
-        totalSeconds / 86400
-      );
-
-
-    var h =
-      Math.floor(
-        (totalSeconds % 86400) / 3600
-      );
-
-
-    var m =
-      Math.floor(
-        (totalSeconds % 3600) / 60
-      );
-
-
-    days.textContent =
-      pad(d);
-
-    hours.textContent =
-      pad(h);
-
-    minutes.textContent =
-      pad(m);
-
-  }
-
-
-  var countdownStarted = false;
-
-
-  function startCountdown() {
-
-    if (countdownStarted) {
-      return;
-    }
-
-    countdownStarted = true;
-
-    updateCountdown();
-
-    setInterval(
-      updateCountdown,
-      1000
-    );
-
-  }
-
-
-})();
+</body>
+</html>
