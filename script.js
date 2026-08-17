@@ -71,9 +71,14 @@ window.addEventListener("load", () => {
       loader.classList.add("hide");
     }
 
+    if (app) {
+      app.classList.add("loaded");
+    }
+
   }, 1500);
 
 });
+
 
 
 /* =========================================================
