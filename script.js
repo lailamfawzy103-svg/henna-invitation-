@@ -485,7 +485,6 @@ async function submitRSVP() {
 
 }
 
-
 /* =========================================================
    ATTEND BUTTON
 ========================================================= */
@@ -493,13 +492,16 @@ async function submitRSVP() {
 if (
   attendBtn &&
   declineBtn &&
-  guests &&
-  rsvpSubmit
+  guests
 ) {
+
+  /* =======================================================
+     ATTEND
+  ======================================================= */
 
   attendBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
       attendanceChoice =
         "سأحضر";
@@ -519,22 +521,17 @@ if (
         "show"
       );
 
-
-      rsvpSubmit.classList.add(
-        "show"
-      );
-
     }
   );
 
 
   /* =======================================================
-     DECLINE BUTTON
+     DECLINE
   ======================================================= */
 
   declineBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
       attendanceChoice =
         "أعتذر عن الحضور";
@@ -554,22 +551,21 @@ if (
         "show"
       );
 
-
-      rsvpSubmit.classList.add(
-        "show"
-      );
-
     }
   );
 
+}
 
-  /* =======================================================
-     RSVP SEND BUTTON
-  ======================================================= */
+
+/* =========================================================
+   RSVP SEND BUTTON
+========================================================= */
+
+if (rsvpSubmit) {
 
   rsvpSubmit.addEventListener(
     "click",
-    async () => {
+    async function () {
 
       await submitRSVP();
 
