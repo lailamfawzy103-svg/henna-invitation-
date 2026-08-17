@@ -61,7 +61,9 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
 
-    loader.classList.add("hide");
+    if (loader) {
+      loader.classList.add("hide");
+    }
 
   }, 1500);
 
@@ -170,88 +172,116 @@ setInterval(
 let opened = false;
 
 
-openButton.addEventListener(
-  "click",
-  () => {
+if (openButton) {
 
-    if (opened) {
-      return;
+  openButton.addEventListener(
+    "click",
+    () => {
+
+      if (opened) {
+        return;
+      }
+
+      opened = true;
+
+
+      if (clickHint) {
+        clickHint.style.opacity = "0";
+      }
+
+
+      if (envelope) {
+        envelope.style.transform =
+          "translate(-50%, -50%)";
+      }
+
+
+      if (envelopeStage) {
+
+        envelopeStage.classList.add(
+          "opened"
+        );
+
+
+        setTimeout(() => {
+
+          envelopeStage.classList.add(
+            "paper-visible"
+          );
+
+        }, 1950);
+
+
+        setTimeout(() => {
+
+          envelopeStage.classList.add(
+            "invitation-expand"
+          );
+
+        }, 2050);
+
+
+        setTimeout(() => {
+
+          envelopeStage.classList.add(
+            "sparkle"
+          );
+
+        }, 2250);
+
+      }
+
+
+      setTimeout(() => {
+
+        if (app) {
+
+          app.classList.add(
+            "show-invitation"
+          );
+
+        }
+
+      }, 3900);
+
+
+      setTimeout(() => {
+
+        if (envelopeStage) {
+
+          envelopeStage.classList.add(
+            "envelope-hide"
+          );
+
+        }
+
+      }, 4050);
+
+
+      setTimeout(() => {
+
+        if (envelopeScreen) {
+
+          envelopeScreen.classList.add(
+            "completely-hidden"
+          );
+
+        }
+
+        if (envelopeStage) {
+
+          envelopeStage.classList.add(
+            "finished"
+          );
+
+        }
+
+      }, 4550);
+
     }
+  );
 
-    opened = true;
-
-
-    clickHint.style.opacity = "0";
-
-
-    envelope.style.transform =
-      "translate(-50%, -50%)";
-
-
-    envelopeStage.classList.add(
-      "opened"
-    );
-
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "paper-visible"
-      );
-
-    }, 1950);
-
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "invitation-expand"
-      );
-
-    }, 2050);
-
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "sparkle"
-      );
-
-    }, 2250);
-
-
-    setTimeout(() => {
-
-      app.classList.add(
-        "show-invitation"
-      );
-
-    }, 3900);
-
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "envelope-hide"
-      );
-
-    }, 4050);
-
-
-    setTimeout(() => {
-
-      envelopeScreen.classList.add(
-        "completely-hidden"
-      );
-
-      envelopeStage.classList.add(
-        "finished"
-      );
-
-    }, 4550);
-
-  }
-);
+}
 
 
 /* =========================================================
@@ -273,11 +303,14 @@ async function sendToGoogleSheet(data) {
       GOOGLE_SCRIPT_URL,
       {
         method: "POST",
+
         mode: "no-cors",
+
         headers: {
           "Content-Type":
             "text/plain;charset=utf-8"
         },
+
         body:
           JSON.stringify(data)
       }
@@ -295,6 +328,64 @@ async function sendToGoogleSheet(data) {
     return false;
 
   }
+
+}
+
+
+/* =========================================================
+   CONFIRM RSVP BUTTON
+   نفس شكل أزرار RSVP
+========================================================= */
+
+let confirmRSVPButton = null;
+
+
+function createConfirmButton() {
+
+  if (!guests) {
+    return;
+  }
+
+
+  if (confirmRSVPButton) {
+    return;
+  }
+
+
+  confirmRSVPButton =
+    document.createElement("button");
+
+
+  confirmRSVPButton.type =
+    "button";
+
+
+  /*
+     نفس كلاس أزرار RSVP
+     وبالتالي نفس الشكل والتصميم
+  */
+
+  confirmRSVPButton.className =
+    "rsvp-btn attend";
+
+
+  confirmRSVPButton.textContent =
+    "تأكيد الحضور";
+
+
+  guests.appendChild(
+    confirmRSVPButton
+  );
+
+
+  confirmRSVPButton.addEventListener(
+    "click",
+    async () => {
+
+      await submitRSVP();
+
+    }
+  );
 
 }
 
@@ -341,15 +432,51 @@ async function submitRSVP() {
   let numberOfGuests = 0;
 
 
+  /*
+     مهم جدًا:
+     نقرأ القيمة من input مباشرة
+     ونحولها إلى Number
+  */
+
   if (
     attendanceChoice === "سأحضر"
   ) {
 
-    numberOfGuests =
+    if (
       guestCount &&
       guestCount.value !== ""
-        ? Number(guestCount.value)
-        : 0;
+    ) {
+
+      numberOfGuests =
+        Number(
+          guestCount.value
+        );
+
+    } else {
+
+      numberOfGuests = 0;
+
+    }
+
+
+    if (
+      Number.isNaN(
+        numberOfGuests
+      )
+    ) {
+
+      numberOfGuests = 0;
+
+    }
+
+
+    if (
+      numberOfGuests < 0
+    ) {
+
+      numberOfGuests = 0;
+
+    }
 
   }
 
@@ -371,8 +498,27 @@ async function submitRSVP() {
   };
 
 
+  console.log(
+    "RSVP DATA:",
+    data
+  );
+
+
+  if (confirmRSVPButton) {
+
+    confirmRSVPButton.disabled =
+      true;
+
+    confirmRSVPButton.textContent =
+      "جارِ التسجيل...";
+
+  }
+
+
   const success =
-    await sendToGoogleSheet(data);
+    await sendToGoogleSheet(
+      data
+    );
 
 
   if (success) {
@@ -381,11 +527,30 @@ async function submitRSVP() {
       "تم تسجيل ردك بنجاح ❤️"
     );
 
+
+    if (confirmRSVPButton) {
+
+      confirmRSVPButton.textContent =
+        "تم التسجيل ✓";
+
+    }
+
   } else {
 
     alert(
       "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
     );
+
+
+    if (confirmRSVPButton) {
+
+      confirmRSVPButton.disabled =
+        false;
+
+      confirmRSVPButton.textContent =
+        "تأكيد الحضور";
+
+    }
 
   }
 
@@ -402,9 +567,14 @@ if (
   guests
 ) {
 
+
+  /* =======================================================
+     سأحضر
+  ======================================================= */
+
   attendBtn.addEventListener(
     "click",
-    async () => {
+    () => {
 
       attendanceChoice =
         "سأحضر";
@@ -414,20 +584,31 @@ if (
         "selected"
       );
 
+
       declineBtn.classList.remove(
         "selected"
       );
+
 
       guests.classList.add(
         "show"
       );
 
 
-      await submitRSVP();
+      /*
+         إنشاء زر التأكيد
+         وعدم الإرسال هنا
+      */
+
+      createConfirmButton();
 
     }
   );
 
+
+  /* =======================================================
+     أعتذر عن الحضور
+  ======================================================= */
 
   declineBtn.addEventListener(
     "click",
@@ -441,14 +622,34 @@ if (
         "selected"
       );
 
+
       attendBtn.classList.remove(
         "selected"
       );
+
 
       guests.classList.remove(
         "show"
       );
 
+
+      /*
+         لو كان زر التأكيد موجودًا
+         نخفيه ونرجع حالته
+      */
+
+      if (confirmRSVPButton) {
+
+        confirmRSVPButton.remove();
+
+        confirmRSVPButton = null;
+
+      }
+
+
+      /*
+         الاعتذار يتسجل مباشرة
+      */
 
       await submitRSVP();
 
@@ -459,7 +660,7 @@ if (
 
 
 /* =========================================================
-   GUEST WISHES BUTTON
+   GUEST WISHES
 ========================================================= */
 
 if (
@@ -498,9 +699,9 @@ if (
     );
 
 
-    /* ================================================
+    /* =====================================================
        SEND WISH
-    ================================================= */
+    ===================================================== */
 
     wishButton.addEventListener(
       "click",
@@ -508,6 +709,7 @@ if (
 
         const name =
           wishName.value.trim();
+
 
         const message =
           wishText.value.trim();
@@ -561,6 +763,12 @@ if (
         };
 
 
+        console.log(
+          "WISH DATA:",
+          data
+        );
+
+
         const success =
           await sendToGoogleSheet(
             data
@@ -583,7 +791,6 @@ if (
 
           wishButton.textContent =
             "تم الإرسال ✓";
-
 
         } else {
 
@@ -619,7 +826,10 @@ const desktopPointer =
   );
 
 
-if (desktopPointer.matches) {
+if (
+  desktopPointer.matches &&
+  envelope
+) {
 
   document.addEventListener(
     "mousemove",
@@ -681,6 +891,7 @@ document.addEventListener(
       event.preventDefault();
 
     }
+
 
     lastTouchEnd = now;
 
