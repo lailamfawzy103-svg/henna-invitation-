@@ -32,6 +32,26 @@ const declineBtn =
 const guests =
   document.getElementById("guests");
 
+const guestName =
+  document.getElementById("guestName");
+
+const guestCount =
+  document.getElementById("guestCount");
+
+const wishName =
+  document.getElementById("wishName");
+
+const wishText =
+  document.getElementById("wishText");
+
+
+/* =========================================================
+   GOOGLE APPS SCRIPT
+========================================================= */
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyBlHtGBJ6dsGTaM45BwJ2BytrsHmS8iH204o8RPvugQ5gs6AxJlWQ8d_1rDzpZ7jTn2w/exec";
+
 
 /* =========================================================
    LOADER
@@ -186,15 +206,8 @@ openButton.addEventListener(
     );
 
 
-    /*
-      مدة فتح الظرف:
-      حوالي 1.9 ثانية
-    */
-
-
     /* ================================================
        STEP 2
-       بعد ما الظرف يفتح بالكامل
        الورقة تصبح أمام الطبقات
     ================================================= */
 
@@ -210,7 +223,6 @@ openButton.addEventListener(
     /* ================================================
        STEP 3
        الورقة تبدأ تقرب
-       بعد انتهاء فتح الظرف
     ================================================= */
 
     setTimeout(() => {
@@ -224,7 +236,7 @@ openButton.addEventListener(
 
     /* ================================================
        STEP 4
-       لمعة خفيفة أثناء اقتراب الورقة
+       لمعة خفيفة
     ================================================= */
 
     setTimeout(() => {
@@ -238,8 +250,7 @@ openButton.addEventListener(
 
     /* ================================================
        STEP 5
-       بعد انتهاء حركة الورقة
-       نظهر الـInvitation
+       إظهار الـInvitation
     ================================================= */
 
     setTimeout(() => {
@@ -253,7 +264,7 @@ openButton.addEventListener(
 
     /* ================================================
        STEP 6
-       إخفاء الظرف بعد ظهور الـInvitation
+       إخفاء الظرف
     ================================================= */
 
     setTimeout(() => {
@@ -290,11 +301,149 @@ openButton.addEventListener(
    RSVP
 ========================================================= */
 
-if (attendBtn && declineBtn && guests) {
+let attendanceChoice = "";
+
+
+/* =========================================================
+   SEND DATA TO GOOGLE SHEET
+========================================================= */
+
+async function sendToGoogleSheet(data) {
+
+  try {
+
+    await fetch(
+      GOOGLE_SCRIPT_URL,
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Google Sheet Error:",
+      error
+    );
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================================
+   RSVP SUBMIT
+========================================================= */
+
+async function submitRSVP() {
+
+  if (!guestName) {
+    return;
+  }
+
+
+  const name =
+    guestName.value.trim();
+
+
+  if (!name) {
+
+    alert("من فضلك اكتبي الاسم أولًا.");
+
+    guestName.focus();
+
+    return;
+
+  }
+
+
+  if (!attendanceChoice) {
+
+    alert("من فضلك اختاري الحضور أو الاعتذار.");
+
+    return;
+
+  }
+
+
+  let numberOfGuests = 0;
+
+
+  if (
+    attendanceChoice === "سأحضر"
+  ) {
+
+    numberOfGuests =
+      guestCount &&
+      guestCount.value !== ""
+        ? Number(guestCount.value)
+        : 0;
+
+  }
+
+
+  const data = {
+
+    type: "rsvp",
+
+    name: name,
+
+    attendance:
+      attendanceChoice,
+
+    guests:
+      numberOfGuests
+
+  };
+
+
+  const success =
+    await sendToGoogleSheet(data);
+
+
+  if (success) {
+
+    alert(
+      "تم تسجيل ردك بنجاح ❤️"
+    );
+
+  } else {
+
+    alert(
+      "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ATTEND BUTTON
+========================================================= */
+
+if (
+  attendBtn &&
+  declineBtn &&
+  guests
+) {
 
   attendBtn.addEventListener(
     "click",
-    () => {
+    async () => {
+
+      attendanceChoice =
+        "سأحضر";
+
 
       attendBtn.classList.add(
         "selected"
@@ -308,13 +457,20 @@ if (attendBtn && declineBtn && guests) {
         "show"
       );
 
+
+      await submitRSVP();
+
     }
   );
 
 
   declineBtn.addEventListener(
     "click",
-    () => {
+    async () => {
+
+      attendanceChoice =
+        "أعتذر عن الحضور";
+
 
       declineBtn.classList.add(
         "selected"
@@ -328,8 +484,155 @@ if (attendBtn && declineBtn && guests) {
         "show"
       );
 
+
+      await submitRSVP();
+
     }
   );
+
+}
+
+
+/* =========================================================
+   GUEST WISHES BUTTON
+========================================================= */
+
+if (
+  wishName &&
+  wishText
+) {
+
+  const wishesSection =
+    document.querySelector(
+      ".wishes-section"
+    );
+
+
+  if (wishesSection) {
+
+    const wishButton =
+      document.createElement("button");
+
+
+    wishButton.type =
+      "button";
+
+
+    wishButton.className =
+      "wish-submit";
+
+
+    wishButton.textContent =
+      "إرسال الأمنية";
+
+
+    wishesSection.appendChild(
+      wishButton
+    );
+
+
+    /* ================================================
+       SEND WISH
+    ================================================= */
+
+    wishButton.addEventListener(
+      "click",
+      async () => {
+
+        const name =
+          wishName.value.trim();
+
+        const message =
+          wishText.value.trim();
+
+
+        if (!name) {
+
+          alert(
+            "من فضلك اكتبي الاسم أولًا."
+          );
+
+          wishName.focus();
+
+          return;
+
+        }
+
+
+        if (!message) {
+
+          alert(
+            "من فضلك اكتبي الأمنية."
+          );
+
+          wishText.focus();
+
+          return;
+
+        }
+
+
+        wishButton.disabled =
+          true;
+
+
+        wishButton.textContent =
+          "جارِ الإرسال...";
+
+
+        const data = {
+
+          type: "wish",
+
+          name: name,
+
+          message: message
+
+        };
+
+
+        const success =
+          await sendToGoogleSheet(data);
+
+
+        if (success) {
+
+          alert(
+            "تم إرسال أمنيتك ❤️"
+          );
+
+
+          wishName.value =
+            "";
+
+          wishText.value =
+            "";
+
+
+          wishButton.textContent =
+            "تم الإرسال ✓";
+
+
+        } else {
+
+          alert(
+            "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
+          );
+
+
+          wishButton.disabled =
+            false;
+
+
+          wishButton.textContent =
+            "إرسال الأمنية";
+
+        }
+
+      }
+    );
+
+  }
 
 }
 
