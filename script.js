@@ -181,35 +181,17 @@ openButton.addEventListener(
     opened = true;
 
 
-    /* ================================================
-       HIDE HINT
-    ================================================= */
-
     clickHint.style.opacity = "0";
 
-
-    /* ================================================
-       STOP PARALLAX
-    ================================================= */
 
     envelope.style.transform =
       "translate(-50%, -50%)";
 
 
-    /* ================================================
-       STEP 1
-       فتح الأربع جوانب
-    ================================================= */
-
     envelopeStage.classList.add(
       "opened"
     );
 
-
-    /* ================================================
-       STEP 2
-       الورقة تصبح أمام الطبقات
-    ================================================= */
 
     setTimeout(() => {
 
@@ -220,11 +202,6 @@ openButton.addEventListener(
     }, 1950);
 
 
-    /* ================================================
-       STEP 3
-       الورقة تبدأ تقرب
-    ================================================= */
-
     setTimeout(() => {
 
       envelopeStage.classList.add(
@@ -233,11 +210,6 @@ openButton.addEventListener(
 
     }, 2050);
 
-
-    /* ================================================
-       STEP 4
-       لمعة خفيفة
-    ================================================= */
 
     setTimeout(() => {
 
@@ -248,11 +220,6 @@ openButton.addEventListener(
     }, 2250);
 
 
-    /* ================================================
-       STEP 5
-       إظهار الـInvitation
-    ================================================= */
-
     setTimeout(() => {
 
       app.classList.add(
@@ -262,11 +229,6 @@ openButton.addEventListener(
     }, 3900);
 
 
-    /* ================================================
-       STEP 6
-       إخفاء الظرف
-    ================================================= */
-
     setTimeout(() => {
 
       envelopeStage.classList.add(
@@ -275,11 +237,6 @@ openButton.addEventListener(
 
     }, 4050);
 
-
-    /* ================================================
-       STEP 7
-       إخفاء شاشة الظرف
-    ================================================= */
 
     setTimeout(() => {
 
@@ -318,9 +275,11 @@ async function sendToGoogleSheet(data) {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8"
+          "Content-Type":
+            "text/plain;charset=utf-8"
         },
-        body: JSON.stringify(data)
+        body:
+          JSON.stringify(data)
       }
     );
 
@@ -357,7 +316,9 @@ async function submitRSVP() {
 
   if (!name) {
 
-    alert("من فضلك اكتبي الاسم أولًا.");
+    alert(
+      "من فضلك اكتبي الاسم أولًا."
+    );
 
     guestName.focus();
 
@@ -368,7 +329,9 @@ async function submitRSVP() {
 
   if (!attendanceChoice) {
 
-    alert("من فضلك اختاري الحضور أو الاعتذار.");
+    alert(
+      "من فضلك اختاري الحضور أو الاعتذار."
+    );
 
     return;
 
@@ -393,9 +356,11 @@ async function submitRSVP() {
 
   const data = {
 
-    type: "rsvp",
+    type:
+      "rsvp",
 
-    name: name,
+    name:
+      name,
 
     attendance:
       attendanceChoice,
@@ -511,7 +476,9 @@ if (
   if (wishesSection) {
 
     const wishButton =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
 
     wishButton.type =
@@ -523,7 +490,7 @@ if (
 
 
     wishButton.textContent =
-      "إرسال الأمنية";
+      "إرسال";
 
 
     wishesSection.appendChild(
@@ -582,17 +549,22 @@ if (
 
         const data = {
 
-          type: "wish",
+          type:
+            "wish",
 
-          name: name,
+          name:
+            name,
 
-          message: message
+          message:
+            message
 
         };
 
 
         const success =
-          await sendToGoogleSheet(data);
+          await sendToGoogleSheet(
+            data
+          );
 
 
         if (success) {
@@ -625,7 +597,7 @@ if (
 
 
           wishButton.textContent =
-            "إرسال الأمنية";
+            "إرسال";
 
         }
 
