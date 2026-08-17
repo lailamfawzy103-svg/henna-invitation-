@@ -79,7 +79,9 @@ body {
 }
 
 .loader-monogram {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size:
     clamp(45px, 11vw, 80px);
@@ -109,7 +111,9 @@ body {
 }
 
 .loader-names {
-  font-family: "Cinzel", serif;
+  font-family:
+    "Cinzel",
+    serif;
 
   font-size: 10px;
 
@@ -119,7 +123,6 @@ body {
 }
 
 @keyframes loaderAppear {
-
   from {
     opacity: 0;
     transform: scale(.9);
@@ -132,7 +135,6 @@ body {
 }
 
 @keyframes lineAppear {
-
   from {
     transform: scaleX(0);
   }
@@ -468,7 +470,6 @@ body {
 .flap-surface::before,
 .envelope-panel::before,
 .envelope-bottom::before {
-
   content: "";
 
   position: absolute;
@@ -501,7 +502,6 @@ body {
 ========================================================= */
 
 .envelope-panel {
-
   position: absolute;
 
   top: 0;
@@ -563,7 +563,6 @@ body {
 ========================================================= */
 
 .envelope-bottom {
-
   position: absolute;
 
   left: 0;
@@ -611,7 +610,6 @@ body {
 ========================================================= */
 
 .flap {
-
   position: absolute;
 
   top: 0;
@@ -637,7 +635,6 @@ body {
 }
 
 .flap-surface {
-
   position: absolute;
   inset: 0;
 
@@ -663,7 +660,6 @@ body {
 }
 
 .flap-highlight {
-
   position: absolute;
   inset: 0;
 
@@ -683,7 +679,6 @@ body {
 ========================================================= */
 
 .seal {
-
   position: absolute;
 
   left: 50%;
@@ -729,7 +724,6 @@ body {
 }
 
 .seal:hover {
-
   transform:
     translate(-50%, -50%)
     scale(1.04);
@@ -739,7 +733,6 @@ body {
 }
 
 .seal-inner {
-
   width: 76%;
   height: 76%;
 
@@ -785,7 +778,6 @@ body {
 .envelope-stage.opened .envelope-left,
 .envelope-stage.opened .envelope-right,
 .envelope-stage.opened .envelope-bottom {
-
   transition-delay:
     .28s;
 }
@@ -811,7 +803,6 @@ body {
 ========================================================= */
 
 .envelope-stage.opened .paper-wrapper {
-
   width:
     min(87vw, 610px);
 
@@ -832,7 +823,6 @@ body {
 ========================================================= */
 
 .paper-wrapper::before {
-
   content: "";
 
   position: absolute;
@@ -871,7 +861,6 @@ body {
 }
 
 .paper-wrapper::after {
-
   content: "";
 
   position: absolute;
@@ -907,20 +896,17 @@ body {
 
 .envelope-stage.sparkle
 .paper-wrapper::before {
-
   animation:
     invitationFlash .65s ease-out forwards;
 }
 
 .envelope-stage.sparkle
 .paper-wrapper::after {
-
   animation:
     sparkleRay .65s ease-out forwards;
 }
 
 @keyframes invitationFlash {
-
   0% {
     opacity: 0;
 
@@ -955,7 +941,6 @@ body {
 }
 
 @keyframes sparkleRay {
-
   0% {
     opacity: 0;
 
@@ -991,7 +976,6 @@ body {
 
 .envelope-stage.invitation-expand
 .paper-wrapper {
-
   width:
     min(87vw, 610px);
 
@@ -1018,7 +1002,6 @@ body {
 ========================================================= */
 
 .invitation-page {
-
   position: absolute;
 
   left: 0;
@@ -1055,7 +1038,6 @@ body {
 
 .app.show-invitation
 .invitation-page {
-
   opacity: 1;
 
   visibility: visible;
@@ -1072,7 +1054,6 @@ body {
 ========================================================= */
 
 .invitation-background {
-
   position: absolute;
 
   inset: 0;
@@ -1095,7 +1076,6 @@ body {
 ========================================================= */
 
 .invitation-card {
-
   position: relative;
 
   width:
@@ -1125,7 +1105,6 @@ body {
 }
 
 .invitation-card::before {
-
   content: "";
 
   position: absolute;
@@ -1155,11 +1134,10 @@ body {
 
 
 /* =========================================================
-   FRAME — MODERN / QUIET
+   FRAME
 ========================================================= */
 
 .invitation-frame {
-
   position: absolute;
 
   inset: 16px;
@@ -1174,7 +1152,6 @@ body {
 
 .invitation-frame::before,
 .invitation-frame::after {
-
   content: "";
 
   position: absolute;
@@ -1191,7 +1168,6 @@ body {
 }
 
 .invitation-frame::before {
-
   top: -1px;
   left: -1px;
 
@@ -1200,7 +1176,6 @@ body {
 }
 
 .invitation-frame::after {
-
   bottom: -1px;
   right: -1px;
 
@@ -1209,7 +1184,6 @@ body {
 }
 
 .invitation-inner-frame {
-
   position: absolute;
 
   inset: 5px;
@@ -1226,7 +1200,6 @@ body {
 ========================================================= */
 
 .invitation-content {
-
   position: relative;
 
   z-index: 2;
@@ -1246,11 +1219,10 @@ body {
 
 
 /* =========================================================
-   SECTION INTRO TEXT
+   TEXT
 ========================================================= */
 
 .section-kicker {
-
   font-family:
     "Noto Naskh Arabic",
     serif;
@@ -1258,38 +1230,90 @@ body {
   font-size:
     clamp(13px, 2.8vw, 16px);
 
-  color: #927453;
+  color: #806044;
 
   margin-bottom: 7px;
 
   letter-spacing: .02em;
 }
 
-.quran-section {
-  width: 100%;
-  margin-top: 2px;
+
+/* =========================================================
+   BISMILLAH + QURAN AYAH
+========================================================= */
+
+.bismillah {
+  margin-bottom: 10px;
+
+  font-family:
+    "Aref Ruqaa Ink",
+    serif;
+
+  font-size:
+    clamp(21px, 5vw, 29px);
+
+  line-height: 1.7;
+
+  color: #604832 !important;
+
+  direction: rtl;
+
+  text-align: center;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-text-fill-color: #604832 !important;
 }
 
 .quran-ayah {
-
   max-width: 410px;
 
   margin: 0 auto;
+
+  font-family:
+    "Aref Ruqaa Ink",
+    serif;
 
   font-size:
     clamp(16px, 3.7vw, 20px);
 
   line-height: 2;
 
-  color: #5e4734;
+  color: #604832 !important;
+
+  direction: rtl;
+
+  text-align: center;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-text-fill-color: #604832 !important;
 }
+
+
+/* =========================================================
+   FORCE SAME BROWN ON QURAN ONLY
+========================================================= */
+
+.quran-section .bismillah,
+.quran-section .quran-ayah,
+.quran-section .bismillah *,
+.quran-section .quran-ayah * {
+  color: #604832 !important;
+  -webkit-text-fill-color: #604832 !important;
+  text-decoration-color: #604832 !important;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
 
 .intro-section {
   width: 100%;
 }
 
 .invitation-line {
-
   margin-top: 12px;
 
   font-size:
@@ -1300,18 +1324,12 @@ body {
   color: #73563e;
 }
 
-.invitation-subtitle {
 
-  margin-top: 8px;
-
-  font-size:
-    clamp(13px, 2.8vw, 17px);
-
-  color: #72563e;
-}
+/* =========================================================
+   NAMES
+========================================================= */
 
 .names {
-
   display: flex;
 
   align-items: center;
@@ -1325,10 +1343,20 @@ body {
     clamp(36px, 8vw, 50px);
 
   color: #5a402c;
+
+  font-family:
+    "Noto Nastaliq Urdu",
+    serif;
+
+  font-weight: 500;
+
+  transform:
+    skewX(-4deg);
+
+  line-height: 1.35;
 }
 
 .names i {
-
   font-family:
     "Cormorant Garamond",
     serif;
@@ -1342,11 +1370,10 @@ body {
 
 
 /* =========================================================
-   MODERN DIVIDER
+   DIVIDER
 ========================================================= */
 
 .modern-divider {
-
   width: 68%;
 
   display: flex;
@@ -1362,7 +1389,6 @@ body {
 }
 
 .modern-divider span {
-
   flex: 1;
 
   height: 1px;
@@ -1377,7 +1403,6 @@ body {
 }
 
 .modern-divider span:last-child {
-
   background:
     linear-gradient(
       90deg,
@@ -1388,7 +1413,6 @@ body {
 }
 
 .modern-divider b {
-
   width: 14px;
   height: 14px;
 
@@ -1407,20 +1431,19 @@ body {
 
   color: #a88963;
 
-  transform: rotate(45deg);
+  transform:
+    rotate(45deg);
 
   opacity: .78;
 }
 
 .modern-divider.soft {
-
   width: 55%;
 
   margin-top: 24px;
 }
 
 .modern-divider.soft b {
-
   font-size: 10px;
 
   opacity: .6;
@@ -1433,11 +1456,11 @@ body {
 
 .details-section {
   width: 100%;
+
   margin-top: 20px;
 }
 
 .date {
-
   margin-top: 5px;
 
   font-family:
@@ -1455,7 +1478,6 @@ body {
 }
 
 .time {
-
   margin-top: 6px;
 
   font-size:
@@ -1465,7 +1487,6 @@ body {
 }
 
 .location {
-
   margin-top: 12px;
 
   line-height: 1.7;
@@ -1475,14 +1496,12 @@ body {
 }
 
 .location-name {
-
   font-weight: 600;
 
   color: #5c432f;
 }
 
 .location-button {
-
   margin-top: 7px;
 
   border:
@@ -1512,7 +1531,6 @@ body {
 }
 
 .location-button:active {
-
   transform:
     scale(.97);
 }
@@ -1523,14 +1541,12 @@ body {
 ========================================================= */
 
 .countdown-section {
-
   width: 100%;
 
   margin-top: 28px;
 }
 
 .countdown {
-
   width: 82%;
 
   margin: 14px auto 0;
@@ -1546,7 +1562,6 @@ body {
 }
 
 .count-item {
-
   min-width: 65px;
 
   display: flex;
@@ -1558,7 +1573,6 @@ body {
 }
 
 .count-item span {
-
   font-family:
     "Cinzel",
     serif;
@@ -1574,7 +1588,6 @@ body {
 }
 
 .count-item small {
-
   margin-top: 7px;
 
   font-family:
@@ -1588,16 +1601,22 @@ body {
   direction: rtl;
 }
 
-.count-divider {
 
+/* =========================================================
+   COUNTDOWN STRAIGHT DIVIDERS
+========================================================= */
+
+.count-divider {
   width: 1px;
 
-  height: 28px;
+  height: 32px;
 
   background:
-    rgba(155,119,77,.35);
+    rgba(155,119,77,.38);
 
-  transform: rotate(15deg);
+  transform: none;
+
+  flex-shrink: 0;
 }
 
 
@@ -1606,7 +1625,6 @@ body {
 ========================================================= */
 
 .reveal-item {
-
   opacity: 0;
 
   transform:
@@ -1623,7 +1641,6 @@ body {
 
 .app.show-invitation
 .reveal-item {
-
   opacity: 1;
 
   transform:
@@ -1684,19 +1701,16 @@ body {
 ========================================================= */
 
 .rsvp-section {
-
   width: 100%;
 
   margin-top: 38px;
 
   padding-top: 18px;
 
-  border-top:
-    1px solid rgba(155,119,77,.20);
+  border-top: none;
 }
 
 .rsvp-title {
-
   font-family:
     "Noto Naskh Arabic",
     serif;
@@ -1709,7 +1723,6 @@ body {
 }
 
 .form-group {
-
   width: 88%;
 
   margin:
@@ -1725,7 +1738,6 @@ body {
 }
 
 .form-group label {
-
   margin-bottom: 5px;
 
   font-size: 12px;
@@ -1735,7 +1747,6 @@ body {
 
 .form-group label em,
 .guests em {
-
   font-style: normal;
 
   font-size: 10px;
@@ -1745,7 +1756,6 @@ body {
 
 .form-group input,
 .form-group textarea {
-
   width: 100%;
 
   border:
@@ -1775,7 +1785,6 @@ body {
 }
 
 .form-group textarea {
-
   resize: vertical;
 
   min-height: 72px;
@@ -1783,7 +1792,6 @@ body {
 
 .form-group input:focus,
 .form-group textarea:focus {
-
   border-color:
     rgba(135,100,67,.65);
 
@@ -1792,7 +1800,6 @@ body {
 }
 
 .rsvp-buttons {
-
   display: flex;
 
   justify-content: center;
@@ -1803,7 +1810,6 @@ body {
 }
 
 .rsvp-btn {
-
   border:
     1px solid rgba(135,100,67,.55);
 
@@ -1831,13 +1837,11 @@ body {
 }
 
 .rsvp-btn:active {
-
   transform:
     scale(.97);
 }
 
 .rsvp-btn.selected {
-
   background:
     #d4c0a7;
 }
@@ -1848,7 +1852,6 @@ body {
 ========================================================= */
 
 .guests {
-
   display: none;
 
   align-items: center;
@@ -1868,7 +1871,6 @@ body {
 }
 
 .guests input {
-
   width: 110px;
 
   border:
@@ -1896,7 +1898,6 @@ body {
 ========================================================= */
 
 .wishes-section {
-
   width: 100%;
 
   margin-top: 34px;
@@ -1908,7 +1909,6 @@ body {
 }
 
 .wishes-title {
-
   margin-bottom: 15px;
 
   font-size: 16px;
@@ -1922,7 +1922,6 @@ body {
 ========================================================= */
 
 .final-section {
-
   width: 100%;
 
   margin-top: 35px;
@@ -1935,7 +1934,6 @@ body {
 }
 
 .final-ornament {
-
   width: 62%;
 
   display: flex;
@@ -1951,7 +1949,6 @@ body {
 }
 
 .final-ornament span {
-
   flex: 1;
 
   height: 1px;
@@ -1965,7 +1962,6 @@ body {
 }
 
 .final-ornament span:last-child {
-
   background:
     linear-gradient(
       90deg,
@@ -1975,7 +1971,6 @@ body {
 }
 
 .final-ornament b {
-
   color: #a88963;
 
   font-size: 11px;
@@ -1984,7 +1979,6 @@ body {
 }
 
 .final-text {
-
   font-size:
     clamp(14px, 3.2vw, 18px);
 
@@ -1994,7 +1988,6 @@ body {
 }
 
 .bottom-monogram {
-
   margin-top: 32px;
 
   font-family:
@@ -2014,7 +2007,6 @@ body {
 ========================================================= */
 
 .click-hint {
-
   position: absolute;
 
   left: 50%;
@@ -2037,7 +2029,6 @@ body {
 }
 
 @keyframes hintPulse {
-
   0%,
   100% {
     opacity: .4;
@@ -2054,7 +2045,6 @@ body {
 ========================================================= */
 
 .envelope-stage.envelope-hide .envelope {
-
   opacity: 0;
 
   pointer-events: none;
@@ -2064,7 +2054,6 @@ body {
 }
 
 .envelope-stage.envelope-hide .ground-shadow {
-
   opacity: 0;
 
   transform:
@@ -2079,7 +2068,6 @@ body {
 
 .envelope-stage.envelope-hide
 .paper-wrapper {
-
   opacity: 0;
 
   transition:
@@ -2092,7 +2080,6 @@ body {
 ========================================================= */
 
 .envelope-stage.finished {
-
   pointer-events: none;
 }
 
@@ -2104,7 +2091,6 @@ body {
 @media (max-width: 600px) {
 
   .envelope-stage {
-
     width: 100vw;
     height: 90dvh;
 
@@ -2116,7 +2102,6 @@ body {
   }
 
   .paper-wrapper {
-
     width: 88vw;
 
     aspect-ratio:
@@ -2129,7 +2114,6 @@ body {
 
   .envelope-stage.invitation-expand
   .paper-wrapper {
-
     width: 88vw;
 
     aspect-ratio:
@@ -2148,14 +2132,12 @@ body {
   }
 
   .invitation-page {
-
     padding:
       40px 12px
       70px;
   }
 
   .invitation-card {
-
     width: 94vw;
 
     min-height: 150vw;
@@ -2168,9 +2150,24 @@ body {
     inset: 14px;
   }
 
+  .bismillah {
+    font-size: 23px;
+
+    margin-bottom: 8px;
+
+    color: #604832 !important;
+
+    -webkit-text-fill-color: #604832 !important;
+  }
+
   .quran-ayah {
-    font-size: 15px;
-    line-height: 1.9;
+    font-size: 17px;
+
+    line-height: 2.05;
+
+    color: #604832 !important;
+
+    -webkit-text-fill-color: #604832 !important;
   }
 
   .invitation-line {
@@ -2179,6 +2176,9 @@ body {
 
   .names {
     gap: 9px;
+
+    font-size:
+      clamp(40px, 10vw, 54px);
   }
 
   .modern-divider {
@@ -2187,6 +2187,7 @@ body {
 
   .countdown {
     width: 94%;
+
     gap: 7px;
   }
 
@@ -2195,11 +2196,19 @@ body {
   }
 
   .count-divider {
-    height: 24px;
+    width: 1px;
+
+    height: 28px;
+
+    transform: none;
   }
 
   .rsvp-section {
     margin-top: 34px;
+
+    padding-top: 18px;
+
+    border-top: none;
   }
 }
 
@@ -2215,7 +2224,6 @@ body {
   }
 
   .paper-wrapper {
-
     width: 83vw;
 
     top: 52%;
@@ -2223,7 +2231,6 @@ body {
 
   .envelope-stage.invitation-expand
   .paper-wrapper {
-
     width: 83vw;
 
     aspect-ratio:
@@ -2252,6 +2259,8 @@ body {
 
   .rsvp-section {
     margin-top: 28px;
+
+    border-top: none;
   }
 }
 
@@ -2265,7 +2274,6 @@ body {
   *,
   *::before,
   *::after {
-
     animation-duration:
       .01ms !important;
 
@@ -2275,4 +2283,22 @@ body {
     transition-duration:
       .01ms !important;
   }
+}
+
+
+/* =========================================================
+   FINAL BROWN COLOR
+   ONLY FOR BISMILLAH + QURAN AYAH
+========================================================= */
+
+.bismillah,
+.quran-ayah {
+  color: #604832 !important;
+  -webkit-text-fill-color: #604832 !important;
+}
+
+.bismillah *,
+.quran-ayah * {
+  color: #604832 !important;
+  -webkit-text-fill-color: #604832 !important;
 }
