@@ -34,7 +34,7 @@ const envelope =
 
 
 /* =========================================================
-   LOADING SCREEN
+   LOADING
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -131,7 +131,6 @@ function updateCountdown() {
 
   minutesElement.textContent =
     String(minutes).padStart(2, "0");
-
 }
 
 
@@ -150,122 +149,122 @@ setInterval(
 let opened = false;
 
 
-openButton.addEventListener("click", () => {
+openButton.addEventListener(
+  "click",
+  () => {
 
-  if (opened) {
-    return;
-  }
+    if (opened) {
+      return;
+    }
 
-  opened = true;
-
-
-  /* HIDE HINT */
-
-  clickHint.style.opacity = "0";
+    opened = true;
 
 
-  /*
-    IMPORTANT:
-    أول حاجة الظرف يفتح.
-  */
+    /* HIDE HINT */
 
-  envelopeStage.classList.add(
-    "opened"
-  );
+    clickHint.style.opacity = "0";
 
 
-  /*
-    بعد ما الجوانب تبدأ تفتح،
-    الورقة تطلع من النص.
-  */
+    /* RESET PARALLAX */
 
-  setTimeout(() => {
+    envelope.style.transform =
+      "translate(-50%, -50%)";
 
-    envelopeStage.classList.add(
-      "sparkle"
-    );
-
-  }, 1450);
-
-
-  setTimeout(() => {
 
     /*
-      هنا الورقة تبدأ تطلع
-      من منتصف الظرف
+      أولاً:
+      تفتح طبقات الظرف فوق الورقة
     */
 
     envelopeStage.classList.add(
-      "opened-paper"
+      "opened"
     );
 
-  }, 900);
+
+    /*
+      SPARKLE
+    */
+
+    setTimeout(() => {
+
+      envelopeStage.classList.add(
+        "sparkle"
+      );
+
+    }, 1900);
 
 
-  /*
-    تكبير الورقة بعد خروجها
-  */
+    /*
+      الورقة تقرب للشاشة
+      بدون translateY
+    */
 
-  setTimeout(() => {
+    setTimeout(() => {
 
-    envelopeStage.classList.add(
-      "invitation-expand"
-    );
+      envelopeStage.classList.add(
+        "invitation-expand"
+      );
 
-  }, 2150);
-
-
-  /*
-    إظهار صفحة الدعوة
-  */
-
-  setTimeout(() => {
-
-    app.classList.add(
-      "show-invitation"
-    );
-
-  }, 2350);
+    }, 2150);
 
 
-  /*
-    إخفاء الظرف
-  */
+    /*
+      إظهار صفحة الدعوة
+    */
 
-  setTimeout(() => {
+    setTimeout(() => {
 
-    envelopeStage.classList.add(
-      "envelope-hide"
-    );
+      app.classList.add(
+        "show-invitation"
+      );
 
-  }, 3550);
-
-
-  /*
-    إنهاء شاشة الظرف
-  */
-
-  setTimeout(() => {
-
-    envelopeScreen.classList.add(
-      "completely-hidden"
-    );
-
-    envelopeStage.classList.add(
-      "finished"
-    );
-
-  }, 4100);
+    }, 2350);
 
 
-  setTimeout(() => {
+    /*
+      إخفاء طبقات الظرف
+      بعد ما الورقة تقرب
+    */
 
-    document.body.style.overflowY =
-      "auto";
+    setTimeout(() => {
 
-  }, 4200);
+      envelopeStage.classList.add(
+        "envelope-hide"
+      );
 
-});
+    }, 3550);
+
+
+    /*
+      إخفاء شاشة الظرف
+    */
+
+    setTimeout(() => {
+
+      envelopeScreen.classList.add(
+        "completely-hidden"
+      );
+
+      envelopeStage.classList.add(
+        "finished"
+      );
+
+    }, 4100);
+
+
+    /*
+      SCROLL
+    */
+
+    setTimeout(() => {
+
+      document.body.style.overflowY =
+        "auto";
+
+    }, 4200);
+
+  }
+);
 
 
 /* =========================================================
@@ -360,24 +359,6 @@ if (desktopPointer.matches) {
   );
 
 }
-
-
-/* =========================================================
-   RESET PARALLAX
-========================================================= */
-
-openButton.addEventListener(
-  "click",
-  () => {
-
-    envelope.style.transform =
-      "translate(-50%, -50%)";
-
-  },
-  {
-    once: true
-  }
-);
 
 
 /* =========================================================
