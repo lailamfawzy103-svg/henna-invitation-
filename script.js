@@ -1,3 +1,4 @@
+```javascript
 /* =========================================================
    ELEMENTS
 ========================================================= */
@@ -38,11 +39,17 @@ const guestName =
 const guestCount =
   document.getElementById("guestCount");
 
+const rsvpSubmit =
+  document.getElementById("rsvpSubmit");
+
 const wishName =
   document.getElementById("wishName");
 
 const wishText =
   document.getElementById("wishText");
+
+const wishSubmit =
+  document.getElementById("wishSubmit");
 
 
 /* =========================================================
@@ -191,8 +198,10 @@ if (openButton) {
 
 
       if (envelope) {
+
         envelope.style.transform =
           "translate(-50%, -50%)";
+
       }
 
 
@@ -268,6 +277,7 @@ if (openButton) {
 
         }
 
+
         if (envelopeStage) {
 
           envelopeStage.classList.add(
@@ -292,7 +302,7 @@ let attendanceChoice = "";
 
 
 /* =========================================================
-   SEND DATA TO GOOGLE SHEET
+   SEND TO GOOGLE SHEET
 ========================================================= */
 
 async function sendToGoogleSheet(data) {
@@ -333,70 +343,15 @@ async function sendToGoogleSheet(data) {
 
 
 /* =========================================================
-   CONFIRM RSVP BUTTON
-   نفس شكل أزرار RSVP
-========================================================= */
-
-let confirmRSVPButton = null;
-
-
-function createConfirmButton() {
-
-  if (!guests) {
-    return;
-  }
-
-
-  if (confirmRSVPButton) {
-    return;
-  }
-
-
-  confirmRSVPButton =
-    document.createElement("button");
-
-
-  confirmRSVPButton.type =
-    "button";
-
-
-  /*
-     نفس كلاس أزرار RSVP
-     وبالتالي نفس الشكل والتصميم
-  */
-
-  confirmRSVPButton.className =
-    "rsvp-btn attend";
-
-
-  confirmRSVPButton.textContent =
-    "تأكيد الحضور";
-
-
-  guests.appendChild(
-    confirmRSVPButton
-  );
-
-
-  confirmRSVPButton.addEventListener(
-    "click",
-    async () => {
-
-      await submitRSVP();
-
-    }
-  );
-
-}
-
-
-/* =========================================================
    RSVP SUBMIT
 ========================================================= */
 
 async function submitRSVP() {
 
-  if (!guestName) {
+  if (
+    !guestName ||
+    !rsvpSubmit
+  ) {
     return;
   }
 
@@ -432,49 +387,31 @@ async function submitRSVP() {
   let numberOfGuests = 0;
 
 
-  /*
-     مهم جدًا:
-     نقرأ القيمة من input مباشرة
-     ونحولها إلى Number
-  */
-
   if (
     attendanceChoice === "سأحضر"
   ) {
 
-    if (
-      guestCount &&
-      guestCount.value !== ""
-    ) {
-
-      numberOfGuests =
-        Number(
-          guestCount.value
-        );
-
-    } else {
-
-      numberOfGuests = 0;
-
-    }
+    numberOfGuests =
+      Number(
+        guestCount?.value || 0
+      );
 
 
     if (
-      Number.isNaN(
-        numberOfGuests
-      )
-    ) {
-
-      numberOfGuests = 0;
-
-    }
-
-
-    if (
+      Number.isNaN(numberOfGuests) ||
       numberOfGuests < 0
     ) {
 
       numberOfGuests = 0;
+
+    }
+
+
+    if (
+      numberOfGuests > 10
+    ) {
+
+      numberOfGuests = 10;
 
     }
 
@@ -504,15 +441,11 @@ async function submitRSVP() {
   );
 
 
-  if (confirmRSVPButton) {
+  rsvpSubmit.disabled =
+    true;
 
-    confirmRSVPButton.disabled =
-      true;
-
-    confirmRSVPButton.textContent =
-      "جارِ التسجيل...";
-
-  }
+  rsvpSubmit.textContent =
+    "جارِ الإرسال...";
 
 
   const success =
@@ -528,12 +461,8 @@ async function submitRSVP() {
     );
 
 
-    if (confirmRSVPButton) {
-
-      confirmRSVPButton.textContent =
-        "تم التسجيل ✓";
-
-    }
+    rsvpSubmit.textContent =
+      "تم الإرسال ✓";
 
   } else {
 
@@ -542,15 +471,11 @@ async function submitRSVP() {
     );
 
 
-    if (confirmRSVPButton) {
+    rsvpSubmit.disabled =
+      false;
 
-      confirmRSVPButton.disabled =
-        false;
-
-      confirmRSVPButton.textContent =
-        "تأكيد الحضور";
-
-    }
+    rsvpSubmit.textContent =
+      "إرسال";
 
   }
 
@@ -564,13 +489,9 @@ async function submitRSVP() {
 if (
   attendBtn &&
   declineBtn &&
-  guests
+  guests &&
+  rsvpSubmit
 ) {
-
-
-  /* =======================================================
-     سأحضر
-  ======================================================= */
 
   attendBtn.addEventListener(
     "click",
@@ -595,24 +516,21 @@ if (
       );
 
 
-      /*
-         إنشاء زر التأكيد
-         وعدم الإرسال هنا
-      */
-
-      createConfirmButton();
+      rsvpSubmit.classList.add(
+        "show"
+      );
 
     }
   );
 
 
   /* =======================================================
-     أعتذر عن الحضور
+     DECLINE BUTTON
   ======================================================= */
 
   declineBtn.addEventListener(
     "click",
-    async () => {
+    () => {
 
       attendanceChoice =
         "أعتذر عن الحضور";
@@ -633,23 +551,21 @@ if (
       );
 
 
-      /*
-         لو كان زر التأكيد موجودًا
-         نخفيه ونرجع حالته
-      */
+      rsvpSubmit.classList.add(
+        "show"
+      );
 
-      if (confirmRSVPButton) {
-
-        confirmRSVPButton.remove();
-
-        confirmRSVPButton = null;
-
-      }
+    }
+  );
 
 
-      /*
-         الاعتذار يتسجل مباشرة
-      */
+  /* =======================================================
+     RSVP SEND BUTTON
+  ======================================================= */
+
+  rsvpSubmit.addEventListener(
+    "click",
+    async () => {
 
       await submitRSVP();
 
@@ -665,153 +581,115 @@ if (
 
 if (
   wishName &&
-  wishText
+  wishText &&
+  wishSubmit
 ) {
 
-  const wishesSection =
-    document.querySelector(
-      ".wishes-section"
-    );
+  wishSubmit.addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        wishName.value.trim();
 
 
-  if (wishesSection) {
+      const message =
+        wishText.value.trim();
 
-    const wishButton =
-      document.createElement(
-        "button"
+
+      if (!name) {
+
+        alert(
+          "من فضلك اكتبي الاسم أولًا."
+        );
+
+        wishName.focus();
+
+        return;
+
+      }
+
+
+      if (!message) {
+
+        alert(
+          "من فضلك اكتبي الأمنية."
+        );
+
+        wishText.focus();
+
+        return;
+
+      }
+
+
+      wishSubmit.disabled =
+        true;
+
+      wishSubmit.textContent =
+        "جارِ الإرسال...";
+
+
+      const data = {
+
+        type:
+          "wish",
+
+        name:
+          name,
+
+        message:
+          message
+
+      };
+
+
+      console.log(
+        "WISH DATA:",
+        data
       );
 
 
-    wishButton.type =
-      "button";
-
-
-    wishButton.className =
-      "wish-submit";
-
-
-    wishButton.textContent =
-      "إرسال";
-
-
-    wishesSection.appendChild(
-      wishButton
-    );
-
-
-    /* =====================================================
-       SEND WISH
-    ===================================================== */
-
-    wishButton.addEventListener(
-      "click",
-      async () => {
-
-        const name =
-          wishName.value.trim();
-
-
-        const message =
-          wishText.value.trim();
-
-
-        if (!name) {
-
-          alert(
-            "من فضلك اكتبي الاسم أولًا."
-          );
-
-          wishName.focus();
-
-          return;
-
-        }
-
-
-        if (!message) {
-
-          alert(
-            "من فضلك اكتبي الأمنية."
-          );
-
-          wishText.focus();
-
-          return;
-
-        }
-
-
-        wishButton.disabled =
-          true;
-
-
-        wishButton.textContent =
-          "جارِ الإرسال...";
-
-
-        const data = {
-
-          type:
-            "wish",
-
-          name:
-            name,
-
-          message:
-            message
-
-        };
-
-
-        console.log(
-          "WISH DATA:",
+      const success =
+        await sendToGoogleSheet(
           data
         );
 
 
-        const success =
-          await sendToGoogleSheet(
-            data
-          );
+      if (success) {
+
+        alert(
+          "تم إرسال أمنيتك ❤️"
+        );
 
 
-        if (success) {
+        wishName.value =
+          "";
 
-          alert(
-            "تم إرسال أمنيتك ❤️"
-          );
-
-
-          wishName.value =
-            "";
-
-          wishText.value =
-            "";
+        wishText.value =
+          "";
 
 
-          wishButton.textContent =
-            "تم الإرسال ✓";
+        wishSubmit.textContent =
+          "تم الإرسال ✓";
 
-        } else {
+      } else {
 
-          alert(
-            "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
-          );
-
-
-          wishButton.disabled =
-            false;
+        alert(
+          "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
+        );
 
 
-          wishButton.textContent =
-            "إرسال";
+        wishSubmit.disabled =
+          false;
 
-        }
+        wishSubmit.textContent =
+          "إرسال";
 
       }
-    );
 
-  }
+    }
+  );
 
 }
 
@@ -900,3 +778,5 @@ document.addEventListener(
     passive: false
   }
 );
+```
+
