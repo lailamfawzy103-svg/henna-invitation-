@@ -8,7 +8,2224 @@
   padding: 0;
 }
 
+html {/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: auto;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background: #f3ecdf;
+  color: #493526;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #f1e8dc 0%,
+      #d9c8b3 60%,
+      #c1ac91 100%
+    );
+
+  transition:
+    opacity .8s ease,
+    visibility .8s ease;
+}
+
+.loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-monogram {
+  font-family: "Cinzel", serif;
+  font-size: clamp(45px, 11vw, 80px);
+  letter-spacing: .08em;
+  color: #74553a;
+
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,.75),
+    -1px -1px 0 rgba(72,46,29,.18);
+
+  animation:
+    loaderAppear 1.2s ease both;
+}
+
+.loader-line {
+  width: 72px;
+  height: 1px;
+  margin: 12px 0;
+  background: #a88864;
+
+  animation:
+    lineAppear 1.2s ease both;
+}
+
+.loader-names {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: .25em;
+  color: #795d43;
+}
+
+@keyframes loaderAppear {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lineAppear {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+/* =========================================================
+   ENVELOPE SCREEN
+========================================================= */
+
+.envelope-screen {
+  position: relative;
+
+  width: 100%;
+  height: 100dvh;
+  min-height: 600px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #f1e7da 0%,
+      #ded0bc 50%,
+      #c7b49b 100%
+    );
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity .45s ease,
+    visibility .45s ease;
+}
+
+.envelope-screen.completely-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ambient-light {
+  position: absolute;
+
+  width: 75vw;
+  height: 75vw;
+
+  max-width: 800px;
+  max-height: 800px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.28),
+      transparent 70%
+    );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ENVELOPE STAGE
+========================================================= */
+
+.envelope-stage {
+  position: relative;
+
+  width: min(92vw, 700px);
+  height: min(90vh, 750px);
+
+  perspective: 1000px;
+
+  transform-style: preserve-3d;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =========================================================
+   GROUND SHADOW
+========================================================= */
+
+.ground-shadow {
+  position: absolute;
+
+  left: 50%;
+  bottom: 11%;
+
+  width: 75%;
+  height: 15%;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(55,37,24,.38),
+      rgba(55,37,24,.14) 48%,
+      transparent 73%
+    );
+
+  filter: blur(17px);
+
+  transition:
+    transform .8s ease,
+    opacity .8s ease;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope {
+  position: absolute;
+
+  width: min(87vw, 610px);
+  aspect-ratio: 1.48 / 1;
+
+  left: 50%;
+  top: 52%;
+
+  transform:
+    translate(-50%, -50%);
+
+  transform-style: preserve-3d;
+
+  z-index: 100;
+
+  transition:
+    transform 1s cubic-bezier(.2,.85,.2,1),
+    opacity .55s ease;
+}
+
+
+/* =========================================================
+   ENVELOPE BACK
+========================================================= */
+
+.envelope-back {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 10;
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e8dac7 0%,
+      #d7c4aa 48%,
+      #c4ac8d 100%
+    );
+
+  box-shadow:
+    0 25px 45px rgba(58,39,24,.28),
+    0 8px 15px rgba(58,39,24,.15),
+    inset 0 1px 0 rgba(255,255,255,.65);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper-wrapper {
+  position: absolute;
+
+  left: 50%;
+  top: 48%;
+
+  width: 100%;
+  height: 100%;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  overflow: visible;
+
+  transform-style: preserve-3d;
+
+  opacity: 1;
+
+  transition:
+    transform 1.65s cubic-bezier(.16,.78,.18,1),
+    opacity .5s ease;
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #faf5eb,
+      #f2e9db 52%,
+      #eee1d0
+    );
+
+  box-shadow:
+    0 20px 38px rgba(47,31,20,.30),
+    0 5px 10px rgba(47,31,20,.15),
+    inset 0 0 0 1px rgba(135,102,70,.15);
+}
+
+
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
+
+.paper-texture {
+  position: absolute;
+  inset: 0;
+
+  opacity: .23;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(108,80,52,.07) 0,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.15) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: multiply;
+}
+
+
+/* =========================================================
+   PAPER MONOGRAM
+========================================================= */
+
+.paper-monogram {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.paper-monogram span {
+  width: 92px;
+  height: 92px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(151,116,77,.48);
+
+  color: #927453;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size: 34px;
+
+  letter-spacing: .08em;
+
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,.8),
+    -1px -1px 0 rgba(102,73,47,.18);
+
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,.65),
+    inset -1px -1px 2px rgba(103,74,47,.12);
+}
+
+
+/* =========================================================
+   ENVELOPE TEXTURE
+========================================================= */
+
+.envelope-back::before,
+.flap-surface::before,
+.envelope-panel::before,
+.envelope-bottom::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  opacity: .22;
+
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(89,65,44,.07) 0,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.09) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: multiply;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SIDE PANELS
+========================================================= */
+
+.envelope-panel {
+  position: absolute;
+
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  z-index: 30;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e4d4c0 0%,
+      #cdb79b 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(92,63,40,.14);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.65s cubic-bezier(.18,.78,.22,1),
+    opacity .55s ease;
+}
+
+.envelope-left {
+  left: 0;
+
+  transform-origin:
+    0% 50%;
+
+  clip-path:
+    polygon(
+      0 0,
+      108% 100%,
+      0 100%
+    );
+}
+
+.envelope-right {
+  right: 0;
+
+  transform-origin:
+    100% 50%;
+
+  clip-path:
+    polygon(
+      100% 0,
+      100% 100%,
+      -8% 100%
+    );
+}
+
+
+/* =========================================================
+   BOTTOM PANEL
+========================================================= */
+
+.envelope-bottom {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 72%;
+
+  z-index: 35;
+
+  overflow: hidden;
+
+  transform-origin:
+    50% 100%;
+
+  transform-style: preserve-3d;
+
+  background:
+    linear-gradient(
+      160deg,
+      #dfcfba,
+      #c9b295
+    );
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 25%,
+      100% 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 -2px 3px rgba(70,48,31,.16)
+    );
+
+  transition:
+    transform 1.65s cubic-bezier(.18,.78,.22,1),
+    opacity .55s ease;
+}
+
+
+/* =========================================================
+   FLAP
+========================================================= */
+
+.flap {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 72%;
+
+  z-index: 40;
+
+  transform-origin:
+    50% 0%;
+
+  transform:
+    rotateX(0deg);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.9s cubic-bezier(.18,.78,.22,1);
+
+  pointer-events: none;
+}
+
+.flap-surface {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eadcca 0%,
+      #d7c3aa 55%,
+      #c7ae91 100%
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  box-shadow:
+    0 14px 20px rgba(53,35,22,.24);
+}
+
+.flap-highlight {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,.35),
+      transparent 32%,
+      transparent 72%,
+      rgba(89,61,40,.09)
+    );
+}
+
+
+/* =========================================================
+   SEAL
+========================================================= */
+
+.seal {
+  position: absolute;
+
+  left: 50%;
+  top: 59%;
+
+  z-index: 50;
+
+  width:
+    clamp(78px, 16vw, 112px);
+
+  aspect-ratio: 1;
+
+  transform:
+    translate(-50%, -50%);
+
+  border: 0;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #b9976d,
+      #856548 56%,
+      #674a33 100%
+    );
+
+  box-shadow:
+    0 7px 14px rgba(52,34,20,.3),
+    inset 2px 2px 3px rgba(255,255,255,.38),
+    inset -3px -4px 6px rgba(46,29,18,.35);
+
+  pointer-events: auto;
+
+  transition:
+    transform .3s ease,
+    filter .3s ease;
+}
+
+.seal:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.04);
+
+  filter:
+    brightness(1.06);
+}
+
+.seal-inner {
+  width: 76%;
+  height: 76%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(238,218,189,.5);
+
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,.35),
+    inset -2px -2px 3px rgba(42,27,17,.25);
+
+  color: #e6d0b0;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size:
+    clamp(24px, 5vw, 37px);
+
+  letter-spacing: .08em;
+
+  text-shadow:
+    1px 1px 1px rgba(53,33,20,.65),
+    -1px -1px 1px rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   OPENING
+========================================================= */
+
+.envelope-stage.opened .flap {
+  transform:
+    rotateX(180deg);
+}
+
+.envelope-stage.opened .envelope-left {
+  transform:
+    rotateY(-180deg);
+}
+
+.envelope-stage.opened .envelope-right {
+  transform:
+    rotateY(180deg);
+}
+
+.envelope-stage.opened .envelope-bottom {
+  transform:
+    rotateX(180deg);
+}
+
+
+/* =========================================================
+   PAPER APPROACH
+========================================================= */
+
+.envelope-stage.invitation-expand .paper-wrapper {
+  z-index: 200;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.42);
+
+  transition:
+    transform 1.65s cubic-bezier(.12,.78,.16,1);
+}
+
+
+/* =========================================================
+   SPARKLE
+========================================================= */
+
+.paper-wrapper::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  z-index: 250;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.1);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,1) 0%,
+      rgba(255,248,225,.95) 18%,
+      rgba(224,190,135,.65) 42%,
+      transparent 72%
+    );
+
+  box-shadow:
+    0 0 12px rgba(255,255,255,.95),
+    0 0 28px rgba(214,178,120,.75),
+    0 0 55px rgba(214,178,120,.4);
+}
+
+.paper-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 5px;
+  height: 150px;
+
+  z-index: 251;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(45deg)
+    scaleY(.1);
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255,255,255,.95),
+      transparent
+    );
+
+  filter:
+    blur(.4px);
+}
+
+.envelope-stage.sparkle .paper-wrapper::before {
+  animation:
+    invitationFlash .65s ease-out forwards;
+}
+
+.envelope-stage.sparkle .paper-wrapper::after {
+  animation:
+    sparkleRay .65s ease-out forwards;
+}
+
+@keyframes invitationFlash {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.1);
+  }
+
+  18% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(3);
+  }
+
+  42% {
+    opacity: .9;
+    transform:
+      translate(-50%, -50%)
+      scale(7);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(18);
+  }
+}
+
+@keyframes sparkleRay {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(.1);
+  }
+
+  25% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(1.5);
+  }
+}
+
+
+/* =========================================================
+   INVITATION PAGE
+========================================================= */
+
+.invitation-page {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  min-height: 100dvh;
+
+  padding:
+    clamp(50px, 8vh, 90px)
+    18px
+    clamp(70px, 10vh, 110px);
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  background:
+    #f3ecdf;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  z-index: 20;
+
+  transition:
+    opacity .45s ease;
+}
+
+.app.show-invitation .invitation-page {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.invitation-background {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255,255,255,.65),
+      transparent 48%
+    );
+
+  opacity: .35;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.invitation-card {
+  position: relative;
+
+  width:
+    min(92vw, 520px);
+
+  min-height:
+    min(150vw, 760px);
+
+  padding:
+    40px 30px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #faf6ed,
+      #f5ecdf 50%,
+      #f1e5d4
+    );
+
+  box-shadow:
+    0 25px 55px rgba(55,38,24,.22),
+    0 5px 14px rgba(55,38,24,.13);
+
+  overflow: hidden;
+
+  border-radius: 3px;
+}
+
+.invitation-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: .22;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(108,80,52,.06) 0,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.12) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: multiply;
+}
+
+
+/* =========================================================
+   FRAME
+========================================================= */
+
+.invitation-frame {
+  position: absolute;
+
+  inset: 16px;
+
+  border:
+    1px solid rgba(155,119,77,.58);
+
+  pointer-events: none;
+
+  border-radius: 2px;
+}
+
+.invitation-frame::before,
+.invitation-frame::after {
+  content: "";
+
+  position: absolute;
+
+  pointer-events: none;
+
+  width: 28px;
+  height: 28px;
+
+  border-color:
+    rgba(155,119,77,.75);
+
+  border-style: solid;
+}
+
+.invitation-frame::before {
+  top: -1px;
+  left: -1px;
+
+  border-width:
+    1px 0 0 1px;
+}
+
+.invitation-frame::after {
+  bottom: -1px;
+  right: -1px;
+
+  border-width:
+    0 1px 1px 0;
+}
+
+.invitation-inner-frame {
+  position: absolute;
+
+  inset: 5px;
+
+  border:
+    1px solid rgba(171,139,98,.27);
+
+  border-radius: 1px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.invitation-content {
+  position: relative;
+
+  z-index: 2;
+
+  min-height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  color: #4c3828;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.section-kicker {
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size:
+    clamp(13px, 2.8vw, 16px);
+
+  color: #806044;
+
+  margin-bottom: 7px;
+
+  letter-spacing: .02em;
+}
+
+
+/* =========================================================
+   BISMILLAH + QURAN
+   REEM KUFI
+========================================================= */
+
+.bismillah {
+  margin-bottom: 10px;
+
+  font-family:
+    "Reem Kufi",
+    sans-serif;
+
+  font-size:
+    clamp(21px, 5vw, 29px);
+
+  line-height: 1.7;
+
+  color: #604832 !important;
+
+  direction: rtl;
+  text-align: center;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-text-fill-color: #604832 !important;
+}
+
+.quran-ayah {
+  max-width: 410px;
+
+  margin: 0 auto;
+
+  font-family:
+    "Reem Kufi",
+    sans-serif;
+
+  font-size:
+    clamp(16px, 3.7vw, 20px);
+
+  line-height: 2;
+
+  color: #604832 !important;
+
+  direction: rtl;
+  text-align: center;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-text-fill-color: #604832 !important;
+}
+
+.quran-section .bismillah,
+.quran-section .quran-ayah,
+.quran-section .bismillah *,
+.quran-section .quran-ayah * {
+  color: #604832 !important;
+  -webkit-text-fill-color: #604832 !important;
+  text-decoration-color: #604832 !important;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro-section {
+  width: 100%;
+}
+
+.invitation-line {
+  margin-top: 12px;
+
+  font-size:
+    clamp(16px, 3.5vw, 20px);
+
+  line-height: 1.8;
+
+  color: #73563e;
+}
+
+
+/* =========================================================
+   NAMES
+   AREF RUQAA
+==================================/* =========================================================
+   NAMES
+========================================================= */
+
+.names {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 11px;
+
+  font-size:
+    clamp(36px, 8vw, 50px);
+
+  color: #604832;
+
+  font-family:
+    "Aref Ruqaa",
+    serif;
+
+  font-weight: 400;
+
+  transform:
+    skewX(-4deg);
+
+  line-height: 1.35;
+}
+
+.names .couple-name {
+  font-family:
+    "Aref Ruqaa",
+    serif;
+
+  color: #604832;
+
+  font-weight: 400;
+}
+
+.names i {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: .65em;
+
+  font-style: normal;
+
+  color: #9a7957;
+}
+
+/* =========================================================
+   DIVIDERS
+========================================================= */
+
+.modern-divider,
+.modern-divider.soft {
+  width: 62%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  direction: ltr;
+}
+
+.modern-divider span,
+.modern-divider.soft span {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(168,137,99,.42)
+    );
+}
+
+.modern-divider span:last-child,
+.modern-divider.soft span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(168,137,99,.42),
+      transparent
+    );
+}
+
+.modern-divider b,
+.modern-divider.soft b {
+  width: auto;
+  height: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 11px;
+
+  font-weight: 400;
+
+  color: #a88963;
+
+  transform: none;
+
+  opacity: 1;
+}
+
+.modern-divider.soft {
+  width: 62%;
+  margin-top: 24px;
+}
+
+.modern-divider.soft b {
+  font-size: 11px;
+  opacity: 1;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details-section {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.date {
+  margin-top: 5px;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size:
+    clamp(17px, 4vw, 23px);
+
+  letter-spacing: .12em;
+
+  direction: ltr;
+
+  color: #614732;
+}
+
+.time {
+  margin-top: 6px;
+
+  font-size:
+    clamp(13px, 2.8vw, 17px);
+
+  color: #71563e;
+}
+
+.location {
+  margin-top: 12px;
+
+  line-height: 1.7;
+
+  font-size:
+    clamp(13px, 3vw, 17px);
+}
+
+.location-name {
+  font-weight: 600;
+  color: #5c432f;
+}
+
+.location-button {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  border:
+    1px solid rgba(135,100,67,.48);
+
+  background:
+    rgba(255,250,241,.55);
+
+  color: #644a34;
+
+  padding:
+    5px 16px;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 12px;
+
+  border-radius: 2px;
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.location-button:active {
+  transform:
+    scale(.97);
+}
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section {
+  width: 100%;
+  margin-top: 28px;
+}
+
+.countdown {
+  width: 82%;
+
+  margin: 14px auto 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  direction: ltr;
+
+  gap: 13px;
+}
+
+.count-item {
+  min-width: 65px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.count-item span {
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size:
+    clamp(21px, 5vw, 28px);
+
+  line-height: 1;
+
+  color: #604631;
+
+  direction: ltr;
+}
+
+.count-item small {
+  margin-top: 7px;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 12px;
+
+  color: #876746;
+
+  direction: rtl;
+}
+
+.count-divider {
+  width: 1px;
+  height: 32px;
+
+  background:
+    rgba(155,119,77,.38);
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal-item {
+  opacity: 0;
+
+  transform:
+    translateY(18px);
+
+  filter:
+    blur(5px);
+
+  transition:
+    opacity .75s ease,
+    transform .85s cubic-bezier(.18,.82,.22,1),
+    filter .85s ease;
+}
+
+.app.show-invitation .reveal-item {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  filter:
+    blur(0);
+}
+
+.app.show-invitation .reveal-item:nth-child(1) {
+  transition-delay: .08s;
+}
+
+.app.show-invitation .reveal-item:nth-child(2) {
+  transition-delay: .20s;
+}
+
+.app.show-invitation .reveal-item:nth-child(3) {
+  transition-delay: .32s;
+}
+
+.app.show-invitation .reveal-item:nth-child(4) {
+  transition-delay: .44s;
+}
+
+.app.show-invitation .reveal-item:nth-child(5) {
+  transition-delay: .56s;
+}
+
+.app.show-invitation .reveal-item:nth-child(6) {
+  transition-delay: .68s;
+}
+
+.app.show-invitation .reveal-item:nth-child(7) {
+  transition-delay: .80s;
+}
+
+.app.show-invitation .reveal-item:nth-child(8) {
+  transition-delay: .92s;
+}
+
+.app.show-invitation .reveal-item:nth-child(9) {
+  transition-delay: 1.04s;
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp-section {
+  width: 100%;
+
+  margin-top: 38px;
+  padding-top: 18px;
+
+  border-top: none;
+}
+
+.rsvp-title {
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 13px;
+
+  color: #876746;
+
+  margin-bottom: 13px;
+}
+
+.form-group {
+  width: 88%;
+
+  margin:
+    0 auto 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  text-align: right;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+
+  font-size: 12px;
+
+  color: #70543d;
+}
+
+.form-group label em,
+.guests em {
+  font-style: normal;
+
+  font-size: 10px;
+
+  color: #a08262;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  border:
+    1px solid rgba(135,100,67,.35);
+
+  background:
+    rgba(255,250,241,.45);
+
+  color: #604732;
+
+  padding:
+    8px 10px;
+
+  outline: none;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 12px;
+
+  border-radius: 2px;
+
+  transition:
+    border-color .25s ease,
+    background .25s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color:
+    rgba(135,100,67,.65);
+
+  background:
+    rgba(255,250,241,.7);
+}
+
+.rsvp-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.rsvp-btn {
+  border:
+    1px solid rgba(135,100,67,.55);
+
+  background:
+    rgba(255,250,241,.55);
+
+  color: #644a34;
+
+  padding:
+    6px 13px;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 12px;
+
+  border-radius: 2px;
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.rsvp-btn:active {
+  transform:
+    scale(.97);
+}
+
+.rsvp-btn.selected {
+  background:
+    #d4c0a7;
+}
+
+
+/* =========================================================
+   GUESTS
+========================================================= */
+
+.guests {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 11px;
+
+  font-size: 12px;
+}
+
+.guests.show {
+  display: flex;
+}
+
+.guests input {
+  width: 110px;
+
+  border:
+    1px solid #bba384;
+
+  background:
+    #f7efe4;
+
+  color: #604732;
+
+  font-family:
+    inherit;
+
+  padding:
+    4px 7px;
+
+  outline: none;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   WISHES
+========================================================= */
+
+.wishes-section {
+  width: 100%;
+
+  margin-top: 34px;
+  padding-top: 20px;
+}
+
+.wishes-title {
+  margin-bottom: 15px;
+
+  font-size: 16px;
+
+  color: #73563e;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-section {
+  width: 100%;
+
+  margin-top: 35px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.final-ornament {
+  width: 62%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 17px;
+
+  direction: ltr;
+}
+
+.final-ornament span {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(168,137,99,.42)
+    );
+}
+
+.final-ornament span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(168,137,99,.42),
+      transparent
+    );
+}
+
+.final-ornament b {
+  color: #a88963;
+
+  font-size: 11px;
+
+  font-weight: 400;
+}
+
+.final-text {
+  font-size:
+    clamp(14px, 3.2vw, 18px);
+
+  line-height: 2;
+
+  color: #624a35;
+}
+
+.bottom-monogram {
+  margin-top: 32px;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size: 15px;
+
+  letter-spacing: .12em;
+
+  color: #947453;
+}
+
+
+/* =========================================================
+   CLICK HINT
+========================================================= */
+
+.click-hint {
+  position: absolute;
+
+  left: 50%;
+  bottom: 5%;
+
+  transform:
+    translateX(-50%);
+
+  color: #765a41;
+
+  font-size: 12px;
+
+  opacity: .72;
+
+  animation:
+    hintPulse 2.2s ease-in-out infinite;
+
+  transition:
+    opacity .4s ease;
+}
+
+@keyframes hintPulse {
+
+  0%,
+  100% {
+    opacity: .4;
+  }
+
+  50% {
+    opacity: .9;
+  }
+}
+
+
+/* =========================================================
+   HIDE ENVELOPE
+========================================================= */
+
+.envelope-stage.envelope-hide .envelope {
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity .45s ease;
+}
+
+.envelope-stage.envelope-hide .ground-shadow {
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(15px)
+    scale(.75);
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease;
+}
+
+.envelope-stage.envelope-hide .paper-wrapper {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FINISHED
+========================================================= */
+
+.envelope-stage.finished {
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .envelope-stage {
+    width: 100vw;
+    height: 90dvh;
+
+    perspective: 900px;
+  }
+
+  .envelope {
+    width: 88vw;
+  }
+
+  .paper-wrapper {
+    width: 88vw;
+    height: calc(88vw / 1.48);
+
+    top: 48%;
+  }
+
+  .envelope-stage.invitation-expand .paper-wrapper {
+    width: 88vw;
+    height: calc(88vw / 1.48);
+
+    top: 48%;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.42);
+
+    transition:
+      transform 1.65s cubic-bezier(.12,.78,.16,1);
+  }
+
+  .invitation-page {
+    padding:
+      40px 12px
+      70px;
+  }
+
+  .invitation-card {
+    width: 94vw;
+
+    min-height: 150vw;
+
+    padding:
+      35px 23px;
+  }
+
+  .invitation-frame {
+    inset: 14px;
+  }
+
+  .bismillah {
+    font-size: 23px;
+    margin-bottom: 8px;
+
+    color: #604832 !important;
+    -webkit-text-fill-color: #604832 !important;
+  }
+
+  .quran-ayah {
+    font-size: 17px;
+    line-height: 2.05;
+
+    color: #604832 !important;
+    -webkit-text-fill-color: #604832 !important;
+  }
+
+  .invitation-line {
+    margin-top: 18px;
+  }
+
+  .names {
+    gap: 9px;
+
+    font-size:
+      clamp(40px, 10vw, 54px);
+  }
+
+  .modern-divider,
+  .modern-divider.soft {
+    width: 72%;
+  }
+
+  .countdown {
+    width: 94%;
+    gap: 7px;
+  }
+
+  .count-item {
+    min-width: 58px;
+  }
+
+  .count-divider {
+    width: 1px;
+    height: 28px;
+  }
+
+  .rsvp-section {
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL HEIGHT
+========================================================= */
+
+@media (max-height: 700px) {
+
+  .envelope {
+    width: 83vw;
+  }
+
+  .paper-wrapper {
+    width: 83vw;
+    height: calc(83vw / 1.48);
+
+    top: 48%;
+  }
+
+  .envelope-stage.invitation-expand .paper-wrapper {
+    width: 83vw;
+    height: calc(83vw / 1.48);
+
+    top: 48%;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.42);
+  }
+
+  .invitation-line {
+    margin-top: 17px;
+  }
+
+  .date {
+    margin-top: 12px;
+  }
+
+  .location {
+    margin-top: 13px;
+  }
+
+  .rsvp-section {
+    margin-top: 28px;
+    border-top: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL BROWN COLOR
+========================================================= */
+
+/* البسملة والآية — Reem Kufi */
+
+.bismillah,
+.quran-ayah {
+  font-family:
+    "Reem Kufi",
+    sans-serif !important;
+
+  color: #604832 !important;
+
+  -webkit-text-fill-color: #604832 !important;
+}
+
+.bismillah *,
+.quran-ayah * {
+  font-family:
+    "Reem Kufi",
+    sans-serif !important;
+
+  color: #604832 !important;
+
+  -webkit-text-fill-color: #604832 !important;
+}
+
+
+/* أسماء العرسان — Aref Ruqaa */
+
+.names,
+.names .couple-name {
+  font-family:
+    "Aref Ruqaa",
+    serif !important;
+
+  color: #604832 !important;
+
+  -webkit-text-fill-color: #604832 !important;
+}
+
+.names i {
+  font-family:
+    "Cormorant Garamond",
+    serif !important;
+
+  color: #9a7957 !important;
+}
   width: 100%;
   min-height: 100%;
   scroll-behavior: auto;
