@@ -4451,3 +4451,54 @@ body {
   opacity: .7;
   cursor: default;
 }
+/* =========================================================
+   RSVP SUBMIT BUTTON
+========================================================= */
+
+.rsvp-submit {
+  display: none;
+
+  margin: 14px auto 0;
+
+  border: 1px solid rgba(135,100,67,.55);
+
+  background:
+    rgba(255,250,241,.55);
+
+  color: #644a34;
+
+  padding: 6px 18px;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size: 12px;
+
+  border-radius: 2px;
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.rsvp-submit.show {
+  display: block;
+}
+
+.rsvp-submit:hover {
+  background:
+    rgba(255,250,241,.8);
+}
+
+.rsvp-submit:active {
+  transform: scale(.97);
+}
+
+.rsvp-submit:disabled {
+  opacity: .65;
+  cursor: default;
+}
