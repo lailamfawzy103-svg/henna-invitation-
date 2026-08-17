@@ -17,15 +17,14 @@ html {
 body {
   width: 100%;
   min-height: 100%;
+
   overflow-x: hidden;
   overflow-y: auto;
 
   background: #f3ecdf;
   color: #493526;
 
-  font-family:
-    "Noto Naskh Arabic",
-    serif;
+  font-family: "Noto Naskh Arabic", serif;
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -86,19 +85,16 @@ body {
     1px 1px 0 rgba(255,255,255,.75),
     -1px -1px 0 rgba(72,46,29,.18);
 
-  animation:
-    loaderAppear 1.2s ease both;
+  animation: loaderAppear 1.2s ease both;
 }
 
 .loader-line {
   width: 72px;
   height: 1px;
   margin: 12px 0;
-
   background: #a88864;
 
-  animation:
-    lineAppear 1.2s ease both;
+  animation: lineAppear 1.2s ease both;
 }
 
 .loader-names {
@@ -195,7 +191,7 @@ body {
 
 
 /* =========================================================
-   ENVELOPE STAGE
+   STAGE
 ========================================================= */
 
 .envelope-stage {
@@ -204,7 +200,7 @@ body {
   width: min(92vw, 700px);
   height: min(90vh, 750px);
 
-  perspective: 900px;
+  perspective: 1000px;
 
   transform-style: preserve-3d;
 
@@ -226,8 +222,7 @@ body {
   width: 75%;
   height: 15%;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   border-radius: 50%;
 
@@ -248,70 +243,9 @@ body {
 
 
 /* =========================================================
-   ENVELOPE
-========================================================= */
-
-.envelope {
-  position: absolute;
-
-  width:
-    min(87vw, 610px);
-
-  aspect-ratio:
-    1.48 / 1;
-
-  left: 50%;
-  top: 52%;
-
-  transform:
-    translate(-50%, -50%);
-
-  transform-style: preserve-3d;
-
-  transition:
-    transform 1s cubic-bezier(.2,.85,.2,1),
-    opacity .55s ease;
-}
-
-
-/* =========================================================
-   ENVELOPE BACK
-========================================================= */
-
-.envelope-back {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 20;
-
-  border-radius: 4px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #e8dac7 0%,
-      #d7c4aa 48%,
-      #c4ac8d 100%
-    );
-
-  box-shadow:
-    0 25px 45px rgba(58,39,24,.28),
-    0 8px 15px rgba(58,39,24,.15),
-    inset 0 1px 0 rgba(255,255,255,.65);
-
-  overflow: hidden;
-}
-
-
-/* =========================================================
    PAPER
+   الورقة موجودة داخل الظرف
 ========================================================= */
-
-/*
-   الورقة تبدأ في منتصف الظرف بالضبط.
-   لا نرفعها لأعلى.
-*/
 
 .paper-wrapper {
   position: absolute;
@@ -319,18 +253,15 @@ body {
   left: 50%;
   top: 52%;
 
-  width:
-    min(87vw, 610px);
+  width: min(87vw, 610px);
 
-  aspect-ratio:
-    1.48 / 1;
-
-  height: auto;
+  aspect-ratio: 1.48 / 1;
 
   transform:
-    translate(-50%, -50%);
+    translate(-50%, -50%)
+    translateZ(0);
 
-  z-index: 25;
+  z-index: 10;
 
   pointer-events: none;
 
@@ -424,9 +355,7 @@ body {
 
   color: #927453;
 
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size: 34px;
 
@@ -443,10 +372,39 @@ body {
 
 
 /* =========================================================
-   ENVELOPE TEXTURE
+   ENVELOPE OVERLAY
+   الطبقات فوق الورقة
 ========================================================= */
 
-.envelope-back::before,
+.envelope {
+  position: absolute;
+
+  width: min(87vw, 610px);
+
+  aspect-ratio: 1.48 / 1;
+
+  left: 50%;
+  top: 52%;
+
+  transform:
+    translate(-50%, -50%);
+
+  transform-style: preserve-3d;
+
+  z-index: 30;
+
+  pointer-events: none;
+
+  transition:
+    transform 1s cubic-bezier(.2,.85,.2,1),
+    opacity .55s ease;
+}
+
+
+/* =========================================================
+   TEXTURE FOR ENVELOPE LAYERS
+========================================================= */
+
 .flap-surface::before,
 .envelope-panel::before,
 .envelope-bottom::before {
@@ -478,7 +436,7 @@ body {
 
 
 /* =========================================================
-   PANELS
+   SIDE PANELS
 ========================================================= */
 
 .envelope-panel {
@@ -509,11 +467,15 @@ body {
     opacity .55s ease;
 }
 
+
+/* LEFT */
+
 .envelope-left {
   left: 0;
 
-  transform-origin:
-    0% 50%;
+  z-index: 32;
+
+  transform-origin: 0% 50%;
 
   clip-path:
     polygon(
@@ -523,11 +485,15 @@ body {
     );
 }
 
+
+/* RIGHT */
+
 .envelope-right {
   right: 0;
 
-  transform-origin:
-    100% 50%;
+  z-index: 32;
+
+  transform-origin: 100% 50%;
 
   clip-path:
     polygon(
@@ -539,7 +505,7 @@ body {
 
 
 /* =========================================================
-   BOTTOM PANEL
+   BOTTOM
 ========================================================= */
 
 .envelope-bottom {
@@ -555,8 +521,7 @@ body {
 
   overflow: hidden;
 
-  transform-origin:
-    50% 100%;
+  transform-origin: 50% 100%;
 
   transform-style: preserve-3d;
 
@@ -600,11 +565,9 @@ body {
 
   z-index: 40;
 
-  transform-origin:
-    50% 0%;
+  transform-origin: 50% 0%;
 
-  transform:
-    rotateX(0deg);
+  transform: rotateX(0deg);
 
   transform-style: preserve-3d;
 
@@ -666,8 +629,7 @@ body {
 
   z-index: 50;
 
-  width:
-    clamp(78px, 16vw, 112px);
+  width: clamp(78px, 16vw, 112px);
 
   aspect-ratio: 1;
 
@@ -708,8 +670,7 @@ body {
     translate(-50%, -50%)
     scale(1.04);
 
-  filter:
-    brightness(1.06);
+  filter: brightness(1.06);
 }
 
 .seal-inner {
@@ -731,12 +692,9 @@ body {
 
   color: #e6d0b0;
 
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
-  font-size:
-    clamp(24px, 5vw, 37px);
+  font-size: clamp(24px, 5vw, 37px);
 
   letter-spacing: .08em;
 
@@ -772,14 +730,20 @@ body {
 
 
 /* =========================================================
-   PAPER AFTER OPENING
+   PAPER APPROACH
+   مهم: مفيش translateY
+   الورقة تقرب للشاشة فقط
 ========================================================= */
 
-.envelope-stage.opened .paper-wrapper {
-  top: 52%;
-
+.envelope-stage.invitation-expand .paper-wrapper {
   transform:
-    translate(-50%, -50%);
+    translate(-50%, -50%)
+    translateZ(1100px);
+
+  z-index: 100;
+
+  transition:
+    transform 2.1s cubic-bezier(.12,.78,.16,1);
 }
 
 
@@ -855,8 +819,7 @@ body {
       transparent
     );
 
-  filter:
-    blur(.4px);
+  filter: blur(.4px);
 }
 
 .envelope-stage.sparkle .paper-wrapper::before {
@@ -873,7 +836,6 @@ body {
 
   0% {
     opacity: 0;
-
     transform:
       translate(-50%, -50%)
       scale(.1);
@@ -881,7 +843,6 @@ body {
 
   18% {
     opacity: 1;
-
     transform:
       translate(-50%, -50%)
       scale(3);
@@ -889,7 +850,6 @@ body {
 
   42% {
     opacity: .9;
-
     transform:
       translate(-50%, -50%)
       scale(7);
@@ -897,7 +857,6 @@ body {
 
   100% {
     opacity: 0;
-
     transform:
       translate(-50%, -50%)
       scale(18);
@@ -908,7 +867,6 @@ body {
 
   0% {
     opacity: 0;
-
     transform:
       translate(-50%, -50%)
       rotate(45deg)
@@ -917,7 +875,6 @@ body {
 
   25% {
     opacity: 1;
-
     transform:
       translate(-50%, -50%)
       rotate(45deg)
@@ -926,46 +883,11 @@ body {
 
   100% {
     opacity: 0;
-
     transform:
       translate(-50%, -50%)
       rotate(45deg)
       scaleY(1.5);
   }
-}
-
-
-/* =========================================================
-   PAPER APPROACH — التعديل الأساسي
-========================================================= */
-
-/*
-   هنا الورقة لا تطلع لفوق.
-   تبدأ من مكانها داخل الظرف في المنتصف،
-   وبعد فتح الظرف تتحرك فقط ناحية الشاشة عن طريق Z.
-*/
-
-.envelope-stage.invitation-expand .paper-wrapper {
-
-  width:
-    min(87vw, 610px);
-
-  aspect-ratio:
-    1.48 / 1;
-
-  height: auto;
-
-  left: 50%;
-  top: 52%;
-
-  z-index: 100;
-
-  transform:
-    translate(-50%, -50%)
-    translateZ(1100px);
-
-  transition:
-    transform 2.1s cubic-bezier(.12,.78,.16,1);
 }
 
 
@@ -993,19 +915,16 @@ body {
   align-items: flex-start;
   justify-content: center;
 
-  background:
-    #f3ecdf;
+  background: #f3ecdf;
 
   opacity: 0;
-
   visibility: hidden;
 
   pointer-events: none;
 
   z-index: 20;
 
-  transition:
-    opacity .45s ease;
+  transition: opacity .45s ease;
 }
 
 .app.show-invitation .invitation-page {
@@ -1021,7 +940,6 @@ body {
 
 .invitation-background {
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -1044,14 +962,11 @@ body {
 .invitation-card {
   position: relative;
 
-  width:
-    min(92vw, 520px);
+  width: min(92vw, 520px);
 
-  min-height:
-    min(150vw, 760px);
+  min-height: min(150vw, 760px);
 
-  padding:
-    40px 30px;
+  padding: 40px 30px;
 
   background:
     linear-gradient(
@@ -1074,7 +989,6 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -1189,9 +1103,7 @@ body {
 ========================================================= */
 
 .section-kicker {
-  font-family:
-    "Noto Naskh Arabic",
-    serif;
+  font-family: "Noto Naskh Arabic", serif;
 
   font-size:
     clamp(13px, 2.8vw, 16px);
@@ -1205,30 +1117,26 @@ body {
 
 
 /* =========================================================
-   BISMILLAH + QURAN
+   QURAN
 ========================================================= */
 
 .bismillah {
   margin-bottom: 10px;
 
-  font-family:
-    "Aref Ruqaa Ink",
-    serif;
+  font-family: "Aref Ruqaa Ink", serif;
 
   font-size:
     clamp(21px, 5vw, 29px);
 
   line-height: 1.7;
 
-  color: #6B4A35 !important;
+  color: #604832 !important;
 
   direction: rtl;
 
   text-align: center;
 
-  text-rendering: optimizeLegibility;
-
-  -webkit-text-fill-color: #6B4A35 !important;
+  -webkit-text-fill-color: #604832 !important;
 }
 
 .quran-ayah {
@@ -1236,24 +1144,20 @@ body {
 
   margin: 0 auto;
 
-  font-family:
-    "Aref Ruqaa Ink",
-    serif;
+  font-family: "Aref Ruqaa Ink", serif;
 
   font-size:
     clamp(16px, 3.7vw, 20px);
 
   line-height: 2;
 
-  color: #6B4A35 !important;
+  color: #604832 !important;
 
   direction: rtl;
 
   text-align: center;
 
-  text-rendering: optimizeLegibility;
-
-  -webkit-text-fill-color: #6B4A35 !important;
+  -webkit-text-fill-color: #604832 !important;
 }
 
 .quran-section .bismillah,
@@ -1261,12 +1165,7 @@ body {
 .quran-section .bismillah *,
 .quran-section .quran-ayah * {
   color: #604832 !important;
-
-  -webkit-text-fill-color:
-    #6B4A35 !important;
-
-  text-decoration-color:
-    #6B4A35 !important;
+  -webkit-text-fill-color: #604832 !important;
 }
 
 
@@ -1309,22 +1208,17 @@ body {
 
   color: #6B4A35;
 
-  font-family:
-    "Aref Ruqaa Ink",
-    serif;
+  font-family: "Aref Ruqaa Ink", serif;
 
   font-weight: 500;
 
-  transform:
-    skewX(-4deg);
+  transform: skewX(-4deg);
 
   line-height: 1.35;
 }
 
 .names i {
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  font-family: "Cormorant Garamond", serif;
 
   font-size: .65em;
 
@@ -1380,9 +1274,6 @@ body {
 
 .modern-divider b,
 .modern-divider.soft b {
-  width: auto;
-  height: auto;
-
   display: flex;
 
   align-items: center;
@@ -1397,20 +1288,11 @@ body {
   font-weight: 400;
 
   color: #a88963;
-
-  transform: none;
-
-  opacity: 1;
 }
 
 .modern-divider.soft {
   width: 62%;
   margin-top: 24px;
-}
-
-.modern-divider.soft b {
-  font-size: 11px;
-  opacity: 1;
 }
 
 
@@ -1426,9 +1308,7 @@ body {
 .date {
   margin-top: 5px;
 
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size:
     clamp(17px, 4vw, 23px);
@@ -1474,8 +1354,7 @@ body {
 
   color: #644a34;
 
-  padding:
-    5px 16px;
+  padding: 5px 16px;
 
   font-family:
     "Noto Naskh Arabic",
@@ -1486,15 +1365,6 @@ body {
   border-radius: 2px;
 
   cursor: pointer;
-
-  transition:
-    background .25s ease,
-    transform .25s ease;
-}
-
-.location-button:active {
-  transform:
-    scale(.97);
 }
 
 
@@ -1534,9 +1404,7 @@ body {
 }
 
 .count-item span {
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size:
     clamp(21px, 5vw, 28px);
@@ -1544,8 +1412,6 @@ body {
   line-height: 1;
 
   color: #604631;
-
-  direction: ltr;
 }
 
 .count-item small {
@@ -1558,18 +1424,12 @@ body {
   font-size: 12px;
 
   color: #876746;
-
-  direction: rtl;
 }
 
 .count-divider {
   width: 1px;
   height: 32px;
-
-  background:
-    rgba(155,119,77,.38);
-
-  flex-shrink: 0;
+  background: rgba(155,119,77,.38);
 }
 
 
@@ -1580,11 +1440,9 @@ body {
 .reveal-item {
   opacity: 0;
 
-  transform:
-    translateY(18px);
+  transform: translateY(18px);
 
-  filter:
-    blur(5px);
+  filter: blur(5px);
 
   transition:
     opacity .75s ease,
@@ -1595,47 +1453,9 @@ body {
 .app.show-invitation .reveal-item {
   opacity: 1;
 
-  transform:
-    translateY(0);
+  transform: translateY(0);
 
-  filter:
-    blur(0);
-}
-
-.app.show-invitation .reveal-item:nth-child(1) {
-  transition-delay: .08s;
-}
-
-.app.show-invitation .reveal-item:nth-child(2) {
-  transition-delay: .20s;
-}
-
-.app.show-invitation .reveal-item:nth-child(3) {
-  transition-delay: .32s;
-}
-
-.app.show-invitation .reveal-item:nth-child(4) {
-  transition-delay: .44s;
-}
-
-.app.show-invitation .reveal-item:nth-child(5) {
-  transition-delay: .56s;
-}
-
-.app.show-invitation .reveal-item:nth-child(6) {
-  transition-delay: .68s;
-}
-
-.app.show-invitation .reveal-item:nth-child(7) {
-  transition-delay: .80s;
-}
-
-.app.show-invitation .reveal-item:nth-child(8) {
-  transition-delay: .92s;
-}
-
-.app.show-invitation .reveal-item:nth-child(9) {
-  transition-delay: 1.04s;
+  filter: blur(0);
 }
 
 
@@ -1645,31 +1465,14 @@ body {
 
 .rsvp-section {
   width: 100%;
-
   margin-top: 38px;
-
   padding-top: 18px;
-
-  border-top: none;
-}
-
-.rsvp-title {
-  font-family:
-    "Noto Naskh Arabic",
-    serif;
-
-  font-size: 13px;
-
-  color: #876746;
-
-  margin-bottom: 13px;
 }
 
 .form-group {
   width: 88%;
 
-  margin:
-    0 auto 14px;
+  margin: 0 auto 14px;
 
   display: flex;
 
@@ -1709,8 +1512,7 @@ body {
 
   color: #604732;
 
-  padding:
-    8px 10px;
+  padding: 8px 10px;
 
   outline: none;
 
@@ -1721,24 +1523,11 @@ body {
   font-size: 12px;
 
   border-radius: 2px;
-
-  transition:
-    border-color .25s ease,
-    background .25s ease;
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 72px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color:
-    rgba(135,100,67,.65);
-
-  background:
-    rgba(255,250,241,.7);
 }
 
 .rsvp-buttons {
@@ -1760,8 +1549,7 @@ body {
 
   color: #644a34;
 
-  padding:
-    6px 13px;
+  padding: 6px 13px;
 
   font-family:
     "Noto Naskh Arabic",
@@ -1772,20 +1560,10 @@ body {
   border-radius: 2px;
 
   cursor: pointer;
-
-  transition:
-    background .25s ease,
-    transform .25s ease;
-}
-
-.rsvp-btn:active {
-  transform:
-    scale(.97);
 }
 
 .rsvp-btn.selected {
-  background:
-    #d4c0a7;
+  background: #d4c0a7;
 }
 
 
@@ -1818,16 +1596,13 @@ body {
   border:
     1px solid #bba384;
 
-  background:
-    #f7efe4;
+  background: #f7efe4;
 
   color: #604732;
 
-  font-family:
-    inherit;
+  font-family: inherit;
 
-  padding:
-    4px 7px;
+  padding: 4px 7px;
 
   outline: none;
 
@@ -1841,18 +1616,8 @@ body {
 
 .wishes-section {
   width: 100%;
-
   margin-top: 34px;
-
   padding-top: 20px;
-}
-
-.wishes-title {
-  margin-bottom: 15px;
-
-  font-size: 16px;
-
-  color: #73563e;
 }
 
 
@@ -1883,8 +1648,6 @@ body {
   gap: 10px;
 
   margin-bottom: 17px;
-
-  direction: ltr;
 }
 
 .final-ornament span {
@@ -1911,9 +1674,7 @@ body {
 
 .final-ornament b {
   color: #a88963;
-
   font-size: 11px;
-
   font-weight: 400;
 }
 
@@ -1929,9 +1690,7 @@ body {
 .bottom-monogram {
   margin-top: 32px;
 
-  font-family:
-    "Cinzel",
-    serif;
+  font-family: "Cinzel", serif;
 
   font-size: 15px;
 
@@ -1951,8 +1710,7 @@ body {
   left: 50%;
   bottom: 5%;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   color: #765a41;
 
@@ -1962,9 +1720,6 @@ body {
 
   animation:
     hintPulse 2.2s ease-in-out infinite;
-
-  transition:
-    opacity .4s ease;
 }
 
 @keyframes hintPulse {
@@ -1986,11 +1741,7 @@ body {
 
 .envelope-stage.envelope-hide .envelope {
   opacity: 0;
-
   pointer-events: none;
-
-  transition:
-    opacity .45s ease;
 }
 
 .envelope-stage.envelope-hide .ground-shadow {
@@ -2000,26 +1751,10 @@ body {
     translateX(-50%)
     translateY(15px)
     scale(.75);
-
-  transition:
-    opacity .45s ease,
-    transform .45s ease;
 }
 
 .envelope-stage.envelope-hide .paper-wrapper {
   opacity: 0;
-
-  transition:
-    opacity .45s ease;
-}
-
-
-/* =========================================================
-   FINISHED
-========================================================= */
-
-.envelope-stage.finished {
-  pointer-events: none;
 }
 
 
@@ -2040,49 +1775,19 @@ body {
     width: 88vw;
   }
 
-  /*
-     نفس المكان في الموبايل:
-     منتصف الظرف وليس أعلى الظرف
-  */
-
   .paper-wrapper {
     width: 88vw;
-
-    aspect-ratio:
-      1.48 / 1;
-
-    height: auto;
-
-    left: 50%;
     top: 52%;
-
-    transform:
-      translate(-50%, -50%);
   }
 
-  /*
-     الاقتراب للشاشة يكون Z فقط
-     بدون translateY
-  */
-
   .envelope-stage.invitation-expand .paper-wrapper {
-
     width: 88vw;
 
-    aspect-ratio:
-      1.48 / 1;
-
-    height: auto;
-
-    left: 50%;
     top: 52%;
 
     transform:
       translate(-50%, -50%)
       translateZ(1100px);
-
-    transition:
-      transform 2.1s cubic-bezier(.12,.78,.16,1);
   }
 
   .invitation-page {
@@ -2106,24 +1811,11 @@ body {
 
   .bismillah {
     font-size: 23px;
-
-    margin-bottom: 8px;
-
-    color: #604832 !important;
-
-    -webkit-text-fill-color:
-      #604832 !important;
   }
 
   .quran-ayah {
     font-size: 17px;
-
     line-height: 2.05;
-
-    color: #604832 !important;
-
-    -webkit-text-fill-color:
-      #604832 !important;
   }
 
   .invitation-line {
@@ -2144,7 +1836,6 @@ body {
 
   .countdown {
     width: 94%;
-
     gap: 7px;
   }
 
@@ -2153,16 +1844,11 @@ body {
   }
 
   .count-divider {
-    width: 1px;
     height: 28px;
   }
 
   .rsvp-section {
     margin-top: 34px;
-
-    padding-top: 18px;
-
-    border-top: none;
   }
 }
 
@@ -2179,28 +1865,17 @@ body {
 
   .paper-wrapper {
     width: 83vw;
-
     top: 52%;
   }
 
   .envelope-stage.invitation-expand .paper-wrapper {
-
     width: 83vw;
 
-    aspect-ratio:
-      1.48 / 1;
-
-    height: auto;
-
-    left: 50%;
     top: 52%;
 
     transform:
       translate(-50%, -50%)
       translateZ(1100px);
-
-    transition:
-      transform 2.1s cubic-bezier(.12,.78,.16,1);
   }
 
   .invitation-line {
@@ -2217,8 +1892,6 @@ body {
 
   .rsvp-section {
     margin-top: 28px;
-
-    border-top: none;
   }
 }
 
@@ -2232,34 +1905,10 @@ body {
   *,
   *::before,
   *::after {
-    animation-duration:
-      .01ms !important;
+    animation-duration: .01ms !important;
 
-    animation-iteration-count:
-      1 !important;
+    animation-iteration-count: 1 !important;
 
-    transition-duration:
-      .01ms !important;
+    transition-duration: .01ms !important;
   }
-}
-
-
-/* =========================================================
-   FINAL BROWN COLOR
-========================================================= */
-
-.bismillah,
-.quran-ayah {
-  color: #604832 !important;
-
-  -webkit-text-fill-color:
-    #604832 !important;
-}
-
-.bismillah *,
-.quran-ayah * {
-  color: #604832 !important;
-
-  -webkit-text-fill-color:
-    #604832 !important;
 }
