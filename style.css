@@ -17,7 +17,6 @@ html {
 body {
   width: 100%;
   min-height: 100%;
-
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -79,12 +78,8 @@ body {
 
 .loader-monogram {
   font-family: "Cinzel", serif;
-
-  font-size:
-    clamp(45px, 11vw, 80px);
-
+  font-size: clamp(45px, 11vw, 80px);
   letter-spacing: .08em;
-
   color: #74553a;
 
   text-shadow:
@@ -98,9 +93,7 @@ body {
 .loader-line {
   width: 72px;
   height: 1px;
-
   margin: 12px 0;
-
   background: #a88864;
 
   animation:
@@ -109,16 +102,12 @@ body {
 
 .loader-names {
   font-family: "Cinzel", serif;
-
   font-size: 10px;
-
   letter-spacing: .25em;
-
   color: #795d43;
 }
 
 @keyframes loaderAppear {
-
   from {
     opacity: 0;
     transform: scale(.9);
@@ -128,11 +117,9 @@ body {
     opacity: 1;
     transform: scale(1);
   }
-
 }
 
 @keyframes lineAppear {
-
   from {
     transform: scaleX(0);
   }
@@ -140,7 +127,6 @@ body {
   to {
     transform: scaleX(1);
   }
-
 }
 
 
@@ -153,7 +139,6 @@ body {
 
   width: 100%;
   height: 100dvh;
-
   min-height: 600px;
 
   overflow: hidden;
@@ -174,8 +159,8 @@ body {
   visibility: visible;
 
   transition:
-    opacity .6s ease,
-    visibility .6s ease;
+    opacity .45s ease,
+    visibility .45s ease;
 }
 
 .envelope-screen.completely-hidden {
@@ -268,11 +253,8 @@ body {
 .envelope {
   position: absolute;
 
-  width:
-    min(87vw, 610px);
-
-  aspect-ratio:
-    1.48 / 1;
+  width: min(87vw, 610px);
+  aspect-ratio: 1.48 / 1;
 
   left: 50%;
   top: 52%;
@@ -282,8 +264,11 @@ body {
 
   transform-style: preserve-3d;
 
+  z-index: 100;
+
   transition:
-    transform .3s ease;
+    transform 1s cubic-bezier(.2,.85,.2,1),
+    opacity .55s ease;
 }
 
 
@@ -296,7 +281,7 @@ body {
 
   inset: 0;
 
-  z-index: 20;
+  z-index: 10;
 
   border-radius: 4px;
 
@@ -314,6 +299,148 @@ body {
     inset 0 1px 0 rgba(255,255,255,.65);
 
   overflow: hidden;
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper-wrapper {
+  position: absolute;
+
+  left: 50%;
+  top: 48%;
+
+  width: 100%;
+  height: 100%;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  overflow: visible;
+
+  transform-style: preserve-3d;
+
+  opacity: 1;
+
+  transition:
+    transform 1.65s cubic-bezier(.16,.78,.18,1),
+    opacity .5s ease;
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #faf5eb,
+      #f2e9db 52%,
+      #eee1d0
+    );
+
+  box-shadow:
+    0 20px 38px rgba(47,31,20,.30),
+    0 5px 10px rgba(47,31,20,.15),
+    inset 0 0 0 1px rgba(135,102,70,.15);
+}
+
+
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
+
+.paper-texture {
+  position: absolute;
+  inset: 0;
+
+  opacity: .23;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(108,80,52,.07) 0,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.15) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: multiply;
+}
+
+
+/* =========================================================
+   PAPER MONOGRAM
+========================================================= */
+
+.paper-monogram {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.paper-monogram span {
+  width: 92px;
+  height: 92px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(151,116,77,.48);
+
+  color: #927453;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size: 34px;
+
+  letter-spacing: .08em;
+
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,.8),
+    -1px -1px 0 rgba(102,73,47,.18);
+
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,.65),
+    inset -1px -1px 2px rgba(103,74,47,.12);
 }
 
 
@@ -366,6 +493,8 @@ body {
 
   overflow: hidden;
 
+  z-index: 30;
+
   background:
     linear-gradient(
       145deg,
@@ -384,15 +513,8 @@ body {
     opacity .55s ease;
 }
 
-
-/* =========================================================
-   LEFT SIDE
-========================================================= */
-
 .envelope-left {
   left: 0;
-
-  z-index: 30;
 
   transform-origin:
     0% 50%;
@@ -405,15 +527,8 @@ body {
     );
 }
 
-
-/* =========================================================
-   RIGHT SIDE
-========================================================= */
-
 .envelope-right {
   right: 0;
-
-  z-index: 30;
 
   transform-origin:
     100% 50%;
@@ -475,7 +590,7 @@ body {
 
 
 /* =========================================================
-   TOP FLAP
+   FLAP
 ========================================================= */
 
 .flap {
@@ -601,12 +716,6 @@ body {
     brightness(1.06);
 }
 
-.seal:active {
-  transform:
-    translate(-50%, -50%)
-    scale(.97);
-}
-
 .seal-inner {
   width: 76%;
   height: 76%;
@@ -642,7 +751,7 @@ body {
 
 
 /* =========================================================
-   OPENING — FOUR SIDES
+   OPENING
 ========================================================= */
 
 .envelope-stage.opened .flap {
@@ -667,44 +776,163 @@ body {
 
 
 /* =========================================================
-   CLICK HINT
+   PAPER APPROACH
 ========================================================= */
 
-.click-hint {
+.envelope-stage.invitation-expand .paper-wrapper {
+  z-index: 200;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.42);
+
+  transition:
+    transform 1.65s cubic-bezier(.12,.78,.16,1);
+}
+
+
+/* =========================================================
+   SPARKLE
+========================================================= */
+
+.paper-wrapper::before {
+  content: "";
+
   position: absolute;
 
   left: 50%;
-  bottom: 5%;
+  top: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  z-index: 250;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  opacity: 0;
 
   transform:
-    translateX(-50%);
+    translate(-50%, -50%)
+    scale(.1);
 
-  color: #765a41;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,1) 0%,
+      rgba(255,248,225,.95) 18%,
+      rgba(224,190,135,.65) 42%,
+      transparent 72%
+    );
 
-  font-size: 12px;
-
-  opacity: .72;
-
-  white-space: nowrap;
-
-  animation:
-    hintPulse 2.2s ease-in-out infinite;
-
-  transition:
-    opacity .4s ease;
+  box-shadow:
+    0 0 12px rgba(255,255,255,.95),
+    0 0 28px rgba(214,178,120,.75),
+    0 0 55px rgba(214,178,120,.4);
 }
 
-@keyframes hintPulse {
+.paper-wrapper::after {
+  content: "";
 
-  0%,
-  100% {
-    opacity: .4;
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 5px;
+  height: 150px;
+
+  z-index: 251;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(45deg)
+    scaleY(.1);
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255,255,255,.95),
+      transparent
+    );
+
+  filter:
+    blur(.4px);
+}
+
+.envelope-stage.sparkle .paper-wrapper::before {
+  animation:
+    invitationFlash .65s ease-out forwards;
+}
+
+.envelope-stage.sparkle .paper-wrapper::after {
+  animation:
+    sparkleRay .65s ease-out forwards;
+}
+
+@keyframes invitationFlash {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.1);
   }
 
-  50% {
+  18% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(3);
+  }
+
+  42% {
     opacity: .9;
+    transform:
+      translate(-50%, -50%)
+      scale(7);
   }
 
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(18);
+  }
+}
+
+@keyframes sparkleRay {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(.1);
+  }
+
+  25% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      rotate(45deg)
+      scaleY(1.5);
+  }
 }
 
 
@@ -713,14 +941,12 @@ body {
 ========================================================= */
 
 .invitation-page {
-  position: fixed;
+  position: absolute;
 
   left: 0;
   top: 0;
 
   width: 100%;
-  height: 100%;
-
   min-height: 100dvh;
 
   padding:
@@ -733,35 +959,28 @@ body {
   align-items: flex-start;
   justify-content: center;
 
-  overflow-y: auto;
-
   background:
     #f3ecdf;
 
   opacity: 0;
-
   visibility: hidden;
-
   pointer-events: none;
 
   z-index: 20;
 
   transition:
-    opacity .7s ease,
-    visibility .7s ease;
+    opacity .45s ease;
 }
 
 .app.show-invitation .invitation-page {
   opacity: 1;
-
   visibility: visible;
-
   pointer-events: auto;
 }
 
 
 /* =========================================================
-   INVITATION BACKGROUND
+   BACKGROUND
 ========================================================= */
 
 .invitation-background {
@@ -968,7 +1187,6 @@ body {
   color: #6B4A35 !important;
 
   direction: rtl;
-
   text-align: center;
 
   text-rendering: optimizeLegibility;
@@ -993,7 +1211,6 @@ body {
   color: #6B4A35 !important;
 
   direction: rtl;
-
   text-align: center;
 
   text-rendering: optimizeLegibility;
@@ -1006,9 +1223,7 @@ body {
 .quran-section .bismillah *,
 .quran-section .quran-ayah * {
   color: #604832 !important;
-
   -webkit-text-fill-color: #6B4A35 !important;
-
   text-decoration-color: #6B4A35 !important;
 }
 
@@ -1148,13 +1363,11 @@ body {
 
 .modern-divider.soft {
   width: 62%;
-
   margin-top: 24px;
 }
 
 .modern-divider.soft b {
   font-size: 11px;
-
   opacity: 1;
 }
 
@@ -1165,7 +1378,6 @@ body {
 
 .details-section {
   width: 100%;
-
   margin-top: 20px;
 }
 
@@ -1206,7 +1418,6 @@ body {
 
 .location-name {
   font-weight: 600;
-
   color: #5c432f;
 }
 
@@ -1251,7 +1462,6 @@ body {
 
 .countdown-section {
   width: 100%;
-
   margin-top: 28px;
 }
 
@@ -1312,7 +1522,6 @@ body {
 
 .count-divider {
   width: 1px;
-
   height: 32px;
 
   background:
@@ -1396,7 +1605,6 @@ body {
   width: 100%;
 
   margin-top: 38px;
-
   padding-top: 18px;
 
   border-top: none;
@@ -1478,7 +1686,6 @@ body {
 
 .form-group textarea {
   resize: vertical;
-
   min-height: 72px;
 }
 
@@ -1593,7 +1800,6 @@ body {
   width: 100%;
 
   margin-top: 34px;
-
   padding-top: 20px;
 }
 
@@ -1692,6 +1898,84 @@ body {
 
 
 /* =========================================================
+   CLICK HINT
+========================================================= */
+
+.click-hint {
+  position: absolute;
+
+  left: 50%;
+  bottom: 5%;
+
+  transform:
+    translateX(-50%);
+
+  color: #765a41;
+
+  font-size: 12px;
+
+  opacity: .72;
+
+  animation:
+    hintPulse 2.2s ease-in-out infinite;
+
+  transition:
+    opacity .4s ease;
+}
+
+@keyframes hintPulse {
+
+  0%,
+  100% {
+    opacity: .4;
+  }
+
+  50% {
+    opacity: .9;
+  }
+}
+
+
+/* =========================================================
+   HIDE ENVELOPE
+========================================================= */
+
+.envelope-stage.envelope-hide .envelope {
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity .45s ease;
+}
+
+.envelope-stage.envelope-hide .ground-shadow {
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(15px)
+    scale(.75);
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease;
+}
+
+.envelope-stage.envelope-hide .paper-wrapper {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FINISHED
+========================================================= */
+
+.envelope-stage.finished {
+  pointer-events: none;
+}
+
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -1699,14 +1983,34 @@ body {
 
   .envelope-stage {
     width: 100vw;
-
     height: 90dvh;
 
-    perspective: 850px;
+    perspective: 900px;
   }
 
   .envelope {
     width: 88vw;
+  }
+
+  .paper-wrapper {
+    width: 88vw;
+    height: calc(88vw / 1.48);
+
+    top: 48%;
+  }
+
+  .envelope-stage.invitation-expand .paper-wrapper {
+    width: 88vw;
+    height: calc(88vw / 1.48);
+
+    top: 48%;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.42);
+
+    transition:
+      transform 1.65s cubic-bezier(.12,.78,.16,1);
   }
 
   .invitation-page {
@@ -1730,21 +2034,17 @@ body {
 
   .bismillah {
     font-size: 23px;
-
     margin-bottom: 8px;
 
     color: #604832 !important;
-
     -webkit-text-fill-color: #604832 !important;
   }
 
   .quran-ayah {
     font-size: 17px;
-
     line-height: 2.05;
 
     color: #604832 !important;
-
     -webkit-text-fill-color: #604832 !important;
   }
 
@@ -1766,7 +2066,6 @@ body {
 
   .countdown {
     width: 94%;
-
     gap: 7px;
   }
 
@@ -1776,18 +2075,14 @@ body {
 
   .count-divider {
     width: 1px;
-
     height: 28px;
   }
 
   .rsvp-section {
     margin-top: 34px;
-
     padding-top: 18px;
-
     border-top: none;
   }
-
 }
 
 
@@ -1799,6 +2094,24 @@ body {
 
   .envelope {
     width: 83vw;
+  }
+
+  .paper-wrapper {
+    width: 83vw;
+    height: calc(83vw / 1.48);
+
+    top: 48%;
+  }
+
+  .envelope-stage.invitation-expand .paper-wrapper {
+    width: 83vw;
+    height: calc(83vw / 1.48);
+
+    top: 48%;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.42);
   }
 
   .invitation-line {
@@ -1815,10 +2128,8 @@ body {
 
   .rsvp-section {
     margin-top: 28px;
-
     border-top: none;
   }
-
 }
 
 
@@ -1840,24 +2151,36 @@ body {
     transition-duration:
       .01ms !important;
   }
-
 }
-
 
 /* =========================================================
    FINAL BROWN COLOR
+   تغيير اللون فقط بدون تغيير الخط أو الحجم أو أي تنسيق
 ========================================================= */
 
 .bismillah,
 .quran-ayah {
   color: #604832 !important;
-
   -webkit-text-fill-color: #604832 !important;
 }
 
 .bismillah *,
 .quran-ayah * {
   color: #604832 !important;
-
   -webkit-text-fill-color: #604832 !important;
+}
+
+
+/* =========================================================
+   QURAN SECTION
+   البسملة والآية فقط باللون البني
+========================================================= */
+
+.quran-section .bismillah,
+.quran-section .quran-ayah,
+.quran-section .bismillah *,
+.quran-section .quran-ayah * {
+  color: #604832 !important;
+  -webkit-text-fill-color: #604832 !important;
+  text-decoration-color: #604832 !important;
 }
