@@ -16,6 +16,8 @@
 
   <title>Ahmed & Shahd</title>
 
+  <!-- GOOGLE FONTS -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -30,11 +32,14 @@
   >
 
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-  <!-- LOADER -->
+  <!-- =====================================================
+       LOADING SCREEN
+  ====================================================== -->
 
   <div class="loader" id="loader">
 
@@ -51,11 +56,15 @@
   </div>
 
 
-  <!-- APP -->
+  <!-- =====================================================
+       MAIN APP
+  ====================================================== -->
 
   <main class="app" id="app">
 
-    <!-- ENVELOPE -->
+    <!-- ===================================================
+         ENVELOPE SCREEN
+    ==================================================== -->
 
     <section
       class="envelope-screen"
@@ -63,6 +72,7 @@
     >
 
       <div class="ambient-light"></div>
+
 
       <div
         class="envelope-stage"
@@ -72,35 +82,19 @@
         <div class="ground-shadow"></div>
 
 
-        <!-- INVITATION PAPER -->
-
-        <div
-          class="paper-wrapper"
-          id="paperWrapper"
-        >
-
-          <div class="paper-shadow"></div>
-
-          <div class="paper">
-
-            <div class="paper-texture"></div>
-
-            <div class="paper-monogram">
-              <span>AS</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- ENVELOPE OVERLAY -->
-        <!-- مفيش BACK هنا -->
+        <!-- =================================================
+             ENVELOPE
+        ================================================== -->
 
         <div
           class="envelope"
           id="envelope"
         >
+
+          <!-- ENVELOPE BACK -->
+
+          <div class="envelope-back"></div>
+
 
           <!-- LEFT SIDE -->
 
@@ -117,7 +111,9 @@
           <div class="envelope-bottom"></div>
 
 
-          <!-- TOP FLAP -->
+          <!-- =================================================
+               TOP FLAP
+          ================================================== -->
 
           <div
             class="flap"
@@ -165,7 +161,9 @@
     </section>
 
 
-    <!-- INVITATION PAGE -->
+    <!-- ===================================================
+         INVITATION PAGE
+    ==================================================== -->
 
     <section
       class="invitation-page"
@@ -178,14 +176,18 @@
       <article class="invitation-card">
 
         <div class="invitation-frame">
+
           <div class="invitation-inner-frame"></div>
+
         </div>
 
 
         <div class="invitation-content">
 
 
-          <!-- QURAN -->
+          <!-- =================================================
+               QURAN
+          ================================================== -->
 
           <div class="quran-section reveal-item">
 
@@ -194,15 +196,19 @@
             </div>
 
             <div class="quran-ayah">
+
               وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ
               أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
               وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+
             </div>
 
           </div>
 
 
-          <!-- INTRO -->
+          <!-- =================================================
+               INTRO
+          ================================================== -->
 
           <div class="intro-section reveal-item">
 
@@ -210,13 +216,16 @@
               يسر د. هدى مدحت دعوتكم لحضور حفل حنة
             </div>
 
+
             <div class="names">
 
               <span class="couple-name">
                 أحمد
               </span>
 
-              <i>&amp;</i>
+              <i>
+                &amp;
+              </i>
 
               <span class="couple-name">
                 شهد
@@ -227,16 +236,24 @@
           </div>
 
 
-          <!-- DIVIDER -->
+          <!-- =================================================
+               DIVIDER 1
+          ================================================== -->
 
           <div class="modern-divider reveal-item">
+
             <span></span>
+
             <b>✦</b>
+
             <span></span>
+
           </div>
 
 
-          <!-- DETAILS -->
+          <!-- =================================================
+               DETAILS
+          ================================================== -->
 
           <div class="details-section reveal-item">
 
@@ -270,14 +287,22 @@
           </div>
 
 
+          <!-- DIVIDER -->
+
           <div class="modern-divider soft reveal-item">
+
             <span></span>
+
             <b>✦</b>
+
             <span></span>
+
           </div>
 
 
-          <!-- COUNTDOWN -->
+          <!-- =================================================
+               COUNTDOWN
+          ================================================== -->
 
           <div class="countdown-section reveal-item">
 
@@ -288,22 +313,47 @@
             <div class="countdown">
 
               <div class="count-item">
-                <span id="days">00</span>
-                <small>أيام</small>
+
+                <span id="days">
+                  00
+                </span>
+
+                <small>
+                  أيام
+                </small>
+
               </div>
+
 
               <div class="count-divider"></div>
 
+
               <div class="count-item">
-                <span id="hours">00</span>
-                <small>ساعات</small>
+
+                <span id="hours">
+                  00
+                </span>
+
+                <small>
+                  ساعات
+                </small>
+
               </div>
+
 
               <div class="count-divider"></div>
 
+
               <div class="count-item">
-                <span id="minutes">00</span>
-                <small>دقائق</small>
+
+                <span id="minutes">
+                  00
+                </span>
+
+                <small>
+                  دقائق
+                </small>
+
               </div>
 
             </div>
@@ -311,14 +361,24 @@
           </div>
 
 
+          <!-- =================================================
+               DIVIDER 2
+          ================================================== -->
+
           <div class="modern-divider soft reveal-item">
+
             <span></span>
+
             <b>✦</b>
+
             <span></span>
+
           </div>
 
 
-          <!-- RSVP -->
+          <!-- =================================================
+               RSVP
+          ================================================== -->
 
           <div class="rsvp-section reveal-item">
 
@@ -326,11 +386,17 @@
               حضوركم يسعدنا
             </div>
 
+
             <div class="form-group">
 
               <label for="guestName">
+
                 الاسم
-                <em>(إجباري)</em>
+
+                <em>
+                  (إجباري)
+                </em>
+
               </label>
 
               <input
@@ -352,6 +418,7 @@
                 سأحضر
               </button>
 
+
               <button
                 class="rsvp-btn decline"
                 id="declineBtn"
@@ -369,8 +436,13 @@
             >
 
               <label for="guestCount">
+
                 عدد المرافقين
-                <em>(اختياري)</em>
+
+                <em>
+                  (اختياري)
+                </em>
+
               </label>
 
               <input
@@ -386,14 +458,22 @@
           </div>
 
 
+          <!-- DIVIDER -->
+
           <div class="modern-divider soft reveal-item">
+
             <span></span>
+
             <b>✦</b>
+
             <span></span>
+
           </div>
 
 
-          <!-- WISHES -->
+          <!-- =================================================
+               WISHES
+          ================================================== -->
 
           <div class="wishes-section reveal-item">
 
@@ -401,11 +481,17 @@
               اكتبوا لنا كلمة تبقى ذكرى
             </div>
 
+
             <div class="form-group">
 
               <label for="wishName">
+
                 الاسم
-                <em>(إجباري)</em>
+
+                <em>
+                  (إجباري)
+                </em>
+
               </label>
 
               <input
@@ -420,8 +506,13 @@
             <div class="form-group">
 
               <label for="wishText">
+
                 الأمنية
-                <em>(إجباري)</em>
+
+                <em>
+                  (إجباري)
+                </em>
+
               </label>
 
               <textarea
@@ -435,7 +526,9 @@
           </div>
 
 
-          <!-- FINAL -->
+          <!-- =================================================
+               FINAL
+          ================================================== -->
 
           <div class="final-section reveal-item">
 
@@ -443,7 +536,9 @@
 
               <span></span>
 
-              <b>✦</b>
+              <b>
+                ✦
+              </b>
 
               <span></span>
 
@@ -459,6 +554,10 @@
 
           </div>
 
+
+          <!-- =================================================
+               BOTTOM MONOGRAM
+          ================================================== -->
 
           <div class="bottom-monogram reveal-item">
             AS
@@ -476,4 +575,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
