@@ -34,7 +34,7 @@ const envelope =
 
 
 /* =========================================================
-   LOADING
+   LOADING SCREEN
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -50,6 +50,7 @@ window.addEventListener("load", () => {
 
 /* =========================================================
    COUNTDOWN
+   20 AUGUST 2026 - 9:00 PM
 ========================================================= */
 
 const eventDate =
@@ -86,10 +87,14 @@ function updateCountdown() {
   }
 
 
+  /* EVENT PASSED */
+
   if (difference <= 0) {
 
     daysElement.textContent = "00";
+
     hoursElement.textContent = "00";
+
     minutesElement.textContent = "00";
 
     return;
@@ -131,8 +136,11 @@ function updateCountdown() {
 
   minutesElement.textContent =
     String(minutes).padStart(2, "0");
+
 }
 
+
+/* START COUNTDOWN */
 
 updateCountdown();
 
@@ -149,122 +157,72 @@ setInterval(
 let opened = false;
 
 
-openButton.addEventListener(
-  "click",
-  () => {
+openButton.addEventListener("click", () => {
 
-    if (opened) {
-      return;
-    }
+  if (opened) {
+    return;
+  }
 
-    opened = true;
+  opened = true;
 
 
-    /* HIDE HINT */
+  /* =====================================================
+     HIDE CLICK HINT
+  ====================================================== */
 
-    clickHint.style.opacity = "0";
-
-
-    /* RESET PARALLAX */
-
-    envelope.style.transform =
-      "translate(-50%, -50%)";
+  clickHint.style.opacity = "0";
 
 
-    /*
-      أولاً:
-      تفتح طبقات الظرف فوق الورقة
-    */
+  /* =====================================================
+     STOP PARALLAX
+  ====================================================== */
 
-    envelopeStage.classList.add(
-      "opened"
+  envelope.style.transform =
+    "translate(-50%, -50%)";
+
+
+  /* =====================================================
+     OPEN FOUR SIDES
+  ====================================================== */
+
+  envelopeStage.classList.add(
+    "opened"
+  );
+
+
+  /* =====================================================
+     SHOW INVITATION AFTER ENVELOPE OPENS
+  ====================================================== */
+
+  setTimeout(() => {
+
+    app.classList.add(
+      "show-invitation"
     );
 
-
-    /*
-      SPARKLE
-    */
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "sparkle"
-      );
-
-    }, 1900);
+  }, 1650);
 
 
-    /*
-      الورقة تقرب للشاشة
-      بدون translateY
-    */
+  /* =====================================================
+     HIDE ENVELOPE AFTER TRANSITION
+  ====================================================== */
 
-    setTimeout(() => {
+  setTimeout(() => {
 
-      envelopeStage.classList.add(
-        "invitation-expand"
-      );
+    envelopeScreen.classList.add(
+      "completely-hidden"
+    );
 
-    }, 2150);
+    envelopeStage.classList.add(
+      "finished"
+    );
 
+    document.body.style.overflowY =
+      "auto";
 
-    /*
-      إظهار صفحة الدعوة
-    */
+  }, 2450);
 
-    setTimeout(() => {
-
-      app.classList.add(
-        "show-invitation"
-      );
-
-    }, 2350);
-
-
-    /*
-      إخفاء طبقات الظرف
-      بعد ما الورقة تقرب
-    */
-
-    setTimeout(() => {
-
-      envelopeStage.classList.add(
-        "envelope-hide"
-      );
-
-    }, 3550);
-
-
-    /*
-      إخفاء شاشة الظرف
-    */
-
-    setTimeout(() => {
-
-      envelopeScreen.classList.add(
-        "completely-hidden"
-      );
-
-      envelopeStage.classList.add(
-        "finished"
-      );
-
-    }, 4100);
-
-
-    /*
-      SCROLL
-    */
-
-    setTimeout(() => {
-
-      document.body.style.overflowY =
-        "auto";
-
-    }, 4200);
-
-  }
-);
+});
 
 
 /* =========================================================
@@ -312,7 +270,7 @@ declineBtn.addEventListener(
 
 
 /* =========================================================
-   DESKTOP PARALLAX
+   DESKTOP ENVELOPE PARALLAX
 ========================================================= */
 
 const desktopPointer =
@@ -362,7 +320,25 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   MOBILE DOUBLE TAP PROTECTION
+   RESET PARALLAX WHEN OPENING
+========================================================= */
+
+openButton.addEventListener(
+  "click",
+  () => {
+
+    envelope.style.transform =
+      "translate(-50%, -50%)";
+
+  },
+  {
+    once: true
+  }
+);
+
+
+/* =========================================================
+   MOBILE DOUBLE-TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
