@@ -49,6 +49,106 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
+   COUNTDOWN
+   20 AUGUST 2026 - 9:00 PM
+========================================================= */
+
+const eventDate =
+  new Date(
+    "2026-08-20T21:00:00"
+  ).getTime();
+
+
+function updateCountdown() {
+
+  const now =
+    new Date().getTime();
+
+  const difference =
+    eventDate - now;
+
+
+  const daysElement =
+    document.getElementById("days");
+
+  const hoursElement =
+    document.getElementById("hours");
+
+  const minutesElement =
+    document.getElementById("minutes");
+
+
+  if (
+    !daysElement ||
+    !hoursElement ||
+    !minutesElement
+  ) {
+    return;
+  }
+
+
+  /* EVENT PASSED */
+
+  if (difference <= 0) {
+
+    daysElement.textContent = "00";
+    hoursElement.textContent = "00";
+    minutesElement.textContent = "00";
+
+    return;
+  }
+
+
+  const days =
+    Math.floor(
+      difference /
+      (1000 * 60 * 60 * 24)
+    );
+
+
+  const hours =
+    Math.floor(
+      (
+        difference %
+        (1000 * 60 * 60 * 24)
+      ) /
+      (1000 * 60 * 60)
+    );
+
+
+  const minutes =
+    Math.floor(
+      (
+        difference %
+        (1000 * 60 * 60)
+      ) /
+      (1000 * 60)
+    );
+
+
+  daysElement.textContent =
+    String(days).padStart(2, "0");
+
+  hoursElement.textContent =
+    String(hours).padStart(2, "0");
+
+  minutesElement.textContent =
+    String(minutes).padStart(2, "0");
+
+}
+
+
+/* START COUNTDOWN */
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+
+/* =========================================================
    OPEN ENVELOPE
 ========================================================= */
 
@@ -64,28 +164,19 @@ openButton.addEventListener("click", () => {
   opened = true;
 
 
-  /* =======================================================
-     STEP 1
-     HIDE CLICK HINT
-  ======================================================= */
+  /* HIDE HINT */
 
   clickHint.style.opacity = "0";
 
 
-  /* =======================================================
-     STEP 2
-     OPEN ENVELOPE
-  ======================================================= */
+  /* OPEN ENVELOPE */
 
   envelopeStage.classList.add(
     "opened"
   );
 
 
-  /* =======================================================
-     STEP 3
-     SPARKLE
-  ======================================================= */
+  /* SPARKLE */
 
   setTimeout(() => {
 
@@ -96,10 +187,7 @@ openButton.addEventListener("click", () => {
   }, 1900);
 
 
-  /* =======================================================
-     STEP 4
-     AS PAPER STARTS APPROACHING
-  ======================================================= */
+  /* PAPER APPROACH */
 
   setTimeout(() => {
 
@@ -110,10 +198,7 @@ openButton.addEventListener("click", () => {
   }, 2150);
 
 
-  /* =======================================================
-     STEP 5
-     REAL INVITATION APPEARS
-  ======================================================= */
+  /* SHOW INVITATION */
 
   setTimeout(() => {
 
@@ -124,10 +209,7 @@ openButton.addEventListener("click", () => {
   }, 2350);
 
 
-  /* =======================================================
-     STEP 6
-     ENVELOPE STARTS FADING
-  ======================================================= */
+  /* HIDE ENVELOPE */
 
   setTimeout(() => {
 
@@ -138,10 +220,7 @@ openButton.addEventListener("click", () => {
   }, 3550);
 
 
-  /* =======================================================
-     STEP 7
-     REMOVE ENVELOPE SCREEN
-  ======================================================= */
+  /* REMOVE ENVELOPE SCREEN */
 
   setTimeout(() => {
 
@@ -156,10 +235,7 @@ openButton.addEventListener("click", () => {
   }, 4100);
 
 
-  /* =======================================================
-     STEP 8
-     RESTORE SCROLL
-  ======================================================= */
+  /* RESTORE SCROLL */
 
   setTimeout(() => {
 
