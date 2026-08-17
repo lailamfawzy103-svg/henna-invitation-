@@ -50,7 +50,6 @@ window.addEventListener("load", () => {
 
 /* =========================================================
    COUNTDOWN
-   20 AUGUST 2026 - 9:00 PM
 ========================================================= */
 
 const eventDate =
@@ -86,8 +85,6 @@ function updateCountdown() {
     return;
   }
 
-
-  /* EVENT PASSED */
 
   if (difference <= 0) {
 
@@ -138,8 +135,6 @@ function updateCountdown() {
 }
 
 
-/* START COUNTDOWN */
-
 updateCountdown();
 
 setInterval(
@@ -169,14 +164,20 @@ openButton.addEventListener("click", () => {
   clickHint.style.opacity = "0";
 
 
-  /* OPEN ENVELOPE */
+  /*
+    IMPORTANT:
+    أول حاجة الظرف يفتح.
+  */
 
   envelopeStage.classList.add(
     "opened"
   );
 
 
-  /* SPARKLE */
+  /*
+    بعد ما الجوانب تبدأ تفتح،
+    الورقة تطلع من النص.
+  */
 
   setTimeout(() => {
 
@@ -184,10 +185,26 @@ openButton.addEventListener("click", () => {
       "sparkle"
     );
 
-  }, 1900);
+  }, 1450);
 
 
-  /* PAPER APPROACH */
+  setTimeout(() => {
+
+    /*
+      هنا الورقة تبدأ تطلع
+      من منتصف الظرف
+    */
+
+    envelopeStage.classList.add(
+      "opened-paper"
+    );
+
+  }, 900);
+
+
+  /*
+    تكبير الورقة بعد خروجها
+  */
 
   setTimeout(() => {
 
@@ -198,7 +215,9 @@ openButton.addEventListener("click", () => {
   }, 2150);
 
 
-  /* SHOW INVITATION */
+  /*
+    إظهار صفحة الدعوة
+  */
 
   setTimeout(() => {
 
@@ -209,7 +228,9 @@ openButton.addEventListener("click", () => {
   }, 2350);
 
 
-  /* HIDE ENVELOPE */
+  /*
+    إخفاء الظرف
+  */
 
   setTimeout(() => {
 
@@ -220,7 +241,9 @@ openButton.addEventListener("click", () => {
   }, 3550);
 
 
-  /* REMOVE ENVELOPE SCREEN */
+  /*
+    إنهاء شاشة الظرف
+  */
 
   setTimeout(() => {
 
@@ -234,8 +257,6 @@ openButton.addEventListener("click", () => {
 
   }, 4100);
 
-
-  /* RESTORE SCROLL */
 
   setTimeout(() => {
 
@@ -292,7 +313,7 @@ declineBtn.addEventListener(
 
 
 /* =========================================================
-   DESKTOP ENVELOPE PARALLAX
+   DESKTOP PARALLAX
 ========================================================= */
 
 const desktopPointer =
@@ -342,7 +363,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX WHEN OPENING
+   RESET PARALLAX
 ========================================================= */
 
 openButton.addEventListener(
@@ -360,7 +381,7 @@ openButton.addEventListener(
 
 
 /* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
+   MOBILE DOUBLE TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
