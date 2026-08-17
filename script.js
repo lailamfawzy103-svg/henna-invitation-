@@ -20,6 +20,9 @@ const envelopeScreen =
 const clickHint =
   document.getElementById("clickHint");
 
+const envelope =
+  document.getElementById("envelope");
+
 const attendBtn =
   document.getElementById("attendBtn");
 
@@ -29,12 +32,9 @@ const declineBtn =
 const guests =
   document.getElementById("guests");
 
-const envelope =
-  document.getElementById("envelope");
-
 
 /* =========================================================
-   LOADING SCREEN
+   LOADER
 ========================================================= */
 
 window.addEventListener("load", () => {
@@ -50,7 +50,6 @@ window.addEventListener("load", () => {
 
 /* =========================================================
    COUNTDOWN
-   20 AUGUST 2026 - 9:00 PM
 ========================================================= */
 
 const eventDate =
@@ -87,14 +86,10 @@ function updateCountdown() {
   }
 
 
-  /* EVENT PASSED */
-
   if (difference <= 0) {
 
     daysElement.textContent = "00";
-
     hoursElement.textContent = "00";
-
     minutesElement.textContent = "00";
 
     return;
@@ -140,8 +135,6 @@ function updateCountdown() {
 }
 
 
-/* START COUNTDOWN */
-
 updateCountdown();
 
 setInterval(
@@ -157,120 +150,192 @@ setInterval(
 let opened = false;
 
 
-openButton.addEventListener("click", () => {
+openButton.addEventListener(
+  "click",
+  () => {
 
-  if (opened) {
-    return;
-  }
+    if (opened) {
+      return;
+    }
 
-  opened = true;
-
-
-  /* =====================================================
-     HIDE CLICK HINT
-  ====================================================== */
-
-  clickHint.style.opacity = "0";
+    opened = true;
 
 
-  /* =====================================================
-     STOP PARALLAX
-  ====================================================== */
+    /* ================================================
+       HIDE HINT
+    ================================================= */
 
-  envelope.style.transform =
-    "translate(-50%, -50%)";
-
-
-  /* =====================================================
-     OPEN FOUR SIDES
-  ====================================================== */
-
-  envelopeStage.classList.add(
-    "opened"
-  );
+    clickHint.style.opacity = "0";
 
 
-  /* =====================================================
-     SHOW INVITATION AFTER ENVELOPE OPENS
-  ====================================================== */
+    /* ================================================
+       STOP PARALLAX
+    ================================================= */
 
-  setTimeout(() => {
-
-    app.classList.add(
-      "show-invitation"
-    );
-
-  }, 1650);
+    envelope.style.transform =
+      "translate(-50%, -50%)";
 
 
-  /* =====================================================
-     HIDE ENVELOPE AFTER TRANSITION
-  ====================================================== */
-
-  setTimeout(() => {
-
-    envelopeScreen.classList.add(
-      "completely-hidden"
-    );
+    /* ================================================
+       STEP 1
+       فتح الأربع جوانب
+    ================================================= */
 
     envelopeStage.classList.add(
-      "finished"
+      "opened"
     );
 
-    document.body.style.overflowY =
-      "auto";
 
-  }, 2450);
+    /*
+      مدة فتح الظرف:
+      حوالي 1.9 ثانية
+    */
 
-});
+
+    /* ================================================
+       STEP 2
+       بعد ما الظرف يفتح بالكامل
+       الورقة تصبح أمام الطبقات
+    ================================================= */
+
+    setTimeout(() => {
+
+      envelopeStage.classList.add(
+        "paper-visible"
+      );
+
+    }, 1950);
+
+
+    /* ================================================
+       STEP 3
+       الورقة تبدأ تقرب
+       بعد انتهاء فتح الظرف
+    ================================================= */
+
+    setTimeout(() => {
+
+      envelopeStage.classList.add(
+        "invitation-expand"
+      );
+
+    }, 2050);
+
+
+    /* ================================================
+       STEP 4
+       لمعة خفيفة أثناء اقتراب الورقة
+    ================================================= */
+
+    setTimeout(() => {
+
+      envelopeStage.classList.add(
+        "sparkle"
+      );
+
+    }, 2250);
+
+
+    /* ================================================
+       STEP 5
+       بعد انتهاء حركة الورقة
+       نظهر الـInvitation
+    ================================================= */
+
+    setTimeout(() => {
+
+      app.classList.add(
+        "show-invitation"
+      );
+
+    }, 3900);
+
+
+    /* ================================================
+       STEP 6
+       إخفاء الظرف بعد ظهور الـInvitation
+    ================================================= */
+
+    setTimeout(() => {
+
+      envelopeStage.classList.add(
+        "envelope-hide"
+      );
+
+    }, 4050);
+
+
+    /* ================================================
+       STEP 7
+       إخفاء شاشة الظرف
+    ================================================= */
+
+    setTimeout(() => {
+
+      envelopeScreen.classList.add(
+        "completely-hidden"
+      );
+
+      envelopeStage.classList.add(
+        "finished"
+      );
+
+    }, 4550);
+
+  }
+);
 
 
 /* =========================================================
    RSVP
 ========================================================= */
 
-attendBtn.addEventListener(
-  "click",
-  () => {
+if (attendBtn && declineBtn && guests) {
 
-    attendBtn.classList.add(
-      "selected"
-    );
+  attendBtn.addEventListener(
+    "click",
+    () => {
 
-    declineBtn.classList.remove(
-      "selected"
-    );
+      attendBtn.classList.add(
+        "selected"
+      );
 
-    guests.classList.add(
-      "show"
-    );
+      declineBtn.classList.remove(
+        "selected"
+      );
 
-  }
-);
+      guests.classList.add(
+        "show"
+      );
+
+    }
+  );
 
 
-declineBtn.addEventListener(
-  "click",
-  () => {
+  declineBtn.addEventListener(
+    "click",
+    () => {
 
-    declineBtn.classList.add(
-      "selected"
-    );
+      declineBtn.classList.add(
+        "selected"
+      );
 
-    attendBtn.classList.remove(
-      "selected"
-    );
+      attendBtn.classList.remove(
+        "selected"
+      );
 
-    guests.classList.remove(
-      "show"
-    );
+      guests.classList.remove(
+        "show"
+      );
 
-  }
-);
+    }
+  );
+
+}
 
 
 /* =========================================================
-   DESKTOP ENVELOPE PARALLAX
+   DESKTOP PARALLAX
 ========================================================= */
 
 const desktopPointer =
@@ -320,25 +385,7 @@ if (desktopPointer.matches) {
 
 
 /* =========================================================
-   RESET PARALLAX WHEN OPENING
-========================================================= */
-
-openButton.addEventListener(
-  "click",
-  () => {
-
-    envelope.style.transform =
-      "translate(-50%, -50%)";
-
-  },
-  {
-    once: true
-  }
-);
-
-
-/* =========================================================
-   MOBILE DOUBLE-TAP PROTECTION
+   MOBILE DOUBLE TAP PROTECTION
 ========================================================= */
 
 let lastTouchEnd = 0;
@@ -359,7 +406,6 @@ document.addEventListener(
       event.preventDefault();
 
     }
-
 
     lastTouchEnd = now;
 
