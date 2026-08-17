@@ -782,5 +782,4 @@ document.addEventListener(
     passive: false
   }
 );
-```
 
