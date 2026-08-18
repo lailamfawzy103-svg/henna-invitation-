@@ -35,6 +35,7 @@
 
 <body>
 
+
   <!-- =====================================================
        LOADER
   ====================================================== -->
@@ -60,6 +61,7 @@
 
   <main class="app" id="app">
 
+
     <!-- ===================================================
          ENVELOPE SCREEN
     ==================================================== -->
@@ -70,6 +72,7 @@
     >
 
       <div class="ambient-light"></div>
+
 
       <div
         class="envelope-stage"
@@ -186,8 +189,11 @@
 
       <article class="invitation-card">
 
+
         <div class="invitation-frame">
+
           <div class="invitation-inner-frame"></div>
+
         </div>
 
 
@@ -222,6 +228,7 @@
             <div class="invitation-line">
               يسر د. هدى مدحت دعوتكم لحضور حفل حنة
             </div>
+
 
             <div class="names">
 
@@ -265,19 +272,23 @@
               تفاصيل الحفل
             </div>
 
+
             <div class="date">
               20.8.2026
             </div>
 
+
             <div class="time">
               الساعة 9 مساء عقب صلاة العشاء
             </div>
+
 
             <div class="location">
 
               <div class="location-name">
                 بمنزل د. محمد فوزي رياض
               </div>
+
 
               <a
                 href="https://maps.app.goo.gl/uBLH87eT9DV1tAhT6"
@@ -316,7 +327,9 @@
               Countdown
             </div>
 
+
             <div class="countdown">
+
 
               <div class="count-item">
 
@@ -330,7 +343,9 @@
 
               </div>
 
+
               <div class="count-divider"></div>
+
 
               <div class="count-item">
 
@@ -344,7 +359,9 @@
 
               </div>
 
+
               <div class="count-divider"></div>
+
 
               <div class="count-item">
 
@@ -357,6 +374,7 @@
                 </small>
 
               </div>
+
 
             </div>
 
@@ -377,15 +395,18 @@
 
 
           <!-- =================================================
-               RSVP
+               RSVP + WISHES
           ================================================== -->
 
           <div class="rsvp-section reveal-item">
+
 
             <div class="section-kicker">
               حضوركم يسعدنا
             </div>
 
+
+            <!-- NAME -->
 
             <div class="form-group">
 
@@ -399,6 +420,7 @@
 
               </label>
 
+
               <input
                 id="guestName"
                 type="text"
@@ -408,7 +430,10 @@
             </div>
 
 
+            <!-- ATTENDANCE -->
+
             <div class="rsvp-buttons">
+
 
               <button
                 class="rsvp-btn attend"
@@ -427,18 +452,8 @@
                 أعتذر عن الحضور
               </button>
 
+
             </div>
-
-
-            <!-- RSVP SEND BUTTON -->
-
-            <button
-              class="rsvp-submit"
-              id="rsvpSubmit"
-              type="button"
-            >
-              إرسال
-            </button>
 
 
             <!-- GUEST COUNT -->
@@ -458,6 +473,7 @@
 
               </label>
 
+
               <input
                 id="guestCount"
                 type="number"
@@ -468,6 +484,79 @@
               >
 
             </div>
+
+
+            <!-- =================================================
+                 WISH
+            ================================================== -->
+
+            <div class="wish-area">
+
+
+              <div class="wish-title">
+                اكتبوا كلمة تبقى ذكرى
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="wishName">
+
+                  الاسم
+
+                  <em>
+                    (اختياري)
+                  </em>
+
+                </label>
+
+
+                <input
+                  id="wishName"
+                  type="text"
+                  placeholder="اكتبي الاسم"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="wishText">
+
+                  الأمنية
+
+                  <em>
+                    (اختياري)
+                  </em>
+
+                </label>
+
+
+                <textarea
+                  id="wishText"
+                  rows="3"
+                  placeholder="اكتبي أمنيتك للعروسين"
+                ></textarea>
+
+              </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 ONE SEND BUTTON
+            ================================================== -->
+
+            <button
+              class="rsvp-submit"
+              id="rsvpSubmit"
+              type="button"
+            >
+              إرسال
+            </button>
+
 
           </div>
 
@@ -485,77 +574,10 @@
           </div>
 
 
-          <!-- =================================================
-               WISHES
-          ================================================== -->
-
-          <div class="wishes-section reveal-item">
-
-            <div class="section-kicker">
-              اكتبوا كلمة تبقى ذكرى
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="wishName">
-
-                الاسم
-
-                <em>
-                  (إجباري)
-                </em>
-
-              </label>
-
-              <input
-                id="wishName"
-                type="text"
-                placeholder="اكتبي الاسم"
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="wishText">
-
-                الأمنية
-
-                <em>
-                  (إجباري)
-                </em>
-
-              </label>
-
-              <textarea
-                id="wishText"
-                rows="3"
-                placeholder="اكتبي أمنيتك للعروسين"
-              ></textarea>
-
-            </div>
-
-
-            <!-- WISH SEND BUTTON -->
-
-            <button
-              class="wish-submit"
-              id="wishSubmit"
-              type="button"
-            >
-              إرسال
-            </button>
-
-          </div>
-
-
-          <!-- =================================================
-               FINAL
-          ================================================== -->
+          <!-- FINAL -->
 
           <div class="final-section reveal-item">
+
 
             <div class="final-ornament">
 
@@ -567,13 +589,16 @@
 
             </div>
 
+
             <div class="final-text">
               بارك الله لهما وبارك عليهما
             </div>
 
+
             <div class="final-text">
               وجمع بينهما في خير
             </div>
+
 
           </div>
 
@@ -583,6 +608,7 @@
           <div class="bottom-monogram reveal-item">
             AS
           </div>
+
 
         </div>
 
