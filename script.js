@@ -63,22 +63,17 @@ const GOOGLE_SCRIPT_URL =
    LOADER
 ========================================================= */
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     if (loader) {
       loader.classList.add("hide");
     }
 
-    if (app) {
-      app.classList.add("loaded");
-    }
-
   }, 1500);
 
 });
-
 
 
 /* =========================================================
@@ -187,7 +182,7 @@ if (openButton) {
 
   openButton.addEventListener(
     "click",
-    () => {
+    function () {
 
       if (opened) {
         return;
@@ -216,7 +211,7 @@ if (openButton) {
         );
 
 
-        setTimeout(() => {
+        setTimeout(function () {
 
           envelopeStage.classList.add(
             "paper-visible"
@@ -225,7 +220,7 @@ if (openButton) {
         }, 1950);
 
 
-        setTimeout(() => {
+        setTimeout(function () {
 
           envelopeStage.classList.add(
             "invitation-expand"
@@ -234,7 +229,7 @@ if (openButton) {
         }, 2050);
 
 
-        setTimeout(() => {
+        setTimeout(function () {
 
           envelopeStage.classList.add(
             "sparkle"
@@ -245,7 +240,7 @@ if (openButton) {
       }
 
 
-      setTimeout(() => {
+      setTimeout(function () {
 
         if (app) {
 
@@ -258,7 +253,7 @@ if (openButton) {
       }, 3900);
 
 
-      setTimeout(() => {
+      setTimeout(function () {
 
         if (envelopeStage) {
 
@@ -271,7 +266,7 @@ if (openButton) {
       }, 4050);
 
 
-      setTimeout(() => {
+      setTimeout(function () {
 
         if (envelopeScreen) {
 
@@ -397,7 +392,7 @@ async function submitRSVP() {
 
     numberOfGuests =
       Number(
-        guestCount?.value || 0
+        guestCount ? guestCount.value : 0
       );
 
 
@@ -485,15 +480,18 @@ async function submitRSVP() {
 
 }
 
+
 /* =========================================================
-   ATTEND BUTTON
+   RSVP BUTTONS
 ========================================================= */
 
 if (
   attendBtn &&
   declineBtn &&
-  guests
+  guests &&
+  rsvpSubmit
 ) {
+
 
   /* =======================================================
      ATTEND
@@ -518,6 +516,11 @@ if (
 
 
       guests.classList.add(
+        "show"
+      );
+
+
+      rsvpSubmit.classList.add(
         "show"
       );
 
@@ -551,17 +554,18 @@ if (
         "show"
       );
 
+
+      rsvpSubmit.classList.add(
+        "show"
+      );
+
     }
   );
 
-}
 
-
-/* =========================================================
-   RSVP SEND BUTTON
-========================================================= */
-
-if (rsvpSubmit) {
+  /* =======================================================
+     RSVP SEND
+  ======================================================= */
 
   rsvpSubmit.addEventListener(
     "click",
@@ -587,7 +591,7 @@ if (
 
   wishSubmit.addEventListener(
     "click",
-    async () => {
+    async function () {
 
       const name =
         wishName.value.trim();
@@ -711,7 +715,7 @@ if (
 
   document.addEventListener(
     "mousemove",
-    (event) => {
+    function (event) {
 
       if (opened) {
         return;
@@ -735,11 +739,9 @@ if (
 
 
       envelope.style.transform =
-        `
-        translate(-50%, -50%)
-        rotateY(${x * 2}deg)
-        rotateX(${y * -1.2}deg)
-        `;
+        "translate(-50%, -50%) " +
+        "rotateY(" + (x * 2) + "deg) " +
+        "rotateX(" + (y * -1.2) + "deg)";
 
     }
   );
@@ -756,7 +758,7 @@ let lastTouchEnd = 0;
 
 document.addEventListener(
   "touchend",
-  (event) => {
+  function (event) {
 
     const now =
       Date.now();
@@ -778,4 +780,3 @@ document.addEventListener(
     passive: false
   }
 );
-
