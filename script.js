@@ -23,6 +23,11 @@ const clickHint =
 const envelope =
   document.getElementById("envelope");
 
+
+/* =========================================================
+   RSVP ELEMENTS
+========================================================= */
+
 const attendBtn =
   document.getElementById("attendBtn");
 
@@ -41,14 +46,16 @@ const guestCount =
 const rsvpSubmit =
   document.getElementById("rsvpSubmit");
 
+
+/* =========================================================
+   WISH ELEMENTS
+========================================================= */
+
 const wishName =
   document.getElementById("wishName");
 
 const wishText =
   document.getElementById("wishText");
-
-const wishSubmit =
-  document.getElementById("wishSubmit");
 
 
 /* =========================================================
@@ -63,17 +70,23 @@ const GOOGLE_SCRIPT_URL =
    LOADER
 ========================================================= */
 
-window.addEventListener("load", function () {
+window.addEventListener(
+  "load",
+  function () {
 
-  setTimeout(function () {
+    setTimeout(
+      function () {
 
-    if (loader) {
-      loader.classList.add("hide");
-    }
+        if (loader) {
+          loader.classList.add("hide");
+        }
 
-  }, 1500);
+      },
+      1500
+    );
 
-});
+  }
+);
 
 
 /* =========================================================
@@ -110,17 +123,25 @@ function updateCountdown() {
     !hoursElement ||
     !minutesElement
   ) {
+
     return;
+
   }
 
 
   if (difference <= 0) {
 
-    daysElement.textContent = "00";
-    hoursElement.textContent = "00";
-    minutesElement.textContent = "00";
+    daysElement.textContent =
+      "00";
+
+    hoursElement.textContent =
+      "00";
+
+    minutesElement.textContent =
+      "00";
 
     return;
+
   }
 
 
@@ -165,6 +186,7 @@ function updateCountdown() {
 
 updateCountdown();
 
+
 setInterval(
   updateCountdown,
   1000
@@ -188,11 +210,15 @@ if (openButton) {
         return;
       }
 
+
       opened = true;
 
 
       if (clickHint) {
-        clickHint.style.opacity = "0";
+
+        clickHint.style.opacity =
+          "0";
+
       }
 
 
@@ -211,81 +237,99 @@ if (openButton) {
         );
 
 
-        setTimeout(function () {
+        setTimeout(
+          function () {
 
-          envelopeStage.classList.add(
-            "paper-visible"
-          );
+            envelopeStage.classList.add(
+              "paper-visible"
+            );
 
-        }, 1950);
-
-
-        setTimeout(function () {
-
-          envelopeStage.classList.add(
-            "invitation-expand"
-          );
-
-        }, 2050);
+          },
+          1950
+        );
 
 
-        setTimeout(function () {
+        setTimeout(
+          function () {
 
-          envelopeStage.classList.add(
-            "sparkle"
-          );
+            envelopeStage.classList.add(
+              "invitation-expand"
+            );
 
-        }, 2250);
+          },
+          2050
+        );
+
+
+        setTimeout(
+          function () {
+
+            envelopeStage.classList.add(
+              "sparkle"
+            );
+
+          },
+          2250
+        );
 
       }
 
 
-      setTimeout(function () {
+      setTimeout(
+        function () {
 
-        if (app) {
+          if (app) {
 
-          app.classList.add(
-            "show-invitation"
-          );
+            app.classList.add(
+              "show-invitation"
+            );
 
-        }
+          }
 
-      }, 3900);
-
-
-      setTimeout(function () {
-
-        if (envelopeStage) {
-
-          envelopeStage.classList.add(
-            "envelope-hide"
-          );
-
-        }
-
-      }, 4050);
+        },
+        3900
+      );
 
 
-      setTimeout(function () {
+      setTimeout(
+        function () {
 
-        if (envelopeScreen) {
+          if (envelopeStage) {
 
-          envelopeScreen.classList.add(
-            "completely-hidden"
-          );
+            envelopeStage.classList.add(
+              "envelope-hide"
+            );
 
-        }
+          }
+
+        },
+        4050
+      );
 
 
-        if (envelopeStage) {
+      setTimeout(
+        function () {
 
-          envelopeStage.classList.add(
-            "finished"
-          );
+          if (envelopeScreen) {
 
-        }
+            envelopeScreen.classList.add(
+              "completely-hidden"
+            );
 
-      }, 4550);
+          }
+
+
+          if (envelopeStage) {
+
+            envelopeStage.classList.add(
+              "finished"
+            );
+
+          }
+
+        },
+        4550
+      );
 
     }
   );
@@ -322,8 +366,10 @@ async function sendToGoogleSheet(data) {
 
         body:
           JSON.stringify(data)
+
       }
     );
+
 
     return true;
 
@@ -334,6 +380,7 @@ async function sendToGoogleSheet(data) {
       error
     );
 
+
     return false;
 
   }
@@ -342,15 +389,118 @@ async function sendToGoogleSheet(data) {
 
 
 /* =========================================================
-   RSVP SUBMIT
+   ATTEND BUTTON
 ========================================================= */
 
-async function submitRSVP() {
+if (attendBtn) {
 
-  if (
-    !guestName ||
-    !rsvpSubmit
-  ) {
+  attendBtn.addEventListener(
+    "click",
+    function () {
+
+      attendanceChoice =
+        "سأحضر";
+
+
+      attendBtn.classList.add(
+        "selected"
+      );
+
+
+      if (declineBtn) {
+
+        declineBtn.classList.remove(
+          "selected"
+        );
+
+      }
+
+
+      if (guests) {
+
+        guests.classList.add(
+          "show"
+        );
+
+      }
+
+
+      if (rsvpSubmit) {
+
+        rsvpSubmit.classList.add(
+          "show"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   DECLINE BUTTON
+========================================================= */
+
+if (declineBtn) {
+
+  declineBtn.addEventListener(
+    "click",
+    function () {
+
+      attendanceChoice =
+        "أعتذر عن الحضور";
+
+
+      declineBtn.classList.add(
+        "selected"
+      );
+
+
+      if (attendBtn) {
+
+        attendBtn.classList.remove(
+          "selected"
+        );
+
+      }
+
+
+      if (guests) {
+
+        guests.classList.remove(
+          "show"
+        );
+
+      }
+
+
+      if (rsvpSubmit) {
+
+        rsvpSubmit.classList.add(
+          "show"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ONE SEND BUTTON
+========================================================= */
+
+async function submitAllData() {
+
+  /* -------------------------------------------------------
+     CHECK NAME
+  ------------------------------------------------------- */
+
+  if (!guestName) {
     return;
   }
 
@@ -372,6 +522,10 @@ async function submitRSVP() {
   }
 
 
+  /* -------------------------------------------------------
+     CHECK ATTENDANCE
+  ------------------------------------------------------- */
+
   if (!attendanceChoice) {
 
     alert(
@@ -383,6 +537,10 @@ async function submitRSVP() {
   }
 
 
+  /* -------------------------------------------------------
+     GUESTS
+  ------------------------------------------------------- */
+
   let numberOfGuests = 0;
 
 
@@ -392,7 +550,9 @@ async function submitRSVP() {
 
     numberOfGuests =
       Number(
-        guestCount ? guestCount.value : 0
+        guestCount
+          ? guestCount.value
+          : 0
       );
 
 
@@ -417,7 +577,42 @@ async function submitRSVP() {
   }
 
 
-  const data = {
+  /* -------------------------------------------------------
+     WISH
+  ------------------------------------------------------- */
+
+  const wishPerson =
+    wishName
+      ? wishName.value.trim()
+      : "";
+
+
+  const wishMessage =
+    wishText
+      ? wishText.value.trim()
+      : "";
+
+
+  /* -------------------------------------------------------
+     DISABLE BUTTON
+  ------------------------------------------------------- */
+
+  if (rsvpSubmit) {
+
+    rsvpSubmit.disabled =
+      true;
+
+    rsvpSubmit.textContent =
+      "جارِ الإرسال...";
+
+  }
+
+
+  /* =======================================================
+     SEND RSVP
+  ======================================================= */
+
+  const rsvpData = {
 
     type:
       "rsvp",
@@ -436,32 +631,76 @@ async function submitRSVP() {
 
   console.log(
     "RSVP DATA:",
-    data
+    rsvpData
   );
 
 
-  rsvpSubmit.disabled =
+  const rsvpSuccess =
+    await sendToGoogleSheet(
+      rsvpData
+    );
+
+
+  /* =======================================================
+     SEND WISH IF WRITTEN
+  ======================================================= */
+
+  let wishSuccess =
     true;
 
-  rsvpSubmit.textContent =
-    "جارِ الإرسال...";
+
+  if (
+    wishMessage
+  ) {
+
+    const wishData = {
+
+      type:
+        "wish",
+
+      name:
+        wishPerson || name,
+
+      message:
+        wishMessage
+
+    };
 
 
-  const success =
-    await sendToGoogleSheet(
-      data
+    console.log(
+      "WISH DATA:",
+      wishData
     );
 
 
-  if (success) {
+    wishSuccess =
+      await sendToGoogleSheet(
+        wishData
+      );
+
+  }
+
+
+  /* =======================================================
+     RESULT
+  ======================================================= */
+
+  if (
+    rsvpSuccess &&
+    wishSuccess
+  ) {
 
     alert(
-      "تم تسجيل ردك بنجاح ❤️"
+      "تم إرسال ردك بنجاح ❤️"
     );
 
 
-    rsvpSubmit.textContent =
-      "تم الإرسال ✓";
+    if (rsvpSubmit) {
+
+      rsvpSubmit.textContent =
+        "تم الإرسال ✓";
+
+    }
 
   } else {
 
@@ -470,11 +709,15 @@ async function submitRSVP() {
     );
 
 
-    rsvpSubmit.disabled =
-      false;
+    if (rsvpSubmit) {
 
-    rsvpSubmit.textContent =
-      "إرسال";
+      rsvpSubmit.disabled =
+        false;
+
+      rsvpSubmit.textContent =
+        "إرسال";
+
+    }
 
   }
 
@@ -482,215 +725,16 @@ async function submitRSVP() {
 
 
 /* =========================================================
-   RSVP BUTTONS
+   SEND BUTTON CLICK
 ========================================================= */
 
-if (
-  attendBtn &&
-  declineBtn &&
-  guests &&
-  rsvpSubmit
-) {
-
-
-  /* =======================================================
-     ATTEND
-  ======================================================= */
-
-  attendBtn.addEventListener(
-    "click",
-    function () {
-
-      attendanceChoice =
-        "سأحضر";
-
-
-      attendBtn.classList.add(
-        "selected"
-      );
-
-
-      declineBtn.classList.remove(
-        "selected"
-      );
-
-
-      guests.classList.add(
-        "show"
-      );
-
-
-      rsvpSubmit.classList.add(
-        "show"
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     DECLINE
-  ======================================================= */
-
-  declineBtn.addEventListener(
-    "click",
-    function () {
-
-      attendanceChoice =
-        "أعتذر عن الحضور";
-
-
-      declineBtn.classList.add(
-        "selected"
-      );
-
-
-      attendBtn.classList.remove(
-        "selected"
-      );
-
-
-      guests.classList.remove(
-        "show"
-      );
-
-
-      rsvpSubmit.classList.add(
-        "show"
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     RSVP SEND
-  ======================================================= */
+if (rsvpSubmit) {
 
   rsvpSubmit.addEventListener(
     "click",
     async function () {
 
-      await submitRSVP();
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   GUEST WISHES
-========================================================= */
-
-if (
-  wishName &&
-  wishText &&
-  wishSubmit
-) {
-
-  wishSubmit.addEventListener(
-    "click",
-    async function () {
-
-      const name =
-        wishName.value.trim();
-
-
-      const message =
-        wishText.value.trim();
-
-
-      if (!name) {
-
-        alert(
-          "من فضلك اكتبي الاسم أولًا."
-        );
-
-        wishName.focus();
-
-        return;
-
-      }
-
-
-      if (!message) {
-
-        alert(
-          "من فضلك اكتبي الأمنية."
-        );
-
-        wishText.focus();
-
-        return;
-
-      }
-
-
-      wishSubmit.disabled =
-        true;
-
-      wishSubmit.textContent =
-        "جارِ الإرسال...";
-
-
-      const data = {
-
-        type:
-          "wish",
-
-        name:
-          name,
-
-        message:
-          message
-
-      };
-
-
-      console.log(
-        "WISH DATA:",
-        data
-      );
-
-
-      const success =
-        await sendToGoogleSheet(
-          data
-        );
-
-
-      if (success) {
-
-        alert(
-          "تم إرسال أمنيتك ❤️"
-        );
-
-
-        wishName.value =
-          "";
-
-        wishText.value =
-          "";
-
-
-        wishSubmit.textContent =
-          "تم الإرسال ✓";
-
-      } else {
-
-        alert(
-          "حدث خطأ أثناء الإرسال، حاولي مرة أخرى."
-        );
-
-
-        wishSubmit.disabled =
-          false;
-
-        wishSubmit.textContent =
-          "إرسال";
-
-      }
+      await submitAllData();
 
     }
   );
@@ -740,8 +784,12 @@ if (
 
       envelope.style.transform =
         "translate(-50%, -50%) " +
-        "rotateY(" + (x * 2) + "deg) " +
-        "rotateX(" + (y * -1.2) + "deg)";
+        "rotateY(" +
+        (x * 2) +
+        "deg) " +
+        "rotateX(" +
+        (y * -1.2) +
+        "deg)";
 
     }
   );
